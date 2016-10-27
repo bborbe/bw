@@ -1,5 +1,5 @@
 nodes = {
-    'node1': {
-        'hostname': "localhost",
-    },
+	'ubuntu': {
+		'hostname': 'ubuntu',
+	},
 }
