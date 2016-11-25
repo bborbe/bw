@@ -7,3 +7,7 @@ files = {
         'group': 'root',
     },
 }
+
+pkg_apt = {
+    "sudo": {},
+}

@@ -1,18 +1,8 @@
-groups = {
-    # 'group1': {
-    #    'bundles': (
-    #        'bundle1',
-    #    ),
-    #    'members': (
-    #        'node1',
-    #    ),
-    #    'subgroups': (
-    #        'group2',
-    #    ),
-    # },
-    'all': {
-        'member_patterns': (
-            r'.*',
-        ),
-    },
-}
+from glob import glob
+from os.path import join
+
+groups = {}
+
+for group in glob(join("groups", "*.py")):
+    with open(group, 'r') as f:
+        exec (f.read())

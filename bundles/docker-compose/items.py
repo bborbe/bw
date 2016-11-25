@@ -7,7 +7,11 @@ actions = {
         'unless': 'test -e /usr/local/bin/docker-compose',
         'command': 'curl -Lso /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.8.1/run.sh',
         'triggers': [
-            "action:chmod_docker_compose",
+            'action:chmod_docker_compose',
         ],
     },
+}
+
+pkg_apt = {
+    'docker.io': {},
 }

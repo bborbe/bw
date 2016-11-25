@@ -1,0 +1,15 @@
+pkg_apt = {
+    'bash': {},
+    'git': {},
+    'iptables-persistent': {},
+    'curl': {},
+    'wget': {},
+    'screen': {},
+    'mailutils': {},
+    'postfix': {},
+    'augeas-tools': {},
+    'monit': {},
+    'zsh': {},
+    'tmux': {},
+    'vim': {},
+}
