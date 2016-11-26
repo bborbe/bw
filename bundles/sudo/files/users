@@ -1,1 +1,3 @@
-bborbe ALL=(ALL) NOPASSWD: ALL
+% for user, data in sorted(users.items()):
+${user} ALL=(ALL) NOPASSWD: ALL
+% endfor
