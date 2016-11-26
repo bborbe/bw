@@ -10,7 +10,11 @@ groups['all'] = {
     ),
     'metadata': {
         'users': {
-            "bborbe": {},
+            "bborbe": {
+                'sudo': True,
+            },
+            "root": {
+            },
         },
     },
 }

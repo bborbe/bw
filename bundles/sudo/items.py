@@ -11,7 +11,7 @@ files = {
         'owner': 'root',
         'group': 'root',
         'context': {
-            'users': node.metadata['users'],
+            'users': dict((k, v) for k, v in node.metadata['users'].items() if v.get('sudo', False)),
         },
     },
 }
