@@ -10,6 +10,7 @@ groups['all'] = {
         'monit',
         'authorized_key',
         'ssh',
+        'apt',
     ),
     'metadata': {
         'users': {
