@@ -1,8 +1,8 @@
-nodes['hm.fire'] = {
+nodes['pn.sun'] = {
     'bundles': [
         'kvm',
     ],
-    'hostname': 'fire.hm.benjamin-borbe.de',
+    'hostname': 'sun.pn.benjamin-borbe.de',
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',

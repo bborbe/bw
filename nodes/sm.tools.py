@@ -1,8 +1,8 @@
-nodes['hm.fire'] = {
+nodes['sm.tools'] = {
     'bundles': [
         'kvm',
     ],
-    'hostname': 'fire.hm.benjamin-borbe.de',
+    'hostname': 'tools.seibert-media.net',
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
