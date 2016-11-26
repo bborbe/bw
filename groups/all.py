@@ -5,6 +5,8 @@ groups['all'] = {
     'bundles': (
         'base',
         'sudo',
+        'backup',
+        'monit',
     ),
     'metadata': {
         'users': {
