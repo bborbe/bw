@@ -1,5 +1,6 @@
 nodes['pn.sun'] = {
     'bundles': [
+        'openvpn',
         'kvm',
     ],
     'hostname': 'sun.pn.benjamin-borbe.de',
