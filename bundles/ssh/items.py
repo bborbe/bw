@@ -15,6 +15,14 @@ svc_systemd = {
     },
 }
 
+actions = {
+    'ssh_generate_missing_host_keys': {
+        'command': "ssh-keygen -A",
+        'triggered': True,
+        'needs': ['pkg_apt:openssh-server'],
+    },
+}
+
 files = {
     '/etc/ssh/sshd_config': {
         'source': 'sshd_config',
@@ -22,5 +30,9 @@ files = {
         'mode': '0644',
         'owner': 'root',
         'group': 'root',
+        'needs': ['pkg_apt:openssh-server'],
+        'triggers': [
+            'action:ssh_generate_missing_host_keys',
+        ],
     },
 }
