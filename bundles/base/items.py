@@ -13,7 +13,6 @@ pkg_apt = {
     'mailutils': {},
     'postfix': {},
     'augeas-tools': {},
-    'zsh': {},
     'tmux': {},
     'vim': {},
 }
