@@ -15,7 +15,7 @@ files = {
         'owner': 'root',
         'group': 'root',
         'context': {
-            'hostname': 'fire',
+            'hostname': parts[0],
         },
     },
 }
