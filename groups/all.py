@@ -16,6 +16,7 @@ groups['all'] = {
         'kvm',
         'openvpn',
         'dotfiles',
+        'cron',
     ),
     'metadata': {
         'users': {
