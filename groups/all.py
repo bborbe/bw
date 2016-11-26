@@ -6,4 +6,9 @@ groups['all'] = {
         'base',
         'sudo',
     ),
+    'metadata': {
+        'users': {
+            "bborbe": {},
+        },
+    },
 }
