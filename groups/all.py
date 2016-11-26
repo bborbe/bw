@@ -12,6 +12,7 @@ groups['all'] = {
         'ssh',
         'apt',
         'puppet',
+        'hostname',
     ),
     'metadata': {
         'users': {
