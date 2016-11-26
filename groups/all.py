@@ -11,6 +11,7 @@ groups['all'] = {
         'authorized_key',
         'ssh',
         'apt',
+        'puppet',
     ),
     'metadata': {
         'users': {
