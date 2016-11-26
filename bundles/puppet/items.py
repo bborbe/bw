@@ -5,6 +5,6 @@ if os != 'ubuntu' or release != 'xenial':
 
 pkg_apt = {
     'puppet': {
-        'installed': False,
+        'installed': node.metadata.get('puppet', False),
     },
 }

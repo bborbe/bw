@@ -13,6 +13,8 @@ groups['all'] = {
         'apt',
         'puppet',
         'hostname',
+        'kvm',
+        'openvpn',
     ),
     'metadata': {
         'users': {
