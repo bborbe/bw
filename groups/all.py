@@ -17,6 +17,9 @@ groups['all'] = {
         'openvpn',
         'dotfiles',
         'cron',
+        'docker-compose',
+        'docker-engine',
+        'docker-login',
     ),
     'metadata': {
         'users': {
