@@ -10,7 +10,7 @@ if node.metadata.get('docker', False):
         'docker_login': {
             # TODO: handle password change
             'unless': 'test -f /root/.docker/config.json',
-            'command': "su -c 'docker login docker.tools.seibert-media.net -u {} -p {}'".format(teamvault.username('7qGQOW'), teamvault.password("7qGQOW")),
+            'command': "su -c 'docker login docker.tools.seibert-media.net -u {} -p {}'".format(teamvault.username('7qGQOW', site='benjamin-borbe'), teamvault.password('7qGQOW', site='benjamin-borbe')),
             'needs': ['pkg_apt:docker.io'],
         },
     }
