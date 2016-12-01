@@ -3,5 +3,6 @@ nodes['nc.v22016124049440903'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'docker': True,
     },
 }
