@@ -4,7 +4,9 @@ if os != 'ubuntu' or release != 'xenial':
     raise Exception('{} {} is not supported by this bundle'.format(os, release))
 
 pkg_apt = {
-    'openssh-server': {},
+    'openssh-server': {
+        'installed': True,
+    },
 }
 
 svc_systemd = {
@@ -17,9 +19,10 @@ svc_systemd = {
 
 actions = {
     'ssh_generate_missing_host_keys': {
-        'command': "ssh-keygen -A",
+        'command': 'ssh-keygen -A',
         'triggered': True,
         'needs': ['pkg_apt:openssh-server'],
+        'triggers': ['svc_systemd:sshd:restart'],
     },
 }
 
@@ -33,6 +36,7 @@ files = {
         'needs': ['pkg_apt:openssh-server'],
         'triggers': [
             'action:ssh_generate_missing_host_keys',
+            'svc_systemd:sshd:restart',
         ],
     },
 }
