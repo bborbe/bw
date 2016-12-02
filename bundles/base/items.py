@@ -16,4 +16,5 @@ pkg_apt = {
     'tmux': {},
     'vim': {},
     'ntpdate': {},
+    'aptitude': {},
 }
