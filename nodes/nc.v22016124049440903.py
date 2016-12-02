@@ -4,5 +4,6 @@ nodes['nc.v22016124049440903'] = {
         'os': 'ubuntu',
         'release': 'xenial',
         'docker': True,
+        'kubernetes': True,
     },
 }
