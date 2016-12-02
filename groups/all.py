@@ -20,6 +20,7 @@ groups['all'] = {
         'docker-compose',
         'docker-engine',
         'docker-login',
+        'locale',
     ),
     'metadata': {
         'users': {
