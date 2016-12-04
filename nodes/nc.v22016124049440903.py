@@ -6,5 +6,7 @@ nodes['nc.v22016124049440903'] = {
         'docker': True,
         'kubernetes': True,
         'openvpn': True,
+        'zfs': True,
+        'zfs_device': '/dev/sda4',
     },
 }
