@@ -11,8 +11,8 @@ pkg_apt = {
 
 svc_systemd = {
     "openvpn": {
-        'running': True,
-        'enabled': True,
+        'running': node.metadata.get('openvpn', False),
+        'enabled': node.metadata.get('openvpn', False),
         'needs': ['pkg_apt:openvpn'],
     },
 }
