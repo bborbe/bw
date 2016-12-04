@@ -22,6 +22,15 @@ svc_systemd = {
     'kubelet': {
         'running': node.metadata.get('kubernetes', False),
         'enabled': node.metadata.get('kubernetes', False),
-        'needs': ['pkg_apt:kubelet'],
+        'needs': ['pkg_apt:kubelet', 'action:kube_init'],
     },
 }
+
+actions = {}
+
+if node.metadata.get('kubernetes', False):
+    actions['kube_init'] = {
+        'command': 'rm -rf /var/lib/kubelet/* && kubeadm init --use-kubernetes-version {version}'.format(version='v1.4.6'),
+        'unless': 'test -e /etc/kubernetes/admin.conf',
+        'needs': ['pkg_apt:kubelet', 'pkg_apt:kubeadm'],
+    }
