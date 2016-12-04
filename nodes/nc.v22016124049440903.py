@@ -10,6 +10,10 @@ nodes['nc.v22016124049440903'] = {
         'zfs_device': '/dev/sda4',
         'iptables': {
             'enabled': True,
-        }
+        },
+        'haproxy': {
+            'ip': '185.170.112.48',
+            'enabled': True,
+        },
     },
 }
