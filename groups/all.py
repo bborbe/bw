@@ -24,6 +24,7 @@ groups['all'] = {
         'kubernetes',
         'ntp',
         'zfs',
+        'iptables',
     ),
     'metadata': {
         'users': {

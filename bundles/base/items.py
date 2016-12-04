@@ -6,7 +6,6 @@ if os != 'ubuntu' or release != 'xenial':
 pkg_apt = {
     'bash': {},
     'git': {},
-    'iptables-persistent': {},
     'curl': {},
     'wget': {},
     'screen': {},
