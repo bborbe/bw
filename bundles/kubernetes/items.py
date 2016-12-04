@@ -17,3 +17,11 @@ pkg_apt = {
         'installed': node.metadata.get('kubernetes', False),
     },
 }
+
+svc_systemd = {
+    'kubelet': {
+        'running': node.metadata.get('kubernetes', False),
+        'enabled': node.metadata.get('kubernetes', False),
+        'needs': ['pkg_apt:kubelet'],
+    },
+}
