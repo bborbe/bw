@@ -23,6 +23,7 @@ groups['all'] = {
         'locale',
         'kubernetes',
         'ntp',
+        'zfs',
     ),
     'metadata': {
         'users': {
