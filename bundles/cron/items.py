@@ -9,9 +9,9 @@ pkg_apt = {
 
 svc_systemd = {
     "cron": {
-        'needs': [
-            'pkg_apt:cron',
-        ],
+        'running': True,
+        'enabled': True,
+        'needs': ['pkg_apt:cron'],
     },
 }
 
