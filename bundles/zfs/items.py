@@ -18,6 +18,7 @@ if node.metadata.get('zfs', False):
         actions = {
             'zpool_create_storage': {
                 'unless': 'zpool status storage',
-                'command': 'zpool create storage {}'.format(zfs_device),
+                'command': 'zpool create storage {device}'.format(device=zfs_device),
+                'needs': ['pkg_apt:zfsutils-linux'],
             },
         }
