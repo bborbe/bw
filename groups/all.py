@@ -22,6 +22,7 @@ groups['all'] = {
         'docker-login',
         'locale',
         'kubernetes',
+        'ntp',
     ),
     'metadata': {
         'users': {

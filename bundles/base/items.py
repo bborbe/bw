@@ -15,6 +15,5 @@ pkg_apt = {
     'augeas-tools': {},
     'tmux': {},
     'vim': {},
-    'ntpdate': {},
     'aptitude': {},
 }
