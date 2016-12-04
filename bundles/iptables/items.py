@@ -12,19 +12,21 @@ pkg_apt = {
     },
 }
 
+files = {}
+
+rules = []
+
 if node.metadata.get('iptables', {}).get('enabled', False):
-    files = {
-        '/etc/network/if-pre-up.d/iptables': {
-            'source': 'iptables',
-            'content_type': 'mako',
-            'mode': '0775',
-            'owner': 'root',
-            'group': 'root',
-            'context': {
-                'rules': node.metadata.get('iptables', {}).get('rules', []),
-            },
-            'triggers': ['action:iptables-insert'],
+    files['/etc/network/if-pre-up.d/iptables'] = {
+        'source': 'iptables',
+        'content_type': 'mako',
+        'mode': '0775',
+        'owner': 'root',
+        'group': 'root',
+        'context': {
+            'rules': node.metadata.get('iptables', {}).get('rules', []),
         },
+        'triggers': ['action:iptables-insert'],
     }
 
 actions = {
