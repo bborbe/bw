@@ -11,3 +11,11 @@ pkg_apt = {
         'installed': False,
     },
 }
+
+svc_systemd = {
+    "docker": {
+        'running': node.metadata.get('docker', False),
+        'enabled': node.metadata.get('docker', False),
+        'needs': ['pkg_apt:docker-engine'],
+    },
+}
