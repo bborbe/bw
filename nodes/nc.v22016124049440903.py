@@ -5,5 +5,6 @@ nodes['nc.v22016124049440903'] = {
         'release': 'xenial',
         'docker': True,
         'kubernetes': True,
+        'openvpn': True,
     },
 }
