@@ -4,5 +4,8 @@ nodes['hm.fire'] = {
         'os': 'ubuntu',
         'release': 'xenial',
         'kvm': True,
+        'iptables': {
+            'enabled': True,
+        },
     },
 }

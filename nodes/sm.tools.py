@@ -4,5 +4,8 @@ nodes['sm.tools'] = {
         'os': 'ubuntu',
         'release': 'xenial',
         'kvm': True,
+        'iptables': {
+            'enabled': True,
+        },
     },
 }

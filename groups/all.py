@@ -26,6 +26,8 @@ groups['all'] = {
         'zfs',
         'iptables',
         'haproxy',
+        'git',
+        'letsencrypt',
     ),
     'metadata': {
         'users': {

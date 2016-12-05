@@ -3,6 +3,11 @@ release = node.metadata.get('release', '')
 if os != 'ubuntu' or release != 'xenial':
     raise Exception('{} {} is not supported by this bundle'.format(os, release))
 
+pkg_apt = {
+    'apt-transport-https': {},
+    'aptitude': {},
+}
+
 actions = {
     'apt_update': {
         'command': 'apt-get update',

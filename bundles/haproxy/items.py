@@ -3,22 +3,28 @@ release = node.metadata.get('release', '')
 if os != 'ubuntu' or release != 'xenial':
     raise Exception('{} {} is not supported by this bundle'.format(os, release))
 
-pkg_apt = {
-    'haproxy': {
-        'installed': node.metadata.get('haproxy', {}).get('enabled', False),
-    },
+svc_systemd = {}
+files = {}
+pkg_apt = {}
+
+pkg_apt['haproxy'] = {
+    'installed': node.metadata.get('haproxy', {}).get('enabled', False),
 }
 
-svc_systemd = {
-    'haproxy': {
-        'running': node.metadata.get('haproxy', {}).get('enabled', False),
-        'enabled': node.metadata.get('haproxy', {}).get('enabled', False),
+if node.metadata.get('haproxy', {}).get('enabled', False):
+    svc_systemd['haproxy'] = {
+        'running': True,
+        'enabled': True,
         'needs': ['pkg_apt:haproxy'],
-    },
-}
+    }
+else:
+    svc_systemd['haproxy'] = {
+        'running': False,
+        'enabled': False,
+    }
 
-files = {
-    '/etc/haproxy/haproxy.cfg': {
+if node.metadata.get('haproxy', {}).get('enabled', False):
+    files['/etc/haproxy/haproxy.cfg'] = {
         'source': 'haproxy.cfg',
         'content_type': 'mako',
         'mode': '0644',
@@ -29,5 +35,8 @@ files = {
         },
         'needs': ['pkg_apt:haproxy'],
         'triggers': ['svc_systemd:haproxy:restart'],
-    },
-}
+    }
+else:
+    files['/etc/haproxy/haproxy.cfg'] = {
+        'delete': True,
+    }

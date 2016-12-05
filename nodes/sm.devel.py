@@ -3,5 +3,8 @@ nodes['sm.devel'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'iptables': {
+            'enabled': True,
+        },
     },
 }

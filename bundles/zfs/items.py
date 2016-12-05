@@ -7,9 +7,6 @@ pkg_apt = {
     'zfsutils-linux': {
         'installed': node.metadata.get('zfs', False),
     },
-    'mountall': {
-        'installed': node.metadata.get('zfs', False),
-    },
 }
 
 if node.metadata.get('zfs', False):

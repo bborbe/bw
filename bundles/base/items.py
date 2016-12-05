@@ -5,7 +5,6 @@ if os != 'ubuntu' or release != 'xenial':
 
 pkg_apt = {
     'bash': {},
-    'git': {},
     'curl': {},
     'wget': {},
     'screen': {},
@@ -14,5 +13,14 @@ pkg_apt = {
     'augeas-tools': {},
     'tmux': {},
     'vim': {},
-    'aptitude': {},
+    'net-tools': {},
+    'iproute2': {},
+    'ca-certificates': {},
+    'telnet': {},
+    'dnsutils': {},
+    'traceroute': {},
+    'iputils-ping': {},
+    'openssh-client': {},
+    'mountall': {},
+
 }

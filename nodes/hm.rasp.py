@@ -9,5 +9,8 @@ nodes['hm.rasp'] = {
                 'dns-update': '* * * * * root /root/scripts/dns-update-home.benjamin-borbe.de.sh > /dev/null',
             },
         },
+        'iptables': {
+            'enabled': True,
+        },
     },
 }

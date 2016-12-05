@@ -5,5 +5,8 @@ nodes['pn.sun'] = {
         'release': 'xenial',
         'openvpn': True,
         'kvm': True,
+        'iptables': {
+            'enabled': True,
+        },
     },
 }

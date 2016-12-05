@@ -15,5 +15,12 @@ nodes['nc.v22016124049440903'] = {
             'ip': '185.170.112.48',
             'enabled': True,
         },
+        'letsencrypt': {
+            'enabled': True,
+            'config_repo': {
+                'branch': 'master',
+                'repo': 'https://github.com/bborbe/letsencrypt-nc.git',
+            },
+        },
     },
 }
