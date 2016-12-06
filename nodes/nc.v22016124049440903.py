@@ -6,8 +6,14 @@ nodes['nc.v22016124049440903'] = {
         'docker': True,
         'kubernetes': True,
         'openvpn': True,
-        'zfs': True,
-        'zfs_device': '/dev/sda4',
+        'zfs': {
+            'enabled': True,
+            'device': '/dev/sda4',
+            'mounts': {
+                '/var/lib/kubelet': {},
+                '/var/lib/docker': {},
+            },
+        },
         'iptables': {
             'enabled': True,
         },
