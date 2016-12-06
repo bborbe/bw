@@ -32,6 +32,8 @@ nodes['nc.v22016124049440903'] = {
                 # Http + Https
                 'iptables -A INPUT -m state --state NEW --protocol tcp --dport 80 -j ACCEPT',
                 'iptables -A INPUT -m state --state NEW --protocol tcp --dport 443 -j ACCEPT',
+                # K8s
+                'iptables -A INPUT -m state --state NEW --protocol tcp --dport 6443 -j ACCEPT',
                 # allow forward
                 'iptables -A FORWARD -j ACCEPT',
                 # drop noise
