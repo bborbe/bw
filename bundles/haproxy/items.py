@@ -6,6 +6,7 @@ if os != 'ubuntu' or release != 'xenial':
 svc_systemd = {}
 files = {}
 pkg_apt = {}
+directories = {}
 
 pkg_apt['haproxy'] = {
     'installed': node.metadata.get('haproxy', {}).get('enabled', False),
@@ -15,7 +16,7 @@ if node.metadata.get('haproxy', {}).get('enabled', False):
     svc_systemd['haproxy'] = {
         'running': True,
         'enabled': True,
-        'needs': ['pkg_apt:haproxy'],
+        'needs': ['pkg_apt:haproxy', 'file:/etc/haproxy/haproxy.cfg', 'directory:/etc/haproxy/ssl'],
     }
 else:
     svc_systemd['haproxy'] = {
@@ -38,5 +39,16 @@ if node.metadata.get('haproxy', {}).get('enabled', False):
     }
 else:
     files['/etc/haproxy/haproxy.cfg'] = {
+        'delete': True,
+    }
+
+if node.metadata.get('haproxy', {}).get('enabled', False):
+    directories['/etc/haproxy/ssl'] = {
+        'mode': '0700',
+        'owner': 'root',
+        'group': 'root',
+    }
+else:
+    directories['/etc/haproxy/ssl'] = {
         'delete': True,
     }

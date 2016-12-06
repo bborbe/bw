@@ -6,12 +6,4 @@ def letsencrypt_checkout(metadata):
             'repo': 'https://github.com/bborbe/letsencrypt.sh.git',
             'target': '/opt/letsencrypt.sh',
         }
-        config_repo = metadata.get('letsencrypt', {}).get('config_repo', {}).get('repo', '')
-        if len(config_repo) == 0:
-            raise Exception('letsencrytp config repo missing')
-        metadata['git']['clones']['letsencrypt-cfg'] = {
-            'branch': metadata.get('letsencrypt', {}).get('config_repo', {}).get('branch', 'master'),
-            'repo': config_repo,
-            'target': '/etc/letsencrypt.sh',
-        }
     return metadata

@@ -23,9 +23,9 @@ nodes['nc.v22016124049440903'] = {
         },
         'letsencrypt': {
             'enabled': True,
-            'config_repo': {
-                'branch': 'master',
-                'repo': 'https://github.com/bborbe/letsencrypt-nc.git',
+            'email': 'bborbe@rocketnews.de',
+            'domains': {
+                'benjamin-borbe.de': ['www.benjamin-borbe.de', 'test.benjamin-borbe.de', 'slideshow.benjamin-borbe.de'],
             },
         },
     },
