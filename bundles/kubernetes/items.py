@@ -22,7 +22,7 @@ actions = {}
 
 if node.metadata.get('kubernetes', False):
     actions['kube_init'] = {
-        'command': 'rm -rf /var/lib/kubelet/* && kubeadm init --use-kubernetes-version {version}'.format(version='v1.4.6'),
+        'command': 'rm -rf /var/lib/kubelet/*; rm -rf /var/lib/etcd/*; kubeadm init --use-kubernetes-version {version}'.format(version='v1.4.6'),
         'unless': 'test -e /etc/kubernetes/admin.conf',
         'needs': ['pkg_apt:kubelet', 'pkg_apt:kubeadm'],
     }
