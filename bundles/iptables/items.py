@@ -8,7 +8,7 @@ pkg_apt = {
         'installed': node.metadata.get('iptables', {}).get('enabled', False),
     },
     'iptables-persistent': {
-        'installed': node.metadata.get('iptables', {}).get('enabled', False),
+        'installed': False,
     },
 }
 
@@ -25,6 +25,7 @@ if node.metadata.get('iptables', {}).get('enabled', False):
         'group': 'root',
         'context': {
             'rules': node.metadata.get('iptables', {}).get('rules', []),
+            'nat_interfaces': node.metadata.get('iptables', {}).get('nat_interfaces', []),
         },
         'triggers': ['action:iptables-insert'],
     }

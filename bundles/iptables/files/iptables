@@ -4,6 +4,68 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+# Enable IP-Forwarding
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+#
+# Delete all rules
+#
+iptables -F
+iptables -F -t nat
+iptables -X
+iptables -X -t nat
+
+#
+# Define policy
+#
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT DROP
+
+#
+# Natd
+#
+% for nat_interface in nat_interfaces:
+iptables -t nat -A POSTROUTING -o ${nat_interface} -s 10.0.0.0/8 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o ${nat_interface} -s 172.16.0.0/12 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o ${nat_interface} -s 192.168.0.0/16 -j MASQUERADE
+% endfor
+
+#
+# Allow localhost
+#
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+
+#
+# Allow output
+#
+iptables -A OUTPUT -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+
+#
+# Allow answers
+#
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+#
+# Ports
+#
+# Ping
+iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type 11 -j ACCEPT
+# SSH
+iptables -A INPUT -m state --state NEW --protocol tcp --dport 22 -j ACCEPT
+
+#
+# Custom rules
+#
 % for rule in rules:
 ${rule}
 % endfor
+
+#
+# Logging
+#
+iptables -A INPUT -j LOG --log-prefix="IPTABLES-INPUT: "
+iptables -A OUTPUT -j LOG --log-prefix="IPTABLES-OUTPUT: "
+iptables -A FORWARD -j LOG --log-prefix="IPTABLES-FORWARD: "
