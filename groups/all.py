@@ -28,6 +28,7 @@ groups['all'] = {
         'haproxy',
         'git',
         'letsencrypt',
+        'dhcpclient',
     ),
     'metadata': {
         'users': {
