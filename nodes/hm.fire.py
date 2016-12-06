@@ -8,6 +8,7 @@ nodes['hm.fire'] = {
             'enabled': True,
             'nat_interfaces': [],
             'rules': [
+                # allow forward
                 'iptables -A FORWARD -j ACCEPT',
                 # drop noise
                 'iptables -A INPUT -m state --state NEW --protocol udp --dport 67 -j DROP',
