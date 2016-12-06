@@ -48,7 +48,3 @@ if node.metadata.get('haproxy', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
     }
-else:
-    directories['/etc/haproxy/ssl'] = {
-        'delete': True,
-    }

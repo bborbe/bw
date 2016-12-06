@@ -102,10 +102,6 @@ if node.metadata.get('letsencrypt', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
     }
-else:
-    directories['/var/www/letsencrypt.sh/.well-known/acme-challenge'] = {
-        'delete': True,
-    }
 
 if node.metadata.get('letsencrypt', {}).get('enabled', False):
     files['/etc/nginx/nginx.conf'] = {
