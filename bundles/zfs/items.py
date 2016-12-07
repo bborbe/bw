@@ -7,6 +7,9 @@ pkg_apt = {
     'zfsutils-linux': {
         'installed': node.metadata.get('zfs', {}).get('enabled', False),
     },
+    'nfs-kernel-server': {
+        'installed': node.metadata.get('zfs', {}).get('enabled', False),
+    },
 }
 
 actions = {}
@@ -22,9 +25,15 @@ if node.metadata.get('zfs', {}).get('enabled', False):
         'needed_by': ['svc_systemd:'],
     }
     for name, data in node.metadata.get('zfs', {}).get('mounts', {}).items():
+        parts = ['zfs create -p']
+        parts.append('-o mountpoint={mount}'.format(mount=name))
+        if data.get('sharenfs', False):
+            parts.append('-o sharenfs=on'.format(mount=name))
+        parts.append('storage{mount}'.format(mount=name))
+        cmd = ' '.join(parts)
         actions['zfs_mount_{mount}'.format(mount=name)] = {
             'unless': 'zfs list storage{mount}'.format(mount=name),
-            'command': 'rm -rf {mount} && zfs create -p -o mountpoint={mount} storage{mount}'.format(mount=name),
+            'command': 'rm -rf {mount} && {cmd}'.format(mount=name, cmd=cmd),
             'needs': ['action:zpool_create_storage'],
             'needed_by': ['svc_systemd:'],
         }

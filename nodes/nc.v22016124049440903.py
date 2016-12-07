@@ -10,6 +10,9 @@ nodes['nc.v22016124049440903'] = {
             'enabled': True,
             'device': '/dev/sda4',
             'mounts': {
+                '/data': {
+                    'sharenfs': True,
+                },
                 '/var/lib/kubelet': {},
                 '/var/lib/docker': {},
             },
