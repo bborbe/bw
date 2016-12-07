@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Enable IP-Forwarding
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+#
+# Define policy
+#
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD ACCEPT
+
+#
+# Delete all rules
+#
+iptables -t nat -F
+iptables -t filter -F
+iptables -t mangle -F
+iptables -X -t nat
+iptables -X -t filter
+iptables -X -t mangle
+iptables -Z -t nat
+iptables -Z -t filter
+iptables -Z -t mangle
