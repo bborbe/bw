@@ -118,3 +118,15 @@ else:
     files['/etc/nginx/nginx.conf'] = {
         'delete': True,
     }
+
+if node.metadata.get('letsencrypt', {}).get('enabled', False):
+    files['/var/www/letsencrypt.sh/.well-known/acme-challenge/letsencrypt.txt'] = {
+        'content': 'letsencrypt',
+        'owner': 'root',
+        'group': 'root',
+        'mode': '0644',
+    }
+else:
+    files['/var/www/letsencrypt.sh/.well-known/acme-challenge/letsencrypt.txt'] = {
+        'delete': True,
+    }
