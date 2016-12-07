@@ -29,6 +29,7 @@ groups['all'] = {
         'git',
         'letsencrypt',
         'dhcpclient',
+        'nfs-server',
     ),
     'metadata': {
         'users': {
