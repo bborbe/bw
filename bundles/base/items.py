@@ -22,5 +22,6 @@ pkg_apt = {
     'iputils-ping': {},
     'openssh-client': {},
     'mountall': {},
-
+    'rsync': {},
+    'nfs-common': {},
 }
