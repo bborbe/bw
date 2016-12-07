@@ -25,7 +25,7 @@ add_to_haproxy() {
 }
 
 restart_haproxy() {
-	systemctl reload haproxy
+	systemctl restart haproxy
 }
 
 clear_haproxy() {
