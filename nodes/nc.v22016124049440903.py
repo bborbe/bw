@@ -22,7 +22,7 @@ nodes['nc.v22016124049440903'] = {
             'enabled': True,
             'email': 'bborbe@rocketnews.de',
             'domains': {
-                'benjamin-borbe.de': ['www.benjamin-borbe.de', 'test.benjamin-borbe.de', 'slideshow.benjamin-borbe.de'],
+                'benjamin-borbe.de': ['www.benjamin-borbe.de', 'test.benjamin-borbe.de', 'slideshow.benjamin-borbe.de', 'ip.benjamin-borbe.de', 'password.benjamin-borbe.de'],
             },
         },
         'iptables': {
