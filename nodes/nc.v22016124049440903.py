@@ -25,7 +25,15 @@ nodes['nc.v22016124049440903'] = {
             'enabled': True,
             'email': 'bborbe@rocketnews.de',
             'domains': {
-                'benjamin-borbe.de': ['www.benjamin-borbe.de', 'test.benjamin-borbe.de', 'slideshow.benjamin-borbe.de', 'ip.benjamin-borbe.de', 'password.benjamin-borbe.de'],
+                'benjamin-borbe.de': ['www.benjamin-borbe.de', 'password.benjamin-borbe.de', 'ip.benjamin-borbe.de', 'test.benjamin-borbe.de', 'aptly.benjamin-borbe.de', 'backup.benjamin-borbe.de', 'blog.benjamin-borbe.de',
+                                      'confluence.benjamin-borbe.de', 'jenkins.benjamin-borbe.de', 'kickstart.benjamin-borbe.de', 'ks.benjamin-borbe.de', 'nsqadmin.benjamin-borbe.de', 'prometheus.benjamin-borbe.de', 'slideshow.benjamin-borbe.de',
+                                      'taiga.benjamin-borbe.de', 'wiki.benjamin-borbe.de', 'webdav.benjamin-borbe.de', 'booking.benjamin-borbe.de', 'grafana.benjamin-borbe.de', 'dashboard.benjamin-borbe.de', 'mail.benjamin-borbe.de',
+                                      'auth.benjamin-borbe.de', 'kibana.benjamin-borbe.de', 'elasticsearch.benjamin-borbe.de', 'prometheus-alertmanager.benjamin-borbe.de', 'docker.benjamin-borbe.de', 'teamvault.benjamin-borbe.de'],
+                'benjaminborbe.de': ['www.benjaminborbe.de'],
+                'harteslicht.de': ['www.harteslicht.de', 'blog.harteslicht.de'],
+                'harteslicht.com': ['www.harteslicht.com', 'blog.harteslicht.com'],
+                'rocketnews.de': ['www.rocketnews.de'],
+                'rocketsource.de': ['www.rocketsource.de'],
             },
         },
         'iptables': {
