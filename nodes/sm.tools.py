@@ -3,7 +3,9 @@ nodes['sm.tools'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
-        'kvm': True,
+        'kvm': {
+            'enabled': True,
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': ['eth0'],

@@ -30,6 +30,7 @@ groups['all'] = {
         'letsencrypt',
         'dhcpclient',
         'sysctl',
+        'systemd',
     ),
     'metadata': {
         'users': {

@@ -5,14 +5,14 @@ if os != 'ubuntu' or release != 'xenial':
 
 pkg_apt = {
     'openvpn': {
-        'installed': node.metadata.get('openvpn', False),
+        'installed': node.metadata.get('openvpn', {}).get('enabled', False),
     },
 }
 
 svc_systemd = {
     'openvpn': {
-        'running': node.metadata.get('openvpn', False),
-        'enabled': node.metadata.get('openvpn', False),
+        'running': node.metadata.get('openvpn', {}).get('enabled', False),
+        'enabled': node.metadata.get('openvpn', {}).get('enabled', False),
         'needs': ['pkg_apt:openvpn'],
     },
 }

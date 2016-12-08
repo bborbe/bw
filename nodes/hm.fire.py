@@ -3,7 +3,9 @@ nodes['hm.fire'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
-        'kvm': True,
+        'kvm': {
+            'enabled': True,
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],

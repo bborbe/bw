@@ -3,7 +3,9 @@ nodes['hm.rasp'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
-        'openvpn': True,
+        'openvpn': {
+            'enabled': True,
+        },
         'cron': {
             'jobs': {
                 'dns-update': '* * * * * root /root/scripts/dns-update-home.benjamin-borbe.de.sh > /dev/null',

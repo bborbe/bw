@@ -3,8 +3,12 @@ nodes['pn.sun'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
-        'openvpn': True,
-        'kvm': True,
+        'openvpn': {
+            'enabled': True,
+        },
+        'kvm': {
+            'enabled': True,
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': ['br0'],

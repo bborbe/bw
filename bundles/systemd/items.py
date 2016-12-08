@@ -3,11 +3,9 @@ release = node.metadata.get('release', '')
 if os != 'ubuntu' or release != 'xenial':
     raise Exception('{} {} is not supported by this bundle'.format(os, release))
 
-pkg_apt = {
-    'virt-top': {
-        'installed': node.metadata.get('kvm', {}).get('enabled', False),
-    },
-    'virtinst': {
-        'installed': node.metadata.get('kvm', {}).get('enabled', False),
+actions = {
+    'systemd-reload': {
+        'command': 'systemctl daemon-reload',
+        'triggered': True,
     },
 }
