@@ -8,24 +8,6 @@ iptables -P FORWARD DROP
 iptables -P OUTPUT DROP
 
 #
-# Recreate all custom chains
-#
-iptables -D INPUT -j CUSTOM-INPUT
-iptables -I INPUT -j CUSTOM-INPUT
-
-iptables -D FORWARD -j CUSTOM-FORWARD
-iptables -I FORWARD -j CUSTOM-FORWARD
-
-iptables -D OUTPUT -j CUSTOM-OUTPUT
-iptables -I OUTPUT -j CUSTOM-OUTPUT
-
-iptables -t nat -D PREROUTING -j CUSTOM-PREROUTING
-iptables -t nat -I PREROUTING -j CUSTOM-PREROUTING
-
-iptables -t nat -D POSTROUTING -j CUSTOM-POSTROUTING
-iptables -t nat -I POSTROUTING -j CUSTOM-POSTROUTING
-
-#
 # Flush custom chains
 #
 iptables -F CUSTOM-INPUT
