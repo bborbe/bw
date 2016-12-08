@@ -42,6 +42,8 @@ nodes['nc.v22016124049440903'] = {
             'enabled': True,
             'nat_interfaces': ['ens3'],
             'rules': [
+                # allow forward
+                'iptables -A CUSTOM-FORWARD -j ACCEPT',
 
                 # Http + Https
                 'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT',
@@ -50,34 +52,14 @@ nodes['nc.v22016124049440903'] = {
                 # K8s
                 'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 6443 -j ACCEPT',
 
-                # allow forward
-                'iptables -A CUSTOM-FORWARD -j ACCEPT',
-
                 # Smtp + Smtps
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 30025 -j ACCEPT',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 30465 -j ACCEPT',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 30587 -j ACCEPT',
-                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 25 -j DNAT --to-destination 127.0.0.1:30025',
-                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 465 -j DNAT --to-destination 127.0.0.1:30465',
-                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 587 -j DNAT --to-destination 127.0.0.1:30587',
+                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 25 -j ACCEPT',
+                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 465 -j ACCEPT',
+                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 587 -j ACCEPT',
 
                 # Imap + Imaps
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 30143 -j ACCEPT',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 30993 -j ACCEPT',
-                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 143 -j DNAT --to-destination 127.0.0.1:30143',
-                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 993 -j DNAT --to-destination 127.0.0.1:30993',
-
-                # drop noise
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 67 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 68 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 137 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 138 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 443 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 1947 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 8612 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 17500 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 17500 -j DROP',
-                'iptables -A CUSTOM-INPUT -j DROP -d 224.0.0.0/24',
+                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 143 -j ACCEPT',
+                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 993 -j ACCEPT',
             ],
         },
         'sysctl': {

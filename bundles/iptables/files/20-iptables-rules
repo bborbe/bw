@@ -8,6 +8,24 @@ iptables -P FORWARD DROP
 iptables -P OUTPUT DROP
 
 #
+# Recreate all custom chains
+#
+iptables -D INPUT -j CUSTOM-INPUT
+iptables -I INPUT -j CUSTOM-INPUT
+
+iptables -D FORWARD -j CUSTOM-FORWARD
+iptables -I FORWARD -j CUSTOM-FORWARD
+
+iptables -D OUTPUT -j CUSTOM-OUTPUT
+iptables -I OUTPUT -j CUSTOM-OUTPUT
+
+iptables -t nat -D PREROUTING -j CUSTOM-PREROUTING
+iptables -t nat -I PREROUTING -j CUSTOM-PREROUTING
+
+iptables -t nat -D POSTROUTING -j CUSTOM-POSTROUTING
+iptables -t nat -I POSTROUTING -j CUSTOM-POSTROUTING
+
+#
 # Flush custom chains
 #
 iptables -F CUSTOM-INPUT
@@ -39,10 +57,3 @@ iptables -t nat -A CUSTOM-POSTROUTING -o ${nat_interface} -s 192.168.0.0/16 -j M
 % for rule in rules:
 ${rule}
 % endfor
-
-#
-# Logging
-#
-iptables -A CUSTOM-INPUT -j LOG --log-prefix="IPTABLES-INPUT: "
-iptables -A CUSTOM-OUTPUT -j LOG --log-prefix="IPTABLES-OUTPUT: "
-iptables -A CUSTOM-FORWARD -j LOG --log-prefix="IPTABLES-FORWARD: "

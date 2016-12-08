@@ -33,17 +33,6 @@ nodes['sm.tools'] = {
                 'iptables -t nat -A CUSTOM-PREROUTING -i eth0 -p tcp -d 138.201.37.217 --dport 53 -j DNAT --to-destination 172.16.11.15:30054',
                 # Forward
                 'iptables -A CUSTOM-FORWARD -j ACCEPT',
-                # Drop noise
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 67 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 68 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 137 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 138 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 443 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 1947 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 8612 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 17500 -j DROP',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 17500 -j DROP',
-                'iptables -A CUSTOM-INPUT -j DROP -d 224.0.0.0/24',
             ],
         },
     },

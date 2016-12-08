@@ -24,21 +24,13 @@ iptables -Z -t filter
 iptables -Z -t mangle
 
 #
-# Recreate all custom chains
+# Create Custom Chains
 #
 iptables -N CUSTOM-INPUT
 iptables -N CUSTOM-FORWARD
 iptables -N CUSTOM-OUTPUT
-
-iptables -A INPUT -j CUSTOM-INPUT
-iptables -A FORWARD -j CUSTOM-FORWARD
-iptables -A OUTPUT -j CUSTOM-OUTPUT
-
 iptables -t nat -N CUSTOM-PREROUTING
 iptables -t nat -N CUSTOM-POSTROUTING
-
-iptables -t nat -A PREROUTING -j CUSTOM-PREROUTING
-iptables -t nat -A POSTROUTING -j CUSTOM-POSTROUTING
 
 #
 # Allow localhost
