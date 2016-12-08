@@ -17,6 +17,7 @@ nodes['nc.v22016124049440903'] = {
                 },
                 '/var/lib/kubelet': {},
                 '/var/lib/docker': {},
+                '/var/log': {},
             },
         },
         'haproxy': {
