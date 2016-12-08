@@ -28,7 +28,8 @@ nodes['nc.v22016124049440903'] = {
                 'benjamin-borbe.de': ['www.benjamin-borbe.de', 'password.benjamin-borbe.de', 'ip.benjamin-borbe.de', 'test.benjamin-borbe.de', 'aptly.benjamin-borbe.de', 'backup.benjamin-borbe.de', 'blog.benjamin-borbe.de',
                                       'confluence.benjamin-borbe.de', 'jenkins.benjamin-borbe.de', 'kickstart.benjamin-borbe.de', 'ks.benjamin-borbe.de', 'nsqadmin.benjamin-borbe.de', 'prometheus.benjamin-borbe.de', 'slideshow.benjamin-borbe.de',
                                       'taiga.benjamin-borbe.de', 'wiki.benjamin-borbe.de', 'webdav.benjamin-borbe.de', 'booking.benjamin-borbe.de', 'grafana.benjamin-borbe.de', 'dashboard.benjamin-borbe.de', 'mail.benjamin-borbe.de',
-                                      'auth.benjamin-borbe.de', 'kibana.benjamin-borbe.de', 'elasticsearch.benjamin-borbe.de', 'prometheus-alertmanager.benjamin-borbe.de', 'docker.benjamin-borbe.de', 'teamvault.benjamin-borbe.de'],
+                                      'auth.benjamin-borbe.de', 'kibana.benjamin-borbe.de', 'elasticsearch.benjamin-borbe.de', 'prometheus-alertmanager.benjamin-borbe.de', 'docker.benjamin-borbe.de', 'teamvault.benjamin-borbe.de',
+                                      'jana-und-ben.benjamin-borbe.de'],
                 'benjaminborbe.de': ['www.benjaminborbe.de'],
                 'harteslicht.de': ['www.harteslicht.de', 'blog.harteslicht.de'],
                 'harteslicht.com': ['www.harteslicht.com', 'blog.harteslicht.com'],
@@ -40,13 +41,38 @@ nodes['nc.v22016124049440903'] = {
             'enabled': True,
             'nat_interfaces': ['ens3'],
             'rules': [
+
                 # Http + Https
                 'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT',
                 'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT',
+
                 # K8s
                 'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 6443 -j ACCEPT',
+
                 # allow forward
                 'iptables -A CUSTOM-FORWARD -j ACCEPT',
+
+                # Smtp + Smtps
+                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 25 -j DNAT --to-destination 127.0.0.1:30025',
+                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 465 -j DNAT --to-destination 127.0.0.1:30465',
+                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 587 -j DNAT --to-destination 127.0.0.1:30587',
+
+                # Imap + Imaps
+                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 143 -j DNAT --to-destination 127.0.0.1:30143',
+                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 993 -j DNAT --to-destination 127.0.0.1:30993',
+
+                # Ts3
+                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p udp -d 185.170.112.48 --dport 9987 -j DNAT --to-destination 127.0.0.1:30087',
+                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 10011 -j DNAT --to-destination 127.0.0.1:30111',
+                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 30033 -j DNAT --to-destination 127.0.0.1:30033',
+
+                # Mumble
+                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 64738 -j DNAT --to-destination 127.0.0.1:30019',
+
+                # Dns
+                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p udp -d 185.170.112.48 --dport 53 -j DNAT --to-destination 127.0.0.1:30053',
+                'iptables -t nat -A CUSTOM-PREROUTING -i ens3 -p tcp -d 185.170.112.48 --dport 53 -j DNAT --to-destination 127.0.0.1:30054',
+
                 # drop noise
                 'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 67 -j DROP',
                 'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 68 -j DROP',
