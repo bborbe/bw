@@ -60,6 +60,10 @@ nodes['nc.v22016124049440903'] = {
                 # Imap + Imaps
                 'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 143 -j ACCEPT',
                 'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 993 -j ACCEPT',
+
+                # DNS
+                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 53 -j ACCEPT',
+                'iptables -A CUSTOM-INPUT -m state --state NEW -p udp --dport 53 -j ACCEPT',
             ],
         },
         'sysctl': {
