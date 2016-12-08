@@ -35,5 +35,28 @@ nodes['sm.tools'] = {
                 'iptables -A CUSTOM-FORWARD -j ACCEPT',
             ],
         },
+        'users': {
+            'kwiesmueller': {
+                'sudo': True,
+                'authorized_keys': {
+                    'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCw8vSiSAbUSBR91lhWWM6C+a4+At1EtFs6c7IC7Rhp/SdkDvn4129OBkip8laKoa5A2iH0WMrZgYl8eulpYDeTnijqo4YziG5K6uX2g+MgJPwLfA6m5IT49Hrs5czEzIVHLIEtG2x8QqmgC9KRvBnoFVHlS0apF7C7KXuUYXSJ1q3WXtkxw3AE3LZEcAxw6klUzHYH0/TR1BrQe2kkq6NYN8mOTqF8Yq6aGXvysQWOBR6AMpQNx/raTvm4XJnuAATRR6SC/EIu2CLNUlKQSwhWjCOiEFsEIOD1yt1X+fzWjky0gTO+3thzwDUbAqY2UV5A3vZdPppJll9X5NTqInVqraViD6Z2YUSSwuRsTF230OqteoQB0K2qdCO19ltGKdpKGsVBybtMF9uMZC8McAR76S6PIVTapzG46WBMHmzL8MIxAcJ/cXvw2/6ZHsX8vTmYfNKYVf0j3W4oNVQBKk8M+3Lx+DFzRepAvZHsueFzPG5SLwEkIC46s6qgomW7WbDZf6wOfe5fUGspvNYb5RYytMsVW4g9QLs0G6QZvU06RFWqmHBx/JUU0j2V5dE3PPWcr3xBu7qb53NOw5QZ0Sogk/BUTpeR395gNbs/ybthoSDiWiZ3QR9AIKONRm3KDfzc6V3RsbxXESVJNThJt+kTfb2pqpp6JEt2w8zS9O2E8w== kwiesmueller@seibert-media.net': {},
+                },
+                'full_name': 'Kevin Wiesmueller',
+            },
+            'owolf': {
+                'sudo': True,
+                'authorized_keys': {
+                    'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCcberdKUrK8fHp5Y1Wflg2Y1TPFN5bkwQe6LLvzSi4Qq3OFwNIxy//1HUjYbfGLLQbikH4kLLUJ1s/J5TPms++coISUMY7BGTVcpCISVi0ZpwR1uRqwSZA7OuF9PSyXkOUTLdVj0RlH3SB+xuOmDhVT6xlRWyLcjEQwikPV8915w1R44KBjzmiyn7nrPpK3sGlUPVpU54Z7ieAueMh9oDSCQBT/eLD8iEJ4sRyvc4Xrr81I5x4FT2L0uxcVG9Rm+JdUZUtMsy38c4Uso3gf4OvHhSWQfD4+Gu/PF3mJrRzxbQ9/Oi90FGj8reVHmtgDDWpDqOYkiWjbIZiXZLtHnJv owolf@seibert-media.net': {},
+                },
+                'full_name': 'Oliver Wolf',
+            },
+            'mschnitzius': {
+                'sudo': True,
+                'authorized_keys': {
+                    'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDvhbDKHXMMGQcgoiBNLrl9O+trwtTT4LKZCzjsTLM+RdK5WNZdaHlR/Yfw7QS9SdIRzFP2ckzHHEc6bsne1ykeZimtUBzClawxZjq/U94s+n+y4VED8dHNXgCD/6s2+1tlbnaxvE4YdIvuGG6wDMF386fb1cIjJXWUhrTpK7bfWKYl8SoUlRNl+IZnPcslZ81ef0QKdgCyQlOdeCEbk2P+AGZcGp/bOYYu8raE8ueHElsXrgKq3WqC6HLdQOeqQUllANagQ+nmTlMS6qUwRlwMkR2Uuov9YuORBchNRyJdxZbiO/XMoY4mHksLiwP9Zcm8P3KNtSuGdn/oJ418+jVL mschnitzius@seibert-media.net': {},
+                },
+                'full_name': 'Marc Schnitzius',
+            },
+        },
     },
 }
