@@ -5,7 +5,7 @@ if os != 'ubuntu' or release != 'xenial':
 
 pkg_apt = {
     'docker-engine': {
-        'installed': node.metadata.get('docker', False),
+        'installed': node.metadata.get('docker', {}).get('enabled', False),
     },
     'docker.io': {
         'installed': False,
@@ -14,8 +14,8 @@ pkg_apt = {
 
 svc_systemd = {
     "docker": {
-        'running': node.metadata.get('docker', False),
-        'enabled': node.metadata.get('docker', False),
+        'running': node.metadata.get('docker', {}).get('enabled', False),
+        'enabled': node.metadata.get('docker', {}).get('enabled', False),
         'needs': ['pkg_apt:docker-engine'],
     },
 }

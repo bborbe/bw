@@ -3,7 +3,7 @@ release = node.metadata.get('release', '')
 if os != 'ubuntu' or release != 'xenial':
     raise Exception('{} {} is not supported by this bundle'.format(os, release))
 
-if node.metadata.get('docker', False):
+if node.metadata.get('docker', {}).get('enabled', False):
     actions = {
         'chmod_docker_compose': {
             'command': 'chmod a+x /usr/local/bin/docker-compose',

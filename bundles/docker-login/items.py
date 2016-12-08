@@ -5,7 +5,7 @@ release = node.metadata.get('release', '')
 if os != 'ubuntu' or release != 'xenial':
     raise Exception('{} {} is not supported by this bundle'.format(os, release))
 
-if node.metadata.get('docker', False):
+if node.metadata.get('docker', {}).get('enabled', False):
     actions = {
         'docker_login': {
             # TODO: handle password change
