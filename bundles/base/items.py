@@ -24,4 +24,9 @@ pkg_apt = {
     'mountall': {},
     'rsync': {},
     'nfs-common': {},
+    'psmisc': {},
+    'sysstat': {},
+    'atop': {},
+    'iotop': {},
+    'bonnie++': {},
 }
