@@ -8,42 +8,21 @@ iptables -P FORWARD DROP
 iptables -P OUTPUT DROP
 
 #
-# Recreate all custom chains
+# Flush custom chains
 #
-iptables -D INPUT -j CUSTOM-INPUT
-iptables -D FORWARD -j CUSTOM-FORWARD
-iptables -D OUTPUT -j CUSTOM-OUTPUT
-
 iptables -F CUSTOM-INPUT
 iptables -F CUSTOM-FORWARD
 iptables -F CUSTOM-OUTPUT
 
-iptables -X CUSTOM-INPUT
-iptables -X CUSTOM-FORWARD
-iptables -X CUSTOM-OUTPUT
-
-iptables -N CUSTOM-INPUT
-iptables -N CUSTOM-FORWARD
-iptables -N CUSTOM-OUTPUT
-
-iptables -A INPUT -j CUSTOM-INPUT
-iptables -A FORWARD -j CUSTOM-FORWARD
-iptables -A OUTPUT -j CUSTOM-OUTPUT
-
-iptables -t nat -D PREROUTING -j CUSTOM-PREROUTING
-iptables -t nat -D POSTROUTING -j CUSTOM-POSTROUTING
+iptables -Z CUSTOM-INPUT
+iptables -Z CUSTOM-FORWARD
+iptables -Z CUSTOM-OUTPUT
 
 iptables -t nat -F CUSTOM-PREROUTING
 iptables -t nat -F CUSTOM-POSTROUTING
 
-iptables -t nat -X CUSTOM-PREROUTING
-iptables -t nat -X CUSTOM-POSTROUTING
-
-iptables -t nat -N CUSTOM-PREROUTING
-iptables -t nat -N CUSTOM-POSTROUTING
-
-iptables -t nat -A PREROUTING -j CUSTOM-PREROUTING
-iptables -t nat -A POSTROUTING -j CUSTOM-POSTROUTING
+iptables -t nat -Z CUSTOM-PREROUTING
+iptables -t nat -Z CUSTOM-POSTROUTING
 
 #
 # Natd
@@ -53,31 +32,6 @@ iptables -t nat -A CUSTOM-POSTROUTING -o ${nat_interface} -s 10.0.0.0/8 -j MASQU
 iptables -t nat -A CUSTOM-POSTROUTING -o ${nat_interface} -s 172.16.0.0/12 -j MASQUERADE
 iptables -t nat -A CUSTOM-POSTROUTING -o ${nat_interface} -s 192.168.0.0/16 -j MASQUERADE
 % endfor
-
-#
-# Allow localhost
-#
-iptables -A CUSTOM-INPUT -i lo -j ACCEPT
-iptables -A CUSTOM-OUTPUT -o lo -j ACCEPT
-
-#
-# Allow output
-#
-iptables -A CUSTOM-OUTPUT -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
-
-#
-# Allow answers
-#
-iptables -A CUSTOM-INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-
-#
-# Ports
-#
-# Ping
-iptables -A CUSTOM-INPUT -p icmp --icmp-type 8 -j ACCEPT
-iptables -A CUSTOM-INPUT -p icmp --icmp-type 11 -j ACCEPT
-# SSH
-iptables -A CUSTOM-INPUT -m state --state NEW --protocol tcp --dport 22 -j ACCEPT
 
 #
 # Custom rules

@@ -22,3 +22,45 @@ iptables -X -t mangle
 iptables -Z -t nat
 iptables -Z -t filter
 iptables -Z -t mangle
+
+#
+# Recreate all custom chains
+#
+iptables -N CUSTOM-INPUT
+iptables -N CUSTOM-FORWARD
+iptables -N CUSTOM-OUTPUT
+
+iptables -A INPUT -j CUSTOM-INPUT
+iptables -A FORWARD -j CUSTOM-FORWARD
+iptables -A OUTPUT -j CUSTOM-OUTPUT
+
+iptables -t nat -N CUSTOM-PREROUTING
+iptables -t nat -N CUSTOM-POSTROUTING
+
+iptables -t nat -A PREROUTING -j CUSTOM-PREROUTING
+iptables -t nat -A POSTROUTING -j CUSTOM-POSTROUTING
+
+#
+# Allow localhost
+#
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+
+#
+# Allow output
+#
+iptables -A OUTPUT -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+
+#
+# Allow answers
+#
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+#
+# Ports
+#
+# Ping
+iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type 11 -j ACCEPT
+# SSH
+iptables -A INPUT -m state --state NEW --protocol tcp --dport 22 -j ACCEPT
