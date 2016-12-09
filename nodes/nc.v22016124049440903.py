@@ -12,13 +12,17 @@ nodes['nc.v22016124049440903'] = {
         'kubernetes': {
             'enabled': True,
         },
+        'nfs-server': {
+            'enabled': True,
+            'exports': {
+                '/data': {},
+            },
+        },
         'zfs': {
             'enabled': True,
             'device': '/dev/sda4',
             'mounts': {
-                '/data': {
-                    'sharenfs': True,
-                },
+                '/data': {},
                 '/var/lib/kubelet': {},
                 '/var/lib/docker': {},
                 '/var/log': {},

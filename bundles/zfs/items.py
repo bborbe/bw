@@ -7,9 +7,6 @@ pkg_apt = {
     'zfsutils-linux': {
         'installed': node.metadata.get('zfs', {}).get('enabled', False),
     },
-    'nfs-kernel-server': {
-        'installed': node.metadata.get('zfs', {}).get('enabled', False),
-    },
 }
 
 actions = {}

@@ -1,0 +1,3 @@
+% for export, data in sorted(exports.items()):
+${export} *(rw,async,no_subtree_check,no_root_squash,fsid=0)
+% endfor

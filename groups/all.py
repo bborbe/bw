@@ -31,6 +31,7 @@ groups['all'] = {
         'dhcpclient',
         'sysctl',
         'systemd',
+        'nfs-server',
     ),
     'metadata': {
         'users': {
