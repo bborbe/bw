@@ -33,6 +33,9 @@ files = {
         'mode': '0644',
         'owner': 'root',
         'group': 'root',
+        'context': {
+            'password': node.metadata.get('ssh', {}).get('password', False),
+        },
         'needs': ['pkg_apt:openssh-server'],
         'triggers': [
             'action:ssh_generate_missing_host_keys',

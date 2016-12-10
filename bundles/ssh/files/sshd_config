@@ -86,4 +86,8 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 # PAM authentication, then enable this but set PasswordAuthentication
 # and ChallengeResponseAuthentication to 'no'.
 UsePAM yes
+% if password:
+PasswordAuthentication yes
+% else:
 PasswordAuthentication no
+% endif
