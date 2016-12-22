@@ -20,6 +20,7 @@ files['/etc/network/interfaces'] = {
     'group': 'root',
     'context': {
         'interfaces': node.metadata.get('networking', {}).get('interfaces', {}),
+        'routes': node.metadata.get('networking', {}).get('routes', {}),
     },
     'triggers': ['svc_systemd:networking:restart'],
 }

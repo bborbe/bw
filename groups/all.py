@@ -21,9 +21,6 @@ groups['all'] = {
             'root': {
                 'home': '/root',
             },
-            'pi': {
-                'delete': True,
-            },
         },
     },
 }

@@ -1,5 +1,3 @@
-source-directory /etc/network/interfaces.d
-
 auto lo
 iface lo inet loopback
 
@@ -15,4 +13,8 @@ iface ${interface} inet ${ 'manual' if data.get('address','') == '' else 'static
 % if data.get('gateway','') != '':
 	gateway ${data.get('gateway','')}
 % endif
+
+% endfor
+% for route, data in sorted(routes.items()):
+${route}
 % endfor
