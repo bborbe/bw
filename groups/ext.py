@@ -36,5 +36,6 @@ groups['ext'] = {
         'systemd',
         'nfs-server',
         'dotfiles',
+        'networking',
     ),
 }

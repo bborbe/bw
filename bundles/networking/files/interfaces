@@ -1,0 +1,18 @@
+source-directory /etc/network/interfaces.d
+
+auto lo
+iface lo inet loopback
+
+% for interface, data in sorted(interfaces.items()):
+auto ${interface}
+iface ${interface} inet ${ 'manual' if data.get('address','') == '' else 'static' }
+% if data.get('address','') != '':
+	address ${data.get('address','')}
+% endif
+% if data.get('netmask','') != '':
+	netmask ${data.get('netmask','')}
+% endif
+% if data.get('gateway','') != '':
+	gateway ${data.get('gateway','')}
+% endif
+% endfor

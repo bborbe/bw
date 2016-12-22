@@ -1,8 +1,17 @@
 nodes['hm.rasp'] = {
     'hostname': 'rasp.hm.benjamin-borbe.de',
     'metadata': {
-        'os': 'ubuntu',
-        'release': 'xenial',
+        'os': 'debian',
+        'release': 'jessie',
+        'networking': {
+            'interfaces': {
+                'eth0': {
+                    'address': '192.168.178.2',
+                    'netmask': '255.255.255.0',
+                    'gateway': '192.168.178.1',
+                },
+            },
+        },
         'openvpn': {
             'enabled': True,
         },
