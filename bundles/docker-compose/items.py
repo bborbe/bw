@@ -1,6 +1,6 @@
 os = node.metadata.get('os', '')
 release = node.metadata.get('release', '')
-if os != 'ubuntu' or release != 'xenial':
+if not (os == 'ubuntu' and release == 'xenial' or os == 'debian' and release == 'jessie'):
     raise Exception('{} {} is not supported by this bundle'.format(os, release))
 
 if node.metadata.get('docker', {}).get('enabled', False):
