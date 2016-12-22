@@ -14,6 +14,14 @@ nodes['hm.rasp'] = {
         },
         'openvpn': {
             'enabled': True,
+            'services': {
+                'server': {
+                    'enabled': True,
+                },
+                'tools': {
+                    'enabled': True,
+                },
+            },
         },
         'cron': {
             'jobs': {
