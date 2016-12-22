@@ -7,13 +7,19 @@ pkg_apt = {
     'monit': {},
 }
 
-svc_systemd = {
-    'monit': {
+svc_systemd = {}
+
+if os == 'ubuntu' and release == 'xenial':
+    svc_systemd['monit'] = {
         'running': True,
         'enabled': True,
         'needs': ['pkg_apt:monit'],
-    },
-}
+    }
+if os == 'debian' and release == 'jessie':
+    svc_systemd['monit'] = {
+        'running': True,
+        'needs': ['pkg_apt:monit'],
+    }
 
 files = {
     '/etc/monit/conf.d/free_space.conf': {

@@ -9,8 +9,15 @@ pkg_apt = {
     },
 }
 
+
+ssh_service_name = 'sshd'
+permitrootlogin = 'PermitRootLogin'
+if os == 'debian' and release == 'jessie':
+    ssh_service_name = 'ssh'
+    permitrootlogin = 'without-password'
+
 svc_systemd = {
-    'sshd': {
+    ssh_service_name:  {
         'running': True,
         'enabled': True,
         'needs': ['pkg_apt:openssh-server'],
@@ -22,9 +29,12 @@ actions = {
         'command': 'ssh-keygen -A',
         'triggered': True,
         'needs': ['pkg_apt:openssh-server'],
-        'triggers': ['svc_systemd:sshd:restart'],
+        'triggers': ['svc_systemd:{}:restart'.format(ssh_service_name)],
     },
 }
+
+
+
 
 files = {
     '/etc/ssh/sshd_config': {
@@ -35,11 +45,12 @@ files = {
         'group': 'root',
         'context': {
             'password': node.metadata.get('ssh', {}).get('password', False),
+            'permitrootlogin': permitrootlogin,
         },
         'needs': ['pkg_apt:openssh-server'],
         'triggers': [
             'action:ssh_generate_missing_host_keys',
-            'svc_systemd:sshd:restart',
+            'svc_systemd:{}:restart'.format(ssh_service_name),
         ],
     },
 }
