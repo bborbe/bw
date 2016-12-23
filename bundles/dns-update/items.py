@@ -45,6 +45,10 @@ if dns_update.get('enabled', False):
             'mode': '400',
         }
 else:
-    directories['/etc/dns-update'] = {
-        'delete': True,
-    }
+    for name, data in dns_update.get('updates', {}).items():
+        files['/etc/dns-update/keys/{}.key'.format(name)] = {
+            'delete': True,
+        }
+        files['/etc/dns-update/keys/{}.private'.format(name)] = {
+            'delete': True,
+        }
