@@ -4,6 +4,7 @@ if not (os == 'ubuntu' and release == 'xenial' or os == 'debian' and release == 
     raise Exception('{} {} is not supported by this bundle'.format(os, release))
 
 users = {}
+directories = {}
 
 pkg_apt = {
     'zsh': {},
@@ -12,16 +13,18 @@ pkg_apt = {
 for username, data in node.metadata['users'].items():
     homedir = data.get('home', '/home/{}'.format(username))
 
-    users[username] = {
-        'home': homedir,
-        'shell': data.get('shell', '/bin/bash'),
-        'full_name': data.get('full_name', username),
-    }
-
-    directories = {
-        homedir: {
+    if data.get('deleted', False):
+        users[username] = {
+            'delete': True,
+        }
+    else:
+        users[username] = {
+            'home': homedir,
+            'shell': data.get('shell', '/bin/bash'),
+            'full_name': data.get('full_name', username),
+        }
+        directories[homedir] = {
             'mode': '0700',
             'owner': username,
             'group': username,
-        },
-    }
+        }
