@@ -28,7 +28,7 @@ if node.metadata.get('monit', {}).get('enabled', False):
     files['/etc/monit/conf.d/free_space.conf'] = {
         'source': 'free_space.conf',
         'content_type': 'mako',
-        'mode': '0644',
+        'mode': '0400',
         'owner': 'root',
         'group': 'root',
         'needs': ['pkg_apt:monit'],
@@ -43,7 +43,7 @@ if node.metadata.get('monit', {}).get('enabled', False):
     files['/etc/monit/conf.d/mailserver.conf'] = {
         'source': 'mailserver.conf',
         'content_type': 'mako',
-        'mode': '0644',
+        'mode': '0400',
         'owner': 'root',
         'group': 'root',
         'needs': ['pkg_apt:monit'],
