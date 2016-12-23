@@ -9,7 +9,6 @@ pkg_apt = {
     },
 }
 
-
 ssh_service_name = 'sshd'
 permitrootlogin = 'prohibit-password'
 if os == 'debian' and release == 'jessie':
@@ -17,7 +16,7 @@ if os == 'debian' and release == 'jessie':
     permitrootlogin = 'without-password'
 
 svc_systemd = {
-    ssh_service_name:  {
+    ssh_service_name: {
         'running': True,
         'enabled': True,
         'needs': ['pkg_apt:openssh-server'],
@@ -32,9 +31,6 @@ actions = {
         'triggers': ['svc_systemd:{}:restart'.format(ssh_service_name)],
     },
 }
-
-
-
 
 files = {
     '/etc/ssh/sshd_config': {
