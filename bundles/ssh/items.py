@@ -11,7 +11,7 @@ pkg_apt = {
 
 
 ssh_service_name = 'sshd'
-permitrootlogin = 'PermitRootLogin'
+permitrootlogin = 'prohibit-password'
 if os == 'debian' and release == 'jessie':
     ssh_service_name = 'ssh'
     permitrootlogin = 'without-password'
