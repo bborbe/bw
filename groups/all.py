@@ -1,3 +1,5 @@
+import bwtv as teamvault
+
 groups['all'] = {
     'member_patterns': (
         r'.*',
@@ -23,6 +25,14 @@ groups['all'] = {
             },
             'pi': {
                 'deleted': True,
+            },
+        },
+        'docker': {
+            'login': {
+                'docker.tools.seibert-media.net': {
+                    'username': teamvault.username('7qGQOW', site='benjamin-borbe'),
+                    'password': teamvault.password('7qGQOW', site='benjamin-borbe'),
+                },
             },
         },
     },
