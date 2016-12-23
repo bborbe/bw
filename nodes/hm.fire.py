@@ -4,6 +4,7 @@ nodes['hm.fire'] = {
         'os': 'ubuntu',
         'release': 'xenial',
         'networking': {
+            'enabled': True,
             'interfaces': {
                 'eth0': {
                     'pre-down': '/sbin/ethtool -s eth0 wol g',

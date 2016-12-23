@@ -4,6 +4,7 @@ nodes['hm.rasp'] = {
         'os': 'debian',
         'release': 'jessie',
         'networking': {
+            'enabled': True,
             'interfaces': {
                 'eth0': {
                     'address': '192.168.178.2',
