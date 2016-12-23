@@ -4,7 +4,7 @@ def crons(metadata):
     for name, data in dns_update.get('updates', {}).items():
         metadata['cron']['jobs']['dns-update-{name}'.format(name=name)] = {
             'enabled': dns_update.get('enabled', False),
-            'expression': '/usr/local/bin/dns-update.sh {server} /etc/dns-update/keys/{name} {zone} {node} {ip}> /dev/null'.format(
+            'expression': '/usr/local/bin/dns-update.sh {server} /etc/dns-update/keys/{name} {zone} {node} {ip} > /dev/null'.format(
                 server=data.get('dns-server', ''),
                 name=name,
                 zone=data.get('zone', ''),
