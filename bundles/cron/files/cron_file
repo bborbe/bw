@@ -1,4 +1,4 @@
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+SHELL=${shell}
+PATH=${path}
 
-${schedule}
+${schedule} ${user} ${expression}

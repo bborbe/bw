@@ -17,13 +17,24 @@ svc_systemd = {
 
 files = {}
 
-for k, v in node.metadata.get('cron', {}).get('jobs', {}).items():
-    files['/etc/cron.d/{}'.format(k)] = {
-        'source': "cron_file",
-        'content_type': 'mako',
-        'context': {'schedule': v},
-        'group': 'root',
-        'mode': '0644',
-        'needs': ['pkg_apt:cron'],
-        'owner': 'root',
-    }
+for name, data in node.metadata.get('cron', {}).get('jobs', {}).items():
+    if data.get('enabled', False):
+        files['/etc/cron.d/{}'.format(name)] = {
+            'source': "cron_file",
+            'content_type': 'mako',
+            'context': {
+                'shell': data.get('shell', '/bin/sh'),
+                'path': data.get('path', '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin'),
+                'schedule': data.get('schedule', '* * * * *'),
+                'user': data.get('user', 'root'),
+                'expression': data.get('expression', '')
+            },
+            'group': 'root',
+            'mode': '0644',
+            'needs': ['pkg_apt:cron'],
+            'owner': 'root',
+        }
+    else:
+        files['/etc/cron.d/{}'.format(name)] = {
+            'delete': True,
+        }

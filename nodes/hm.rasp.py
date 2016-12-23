@@ -46,13 +46,16 @@ nodes['hm.rasp'] = {
             ],
         },
         'dns-update': {
-            'home.benjamin-borbe.de': {
-                'zone': 'benjamin-borbe.de',
-                'node': 'home',
-                'dns-server': 'ns.rocketsource.de',
-                'ip-url': 'https://ip.benjamin-borbe.de',
-                'private': teamvault.file('aL50O8', site='benjamin-borbe'),
-                'key': teamvault.file('9L64w3', site='benjamin-borbe'),
+            'enabled': True,
+            'updates': {
+                'home.benjamin-borbe.de': {
+                    'zone': 'benjamin-borbe.de',
+                    'node': 'home',
+                    'dns-server': 'ns.rocketsource.de',
+                    'ip-url': 'https://ip.benjamin-borbe.de',
+                    'private': teamvault.file('aL50O8', site='benjamin-borbe'),
+                    'key': teamvault.file('9L64w3', site='benjamin-borbe'),
+                },
             },
         },
     },
