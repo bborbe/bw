@@ -1,3 +1,5 @@
+import bwtv as teamvault
+
 groups['ext'] = {
     'members': [
         'hm.fire',
@@ -39,4 +41,15 @@ groups['ext'] = {
         'networking',
         'dns-update',
     ),
+    'metadata': {
+        'monit': {
+            'enabled': True,
+            'sender': teamvault.username('KwRoO7', site='benjamin-borbe'),
+            'recipient': 'bborbe@rocketnews.de',
+            'server': 'mail.benjamin-borbe.de',
+            'port': 587,
+            'username': teamvault.username('KwRoO7', site='benjamin-borbe'),
+            'password': teamvault.password('KwRoO7', site='benjamin-borbe'),
+        },
+    },
 }
