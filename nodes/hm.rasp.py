@@ -1,3 +1,5 @@
+import bwtv as teamvault
+
 nodes['hm.rasp'] = {
     'hostname': 'rasp.hm.benjamin-borbe.de',
     'metadata': {
@@ -33,11 +35,6 @@ nodes['hm.rasp'] = {
                 },
             },
         },
-        'cron': {
-            'jobs': {
-                'dns-update': '* * * * * root /root/scripts/dns-update-home.benjamin-borbe.de.sh > /dev/null',
-            },
-        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
@@ -47,6 +44,16 @@ nodes['hm.rasp'] = {
                 # allow forward
                 'iptables -A CUSTOM-FORWARD -j ACCEPT',
             ],
+        },
+        'dns-update': {
+            'home.benjamin-borbe.de': {
+                'zone': 'benjamin-borbe.de',
+                'node': 'home',
+                'dns-server': 'ns.rocketsource.de',
+                'ip-url': 'https://ip.benjamin-borbe.de',
+                'private': teamvault.file('aL50O8', site='benjamin-borbe'),
+                'key': teamvault.file('9L64w3', site='benjamin-borbe'),
+            },
         },
     },
 }

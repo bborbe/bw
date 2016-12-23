@@ -37,5 +37,6 @@ groups['ext'] = {
         'nfs-server',
         'dotfiles',
         'networking',
+        'dns-update',
     ),
 }
