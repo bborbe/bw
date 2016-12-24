@@ -74,3 +74,5 @@ iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
 iptables -A INPUT -p icmp --icmp-type 11 -j ACCEPT
 # SSH
 iptables -A INPUT -m state --state NEW --protocol tcp --dport 22 -j ACCEPT
+
+exit 0
