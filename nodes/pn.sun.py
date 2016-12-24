@@ -38,6 +38,19 @@ nodes['pn.sun'] = {
                 'up route add -net 172.16.72.0/24 gw 172.16.70.5': {},
             },
         },
+        'dns-update': {
+            'enabled': True,
+            'updates': {
+                'pn.benjamin-borbe.de': {
+                    'zone': 'benjamin-borbe.de',
+                    'node': 'pn',
+                    'dns-server': 'ns.rocketsource.de',
+                    'ip-url': 'https://ip.benjamin-borbe.de',
+                    'private': teamvault.file('aL50O8', site='benjamin-borbe'),
+                    'key': teamvault.file('9L64w3', site='benjamin-borbe'),
+                },
+            },
+        },
         'openvpn': {
             'enabled': True,
         },

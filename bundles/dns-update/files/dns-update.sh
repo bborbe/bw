@@ -5,11 +5,14 @@ set -o nounset
 set -o pipefail
 
 server="$1"
-ttl='60'
 key="$2"
 zone="$3"
 node="$4"
+
+echo "update ${zone}.${node} started"
+
 ip=`curl -s $5`
+ttl='60'
 class='A'
 tmpfile=$(mktemp)
 cat >$tmpfile <<END
@@ -20,3 +23,5 @@ send
 END
 nsupdate -k $key -v $tmpfile
 rm -f $tmpfile
+
+echo "update ${zone}.${node} finished"
