@@ -8,10 +8,10 @@ server="$1"
 key="$2"
 zone="$3"
 node="$4"
-
-echo "update ${zone}.${node} started"
-
 ip=`curl -s $5`
+
+echo "update ${zone}.${node} with $ip started"
+
 ttl='60'
 class='A'
 tmpfile=$(mktemp)
@@ -24,4 +24,4 @@ END
 nsupdate -k $key -v $tmpfile
 rm -f $tmpfile
 
-echo "update ${zone}.${node} finished"
+echo "update ${zone}.${node} with $ip finished"
