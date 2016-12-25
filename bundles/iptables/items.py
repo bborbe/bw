@@ -10,6 +10,9 @@ pkg_apt = {
     'iptables-persistent': {
         'installed': False,
     },
+    'netfilter-persistent': {
+        'installed': False,
+    },
 }
 
 files = {}
