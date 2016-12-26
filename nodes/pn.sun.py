@@ -60,10 +60,12 @@ nodes['pn.sun'] = {
         'iptables': {
             'enabled': True,
             'nat_interfaces': ['br0'],
-            'rules': [
-                # allow forward
-                'iptables -A CUSTOM-FORWARD -j ACCEPT',
-            ],
+            'rules': {
+                'filter': [
+                    # allow forward
+                    '-A FORWARD -j ACCEPT',
+                ],
+            },
         },
     },
 }

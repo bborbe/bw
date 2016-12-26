@@ -6,11 +6,13 @@ nodes['sm.devel'] = {
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
-            'rules': [
-                # Http + Https
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT',
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT',
-            ],
+            'rules': {
+                'filter': [
+                    # Http + Https
+                    '-A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT',
+                ],
+            },
         },
     },
 }

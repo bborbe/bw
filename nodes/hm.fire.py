@@ -58,10 +58,12 @@ nodes['hm.fire'] = {
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
-            'rules': [
-                # allow forward
-                'iptables -A CUSTOM-FORWARD -j ACCEPT',
-            ],
+            'rules': {
+                'filter': [
+                    # allow forward
+                    '-A FORWARD -j ACCEPT',
+                ],
+            },
         },
     },
 }

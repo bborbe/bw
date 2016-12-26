@@ -38,12 +38,14 @@ nodes['hm.rasp'] = {
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
-            'rules': [
-                # allow openvpn
-                'iptables -A CUSTOM-INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT',
-                # allow forward
-                'iptables -A CUSTOM-FORWARD -j ACCEPT',
-            ],
+            'rules': {
+                'filter': [
+                    # allow openvpn
+                    '-A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT',
+                    # allow forward
+                    '-A FORWARD -j ACCEPT',
+                ],
+            },
         },
         'dns-update': {
             'enabled': True,
