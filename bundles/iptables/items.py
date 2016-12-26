@@ -8,36 +8,31 @@ pkg_apt = {
         'installed': node.metadata.get('iptables', {}).get('enabled', False),
     },
     'iptables-persistent': {
-        'installed': False,
+        'installed': node.metadata.get('iptables', {}).get('enabled', False),
     },
     'netfilter-persistent': {
-        'installed': False,
+        'installed': node.metadata.get('iptables', {}).get('enabled', False),
     },
 }
 
 files = {}
 
-files['/etc/network/if-pre-up.d/iptables'] = {
-    'delete': True,
+actions = {
+    'iptables-restore-ipv4': {
+        'command': 'iptables-restore < /etc/iptables/rules.v4',
+        'needs': ['pkg_apt:iptables', 'pkg_apt:iptables-persistent'],
+        'triggered': True,
+    },
+    'iptables-restore-ipv6': {
+        'command': 'ip6tables-restore < /etc/iptables/rules.v6',
+        'needs': ['pkg_apt:iptables', 'pkg_apt:iptables-persistent'],
+        'triggered': True,
+    },
 }
 
 if node.metadata.get('iptables', {}).get('enabled', False):
-    files['/etc/network/if-pre-up.d/10-iptables-flush'] = {
-        'source': '10-iptables-flush',
-        'content_type': 'mako',
-        'mode': '0775',
-        'owner': 'root',
-        'group': 'root',
-        'context': {},
-    }
-else:
-    files['/etc/network/if-pre-up.d/10-iptables-flush'] = {
-        'delete': True,
-    }
-
-if node.metadata.get('iptables', {}).get('enabled', False):
-    files['/etc/network/if-pre-up.d/20-iptables-rules'] = {
-        'source': '20-iptables-rules',
+    files['/etc/iptables/rules.v4'] = {
+        'source': 'rules.v4',
         'content_type': 'mako',
         'mode': '0775',
         'owner': 'root',
@@ -46,17 +41,34 @@ if node.metadata.get('iptables', {}).get('enabled', False):
             'rules': node.metadata.get('iptables', {}).get('rules', []),
             'nat_interfaces': node.metadata.get('iptables', {}).get('nat_interfaces', []),
         },
-        'triggers': ['action:iptables-insert'],
     }
 else:
-    files['/etc/network/if-pre-up.d/20-iptables-rules'] = {
+    files['/etc/iptables/rules.v4'] = {
         'delete': True,
     }
 
-actions = {
-    'iptables-insert': {
-        'command': '/etc/network/if-pre-up.d/20-iptables-rules',
-        'needs': ['pkg_apt:iptables'],
-        'triggered': True,
-    },
+if node.metadata.get('iptables', {}).get('enabled', False):
+    files['/etc/iptables/rules.v6'] = {
+        'source': 'rules.v6',
+        'content_type': 'mako',
+        'mode': '0775',
+        'owner': 'root',
+        'group': 'root',
+        'context': {},
+    }
+else:
+    files['/etc/iptables/rules.v6'] = {
+        'delete': True,
+    }
+
+files['/etc/network/if-pre-up.d/iptables'] = {
+    'delete': True,
+}
+
+files['/etc/network/if-pre-up.d/10-iptables-flush'] = {
+    'delete': True,
+}
+
+files['/etc/network/if-pre-up.d/20-iptables-rules'] = {
+    'delete': True,
 }
