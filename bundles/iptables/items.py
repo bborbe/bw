@@ -38,9 +38,12 @@ if node.metadata.get('iptables', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
         'context': {
-            'rules': node.metadata.get('iptables', {}).get('rules', []),
             'nat_interfaces': node.metadata.get('iptables', {}).get('nat_interfaces', []),
+            'mangle': node.metadata.get('iptables', {}).get('rules', {}).get('mangle', []),
+            'nat': node.metadata.get('iptables', {}).get('rules', {}).get('nat', []),
+            'filter': node.metadata.get('iptables', {}).get('rules', {}).get('filter', []),
         },
+        'triggers': ['action:iptables-restore-ipv4'],
     }
 else:
     files['/etc/iptables/rules.v4'] = {
@@ -55,6 +58,7 @@ if node.metadata.get('iptables', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
         'context': {},
+        'triggers': ['action:iptables-restore-ipv6'],
     }
 else:
     files['/etc/iptables/rules.v6'] = {

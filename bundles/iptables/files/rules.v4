@@ -4,34 +4,44 @@
 :FORWARD ACCEPT [0:0]
 :OUTPUT ACCEPT [0:0]
 :POSTROUTING ACCEPT [0:0]
+# custom mangle rules start
+% for rule in mangle:
+${rule}
+% endfor
+# custom mangle rules end
 COMMIT
 *nat
 :PREROUTING ACCEPT [0:0]
 :INPUT ACCEPT [0:0]
 :OUTPUT ACCEPT [0:0]
 :POSTROUTING ACCEPT [0:0]
-:CUSTOM-POSTROUTING - [0:0]
-:CUSTOM-PREROUTING - [0:0]
--A PREROUTING -j CUSTOM-PREROUTING
--A POSTROUTING -j CUSTOM-POSTROUTING
+# nat interface start
+% for nat_interface in nat_interfaces:
+-A POSTROUTING -o ${nat_interface} -s 10.0.0.0/8 -j MASQUERADE
+-A POSTROUTING -o ${nat_interface} -s 172.16.0.0/12 -j MASQUERADE
+-A POSTROUTING -o ${nat_interface} -s 192.168.0.0/16 -j MASQUERADE
+% endfor
+# nat interface end
+# custom nat rules start
+% for rule in nat:
+${rule}
+% endfor
+# custom nat rules end
 COMMIT
 *filter
 :INPUT DROP [0:0]
 :FORWARD DROP [0:0]
 :OUTPUT DROP [0:0]
-:CUSTOM-FORWARD - [0:0]
-:CUSTOM-INPUT - [0:0]
-:CUSTOM-OUTPUT - [0:0]
--A INPUT -j CUSTOM-INPUT
 -A INPUT -i lo -j ACCEPT
 -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
 -A INPUT -p icmp -m icmp --icmp-type 11 -j ACCEPT
 -A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
--A FORWARD -j CUSTOM-FORWARD
--A OUTPUT -j CUSTOM-OUTPUT
 -A OUTPUT -o lo -j ACCEPT
 -A OUTPUT -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
--A CUSTOM-FORWARD -j ACCEPT
--A CUSTOM-INPUT -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT
+# custom nat rules start
+% for rule in filter:
+${rule}
+% endfor
+# custom nat rules end
 COMMIT
