@@ -20,13 +20,13 @@ files = {}
 actions = {
     'iptables-restore-ipv4': {
         'command': 'iptables-restore < /etc/iptables/rules.v4',
-        'needs': ['pkg_apt:iptables', 'pkg_apt:iptables-persistent'],
         'triggered': True,
+        'cascade_skip': False,
     },
     'iptables-restore-ipv6': {
         'command': 'ip6tables-restore < /etc/iptables/rules.v6',
-        'needs': ['pkg_apt:iptables', 'pkg_apt:iptables-persistent'],
         'triggered': True,
+        'cascade_skip': False,
     },
 }
 
@@ -43,6 +43,7 @@ if node.metadata.get('iptables', {}).get('enabled', False):
             'nat': node.metadata.get('iptables', {}).get('rules', {}).get('nat', []),
             'filter': node.metadata.get('iptables', {}).get('rules', {}).get('filter', []),
         },
+        'needs': ['pkg_apt:iptables', 'pkg_apt:iptables-persistent'],
         'triggers': ['action:iptables-restore-ipv4'],
     }
 else:
@@ -58,6 +59,7 @@ if node.metadata.get('iptables', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
         'context': {},
+        'needs': ['pkg_apt:iptables', 'pkg_apt:iptables-persistent'],
         'triggers': ['action:iptables-restore-ipv6'],
     }
 else:

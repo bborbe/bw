@@ -7,8 +7,8 @@ files = {}
 
 actions = {}
 
-actions['locale-gen-all'] = {
-    'command': 'locale-gen -a',
+actions['locale-gen'] = {
+    'command': 'locale-gen',
     'triggered': True,
     'cascade_skip': False,
 }
@@ -19,7 +19,7 @@ files['/etc/default/locale'] = {
     'mode': '0644',
     'owner': 'root',
     'group': 'root',
-    'triggers': ['action:locale-gen-all'],
+    'triggers': ['action:locale-gen'],
 }
 
 files['/etc/locale.gen'] = {
@@ -28,5 +28,5 @@ files['/etc/locale.gen'] = {
     'mode': '0644',
     'owner': 'root',
     'group': 'root',
-    'triggers': ['action:locale-gen-all'],
+    'triggers': ['action:locale-gen'],
 }

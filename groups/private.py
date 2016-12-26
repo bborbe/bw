@@ -1,12 +1,13 @@
 import bwtv as teamvault
 
-groups['ext'] = {
+groups['private'] = {
     'members': [
         'hm.fire',
         'hm.rasp',
         'pn.sun',
         'sm.devel',
         'sm.tools',
+        'vagrant',
     ],
     'bundles': (
         'base',
