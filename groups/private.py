@@ -7,7 +7,6 @@ groups['private'] = {
         'pn.sun',
         'sm.devel',
         'sm.tools',
-        'vagrant',
     ],
     'bundles': (
         'base',
