@@ -58,7 +58,11 @@ if node.metadata.get('iptables', {}).get('enabled', False):
         'mode': '0775',
         'owner': 'root',
         'group': 'root',
-        'context': {},
+        'context': {
+            'mangle': node.metadata.get('iptables', {}).get('rules', {}).get('mangle_v6', []),
+            'nat': node.metadata.get('iptables', {}).get('rules', {}).get('nat_v6', []),
+            'filter': node.metadata.get('iptables', {}).get('rules', {}).get('filter_v6', []),
+        },
         'needs': ['pkg_apt:iptables', 'pkg_apt:iptables-persistent'],
         'triggers': ['action:iptables-restore-ipv6'],
     }
