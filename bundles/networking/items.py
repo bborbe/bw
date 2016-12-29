@@ -8,7 +8,13 @@ files = {}
 svc_systemd = {
 }
 
+pkg_apt = {
+}
+
 if node.metadata.get('networking', {}).get('enabled', False):
+    pkg_apt['resolvconf'] = {
+        'installed': True,
+    }
 
     svc_systemd['networking'] = {
         'triggered': True,
