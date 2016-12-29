@@ -8,8 +8,7 @@ nodes['hm.fire'] = {
             'interfaces': {
                 'eth0': {
                     'pre-down': '/sbin/ethtool -s eth0 wol g',
-                    'dns-search': 'hm.benjamin-borbe.de',
-                    'dns-nameservers': '192.168.178.1',
+                    'dns-nameservers': '8.8.4.4 8.8.8.8',
                 },
                 'br0': {
                     'address': '192.168.178.3',
