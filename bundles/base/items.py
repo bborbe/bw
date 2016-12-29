@@ -18,7 +18,9 @@ pkg_apt = {
     'ca-certificates': {},
     'iputils-ping': {},
     'openssh-client': {},
-    'mountall': {},
     'rsync': {},
     'nfs-common': {},
 }
+
+if os == 'ubuntu':
+    pkg_apt['mountall'] = {}
