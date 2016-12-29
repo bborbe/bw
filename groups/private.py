@@ -40,6 +40,7 @@ groups['private'] = {
         'dotfiles',
         'networking',
         'dns-update',
+        'grub',
     ),
     'metadata': {
         'monit': {
