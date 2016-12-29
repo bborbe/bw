@@ -4,6 +4,7 @@ groups['private'] = {
     'members': [
         'hm.fire',
         'hm.rasp',
+        'hm.nuke',
         'pn.sun',
         'sm.devel',
         'sm.tools',
