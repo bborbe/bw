@@ -36,6 +36,7 @@ if node.metadata.get('grub', {}).get('enabled', False):
         'context': {
             'name': name,
             'default': node.metadata.get('grub', {}).get('default', '0'),
+            'cmd_args': node.metadata.get('grub', {}).get('cmd_args', {}),
         },
         'triggers': ['action:update-grub'],
         'needs': ['pkg_apt:grub2-common'],
