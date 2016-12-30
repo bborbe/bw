@@ -4,11 +4,11 @@ if not (os == 'ubuntu' and release == 'xenial' or os == 'debian' and release == 
     raise Exception('{} {} is not supported by this bundle'.format(os, release))
 
 pkg_apt = {
-    "cron": {},
+    'cron': {},
 }
 
 svc_systemd = {
-    "cron": {
+    'cron': {
         'running': True,
         'enabled': True,
         'needs': ['pkg_apt:cron'],
@@ -20,7 +20,7 @@ files = {}
 for name, data in node.metadata.get('cron', {}).get('jobs', {}).items():
     if data.get('enabled', False):
         files['/etc/cron.d/{}'.format(name)] = {
-            'source': "cron_file",
+            'source': 'cron_file',
             'content_type': 'mako',
             'context': {
                 'shell': data.get('shell', '/bin/sh'),
