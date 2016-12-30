@@ -13,4 +13,10 @@ pkg_apt = {
     'virtinst': {
         'installed': node.metadata.get('kvm', {}).get('enabled', False),
     },
+    'virt-manager': {
+        'installed': node.metadata.get('kvm', {}).get('enabled', False),
+    },
+    'libvirt-daemon-system': {
+        'installed': node.metadata.get('kvm', {}).get('enabled', False),
+    },
 }
