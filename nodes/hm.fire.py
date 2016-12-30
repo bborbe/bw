@@ -51,6 +51,9 @@ nodes['hm.fire'] = {
                 'up route add -net 172.16.22.0/24 gw 172.16.20.2': {},
             },
         },
+        'grub': {
+            'enabled': True,
+        },
         'kvm': {
             'enabled': True,
         },

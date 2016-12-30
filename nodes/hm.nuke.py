@@ -16,6 +16,7 @@ nodes['hm.nuke'] = {
         },
         'grub': {
             'enabled': True,
+            'default': '"Windows 10 (loader) (on /dev/sdi1)"',
         },
         'kvm': {
             'enabled': True,
