@@ -7,22 +7,19 @@ nodes['hm.nuke'] = {
             'enabled': True,
             'interfaces': {
                 'eth0': {
+                },
+                'br0': {
                     'address': '192.168.178.5',
                     'netmask': '255.255.255.0',
                     'gateway': '192.168.178.1',
-                    'dns-nameservers': '8.8.4.4 8.8.8.8',
+                    'bridge_ports': 'eth0',
+                    'bridge_stp': 'on',
+                    'bridge_fd': '0',
+                    'bridge_maxwait': '0',
                 },
             },
         },
         'grub': {
-            'enabled': True,
-            'default': '"Windows 10 (loader) (on /dev/sdi1)"',
-            'cmd_args': {
-                'intel_iommu=on': {},
-                'vfio-pci.ids=10de:13c2,10de:0fbb,1b4b:9230': {},
-            },
-        },
-        'kvm': {
             'enabled': True,
         },
         'iptables': {
@@ -34,12 +31,6 @@ nodes['hm.nuke'] = {
                     '-A FORWARD -j ACCEPT',
                 ],
             },
-        },
-        'kernel_modules': {
-            'vfio': {},
-            'vfio_iommu_type1': {},
-            'vfio_pci': {},
-            'vfio_virqfd': {},
         },
     },
 }

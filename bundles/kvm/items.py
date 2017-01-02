@@ -19,4 +19,7 @@ pkg_apt = {
     'libvirt-daemon-system': {
         'installed': node.metadata.get('kvm', {}).get('enabled', False),
     },
+    'spice-client-gtk': {
+        'installed': node.metadata.get('kvm', {}).get('enabled', False),
+    },
 }
