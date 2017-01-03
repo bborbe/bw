@@ -1,8 +1,8 @@
 nodes['hm.nuke'] = {
     'hostname': 'nuke.hm.benjamin-borbe.de',
     'metadata': {
-        'os': 'debian',
-        'release': 'jessie',
+        'os': 'ubuntu',
+        'release': 'xenial',
         'networking': {
             'enabled': True,
             'interfaces': {
