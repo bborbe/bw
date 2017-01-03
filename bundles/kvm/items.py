@@ -16,9 +16,6 @@ pkg_apt = {
     'virt-manager': {
         'installed': node.metadata.get('kvm', {}).get('enabled', False) and node.metadata.get('kvm', {}).get('gui', False),
     },
-    'libvirt-daemon-system': {
-        'installed': node.metadata.get('kvm', {}).get('enabled', False) and node.metadata.get('kvm', {}).get('gui', False),
-    },
     'spice-client-gtk': {
         'installed': node.metadata.get('kvm', {}).get('enabled', False) and node.metadata.get('kvm', {}).get('gui', False),
     },
