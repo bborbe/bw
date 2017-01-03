@@ -5,10 +5,10 @@ nodes['hm.fire'] = {
         'release': 'xenial',
         'networking': {
             'enabled': True,
+            'nameservers': ['8.8.4.4', '8.8.8.8'],
             'interfaces': {
                 'eth0': {
                     'pre-down': '/sbin/ethtool -s eth0 wol g',
-                    'dns-nameservers': '8.8.4.4 8.8.8.8',
                 },
                 'br0': {
                     'address': '192.168.178.3',
@@ -56,6 +56,7 @@ nodes['hm.fire'] = {
         },
         'kvm': {
             'enabled': True,
+            'gui': True,
         },
         'iptables': {
             'enabled': True,
@@ -66,6 +67,10 @@ nodes['hm.fire'] = {
                     '-A FORWARD -j ACCEPT',
                 ],
             },
+        },
+        'kernel_modules': {
+            'lp': {},
+            'loop': {},
         },
     },
 }

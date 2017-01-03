@@ -27,5 +27,9 @@ nodes['hm.nuke'] = {
                 ],
             },
         },
+        'kernel_modules': {
+            'lp': {},
+            'loop': {},
+        },
     },
 }
