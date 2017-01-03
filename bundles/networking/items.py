@@ -31,3 +31,14 @@ if node.metadata.get('networking', {}).get('enabled', False):
         },
         'triggers': ['svc_systemd:networking:restart'],
     }
+
+    files['/etc/resolv.conf'] = {
+        'source': 'resolv.conf',
+        'content_type': 'mako',
+        'mode': '0644',
+        'owner': 'root',
+        'group': 'root',
+        'context': {
+            'nameservers': node.metadata.get('networking', {}).get('nameservers', []),
+        },
+    }
