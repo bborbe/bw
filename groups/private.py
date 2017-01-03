@@ -42,6 +42,7 @@ groups['private'] = {
         'networking',
         'dns-update',
         'grub',
+        'kernel_modules',
     ),
     'metadata': {
         'monit': {

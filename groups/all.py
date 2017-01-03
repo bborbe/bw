@@ -9,7 +9,6 @@ groups['all'] = {
         'user',
         'authorized_key',
         'dotfiles',
-        'kernel_modules',
     ),
     'metadata': {
         'users': {
