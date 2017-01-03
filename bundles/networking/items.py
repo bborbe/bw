@@ -5,17 +5,15 @@ if not (os == 'ubuntu' and release == 'xenial' or os == 'debian' and release == 
 
 files = {}
 
-svc_systemd = {
-}
+svc_systemd = {}
 
-pkg_apt = {
+pkg_apt = {}
+
+pkg_apt['resolvconf'] = {
+    'installed': False,
 }
 
 if node.metadata.get('networking', {}).get('enabled', False):
-    pkg_apt['resolvconf'] = {
-        'installed': True,
-    }
-
     svc_systemd['networking'] = {
         'triggered': True,
         'cascade_skip': False,
