@@ -67,5 +67,9 @@ nodes['pn.sun'] = {
                 ],
             },
         },
+        'kernel_modules': {
+            'lp': {},
+            'loop': {},
+        },
     },
 }

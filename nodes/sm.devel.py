@@ -3,6 +3,22 @@ nodes['sm.devel'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'hosts': {
+            'ipv4': {
+                '10.1.6.16': ['bborbe.devel.lf.seibert-media.net', 'bborbe'],
+            },
+        },
+        'networking': {
+            'enabled': True,
+            'interfaces': {
+                'eth0': {
+                    'address': '10.1.6.16',
+                    'netmask': '255.255.255.0',
+                    'gateway': '10.1.6.1',
+                    'dns-nameservers': '8.8.4.4 8.8.8.8',
+                },
+            },
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
@@ -13,6 +29,10 @@ nodes['sm.devel'] = {
                     '-A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT',
                 ],
             },
+        },
+        'kernel_modules': {
+            'lp': {},
+            'loop': {},
         },
     },
 }
