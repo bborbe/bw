@@ -1,8 +1,8 @@
-# nameserver config
 # IPv4
 127.0.0.1 localhost.localdomain localhost
-127.0.0.1 ${fqdn} ${hostname}
-#
+% for ip, aliases in sorted(ipv4.items()):
+${ip} ${" ".join(aliases)}
+% endfor
 # IPv6
 ::1     ip6-localhost ip6-loopback
 fe00::0 ip6-localnet
@@ -10,3 +10,6 @@ ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
+% for ip, aliases in sorted(ipv6.items()):
+${ip} ${" ".join(aliases)}
+% endfor

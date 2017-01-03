@@ -3,6 +3,14 @@ nodes['sm.tools'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'hosts': {
+            'ipv4': {
+                '138.201.37.217': ['tools.seibert-media.net', 'tools'],
+            },
+            'ipv6': {
+                '2a01:4f8:171:3957::2': ['tools.seibert-media.net'],
+            },
+        },
         'kvm': {
             'enabled': True,
         },
@@ -10,7 +18,7 @@ nodes['sm.tools'] = {
             'enabled': True,
             'nat_interfaces': ['eth0'],
             'rules': {
-                'nat':[
+                'nat': [
                     # OpenVpn
                     '-A PREROUTING -i eth0 -p tcp -d 138.201.37.217 --dport 563 -j DNAT --to-destination 172.16.10.3:563',
                     # Http + Https
