@@ -8,7 +8,7 @@ files = {}
 actions = {}
 
 actions['timedatectl-set-timezone'] = {
-    'command': 'timedatectl set-timezone Etc/UTC',
+    'command': 'timedatectl set-timezone UTC',
     'triggered': True,
     'cascade_skip': False,
 }
@@ -20,6 +20,6 @@ files['/etc/timezone'] = {
     'owner': 'root',
     'group': 'root',
     'triggers': [
-        'timedatectl-set-timezone',
+        'action:timedatectl-set-timezone',
     ],
 }
