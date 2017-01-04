@@ -57,6 +57,9 @@ nodes['pn.sun'] = {
         'kvm': {
             'enabled': True,
         },
+        'grub': {
+            'enabled': True,
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': ['br0'],

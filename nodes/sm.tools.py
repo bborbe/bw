@@ -14,6 +14,9 @@ nodes['sm.tools'] = {
         'kvm': {
             'enabled': True,
         },
+        'grub': {
+            'enabled': True,
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': ['eth0'],
