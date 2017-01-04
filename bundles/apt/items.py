@@ -8,16 +8,16 @@ pkg_apt = {
     'aptitude': {},
 }
 
-actions = {
-    'apt_update': {
-        'command': 'apt-get update',
-        'needed_by': ['pkg_apt:'],
-        'triggered': True,
-        'cascade_skip': False,
-    },
-}
+actions = {}
 
 files = {}
+
+actions['apt_update'] = {
+    'command': 'apt-get update',
+    'needed_by': ['pkg_apt:'],
+    'triggered': True,
+    'cascade_skip': False,
+}
 
 node.metadata.setdefault('apt', {}).setdefault('repos', {})
 for name, data in node.metadata['apt']['repos'].items():
