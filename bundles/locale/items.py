@@ -27,7 +27,7 @@ files['/etc/default/locale'] = {
     'group': 'root',
     'triggers': [
         'action:locale-gen',
-        'localectl-set-locale',
+        'action:localectl-set-locale',
     ],
 }
 
@@ -39,6 +39,6 @@ files['/etc/locale.gen'] = {
     'group': 'root',
     'triggers': [
         'action:locale-gen',
-        'localectl-set-locale',
+        'action:localectl-set-locale',
     ],
 }
