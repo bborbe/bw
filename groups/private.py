@@ -44,6 +44,7 @@ groups['private'] = {
         'grub',
         'kernel_modules',
         'ubuntu-desktop',
+        'timezone',
     ),
     'metadata': {
         'monit': {
