@@ -26,5 +26,5 @@ for username, data in node.metadata['users'].items():
         directories[homedir] = {
             'mode': '0700',
             'owner': username,
-            'group': username,
+            'group': 'root',
         }

@@ -11,7 +11,7 @@ for username, data in node.metadata['users'].items():
             '{}/.ssh'.format(homedir): {
                 'mode': '0700',
                 'owner': username,
-                'group': username,
+                'group': 'root',
             },
         }
         files = {
@@ -20,7 +20,7 @@ for username, data in node.metadata['users'].items():
                 'content_type': 'mako',
                 'mode': '0400',
                 'owner': username,
-                'group': username,
+                'group': 'root',
                 'context': {
                     'keys': list(keys),
                 },
