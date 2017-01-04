@@ -13,13 +13,22 @@ actions['locale-gen'] = {
     'cascade_skip': False,
 }
 
+actions['localectl-set-locale'] = {
+    'command': 'localectl set-locale LANG=en_US.utf8',
+    'triggered': True,
+    'cascade_skip': False,
+}
+
 files['/etc/default/locale'] = {
     'source': 'locale',
     'content_type': 'mako',
     'mode': '0644',
     'owner': 'root',
     'group': 'root',
-    'triggers': ['action:locale-gen'],
+    'triggers': [
+        'action:locale-gen',
+        'localectl-set-locale',
+    ],
 }
 
 files['/etc/locale.gen'] = {
@@ -28,5 +37,8 @@ files['/etc/locale.gen'] = {
     'mode': '0644',
     'owner': 'root',
     'group': 'root',
-    'triggers': ['action:locale-gen'],
+    'triggers': [
+        'action:locale-gen',
+        'localectl-set-locale',
+    ],
 }
