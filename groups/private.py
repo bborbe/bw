@@ -43,6 +43,7 @@ groups['private'] = {
         'dns-update',
         'grub',
         'kernel_modules',
+        'ubuntu-desktop',
     ),
     'metadata': {
         'monit': {

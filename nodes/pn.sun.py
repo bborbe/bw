@@ -1,8 +1,5 @@
 nodes['pn.sun'] = {
     'hostname': 'sun.pn.benjamin-borbe.de',
-    'bundles': [
-        'ubuntu-desktop',
-    ],
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
