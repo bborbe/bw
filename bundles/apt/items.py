@@ -45,3 +45,7 @@ for name, data in node.metadata['apt']['repos'].items():
             'delete': not data['installed'],
             'triggers': ['action:apt_update'],
         }
+
+node.metadata.setdefault('apt', {}).setdefault('packages', {})
+for name, data in node.metadata['apt']['packages'].items():
+    pkg_apt[name] = data
