@@ -5,10 +5,10 @@ groups['all'] = {
         r'.*',
     ),
     'bundles': (
-        'git',
-        'user',
         'authorized_key',
         'dotfiles',
+        'git',
+        'user',
     ),
     'metadata': {
         'users': {

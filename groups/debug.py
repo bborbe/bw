@@ -6,7 +6,9 @@ groups['debug'] = {
         'sm.devel',
         'sm.tools',
     ],
-    'bundles': (
-        'debug',
-    ),
+    'metadata': {
+        'debug': {
+            'enabled': True,
+        },
+    },
 }

@@ -1,7 +1,5 @@
-os = node.metadata.get('os', '')
-release = node.metadata.get('release', '')
-if not (os == 'ubuntu' and release == 'xenial' or os == 'debian' and release == 'jessie'):
-    raise Exception('{} {} is not supported by this bundle'.format(os, release))
+if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian' and node.os_version == (8, 0)):
+    raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
 files = {}
 svc_systemd = {}
@@ -12,13 +10,13 @@ pkg_apt = {
     },
 }
 
-if os == 'ubuntu' and release == 'xenial':
+if node.os == 'ubuntu':
     svc_systemd['monit'] = {
         'running': node.metadata.get('monit', {}).get('enabled', False),
         'enabled': node.metadata.get('monit', {}).get('enabled', False),
         'needs': ['pkg_apt:monit'],
     }
-if os == 'debian' and release == 'jessie':
+if node.os == 'debian':
     svc_systemd['monit'] = {
         'running': node.metadata.get('monit', {}).get('enabled', False),
         'needs': ['pkg_apt:monit'],

@@ -1,7 +1,5 @@
-os = node.metadata.get('os', '')
-release = node.metadata.get('release', '')
-if not (os == 'ubuntu' and release == 'xenial' or os == 'debian' and release == 'jessie'):
-    raise Exception('{} {} is not supported by this bundle'.format(os, release))
+if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian' and node.os_version == (8, 0)):
+    raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
 pkg_apt = {
     'iptables': {
