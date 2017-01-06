@@ -5,9 +5,11 @@ files = {}
 
 actions = {}
 
-parts = node.hostname.split('.', 1)
+hostname = node.metadata.get('hostname', node.hostname)
+
+parts = hostname.split('.', 1)
 if len(parts) != 2:
-    raise Exception('invalid hostname {}'.format(node.hostname))
+    raise Exception('invalid hostname {}'.format(hostname))
 
 name = parts[0]
 
@@ -31,7 +33,7 @@ files['/etc/hostname'] = {
 
 hosts_v4 = node.metadata.get('hosts', {}).get('ipv4', {})
 if len(hosts_v4) == 0:
-    hosts_v4['127.0.0.1'] = [node.hostname, name]
+    hosts_v4['127.0.0.1'] = [hostname, name]
 hosts_v6 = node.metadata.get('hosts', {}).get('ipv6', {})
 
 files['/etc/hosts'] = {
