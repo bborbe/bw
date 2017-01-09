@@ -48,6 +48,9 @@ nodes['hm.nuke'] = {
                     'devices': ['/dev/sdd', '/dev/sde', '/dev/sdf'],
                     'mounts': {
                         '/storage': {},
+                        '/backup': {},
+                        '/backup/freenas.hm.benjamin-borbe.de': {},
+                        '/backup/fire.hm.benjamin-borbe.de': {},
                     },
                 },
             },
