@@ -3,22 +3,19 @@ if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian
 
 pkg_apt = {}
 
-pkg_apt['ubuntu-desktop'] = {
-    'installed': node.metadata.get('ubuntu-desktop', {}).get('enabled', False),
-}
+pkgs = (
+    'chromium-browser',
+    'firefox',
+    'emacs',
+    'gedit',
+    'gnome-terminal',
+    'indicator-session',
+    'software-center',
+    'ubuntu-desktop',
+    'unity-lens-applications',
+)
 
-pkg_apt['gnome-terminal'] = {
-    'installed': node.metadata.get('ubuntu-desktop', {}).get('enabled', False),
-}
-
-pkg_apt['software-center'] = {
-    'installed': node.metadata.get('ubuntu-desktop', {}).get('enabled', False),
-}
-
-pkg_apt['unity-lens-applications'] = {
-    'installed': node.metadata.get('ubuntu-desktop', {}).get('enabled', False),
-}
-
-pkg_apt['indicator-session'] = {
-    'installed': node.metadata.get('ubuntu-desktop', {}).get('enabled', False),
-}
+for pkg in pkgs:
+    pkg_apt[pkg] = {
+        'installed': node.metadata.get('ubuntu-desktop', {}).get('enabled', False),
+    }
