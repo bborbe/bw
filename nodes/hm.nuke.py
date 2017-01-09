@@ -37,5 +37,17 @@ nodes['hm.nuke'] = {
         'ubuntu-desktop': {
             'enabled': True,
         },
+        'zfs': {
+            'enabled': True,
+            'pools': {
+                'tank1': {
+                    'type': 'raidz',
+                    'devices': ['/dev/sdd', '/dev/sde', '/dev/sdf'],
+                    'mounts': {
+                        '/storage': {},
+                    },
+                },
+            },
+        },
     },
 }
