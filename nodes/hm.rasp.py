@@ -61,5 +61,8 @@ nodes['hm.rasp'] = {
                 },
             },
         },
+        'smart': {
+            'enabled': True,
+        },
     },
 }

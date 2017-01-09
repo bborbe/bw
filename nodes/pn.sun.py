@@ -74,5 +74,8 @@ nodes['pn.sun'] = {
             'lp': {},
             'loop': {},
         },
+        'smart': {
+            'enabled': True,
+        },
     },
 }

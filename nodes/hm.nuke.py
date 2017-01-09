@@ -37,6 +37,9 @@ nodes['hm.nuke'] = {
         'ubuntu-desktop': {
             'enabled': True,
         },
+        'smart': {
+            'enabled': True,
+        },
         'zfs': {
             'enabled': True,
             'pools': {

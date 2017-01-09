@@ -30,6 +30,7 @@ groups['private'] = {
         'ntp',
         'openvpn',
         'puppet',
+        'smart',
         'ssh',
         'sudo',
         'sysctl',

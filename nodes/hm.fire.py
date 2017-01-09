@@ -78,5 +78,8 @@ nodes['hm.fire'] = {
         'ubuntu-desktop': {
             'enabled': True,
         },
+        'smart': {
+            'enabled': True,
+        },
     },
 }
