@@ -74,6 +74,7 @@ nodes['hm.fire'] = {
         'kernel_modules': {
             'lp': {},
             'loop': {},
+        },
         'ubuntu-desktop': {
             'enabled': True,
         },
