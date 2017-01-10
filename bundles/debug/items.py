@@ -4,15 +4,15 @@ if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian
 pkg_apt = {}
 
 debugs_pkgs = (
-    'telnet',
+    'atop',
+    'bmon',
+    'bonnie++',
     'dnsutils',
-    'traceroute',
+    'iotop',
     'psmisc',
     'sysstat',
-    'atop',
-    'iotop',
-    'bonnie++',
-    'bmon',
+    'telnet',
+    'traceroute',
 )
 
 if node.metadata.get('debug', {}).get('enabled', False):
