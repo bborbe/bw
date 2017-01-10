@@ -16,9 +16,9 @@ nodes['hm.nuke'] = {
                     'dns-nameservers': '8.8.4.4 8.8.8.8',
                 },
             },
-        },
-        'grub': {
-            'enabled': True,
+            'routes': {
+                'up route add -net 172.16.0.0/12 gw 192.168.178.2': {},
+            },
         },
         'iptables': {
             'enabled': True,
@@ -29,6 +29,9 @@ nodes['hm.nuke'] = {
                     '-A FORWARD -j ACCEPT',
                 ],
             },
+        },
+        'grub': {
+            'enabled': True,
         },
         'kernel_modules': {
             'lp': {},
