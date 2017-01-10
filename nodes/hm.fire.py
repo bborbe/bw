@@ -74,12 +74,26 @@ nodes['hm.fire'] = {
         'kernel_modules': {
             'lp': {},
             'loop': {},
-        },
         'ubuntu-desktop': {
             'enabled': True,
         },
         'smart': {
             'enabled': True,
+        },
+        'zfs': {
+            'enabled': True,
+            'pools': {
+                'tank1': {
+                    'type': 'raidz',
+                    'devices': ['/dev/sdc', '/dev/sdd', '/dev/sde'],
+                    'mounts': {
+                        '/storage/data': {},
+                        '/storage/home/jana': {},
+                        '/storage/home/bborbe': {},
+                        '/backup': {},
+                    },
+                },
+            },
         },
     },
 }
