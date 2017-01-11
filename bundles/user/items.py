@@ -8,7 +8,7 @@ pkg_apt = {
     'zsh': {},
 }
 
-for username, data in node.metadata['users'].items():
+for username, data in node.metadata.get('users', {}).items():
     homedir = data.get('home', '/home/{}'.format(username))
 
     if data.get('deleted', False):

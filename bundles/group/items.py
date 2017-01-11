@@ -3,5 +3,5 @@ if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian
 
 groups = {}
 
-for groupname, data in node.metadata['groups'].items():
+for groupname, data in node.metadata.get('groups', {}).items():
     groups[groupname] = {}
