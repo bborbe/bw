@@ -6,6 +6,27 @@ nodes['hm.fire'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'grub': {
+            'enabled': True,
+        },
+        'iptables': {
+            'enabled': True,
+            'nat_interfaces': [],
+            'rules': {
+                'filter': [
+                    # allow forward
+                    '-A FORWARD -j ACCEPT',
+                ],
+            },
+        },
+        'kernel_modules': {
+            'lp': {},
+            'loop': {},
+        },
+        'kvm': {
+            'enabled': True,
+            'gui': True,
+        },
         'networking': {
             'enabled': True,
             'nameservers': ['8.8.4.4', '8.8.8.8'],
@@ -26,19 +47,11 @@ nodes['hm.fire'] = {
                     'address': '172.16.23.3',
                     'netmask': '255.255.255.0',
                 },
-                'fw-host': {
-                    'address': '172.16.20.1',
+                'host-k8s': {
+                    'address': '172.16.22.1',
                     'netmask': '255.255.255.0',
-                    'pre-up': 'brctl addbr fw-host',
-                    'post-down': 'brctl delbr fw-host',
-                },
-                'fw-freenas': {
-                    'pre-up': 'brctl addbr fw-freenas',
-                    'post-down': 'brctl delbr fw-freenas',
-                },
-                'fw-k8s': {
-                    'pre-up': 'brctl addbr fw-k8s',
-                    'post-down': 'brctl delbr fw-k8s',
+                    'pre-up': 'brctl addbr host-k8s',
+                    'post-down': 'brctl delbr host-k8s',
                 },
             },
             'routes': {
@@ -50,44 +63,21 @@ nodes['hm.fire'] = {
                 'up route add -net 172.16.72.0/24 gw 172.16.23.2': {},
                 'up route add -net 172.16.80.0/24 gw 172.16.23.2': {},
                 'up route add -net 172.16.90.0/24 gw 172.16.23.2': {},
-                'up route add -net 172.16.21.0/24 gw 172.16.20.2': {},
-                'up route add -net 172.16.22.0/24 gw 172.16.20.2': {},
             },
-        },
-        'grub': {
-            'enabled': True,
-        },
-        'iptables': {
-            'enabled': True,
-            'nat_interfaces': [],
-            'rules': {
-                'filter': [
-                    # allow forward
-                    '-A FORWARD -j ACCEPT',
-                ],
-            },
-        },
-        'kvm': {
-            'enabled': True,
-            'gui': True,
         },
         'nfs-server': {
             'enabled': True,
             'exports': {
-                '/storage/data': {
+                '/backup/sun.pn.benjamin-borbe.de': {
                     '172.16.22.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash', 'fsid=0'],
                 },
-                '/storage/home/jana': {
+                '/backup/freenas.pn.benjamin-borbe.de': {
                     '172.16.22.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash', 'fsid=0'],
                 },
-                '/storage/home/bborbe': {
+                '/backup/pfsense.pn.benjamin-borbe.de': {
                     '172.16.22.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash', 'fsid=0'],
                 },
             },
-        },
-        'kernel_modules': {
-            'lp': {},
-            'loop': {},
         },
         'ubuntu-desktop': {
             'enabled': True,
@@ -105,7 +95,11 @@ nodes['hm.fire'] = {
                         '/storage/data': {},
                         '/storage/home/jana': {},
                         '/storage/home/bborbe': {},
-                        '/backup': {},
+                        '/backup/sun.pn.benjamin-borbe.de': {},
+                        '/backup/freenas.pn.benjamin-borbe.de': {},
+                        '/backup/pfsense.pn.benjamin-borbe.de': {},
+                        '/timemachine/star.hm.benjamin-borbe.de': {},
+                        '/timemachine/nova.hm.benjamin-borbe.de': {},
                     },
                 },
             },
