@@ -1,3 +1,5 @@
+import bwtv as teamvault
+
 nodes['hm.fire'] = {
     'hostname': 'fire.hm.benjamin-borbe.de',
     'bundles': (
@@ -14,6 +16,8 @@ nodes['hm.fire'] = {
             'nat_interfaces': [],
             'rules': {
                 'filter': [
+                    # allow netatalk
+                    '-A INPUT -m state --state NEW -p tcp --dport 548 -j ACCEPT',
                     # allow forward
                     '-A FORWARD -j ACCEPT',
                 ],
@@ -84,6 +88,21 @@ nodes['hm.fire'] = {
         },
         'smart': {
             'enabled': True,
+        },
+        'timemachine': {
+            'enabled': True,
+            'users': {
+                'nova': {
+                    'path': '/timemachine/nova.hm.benjamin-borbe.de',
+                    'password': teamvault.password('BwjGOV', site='benjamin-borbe'),
+                    'size': '400000',
+                },
+                'star': {
+                    'path': '/timemachine/star.hm.benjamin-borbe.de',
+                    'password': teamvault.password('BOrkLo', site='benjamin-borbe'),
+                    'size': '400000',
+                },
+            },
         },
         'zfs': {
             'enabled': True,

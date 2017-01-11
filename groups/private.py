@@ -35,6 +35,7 @@ groups['private'] = {
         'ssh',
         'sudo',
         'sysctl',
+        'timemachine',
         'timezone',
         'zfs',
     ),
