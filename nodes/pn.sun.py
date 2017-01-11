@@ -5,10 +5,9 @@ nodes['pn.sun'] = {
         'release': 'xenial',
         'networking': {
             'enabled': True,
+            'nameservers': ['8.8.4.4', '8.8.8.8'],
             'interfaces': {
-                'eth0': {
-                    'dns-nameservers': '8.8.4.4 8.8.8.8',
-                },
+                'eth0': {},
                 'br0': {
                     'address': '192.168.2.3',
                     'netmask': '255.255.255.0',

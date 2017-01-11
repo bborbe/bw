@@ -7,12 +7,12 @@ nodes['hm.rasp'] = {
         'release': 'jessie',
         'networking': {
             'enabled': True,
+            'nameservers': ['8.8.4.4', '8.8.8.8'],
             'interfaces': {
                 'eth0': {
                     'address': '192.168.178.2',
                     'netmask': '255.255.255.0',
                     'gateway': '192.168.178.1',
-                    'dns-nameservers': '8.8.4.4 8.8.8.8',
                 },
                 'eth0:0': {
                     'address': '172.16.23.2',

@@ -10,12 +10,12 @@ nodes['sm.devel'] = {
         },
         'networking': {
             'enabled': True,
+            'nameservers': ['8.8.4.4', '8.8.8.8'],
             'interfaces': {
                 'eth0': {
                     'address': '10.1.6.16',
                     'netmask': '255.255.255.0',
                     'gateway': '10.1.6.1',
-                    'dns-nameservers': '8.8.4.4 8.8.8.8',
                 },
             },
         },
