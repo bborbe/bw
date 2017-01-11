@@ -10,6 +10,7 @@ groups['private'] = {
         'sm.tools',
     ],
     'bundles': (
+        'backup',
         'cron',
         'dhcpclient',
         'dns-update',
