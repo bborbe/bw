@@ -16,8 +16,6 @@ nodes['hm.fire'] = {
             'nat_interfaces': [],
             'rules': {
                 'filter': [
-                    # allow netatalk
-                    '-A INPUT -m state --state NEW -p tcp --dport 548 -j ACCEPT',
                     # allow forward
                     '-A FORWARD -j ACCEPT',
                 ],

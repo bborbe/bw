@@ -5,7 +5,7 @@
 :OUTPUT ACCEPT [0:0]
 :POSTROUTING ACCEPT [0:0]
 # custom mangle rules start
-% for rule in mangle:
+% for rule in sorted(mangle):
 ${rule}
 % endfor
 # custom mangle rules end
@@ -16,7 +16,7 @@ COMMIT
 :OUTPUT ACCEPT [0:0]
 :POSTROUTING ACCEPT [0:0]
 # custom nat rules start
-% for rule in nat:
+% for rule in sorted(nat):
 ${rule}
 % endfor
 # custom nat rules end
@@ -31,7 +31,7 @@ COMMIT
 -A OUTPUT -o lo -j ACCEPT
 -A OUTPUT -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
 # custom nat rules start
-% for rule in filter:
+% for rule in sorted(filter):
 ${rule}
 % endfor
 # custom nat rules end
