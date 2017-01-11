@@ -20,6 +20,7 @@ for username, data in node.metadata['users'].items():
             'home': homedir,
             'shell': data.get('shell', '/bin/bash'),
             'full_name': data.get('full_name', username),
+            'groups': data.get('groups', []),
         }
         directories[homedir] = {
             'mode': '0700',

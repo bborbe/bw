@@ -8,6 +8,7 @@ groups['all'] = {
         'authorized_key',
         'dotfiles',
         'git',
+        'group',
         'user',
     ),
     'metadata': {

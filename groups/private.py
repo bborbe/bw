@@ -31,6 +31,7 @@ groups['private'] = {
         'ntp',
         'openvpn',
         'puppet',
+        'samba',
         'smart',
         'ssh',
         'sudo',

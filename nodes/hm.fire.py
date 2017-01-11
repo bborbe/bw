@@ -81,7 +81,7 @@ nodes['hm.fire'] = {
                 },
             },
         },
-        'ubuntu-desktop': {
+        'samba': {
             'enabled': True,
         },
         'smart': {
@@ -102,6 +102,21 @@ nodes['hm.fire'] = {
                 },
             },
         },
+        'ubuntu-desktop': {
+            'enabled': True,
+        },
+        'users': {
+            'jana': {
+                'full_name': 'Jana Borbe',
+                'groups': ['data'],
+            },
+            'bborbe': {
+                'groups': ['data'],
+            },
+        },
+        'groups': {
+            'data': {},
+        },
         'zfs': {
             'enabled': True,
             'pools': {
@@ -109,9 +124,9 @@ nodes['hm.fire'] = {
                     'type': 'raidz',
                     'devices': ['/dev/sdc', '/dev/sdd', '/dev/sde'],
                     'mounts': {
-                        '/storage/data': {},
-                        '/storage/home/jana': {},
-                        '/storage/home/bborbe': {},
+                        '/data': {},
+                        '/home/jana': {},
+                        '/home/bborbe': {},
                         '/backup/sun.pn.benjamin-borbe.de': {},
                         '/backup/freenas.pn.benjamin-borbe.de': {},
                         '/backup/pfsense.pn.benjamin-borbe.de': {},
