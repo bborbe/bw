@@ -24,6 +24,12 @@ else:
     }
 
 if node.metadata.get('nfs-server', {}).get('enabled', False):
+    exports = []
+    for export, data in node.metadata.get('nfs-server', {}).get('exports', {}).items():
+        line = export
+        for host, options in sorted(data.items()):
+            line += ' {host}({options})'.format(host=host, options=','.join(options))
+        exports.append(line)
     files['/etc/exports'] = {
         'source': 'exports',
         'content_type': 'mako',
@@ -31,7 +37,7 @@ if node.metadata.get('nfs-server', {}).get('enabled', False):
         'group': 'root',
         'mode': '0644',
         'context': {
-            'exports': node.metadata.get('nfs-server', {}).get('exports', {}),
+            'exports': exports,
         },
         'triggers': ['svc_systemd:nfs-server:restart'],
     }

@@ -57,10 +57,6 @@ nodes['hm.fire'] = {
         'grub': {
             'enabled': True,
         },
-        'kvm': {
-            'enabled': True,
-            'gui': True,
-        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
@@ -69,6 +65,24 @@ nodes['hm.fire'] = {
                     # allow forward
                     '-A FORWARD -j ACCEPT',
                 ],
+            },
+        },
+        'kvm': {
+            'enabled': True,
+            'gui': True,
+        },
+        'nfs-server': {
+            'enabled': True,
+            'exports': {
+                '/storage/data': {
+                    '172.16.22.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash', 'fsid=0'],
+                },
+                '/storage/home/jana': {
+                    '172.16.22.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash', 'fsid=0'],
+                },
+                '/storage/home/bborbe': {
+                    '172.16.22.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash', 'fsid=0'],
+                },
             },
         },
         'kernel_modules': {
