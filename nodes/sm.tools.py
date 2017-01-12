@@ -67,6 +67,13 @@ nodes['sm.tools'] = {
                 },
                 'full_name': 'Oliver Wolf',
             },
+            'trehn': {
+                'sudo': True,
+                'authorized_keys': {
+                    'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAtKhN971YtW3hcxKOK6I4A8Pzxu0SA5ydejyLQ6c9sx6OQklaSZyFMVYUi9l6p96uaVsDVGir4Y2vK1FgO+PqzLLFp8n1QSNO2ErVm1A7Yps60Y3I/2lHr4vIETkJ9EJkxjNvQsEPUAnn+vKButKUfkiqDie+2SIvG9MM/ZFmkJ3P+VBx5lDboPRi7h/Nb+4PvUE5vDDViAs6Slp2/wXEdvwwshRUXgjenAeAK58xhzasPow4dirN8LRmwZ1WRXcy2wvWALik9Wz7gltjoMLQbadDvZKTq7C6SZQgiwkHovwNhhiSJstKop5rLFVrkzyyVVDX5WBkKnBxv4DBZ7+IAR6esDYHW6e+Ojj7+VbOz0bUOn5pnmmGPTEKbc4tBRo8jTNNIx350JxdxN2rczrTtqZbzs3s1iHi6qO8za15XJW/c0Klqp0ZUIYhrMbaEYXqHdE16gMKmtYkp4XSa1h/bh+E94gv8USsuC+u4Yh7Sb9RzQMkl3G5ZE7Fw3T7ms6eOyqG4+d3ywp4EX+nWICHs/7pykEwQEt0lXTkjMdZ5II5mfEU01a/8msrjvHfJChjtSUk3W2GugFbU7X49z5HyluWBgyvLS/cWbce7+l+EoLM6nbzVGww53j6SyC0kSkDng+0t4d1QyCQAGvjG7QPPNU3xi4IJWHPSAh+ihzHIvM= trehn@seibert-media.net': {},
+                },
+                'full_name': 'Torsten Rehn',
+            },
             'mschnitzius': {
                 'sudo': True,
                 'authorized_keys': {
