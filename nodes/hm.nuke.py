@@ -52,7 +52,6 @@ nodes['hm.nuke'] = {
                     'mounts': {
                         '/storage': {},
                         '/backup': {},
-                        '/backup/freenas.hm.benjamin-borbe.de': {},
                         '/backup/fire.hm.benjamin-borbe.de': {},
                     },
                 },
