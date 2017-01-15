@@ -81,6 +81,9 @@ groups['user_group'] = {
             'nova': {
                 'uid': '1009',
             },
+            'borbe': {
+                'uid': '1010',
+            },
         },
         'groups': {
             'bborbe': {
@@ -115,6 +118,9 @@ groups['user_group'] = {
             },
             'nova': {
                 'gid': '1009',
+            },
+            'borbe': {
+                'gid': '1010',
             },
             'data': {
                 'gid': '2000',
