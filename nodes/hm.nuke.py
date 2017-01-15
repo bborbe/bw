@@ -28,6 +28,10 @@ nodes['hm.nuke'] = {
             'lp': {},
             'loop': {},
         },
+        'kvm': {
+            'enabled': True,
+            'gui': True,
+        },
         'networking': {
             'enabled': True,
             'nameservers': ['8.8.4.4', '8.8.8.8'],
@@ -46,13 +50,11 @@ nodes['hm.nuke'] = {
             'enabled': True,
         },
         'users': {
-            'jana': {
-                'enabled': True,
-                'groups': ['data'],
-            },
             'bborbe': {
                 'enabled': True,
-                'groups': ['data'],
+            },
+            'jana': {
+                'enabled': True,
             },
         },
         'smart': {
