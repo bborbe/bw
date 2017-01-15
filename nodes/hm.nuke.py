@@ -67,9 +67,11 @@ nodes['hm.nuke'] = {
                     'type': 'raidz',
                     'devices': ['/dev/sdd', '/dev/sde', '/dev/sdf'],
                     'mounts': {
-                        '/storage': {},
                         '/backup': {},
                         '/backup/fire.hm.benjamin-borbe.de': {},
+                        '/home': {},
+                        '/home/bborbe': {},
+                        '/home/jana': {},
                     },
                 },
             },

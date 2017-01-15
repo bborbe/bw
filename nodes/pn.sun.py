@@ -76,5 +76,19 @@ nodes['pn.sun'] = {
         'smart': {
             'enabled': True,
         },
+        'zfs': {
+            'enabled': True,
+            'pools': {
+                'tank1': {
+                    'type': 'raidz',
+                    'devices': ['/dev/sdb', '/dev/sdc', '/dev/sdd'],
+                    'mounts': {
+                        '/backup': {},
+                        '/backup/fire.hm.benjamin-borbe.de': {},
+                        '/data': {},
+                    },
+                },
+            },
+        },
     },
 }
