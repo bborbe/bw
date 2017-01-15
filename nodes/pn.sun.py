@@ -76,6 +76,27 @@ nodes['pn.sun'] = {
         'smart': {
             'enabled': True,
         },
+        'timemachine': {
+            'enabled': True,
+            'users': {
+                'borbe': {
+                    'path': '/timemachine/borbe.pn.benjamin-borbe.de',
+                    'password': teamvault.password('mwxBLK', site='benjamin-borbe'),
+                    'size': '400000',
+                },
+            },
+        },
+        'users': {
+            'bborbe': {
+                'enabled': True,
+            },
+            'walter': {
+                'enabled': True,
+            },
+            'brigitte': {
+                'enabled': True,
+            },
+        },
         'zfs': {
             'enabled': True,
             'pools': {
@@ -86,6 +107,8 @@ nodes['pn.sun'] = {
                         '/backup': {},
                         '/backup/fire.hm.benjamin-borbe.de': {},
                         '/data': {},
+                        '/timemachine': {},
+                        '/timemachine/borbe.pn.benjamin-borbe.de': {},
                     },
                 },
             },
