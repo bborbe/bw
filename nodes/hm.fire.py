@@ -8,6 +8,11 @@ nodes['hm.fire'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'groups': {
+            'data': {
+                'enabled': True,
+            },
+        },
         'grub': {
             'enabled': True,
         },
@@ -106,18 +111,13 @@ nodes['hm.fire'] = {
             'enabled': True,
         },
         'users': {
-            'jana': {
-                'enabled': True,
-                'groups': ['data'],
-            },
             'bborbe': {
                 'enabled': True,
                 'groups': ['data'],
             },
-        },
-        'groups': {
-            'data': {
+            'jana': {
                 'enabled': True,
+                'groups': ['data'],
             },
         },
         'zfs': {
