@@ -2,7 +2,6 @@ if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian
     raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
 pkg_apt = {}
-users = {}
 svc_systemd = {}
 files = {}
 directories = {}
@@ -27,25 +26,7 @@ else:
         'enabled': False,
     }
 
-if node.metadata.get('timemachine', {}).get('enabled', False):
-    for username, data in node.metadata.get('timemachine', {}).get('users', {}).items():
-        path = data.get('path', '')
-        if len(path) == 0:
-            raise Exception('path missing')
-        password = data.get('password', '')
-        if len(password) == 0:
-            raise Exception('password missing')
-        users[username] = {
-            'home': path,
-            'shell': '/bin/false',
-            'password': password,
-            'salt': 'w9AVl6dZcq4i3Q3d',
-        }
-else:
-    for username, data in node.metadata.get('timemachine', {}).get('users', {}).items():
-        users[username] = {
-            'delete': True,
-        }
+
 
 if node.metadata.get('timemachine', {}).get('enabled', False):
     tu = {}
@@ -78,16 +59,3 @@ else:
     files['/etc/netatalk/AppleVolumes.default'] = {
         'delete': True,
     }
-
-
-if node.metadata.get('timemachine', {}).get('enabled', False):
-    for username, data in node.metadata.get('timemachine', {}).get('users', {}).items():
-        path = data.get('path', '')
-        if len(path) == 0:
-            raise Exception('path missing')
-        directories[path] = {
-            'mode': '0700',
-            'owner': username,
-            'group': 'root',
-        }
-

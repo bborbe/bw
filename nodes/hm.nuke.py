@@ -6,6 +6,28 @@ nodes['hm.nuke'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'groups': {
+            'data': {
+                'enabled': True,
+            },
+        },
+        'grub': {
+            'enabled': True,
+        },
+        'iptables': {
+            'enabled': True,
+            'nat_interfaces': [],
+            'rules': {
+                'filter': [
+                    # allow forward
+                    '-A FORWARD -j ACCEPT',
+                ],
+            },
+        },
+        'kernel_modules': {
+            'lp': {},
+            'loop': {},
+        },
         'networking': {
             'enabled': True,
             'nameservers': ['8.8.4.4', '8.8.8.8'],
@@ -20,25 +42,18 @@ nodes['hm.nuke'] = {
                 'up route add -net 172.16.0.0/12 gw 192.168.178.2': {},
             },
         },
-        'iptables': {
-            'enabled': True,
-            'nat_interfaces': [],
-            'rules': {
-                'filter': [
-                    # allow forward
-                    '-A FORWARD -j ACCEPT',
-                ],
-            },
-        },
-        'grub': {
-            'enabled': True,
-        },
-        'kernel_modules': {
-            'lp': {},
-            'loop': {},
-        },
         'ubuntu-desktop': {
             'enabled': True,
+        },
+        'users': {
+            'jana': {
+                'enabled': True,
+                'groups': ['data'],
+            },
+            'bborbe': {
+                'enabled': True,
+                'groups': ['data'],
+            },
         },
         'smart': {
             'enabled': True,

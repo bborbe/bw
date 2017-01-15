@@ -107,15 +107,18 @@ nodes['hm.fire'] = {
         },
         'users': {
             'jana': {
-                'full_name': 'Jana Borbe',
+                'enabled': True,
                 'groups': ['data'],
             },
             'bborbe': {
+                'enabled': True,
                 'groups': ['data'],
             },
         },
         'groups': {
-            'data': {},
+            'data': {
+                'enabled': True,
+            },
         },
         'zfs': {
             'enabled': True,

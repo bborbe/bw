@@ -9,21 +9,24 @@ pkg_apt = {
 }
 
 for username, data in node.metadata.get('users', {}).items():
-    homedir = data.get('home', '/home/{}'.format(username))
-
-    if data.get('deleted', False):
-        users[username] = {
-            'delete': True,
-        }
-    else:
-        users[username] = {
-            'home': homedir,
-            'shell': data.get('shell', '/bin/bash'),
-            'full_name': data.get('full_name', username),
-            'groups': data.get('groups', []),
-        }
-        directories[homedir] = {
-            'mode': '0700',
-            'owner': username,
-            'group': 'root',
-        }
+    if 'enabled' in data:
+        if data.get('enabled', False):
+            homedir = data.get('home', '/home/{}'.format(username))
+            users[username] = {
+                'home': homedir,
+                'shell': data.get('shell', '/bin/bash'),
+                'full_name': data.get('full_name', username),
+                'groups': data.get('groups', []),
+            }
+            for field in ['password', 'salt', 'uid']:
+                if field in data:
+                    users[username][field] = data[field]
+            directories[homedir] = {
+                'mode': '0700',
+                'owner': username,
+                'group': 'root',
+            }
+        else:
+            users[username] = {
+                'delete': True,
+            }
