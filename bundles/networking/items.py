@@ -12,9 +12,15 @@ pkg_apt['resolvconf'] = {
 }
 
 if node.metadata.get('networking', {}).get('enabled', False):
+
+    pkg_apt['bridge-utils'] = {
+        'installed': True,
+    }
+
     svc_systemd['networking'] = {
         'triggered': True,
         'cascade_skip': False,
+        'needs': ['pkg_apt:bridge-utils'],
     }
 
     files['/etc/network/interfaces'] = {
