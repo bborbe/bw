@@ -38,9 +38,7 @@ nodes['hm.fire'] = {
             'enabled': True,
             'nameservers': ['8.8.4.4', '8.8.8.8'],
             'interfaces': {
-                'eth0': {
-                    'pre-down': '/sbin/ethtool -s eth0 wol g',
-                },
+                'eth0': {},
                 'br0': {
                     'address': '192.168.178.3',
                     'netmask': '255.255.255.0',
@@ -50,10 +48,6 @@ nodes['hm.fire'] = {
                     'bridge_fd': '0',
                     'bridge_maxwait': '0',
                 },
-                'br0:0': {
-                    'address': '172.16.23.3',
-                    'netmask': '255.255.255.0',
-                },
                 'host-k8s': {
                     'address': '172.16.22.1',
                     'netmask': '255.255.255.0',
@@ -62,14 +56,7 @@ nodes['hm.fire'] = {
                 },
             },
             'routes': {
-                'up route add -net 172.16.30.0/24 gw 172.16.23.2': {},
-                'up route add -net 172.16.40.0/24 gw 172.16.23.2': {},
-                'up route add -net 172.16.50.0/24 gw 172.16.23.2': {},
-                'up route add -net 172.16.70.0/24 gw 172.16.23.2': {},
-                'up route add -net 172.16.71.0/24 gw 172.16.23.2': {},
-                'up route add -net 172.16.72.0/24 gw 172.16.23.2': {},
-                'up route add -net 172.16.80.0/24 gw 172.16.23.2': {},
-                'up route add -net 172.16.90.0/24 gw 172.16.23.2': {},
+                'up route add -net 172.16.0.0/12 gw 192.168.178.2': {},
             },
         },
         'nfs-server': {

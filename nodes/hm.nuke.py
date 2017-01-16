@@ -36,10 +36,21 @@ nodes['hm.nuke'] = {
             'enabled': True,
             'nameservers': ['8.8.4.4', '8.8.8.8'],
             'interfaces': {
-                'eth0': {
+                'eth0': {},
+                'br0': {
                     'address': '192.168.178.5',
                     'netmask': '255.255.255.0',
                     'gateway': '192.168.178.1',
+                    'bridge_ports': 'eth0',
+                    'bridge_stp': 'on',
+                    'bridge_fd': '0',
+                    'bridge_maxwait': '0',
+                },
+                'host-k8s': {
+                    'address': '172.16.24.1',
+                    'netmask': '255.255.255.0',
+                    'pre-up': 'brctl addbr host-k8s',
+                    'post-down': 'brctl delbr host-k8s',
                 },
             },
             'routes': {
