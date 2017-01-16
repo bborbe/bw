@@ -73,6 +73,9 @@ nodes['pn.sun'] = {
             'lp': {},
             'loop': {},
         },
+        'samba': {
+            'enabled': True,
+        },
         'smart': {
             'enabled': True,
         },
