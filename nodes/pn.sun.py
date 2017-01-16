@@ -55,24 +55,12 @@ nodes['pn.sun'] = {
                     'bridge_fd': '0',
                     'bridge_maxwait': '0',
                 },
-                'fw-host': {
-                    'address': '172.16.70.1',
+                'host-k8s': {
+                    'address': '172.16.72.1',
                     'netmask': '255.255.255.0',
-                    'pre-up': 'brctl addbr fw-host',
-                    'post-down': 'brctl delbr fw-host',
+                    'pre-up': 'brctl addbr host-k8s',
+                    'post-down': 'brctl delbr host-k8s',
                 },
-                'fw-freenas': {
-                    'pre-up': 'brctl addbr fw-freenas',
-                    'post-down': 'brctl delbr fw-freenas',
-                },
-                'fw-k8s': {
-                    'pre-up': 'brctl addbr fw-k8s',
-                    'post-down': 'brctl delbr fw-k8s',
-                },
-            },
-            'routes': {
-                'up route add -net 172.16.71.0/24 gw 172.16.70.5': {},
-                'up route add -net 172.16.72.0/24 gw 172.16.70.5': {},
             },
         },
         'openvpn': {
