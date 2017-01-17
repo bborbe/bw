@@ -66,13 +66,7 @@ nodes['hm.fire'] = {
             'enabled': True,
             'exports': {
                 '/backup/sun.pn.benjamin-borbe.de': {
-                    '172.16.22.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash', 'fsid=0'],
-                },
-                '/backup/freenas.pn.benjamin-borbe.de': {
-                    '172.16.22.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash', 'fsid=0'],
-                },
-                '/backup/pfsense.pn.benjamin-borbe.de': {
-                    '172.16.22.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash', 'fsid=0'],
+                    '172.16.22.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
                 },
             },
         },
@@ -118,9 +112,9 @@ nodes['hm.fire'] = {
                     'devices': ['/dev/sdc', '/dev/sdd', '/dev/sde'],
                     'mounts': {
                         '/backup': {},
-                        '/backup/freenas.pn.benjamin-borbe.de': {},
-                        '/backup/pfsense.pn.benjamin-borbe.de': {},
-                        '/backup/sun.pn.benjamin-borbe.de': {},
+                        '/backup/sun.pn.benjamin-borbe.de': {
+                            'sharenfs': True,
+                        },
                         '/data': {},
                         '/home': {},
                         '/home/bborbe': {},
