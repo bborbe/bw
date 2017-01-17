@@ -60,6 +60,14 @@ nodes['hm.nuke'] = {
                 'up route add -net 192.168.2.0/24 gw 192.168.178.2': {},
             },
         },
+        'nfs-server': {
+            'enabled': True,
+            'exports': {
+                '/backup/fire.hm.benjamin-borbe.de': {
+                    '172.16.24.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
+                },
+            },
+        },
         'ubuntu-desktop': {
             'enabled': True,
         },
