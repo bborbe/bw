@@ -1,17 +1,28 @@
+import base64
+import json
+
 if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian' and node.os_version == (8, 0)):
     raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
-actions = {}
+files = {}
+json_data = {}
 
 if node.metadata.get('docker', {}).get('enabled', False):
-    for host, data in node.metadata.get('docker', {}).get('login', {}).items():
-        actions['docker_login'] = {
-            # TODO: handle password change
-            'unless': 'test -f /root/.docker/config.json',
-            'command': "su -c 'docker login {host} -u {username} -p {password}'".format(
-                host=host,
-                username=data.get('username', ''),
-                password=data.get('password', ''),
-            ),
-            'needs': ['pkg_apt:docker-engine'],
-        }
+    for domain, data in node.metadata.get('docker', {}).get('login', {}).items():
+        username = data.get('username', '')
+        if len(username) == 0:
+            raise Exception('username empty for docker domain {domain}'.format(domain=domain))
+        password = data.get('password', '')
+        if len(password) == 0:
+            raise Exception('password empty for docker domain {domain}'.format(domain=domain))
+        auth = json_data.setdefault('auths', {}).setdefault(domain, {})
+        auth['auth'] = base64.encodestring('{username}:{password}'.format(username=username, password=password).encode()).decode().replace('\n', '')
+
+    files['/root/.docker/config.json'] = {
+        'owner': 'root',
+        'group': 'root',
+        'mode': '0600',
+        'content': json.dumps(json_data),
+        'content_type': 'text',
+        'needs': ['pkg_apt:docker-engine'],
+    }
