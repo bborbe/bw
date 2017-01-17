@@ -13,6 +13,7 @@ debugs_pkgs = (
     'sysstat',
     'telnet',
     'traceroute',
+    'iputils-tracepath',
 )
 
 if node.metadata.get('debug', {}).get('enabled', False):
