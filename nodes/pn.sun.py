@@ -66,6 +66,38 @@ nodes['pn.sun'] = {
         'openvpn': {
             'enabled': True,
         },
+        'nfs-server': {
+            'enabled': True,
+            'exports': {
+                '/backup/fire.hm.benjamin-borbe.de': {
+                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
+                },
+                '/backup/host.sm.benjamin-borbe.de': {
+                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
+                },
+                '/backup/kubernetes-backup.sm.benjamin-borbe.de': {
+                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
+                },
+                '/backup/nova.hm.benjamin-borbe.de': {
+                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
+                },
+                '/backup/nuke.hm.benjamin-borbe.de': {
+                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
+                },
+                '/backup/v22016124049440903.goodsrv.de': {
+                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
+                },
+                '/backup/rasp.hm.benjamin-borbe.de': {
+                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
+                },
+                '/backup/star.hm.benjamin-borbe.de': {
+                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
+                },
+                '/backup/sun.pn.benjamin-borbe.de': {
+                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
+                },
+            },
+        },
         'samba': {
             'enabled': True,
         },
@@ -105,6 +137,14 @@ nodes['pn.sun'] = {
                     'mounts': {
                         '/backup': {},
                         '/backup/fire.hm.benjamin-borbe.de': {},
+                        '/backup/host.sm.benjamin-borbe.de': {},
+                        '/backup/kubernetes-backup.sm.benjamin-borbe.de': {},
+                        '/backup/nova.hm.benjamin-borbe.de': {},
+                        '/backup/nuke.hm.benjamin-borbe.de': {},
+                        '/backup/v22016124049440903.goodsrv.de': {},
+                        '/backup/rasp.hm.benjamin-borbe.de': {},
+                        '/backup/star.hm.benjamin-borbe.de': {},
+                        '/backup/sun.pn.benjamin-borbe.de': {},
                         '/data': {},
                         '/timemachine': {},
                         '/timemachine/borbe.pn.benjamin-borbe.de': {},
