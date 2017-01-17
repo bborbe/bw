@@ -97,7 +97,7 @@ nodes['hm.fire'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data'],
+                'groups': ['data', 'libvirtd'],
             },
             'jana': {
                 'enabled': True,

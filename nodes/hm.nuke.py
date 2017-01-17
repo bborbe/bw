@@ -74,6 +74,7 @@ nodes['hm.nuke'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
+                'groups': ['libvirtd'],
             },
             'jana': {
                 'enabled': True,
