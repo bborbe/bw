@@ -112,9 +112,7 @@ nodes['hm.fire'] = {
                     'devices': ['/dev/sdc', '/dev/sdd', '/dev/sde'],
                     'mounts': {
                         '/backup': {},
-                        '/backup/sun.pn.benjamin-borbe.de': {
-                            'sharenfs': True,
-                        },
+                        '/backup/sun.pn.benjamin-borbe.de': {},
                         '/data': {},
                         '/home': {},
                         '/home/bborbe': {},
