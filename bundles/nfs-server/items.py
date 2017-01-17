@@ -41,3 +41,12 @@ if node.metadata.get('nfs-server', {}).get('enabled', False):
         },
         'triggers': ['svc_systemd:nfs-server:restart'],
     }
+    files['/etc/default/nfs-kernel-server'] = {
+        'source': 'nfs-kernel-server',
+        'content_type': 'mako',
+        'owner': 'root',
+        'group': 'root',
+        'mode': '0644',
+        'context': {},
+        'triggers': ['svc_systemd:nfs-server:restart'],
+    }
