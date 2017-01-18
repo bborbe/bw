@@ -53,16 +53,25 @@ nodes['sm.tools'] = {
             },
         },
         'users': {
+            'bkendinibilir': {
+                'enabled': True,
+            },
             'kwiesmueller': {
+                'enabled': True,
+            },
+            'mfrankl': {
+                'enabled': True,
+            },
+            'mschnitzius': {
                 'enabled': True,
             },
             'owolf': {
                 'enabled': True,
             },
-            'trehn': {
+            'sjanusch': {
                 'enabled': True,
             },
-            'mschnitzius': {
+            'trehn': {
                 'enabled': True,
             },
         },
