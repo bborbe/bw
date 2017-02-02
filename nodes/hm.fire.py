@@ -72,6 +72,7 @@ nodes['hm.fire'] = {
         },
         'samba': {
             'enabled': True,
+            'server_name': 'fire.hm.benjamin-borbe.de',
         },
         'smart': {
             'enabled': True,

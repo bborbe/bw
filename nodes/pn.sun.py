@@ -100,6 +100,7 @@ nodes['pn.sun'] = {
         },
         'samba': {
             'enabled': True,
+            'server_name': 'sun.pn.benjamin-borbe.de',
         },
         'smart': {
             'enabled': True,

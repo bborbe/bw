@@ -38,9 +38,14 @@ if node.metadata.get('samba', {}).get('enabled', False):
         'mode': '0644',
         'owner': 'root',
         'group': 'root',
-        'context': {},
+        'context': {
+            'server_name': node.metadata.get('samba', {}).get('server_name', ''),
+        },
         'needs': ['pkg_apt:samba'],
-        'triggers': ['svc_systemd:smbd:restart', 'svc_systemd:nmbd:restart'],
+        'triggers': [
+            'svc_systemd:smbd:restart',
+            'svc_systemd:nmbd:restart',
+        ],
     }
 else:
     files['/etc/samba/smb.conf'] = {
