@@ -17,8 +17,7 @@ actions['apt_update'] = {
     'cascade_skip': False,
 }
 
-node.metadata.setdefault('apt', {}).setdefault('repos', {})
-for name, data in node.metadata['apt']['repos'].items():
+for name, data in node.metadata.get('apt', {}).get('repos', {}).items():
     if data['installed']:
         actions['add_gpg_key_{}'.format(data['gpg_key'])] = {
             'command': 'apt-key adv --keyserver keyserver.ubuntu.com --recv-keys {}'.format(data['gpg_key']),
@@ -44,6 +43,5 @@ for name, data in node.metadata['apt']['repos'].items():
             'triggers': ['action:apt_update'],
         }
 
-node.metadata.setdefault('apt', {}).setdefault('packages', {})
-for name, data in node.metadata['apt']['packages'].items():
+for name, data in node.metadata.get('apt', {}).get('packages', {}).items():
     pkg_apt[name] = data

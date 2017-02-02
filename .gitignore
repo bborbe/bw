@@ -1,6 +1,7 @@
-.secrets.cfg
-.bw_teamvault_secrets.cfg
+/.secrets.cfg
+/.bw_teamvault_secrets.cfg
 /groups/work
 /nodes/work
 /groups/test
 /nodes/test
+/pwget.secret
