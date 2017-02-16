@@ -26,6 +26,8 @@ for username, data in node.metadata.get('users', {}).items():
                 'owner': username,
                 'group': 'root',
             }
+            if data.get('generate_password', False):
+                users[username]['password'] = repo.vault.password_for('user {user} node {node}'.format(user=username, node=node.name), length=16)
         else:
             users[username] = {
                 'delete': True,

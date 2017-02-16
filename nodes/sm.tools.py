@@ -62,9 +62,6 @@ nodes['sm.tools'] = {
             'mfrankl': {
                 'enabled': True,
             },
-            'mschnitzius': {
-                'enabled': True,
-            },
             'owolf': {
                 'enabled': True,
             },
