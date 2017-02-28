@@ -44,7 +44,7 @@ groups['private'] = {
     'metadata': {
         'monit': {
             'enabled': True,
-            'mailerserver': {
+            'mailserver': {
                 'sender': teamvault.username('KwRoO7', site='benjamin-borbe'),
                 'recipient': 'bborbe@rocketnews.de',
                 'server': 'mail.benjamin-borbe.de',

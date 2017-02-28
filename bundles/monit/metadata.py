@@ -6,17 +6,9 @@ def monit_filesystem(metadata):
     return metadata
 
 
-def monit_remove(metadata):
-    checks = metadata.setdefault('monit', {}).setdefault('checks', {})
-    checks['free_space'] = {
-        'enabled': False,
-    }
-    return metadata
-
-
 def monit_mailserver(metadata):
-    checks = metadata.setdefault('monit', {}).setdefault('checks', {})
     if 'mailserver' in metadata.get('monit', {}):
+        checks = metadata.setdefault('monit', {}).setdefault('checks', {})
         checks['mailserver'] = {
             'template': 'mailserver.conf',
             'context': {
@@ -39,4 +31,9 @@ def monit_httpchecks(metadata):
             'template': 'http_check.conf',
             'context': data,
         }
+    return metadata
+
+
+def monit_admin_password(metadata):
+    metadata.setdefault('monit', {}).setdefault('password', repo.vault.password_for('monit admin {}'.format(node.name), length=16))
     return metadata
