@@ -7,11 +7,17 @@ pkg_apt['monit'] = {
     'installed': node.metadata.get('monit', {}).get('enabled', False),
 }
 
-svc_systemd['monit'] = {
-    'running': node.metadata.get('monit', {}).get('enabled', False),
-    'enabled': node.metadata.get('monit', {}).get('enabled', False),
-    'needs': ['pkg_apt:monit'],
-}
+if node.os == 'debian':
+    svc_systemd['monit'] = {
+        'running': node.metadata.get('monit', {}).get('enabled', False),
+        'needs': ['pkg_apt:monit'],
+    }
+else:
+    svc_systemd['monit'] = {
+        'running': node.metadata.get('monit', {}).get('enabled', False),
+        'enabled': node.metadata.get('monit', {}).get('enabled', False),
+        'needs': ['pkg_apt:monit'],
+    }
 
 directories['/etc/monit/conf.d'] = {
     'mode': '0700',
