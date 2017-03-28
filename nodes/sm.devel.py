@@ -34,5 +34,8 @@ nodes['sm.devel'] = {
             'lp': {},
             'loop': {},
         },
+        'tomcat7': {
+            'enabled': True,
+        },
     },
 }

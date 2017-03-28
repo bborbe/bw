@@ -39,6 +39,7 @@ groups['private'] = {
         'sysctl',
         'timemachine',
         'timezone',
+        'tomcat7',
         'zfs',
     ),
     'metadata': {
