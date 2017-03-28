@@ -1,5 +1,11 @@
 # Bundle Wrap Configuration 
 
+## Upgrade pip
+
+```
+pip install --upgrade -r  requirements.txt
+```
+
 ## Copyright and license
 
     Copyright (c) 2016, Benjamin Borbe <bborbe@seibert-media.net>
