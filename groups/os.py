@@ -12,6 +12,14 @@ groups['ubuntu-xenial'] = {
         'systemd',
     ),
     'os_version': (16, 4),
+    'metadata': {
+        'apt': {
+            'packages': {
+                'linux-image-virtual-lts-xenial': {},
+                'linux-image-extra-virtual-lts-xenial': {},
+            },
+        },
+    },
 }
 
 groups['debian'] = {
