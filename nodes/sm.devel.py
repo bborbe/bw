@@ -3,6 +3,9 @@ nodes['sm.devel'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'docker': {
+            'enabled': True,
+        },
         'hosts': {
             'ipv4': {
                 '10.1.6.16': ['bborbe.devel.lf.seibert-media.net', 'bborbe'],
