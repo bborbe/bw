@@ -2,9 +2,6 @@ import bwtv as teamvault
 
 nodes['hm.fire'] = {
     'hostname': 'fire.hm.benjamin-borbe.de',
-    'bundles': (
-        'ubuntu-desktop',
-    ),
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',

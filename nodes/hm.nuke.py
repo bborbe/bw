@@ -1,8 +1,5 @@
 nodes['hm.nuke'] = {
     'hostname': 'nuke.hm.benjamin-borbe.de',
-    'bundles': (
-        'ubuntu-desktop',
-    ),
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
@@ -69,7 +66,7 @@ nodes['hm.nuke'] = {
             },
         },
         'ubuntu-desktop': {
-            'enabled': True,
+            'enabled': False,
         },
         'users': {
             'bborbe': {

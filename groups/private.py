@@ -40,6 +40,7 @@ groups['private'] = {
         'timemachine',
         'timezone',
         'tomcat7',
+        'ubuntu-desktop',
         'zfs',
     ),
     'metadata': {

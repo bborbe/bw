@@ -10,6 +10,7 @@ pkgs = (
     'gedit',
     'gnome-terminal',
     'indicator-session',
+    'lightdm',
     'software-center',
     'ubuntu-desktop',
     'unity-lens-applications',
