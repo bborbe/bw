@@ -7,7 +7,6 @@ groups['private'] = {
         'hm.nuke',
         'pn.sun',
         'sm.devel',
-        'sm.tools',
     ],
     'bundles': (
         'base',
