@@ -3,6 +3,14 @@ nodes['hm.nuke'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'git': {
+            'clones': {
+                'kubernetes': {
+                    'repo': 'https://github.com/bborbe/kubernetes-cluster-nuke.git',
+                    'target': '/var/lib/libvirt/images/kubernetes',
+                },
+            }
+        },
         'groups': {
             'data': {
                 'enabled': True,

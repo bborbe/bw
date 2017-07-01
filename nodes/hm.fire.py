@@ -5,6 +5,14 @@ nodes['hm.fire'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'git': {
+            'clones': {
+                'kubernetes': {
+                    'repo': 'https://github.com/bborbe/kubernetes-cluster-fire.git',
+                    'target': '/var/lib/libvirt/images/kubernetes',
+                },
+            }
+        },
         'groups': {
             'data': {
                 'enabled': True,

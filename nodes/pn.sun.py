@@ -16,6 +16,14 @@ nodes['pn.sun'] = {
                 },
             },
         },
+        'git': {
+            'clones': {
+                'kubernetes': {
+                    'repo': 'https://github.com/bborbe/kubernetes-cluster-sun.git',
+                    'target': '/var/lib/libvirt/images/kubernetes',
+                },
+            }
+        },
         'groups': {
             'data': {
                 'enabled': True,
