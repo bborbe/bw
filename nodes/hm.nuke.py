@@ -60,8 +60,7 @@ nodes['hm.nuke'] = {
             },
             'routes': {
                 'up route add -net 172.16.0.0/12 gw 192.168.178.2': {},
-                # 'up route add -net 172.16.72.0/24 gw 192.168.178.2': {},
-                # 'up route add -net 172.16.80.0/24 gw 192.168.178.2': {},
+                'up route add -net 172.16.22.0/24 gw 192.168.178.3': {},
                 'up route add -net 192.168.2.0/24 gw 192.168.178.2': {},
             },
         },
