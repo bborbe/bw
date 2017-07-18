@@ -80,12 +80,6 @@ nodes['pn.sun'] = {
                 '/backup/fire.hm.benjamin-borbe.de': {
                     '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
                 },
-                '/backup/host.sm.benjamin-borbe.de': {
-                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
-                },
-                '/backup/kubernetes-backup.sm.benjamin-borbe.de': {
-                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
-                },
                 '/backup/nova.hm.benjamin-borbe.de': {
                     '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
                 },
