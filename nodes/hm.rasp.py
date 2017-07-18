@@ -26,9 +26,6 @@ nodes['hm.rasp'] = {
                 'server': {
                     'enabled': True,
                 },
-                'tools': {
-                    'enabled': True,
-                },
             },
         },
         'iptables': {
