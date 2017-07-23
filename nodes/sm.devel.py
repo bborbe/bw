@@ -3,6 +3,15 @@ nodes['sm.devel'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'apt': {
+            'repos': {
+                'docker': {
+                    'gpg_key': 'AADAA6F0',
+                    'sources': ['deb https://aptly.benjamin-borbe.de/atlassian default main'],
+                    'installed': True,
+                },
+            },
+        },
         'docker': {
             'enabled': True,
         },
