@@ -1,3 +1,5 @@
+import bwtv as teamvault
+
 nodes['sm.devel'] = {
     'hostname': 'bborbe.devel.lf.seibert-media.net',
     'metadata': {
@@ -10,6 +12,19 @@ nodes['sm.devel'] = {
                     'sources': ['deb https://aptly.benjamin-borbe.de/atlassian default main'],
                     'installed': True,
                 },
+                'java': {
+                    'gpg_key': '1A0745C2',
+                    'sources': [
+                        'deb [arch=amd64] https://{username}:{password}@apt.seibert-media.net/java/ default main'.format(
+                            username=teamvault.username('mjN6Km', site='default'),
+                            password=teamvault.password('mjN6Km', site='default')
+                        ),
+                    ],
+                    'installed': True,
+                },
+            },
+            'packages': {
+                'oracle-jdk8': {},
             },
         },
         'docker': {
@@ -47,7 +62,7 @@ nodes['sm.devel'] = {
             'loop': {},
         },
         'tomcat7': {
-            'enabled': True,
+            'enabled': False,
         },
     },
 }
