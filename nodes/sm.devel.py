@@ -22,9 +22,30 @@ nodes['sm.devel'] = {
                     ],
                     'installed': True,
                 },
+                'atlassian': {
+                    'gpg_key': '1A0745C2',
+                    'sources': [
+                        'deb [arch=amd64] https://{username}:{password}@apt.seibert-media.net/atlassian/ default main'.format(
+                            username=teamvault.username('mjN6Km', site='default'),
+                            password=teamvault.password('mjN6Km', site='default')
+                        ),
+                    ],
+                    'installed': True,
+                },
+                'jolokia': {
+                    'gpg_key': '1A0745C2',
+                    'sources': [
+                        'deb [arch=amd64] https://{username}:{password}@apt.seibert-media.net/jolokia/ default main'.format(
+                            username=teamvault.username('mjN6Km', site='default'),
+                            password=teamvault.password('mjN6Km', site='default')
+                        ),
+                    ],
+                    'installed': True,
+                },
             },
             'packages': {
                 'oracle-jdk8': {},
+                'bitbucket': {},
             },
         },
         'docker': {
