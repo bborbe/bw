@@ -45,7 +45,6 @@ nodes['sm.devel'] = {
             },
             'packages': {
                 'oracle-jdk8': {},
-                'bitbucket': {},
             },
         },
         'docker': {
