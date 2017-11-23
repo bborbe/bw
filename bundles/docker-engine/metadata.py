@@ -1,3 +1,4 @@
+@metadata_processor
 def docker_repo(metadata):
     if metadata.get('docker', {}).get('enabled', False):
         release = metadata.get('release', '')
@@ -7,9 +8,10 @@ def docker_repo(metadata):
             'sources': ['deb https://apt.dockerproject.org/repo {os}-{release} main'.format(os=metadata.get('os'), release=release)],
             'installed': metadata.get('docker', False),
         }
-    return metadata
+    return metadata, DONE
 
 
+@metadata_processor
 def docker_cleanup_cron(metadata):
     metadata.setdefault('cron', {}).setdefault('jobs', {})
     metadata['cron']['jobs']['docker-cleanup-container'] = {
@@ -22,4 +24,4 @@ def docker_cleanup_cron(metadata):
         'schedule': '30 * * * *',
         'expression': 'docker images -f "dangling=true" -q | xargs --no-run-if-empty docker rmi',
     }
-    return metadata
+    return metadata, DONE

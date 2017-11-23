@@ -1,3 +1,4 @@
+@metadata_processor
 def timemachine_users(metadata):
     if metadata.get('timemachine', {}).get('enabled', False):
         for username, data in metadata.get('timemachine', {}).get('users', {}).items():
@@ -18,4 +19,4 @@ def timemachine_users(metadata):
             metadata.setdefault('users', {})[username] = {
                 'enabled': False,
             }
-    return metadata
+    return metadata, DONE

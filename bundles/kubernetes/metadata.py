@@ -1,3 +1,4 @@
+@metadata_processor
 def docker_repo(metadata):
     release = metadata.get('release', '')
     metadata.setdefault('apt', {}).setdefault('repos', {})
@@ -6,4 +7,4 @@ def docker_repo(metadata):
         'sources': ['deb http://apt.kubernetes.io/ kubernetes-{} main'.format(release)],
         'installed': metadata.get('kubernetes', False),
     }
-    return metadata
+    return metadata, DONE

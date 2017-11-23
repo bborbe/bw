@@ -1,3 +1,4 @@
+@metadata_processor
 def iptables(metadata):
     if metadata.get('samba', {}).get('enabled', False):
         rules = [
@@ -10,4 +11,4 @@ def iptables(metadata):
         for i in rules:
             if i not in list:
                 list.append(i)
-    return metadata
+    return metadata, DONE

@@ -1,3 +1,4 @@
+@metadata_processor
 def letsencrypt_checkout(metadata):
     if metadata.get('letsencrypt', {}).get('enabled', False):
         metadata.setdefault('git', {}).setdefault('clones', {})
@@ -6,4 +7,4 @@ def letsencrypt_checkout(metadata):
             'repo': 'https://github.com/bborbe/letsencrypt.sh.git',
             'target': '/opt/letsencrypt.sh',
         }
-    return metadata
+    return metadata, DONE

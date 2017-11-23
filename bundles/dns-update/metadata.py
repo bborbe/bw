@@ -1,3 +1,4 @@
+@metadata_processor
 def crons(metadata):
     metadata.setdefault('cron', {}).setdefault('jobs', {})
     dns_update = metadata.get('dns-update', {})
@@ -12,4 +13,4 @@ def crons(metadata):
                 ip=data.get('ip-url', ''),
             )
         }
-    return metadata
+    return metadata, DONE

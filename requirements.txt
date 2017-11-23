@@ -1,2 +1,2 @@
-bundlewrap>=2.19
+bundlewrap>=3.1.0
 bundlewrap-teamvault>=2.0.1

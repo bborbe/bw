@@ -1,11 +1,13 @@
+@metadata_processor
 def monit_filesystem(metadata):
     checks = metadata.setdefault('monit', {}).setdefault('checks', {})
     checks['filesystem'] = {
         'template': 'filesystem.conf',
     }
-    return metadata
+    return metadata, DONE
 
 
+@metadata_processor
 def monit_mailserver(metadata):
     if 'mailserver' in metadata.get('monit', {}):
         checks = metadata.setdefault('monit', {}).setdefault('checks', {})
@@ -20,9 +22,10 @@ def monit_mailserver(metadata):
                 'password': metadata.get('monit', {}).get('mailserver', {}).get('password', ''),
             },
         }
-    return metadata
+    return metadata, DONE
 
 
+@metadata_processor
 def monit_httpchecks(metadata):
     checks = metadata.setdefault('monit', {}).setdefault('checks', {})
     for name, data in metadata.get('monit', {}).get('httpchecks', {}).items():
@@ -31,9 +34,10 @@ def monit_httpchecks(metadata):
             'template': 'http_check.conf',
             'context': data,
         }
-    return metadata
+    return metadata, DONE
 
 
+@metadata_processor
 def monit_admin_password(metadata):
     metadata.setdefault('monit', {}).setdefault('password', repo.vault.password_for('monit admin {}'.format(node.name), length=16))
-    return metadata
+    return metadata, DONE
