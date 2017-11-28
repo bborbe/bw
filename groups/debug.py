@@ -4,7 +4,6 @@ groups['debug'] = {
         'hm.fire',
         'hm.rasp',
         'pn.sun',
-        'sm.devel',
     ],
     'bundles': (
         'debug',
