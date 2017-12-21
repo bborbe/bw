@@ -20,6 +20,9 @@ nodes['hm.rasp'] = {
                 'up route add -net 172.16.24.0/24 gw 172.16.23.5': {},
             },
         },
+        'openhab': {
+            'enabled': True,
+        },
         'openvpn': {
             'enabled': True,
             'services': {
