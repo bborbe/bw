@@ -6,15 +6,7 @@ svc_systemd = {}
 actions = {}
 files = {}
 
-pkg_apt['curl'] = {
-    'installed': node.metadata.get('openhab', {}).get('enabled', False),
-}
-pkg_apt['unzip'] = {
-    'installed': node.metadata.get('openhab', {}).get('enabled', False),
-}
-pkg_apt['openjdk-8-jdk'] = {
-    'installed': node.metadata.get('openhab', {}).get('enabled', False),
-}
+
 
 if node.metadata.get('openhab', {}).get('enabled', False):
     svc_systemd['openhab'] = {
@@ -62,6 +54,6 @@ else:
     files['/opt/openhab'] = {
         'delete': True,
     }
-    files['file:/etc/systemd/system/openhab.service'] = {
+    files['/etc/systemd/system/openhab.service'] = {
         'delete': True,
     }

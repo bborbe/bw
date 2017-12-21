@@ -28,6 +28,7 @@ groups['private'] = {
         'networking',
         'nfs-server',
         'ntp',
+        'openhab',
         'openvpn',
         'puppet',
         'samba',

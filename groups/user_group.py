@@ -115,6 +115,9 @@ groups['user_group'] = {
                 'full_name': 'Sandro Janusch',
                 'generate_password': True,
             },
+            'openhab': {
+                'uid': '1015',
+            },
         },
         'groups': {
             'bborbe': {
@@ -161,6 +164,9 @@ groups['user_group'] = {
             },
             'sjanusch': {
                 'gid': '1014',
+            },
+            'openhab': {
+                'gid': '1015',
             },
             'data': {
                 'gid': '2000',

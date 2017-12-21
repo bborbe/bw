@@ -1,9 +1,6 @@
 @metadata_processor
 def user(metadata):
-    if metadata.get('openhab', {}).get('enabled', False):
-        metadata.setdefault('users', {}).setdefault('openhab', {
-            'enabled': True,
-        })
+    metadata.setdefault('users', {}).setdefault('openhab', {})['enabled'] = metadata.get('openhab', {}).get('enabled', False)
     return metadata, DONE
 
 
@@ -19,4 +16,13 @@ def iptables(metadata):
         for i in rules:
             if i not in list:
                 list.append(i)
+    return metadata, DONE
+
+
+@metadata_processor
+def install_apt_packages(metadata):
+    for package_name in ['curl', 'unzip', 'openjdk-8-jdk']:
+        metadata.setdefault('apt', {}).setdefault('packages', {}).setdefault(package_name, {})
+        metadata['apt']['packages'][package_name]['installed'] = \
+            metadata['apt']['packages'][package_name].get('installed', False) or metadata.get('openhab', {}).get('enabled', False)
     return metadata, DONE
