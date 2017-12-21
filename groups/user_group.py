@@ -14,6 +14,9 @@ groups['user_group'] = {
             'pi': {
                 'enabled': False,
             },
+            'ubuntu': {
+                'enabled': False,
+            },
             'bborbe': {
                 'uid': '1000',
                 'enabled': True,
