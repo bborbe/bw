@@ -48,9 +48,11 @@ if node.metadata.get('kubernetes', {}).get('enabled', False):
         'mode': '0644',
         'owner': 'root',
         'group': 'root',
-        'needs': ['pkg_apt:kubelet'],
-        'triggers': [
+        'needs': [
             'action:systemd-reload',
+            'pkg_apt:kubelet',
+        ],
+        'triggers': [
             'svc_systemd:kubelet:restart'
         ],
     }
