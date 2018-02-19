@@ -1,17 +1,11 @@
-if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian' and node.os_version == (8, 0)):
+if node.os != 'ubuntu' and node.os != 'debian':
     raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
 files = {}
-
 actions = {}
 
 hostname = node.metadata.get('hostname', node.hostname)
-
-parts = hostname.split('.', 1)
-if len(parts) != 2:
-    raise Exception('invalid hostname {}'.format(hostname))
-
-name = parts[0]
+name = hostname.split('.', 1)[0]
 
 actions['set_hostname_{}'.format(name)] = {
     'command': 'hostnamectl set-hostname {}'.format(name),

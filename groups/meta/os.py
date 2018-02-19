@@ -37,3 +37,11 @@ groups['debian-jessie'] = {
     ),
     'os_version': (8, 0),
 }
+
+groups['debian-stretch'] = {
+    'members_add': lambda node: node.metadata.get('os') == 'debian' and node.metadata.get('release') == 'stretch',
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (9, 0),
+}

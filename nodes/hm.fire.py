@@ -5,6 +5,12 @@ nodes['hm.fire'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'backup_server': {
+            'enabled': True,
+            'targets': {
+                'sun.pn.benjamin-borbe.de': {'allow': '172.16.22.0/24'},
+            }
+        },
         'git': {
             'clones': {
                 'kubernetes': {
@@ -25,10 +31,10 @@ nodes['hm.fire'] = {
             'enabled': True,
             'nat_interfaces': [],
             'rules': {
-                'filter': [
+                'filter': {
                     # allow forward
                     '-A FORWARD -j ACCEPT',
-                ],
+                },
             },
         },
         'kernel_modules': {
@@ -40,8 +46,6 @@ nodes['hm.fire'] = {
             'gui': True,
         },
         'networking': {
-            'enabled': True,
-            'nameservers': ['8.8.4.4', '8.8.8.8'],
             'interfaces': {
                 'eth0': {},
                 'br0': {
@@ -68,11 +72,6 @@ nodes['hm.fire'] = {
         },
         'nfs-server': {
             'enabled': True,
-            'exports': {
-                '/backup/sun.pn.benjamin-borbe.de': {
-                    '172.16.22.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
-                },
-            },
         },
         'samba': {
             'enabled': True,
@@ -87,7 +86,7 @@ nodes['hm.fire'] = {
                 'nova': {
                     'path': '/timemachine/nova.hm.benjamin-borbe.de',
                     'password': teamvault.password('BwjGOV', site='benjamin-borbe'),
-                    'size': '400000',
+                    'size': '600000',
                 },
                 'star': {
                     'path': '/timemachine/star.hm.benjamin-borbe.de',
@@ -117,7 +116,6 @@ nodes['hm.fire'] = {
                     'devices': ['/dev/sdc', '/dev/sdd', '/dev/sde'],
                     'mounts': {
                         '/backup': {},
-                        '/backup/sun.pn.benjamin-borbe.de': {},
                         '/data': {},
                         '/home': {},
                         '/home/bborbe': {},

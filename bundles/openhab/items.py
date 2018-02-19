@@ -1,59 +1,105 @@
-if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian' and node.os_version == (8, 0)):
+if node.os != 'ubuntu' and node.os != 'debian':
     raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
 pkg_apt = {}
 svc_systemd = {}
 actions = {}
 files = {}
+directories = {}
 
+openhab_configs = (
+    'html/habpanel-config.json',
+    'items/default.items',
+    'items/co2mon.items',
+    'items/switches.items',
+    'persistence/rrd4j.persist',
+    'rules/co2alert.rules',
+    'rules/default.rules',
+    'rules/telegram.rules',
+    'scripts/default.script',
+    'services/addons.cfg',
+    'services/mqtt.cfg',
+    'services/mqtt-eventbus.cfg',
+    'services/telegram.cfg',
+    'sitemaps/default.sitemap',
+    'things/default.things',
+)
 
+openhab_conf = '/etc/openhab2'
+openhab_userdata = '/var/lib/openhab2'
+openhab_log = '/var/log/openhab2'
+
+openhab_directories = (
+    '{}'.format(openhab_log),
+    '{}'.format(openhab_userdata),
+    '{}/tmp'.format(openhab_userdata),
+    '{}/etc'.format(openhab_userdata),
+    '{}'.format(openhab_conf),
+)
+openhab_directories_managed = (
+    '{}/html'.format(openhab_conf),
+    '{}/items'.format(openhab_conf),
+    '{}/rules'.format(openhab_conf),
+    '{}/persistence'.format(openhab_conf),
+    '{}/scripts'.format(openhab_conf),
+    '{}/services'.format(openhab_conf),
+    '{}/sitemaps'.format(openhab_conf),
+    '{}/things'.format(openhab_conf),
+)
+
+pkg_apt['openhab2'] = {
+    'installed': node.metadata.get('openhab', {}).get('enabled', False),
+}
+pkg_apt['openjdk-8-jdk'] = {
+    'installed': node.metadata.get('openhab', {}).get('enabled', False),
+}
 
 if node.metadata.get('openhab', {}).get('enabled', False):
-    svc_systemd['openhab'] = {
+    svc_systemd['openhab2'] = {
         'running': True,
         'enabled': True,
         'needs': [
-            'action:install_openhab',
             'user:openhab',
+            'pkg_apt:openhab2',
             'pkg_apt:openjdk-8-jdk',
-            'file:/etc/systemd/system/openhab.service',
+            'directory:{}'.format(openhab_conf),
+            'directory:{}'.format(openhab_userdata),
         ],
     }
-    actions['install_openhab'] = {
-        'command': (
-            'cd /opt && '
-            'curl --connect-timeout 10 --max-time 30 -sSLo openhab.zip https://bintray.com/openhab/mvn/download_file?file_path=org%2Fopenhab%2Fdistro%2Fopenhab%2F{version}%2Fopenhab-{version}.zip && '
-            'unzip openhab.zip -d openhab && '
-            'rm -f openhab.zip'
-        ).format(version=node.metadata['openhab'].get('version', '2.2.0')),
-        'unless': 'test -d /opt/openhab',
-        'needs': [
-            'pkg_apt:unzip',
-            'pkg_apt:curl',
-        ],
-        'cascade_skip': False,
-    }
-    files['/etc/systemd/system/openhab.service'] = {
-        'source': 'openhab.service',
-        'content_type': 'mako',
-        'mode': '0644',
-        'owner': 'root',
-        'group': 'root',
-        'context': {},
-        'triggers': [
-            'svc_systemd:openhab:restart',
-            'action:systemd-reload',
-        ],
-    }
-
+    for config in openhab_configs:
+        files['{dir}/{file}'.format(dir=openhab_conf, file=config)] = {
+            'source': config,
+            'content_type': 'mako',
+            'mode': '0644',
+            'owner': 'openhab',
+            'group': 'openhab',
+            'context': node.metadata.get('openhab', {}),
+            'needs': [
+                'pkg_apt:openhab2',
+            ],
+            'triggers': [
+                'svc_systemd:openhab2:restart',
+            ],
+        }
+    for directory in openhab_directories:
+        directories[directory] = {
+            'mode': '0750',
+            'owner': 'openhab',
+            'group': 'openhab',
+        }
+    for directory in openhab_directories_managed:
+        directories[directory] = {
+            'mode': '0750',
+            'owner': 'openhab',
+            'group': 'openhab',
+            'purge': True,
+        }
 else:
-    svc_systemd['openhab'] = {
+    svc_systemd['openhab2'] = {
         'running': False,
         'enabled': False,
     }
-    files['/opt/openhab'] = {
-        'delete': True,
-    }
-    files['/etc/systemd/system/openhab.service'] = {
-        'delete': True,
-    }
+    for config in openhab_configs:
+        files['{dir}/{file}'.format(dir=openhab_conf, file=config)] = {
+            'delete': True,
+        }

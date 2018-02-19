@@ -7,8 +7,8 @@ def iptables(metadata):
             '-A INPUT -m state --state NEW -p tcp --dport 139 -j ACCEPT',
             '-A INPUT -m state --state NEW -p tcp --dport 445 -j ACCEPT',
         ]
-        list = metadata.setdefault('iptables', {}).setdefault('rules', {}).setdefault('filter', [])
+        list = metadata.setdefault('iptables', {}).setdefault('rules', {}).setdefault('filter', set())
         for i in rules:
             if i not in list:
-                list.append(i)
+                list.add(i)
     return metadata, DONE

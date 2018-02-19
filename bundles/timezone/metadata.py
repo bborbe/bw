@@ -5,8 +5,8 @@ def iptables(metadata):
             # allow netatalk
             '-A INPUT -m state --state NEW -p tcp --dport 548 -j ACCEPT',
         ]
-        list = metadata.setdefault('iptables', {}).setdefault('rules', {}).setdefault('filter', [])
+        list = metadata.setdefault('iptables', {}).setdefault('rules', {}).setdefault('filter', set())
         for i in rules:
             if i not in list:
-                list.append(i)
+                list.add(i)
     return metadata, DONE

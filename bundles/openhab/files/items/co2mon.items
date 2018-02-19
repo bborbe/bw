@@ -1,0 +1,13 @@
+Group                   SensorCo2       "Co2 Sensors"                   <fire>              ["SensorCo2"]
+Group                   SensorTemp      "Temperature Sensors"           <temperature>       ["SensorTemp"]
+Group                   SensorHum       "Humidity Sensors"              <humidity>          ["SensorHum"]
+Group:Switch:OR(ON,OFF) AlarmCo2
+
+Number                  HZ_CO2          "CO2 [%.1f ppm]"                <fire>              (SensorCo2)
+Number                  HZ_TEMP         "Temperature [%.1f °C]"         <temperature>       (SensorTemp)
+Number                  HZ_HUM          "Humidity [%.1f %%]"            <humidity>          (SensorHum)
+
+Number                  WZ_CO2          "CO2 [%.1f ppm]"                <fire>              (SensorCo2)
+Number                  WZ_TEMP         "Temperature [%.1f °C]"         <temperature>       (SensorTemp)
+Number                  WZ_HUM          "Humidity [%.1f %%]"            <humidity>          (SensorHum)
+

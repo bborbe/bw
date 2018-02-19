@@ -1,4 +1,4 @@
-if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian' and node.os_version == (8, 0)):
+if node.os != 'ubuntu' and node.os != 'debian':
     raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
 users = {}
@@ -16,8 +16,9 @@ for username, data in node.metadata.get('users', {}).items():
                 'home': homedir,
                 'shell': data.get('shell', '/bin/bash'),
                 'full_name': data.get('full_name', username),
-                'groups': data.get('groups', []),
             }
+            if len(data.get('groups', [])) > 0:
+                users[username]['groups'] = data.get('groups', [])
             for field in ['password', 'salt', 'uid']:
                 if field in data:
                     users[username][field] = data[field]

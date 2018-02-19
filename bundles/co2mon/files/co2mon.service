@@ -1,0 +1,19 @@
+[Unit]
+Description=co2mon
+After=network.target
+
+[Service]
+User=co2mon
+Group=co2mon
+WorkingDirectory=/opt/co2mon
+ExecStart=/opt/co2mon/.env/bin/python /opt/co2mon/co2mon.py \
+--device "${context['device']}" \
+--openhab-url "${context['openhab-url']}" \
+--openhab-user "${context.get('openhab-user','')}" \
+--openhab-pass "${context.get('openhab-pass','')}" \
+--openhab-co2-name "${context.get('openhab-co2-name','')}" \
+--openhab-temperatur-name "${context.get('openhab-temperatur-name','')}" \
+--openhab-humidity-name "${context.get('openhab-humidity-name','')}"
+
+[Install]
+WantedBy=multi-user.target

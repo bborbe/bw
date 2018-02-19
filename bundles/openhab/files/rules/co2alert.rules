@@ -1,0 +1,29 @@
+rule "CO2 detection"
+when
+	Item HZ_CO2 received update
+then
+	logInfo("co2alert.rules", "HZ_CO2 received update")
+	if (HZ_CO2.state > 1200) {
+		logInfo("co2alert.rules", "HZ_CO2 > 1200")
+		if (AlarmCo2.state != ON) {
+			logInfo("co2alert.rules", "CO2 alarm tripped by sensor!")
+			AlarmCo2.postUpdate(ON)
+		}
+	} else {
+		logInfo("co2alert.rules", "HZ_CO2 <= 1200")
+		if (AlarmCo2.state != OFF) {
+			logInfo("co2alert.rules", "CO2 alarm turned off by sensor!")
+			AlarmCo2.postUpdate(OFF)
+		}
+	}
+end
+
+rule "CO2 alarm"
+when
+	Item AlarmCo2 received update ON
+then
+	logInfo("co2alert.rules", "send co2 alarm vai telegram")
+% for name in sorted(telegram.keys()):
+	sendTelegram("${name}", "Co2 Alert")
+% endfor
+end

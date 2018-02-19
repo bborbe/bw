@@ -9,6 +9,9 @@ iface ${interface} inet ${ 'manual' if data.get('address','') == '' else 'static
 % endfor
 
 % endfor
+
 % for route, data in sorted(routes.items()):
 ${route}
 % endfor
+
+source /etc/network/interfaces.d/*.cfg

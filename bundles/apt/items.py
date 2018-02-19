@@ -1,4 +1,4 @@
-if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian' and node.os_version == (8, 0)):
+if node.os != 'ubuntu' and node.os != 'debian':
     raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
 pkg_apt = {
@@ -21,7 +21,7 @@ for name, data in node.metadata.get('apt', {}).get('repos', {}).items():
     if data['installed']:
         actions['add_gpg_key_{}'.format(data['gpg_key'])] = {
             'command': 'apt-key adv --keyserver keyserver.ubuntu.com --recv-keys {}'.format(data['gpg_key']),
-            'unless': 'apt-key list | grep {}'.format(data['gpg_key']),
+            'unless': 'apt-key list | tr -d "[:blank:]" | grep {}'.format(data['gpg_key']),
             'cascade_skip': False,
             'needed_by': ['action:apt_update'],
         }

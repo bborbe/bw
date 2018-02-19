@@ -1,0 +1,2 @@
+Switch Switch1 {mqtt=">[mosquitto:myhome/bedroom/switch1:command:ON:1],>[mosquitto:myhome/bedroom/switch1:command:OFF:0],<[mosquitto:myhome/bedroom/switch1:state:ON:1],<[mosquitto:myhome/bedroom/switch1:state:OFF:0"}
+Switch Switch2 {mqtt=">[mosquitto:myhome/bedroom/switch2:command:ON:1],>[mosquitto:myhome/bedroom/switch2:command:OFF:0],<[mosquitto:myhome/bedroom/switch2:state:ON:1],<[mosquitto:myhome/bedroom/switch2:state:OFF:0]"}

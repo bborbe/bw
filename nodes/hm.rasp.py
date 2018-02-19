@@ -6,8 +6,6 @@ nodes['hm.rasp'] = {
         'os': 'debian',
         'release': 'jessie',
         'networking': {
-            'enabled': True,
-            'nameservers': ['8.8.4.4', '8.8.8.8'],
             'interfaces': {
                 'eth0': {
                     'address': '192.168.178.2',
@@ -20,8 +18,39 @@ nodes['hm.rasp'] = {
                 'up route add -net 172.16.24.0/24 gw 172.16.23.5': {},
             },
         },
+        'nginx': {
+            'enabled': True,
+            'vhosts': {
+                'openhab': {
+                    'locations': {
+                        '/': [
+                            ('proxy_pass', 'http://localhost:8080/'),
+                            ('proxy_set_header', 'Host $http_host'),
+                            ('proxy_set_header', 'X-Real-IP $remote_addr'),
+                            ('proxy_set_header', 'X-Forwarded-For $proxy_add_x_forwarded_for'),
+                            ('proxy_set_header', 'X-Forwarded-Proto $scheme'),
+                        ],
+                    },
+                },
+            },
+        },
         'openhab': {
             'enabled': True,
+            'telegram': {
+                'hausalertbot': {
+                    'chatId': teamvault.username('pLvYPO', site='benjamin-borbe'),
+                    'token': teamvault.password('pLvYPO', site='benjamin-borbe'),
+                },
+            },
+            'mosquitto': {
+                'username': teamvault.username('9qNx3O', site='benjamin-borbe'),
+                'password': teamvault.password('9qNx3O', site='benjamin-borbe'),
+            },
+        },
+        'mosquitto': {
+            'enabled': True,
+            'username': teamvault.username('9qNx3O', site='benjamin-borbe'),
+            'password': teamvault.password('9qNx3O', site='benjamin-borbe'),
         },
         'openvpn': {
             'enabled': True,
@@ -35,12 +64,12 @@ nodes['hm.rasp'] = {
             'enabled': True,
             'nat_interfaces': [],
             'rules': {
-                'filter': [
+                'filter': {
                     # allow openvpn
-                    '-A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 563 -j ACCEPT',
                     # allow forward
                     '-A FORWARD -j ACCEPT',
-                ],
+                },
             },
         },
         'dns-update': {

@@ -1,4 +1,4 @@
-if not (node.os == 'ubuntu' and node.os_version == (16, 4) or node.os == 'debian' and node.os_version == (8, 0)):
+if node.os != 'ubuntu' and node.os != 'debian':
     raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
 pkg_apt = {
@@ -36,10 +36,10 @@ if node.metadata.get('iptables', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
         'context': {
-            'nat_interfaces': node.metadata.get('iptables', {}).get('nat_interfaces', []),
-            'mangle': node.metadata.get('iptables', {}).get('rules', {}).get('mangle', []),
-            'nat': node.metadata.get('iptables', {}).get('rules', {}).get('nat', []),
-            'filter': node.metadata.get('iptables', {}).get('rules', {}).get('filter', []),
+            'nat_interfaces': node.metadata.get('iptables', {}).get('nat_interfaces', set()),
+            'mangle': node.metadata.get('iptables', {}).get('rules', {}).get('mangle', set()),
+            'nat': node.metadata.get('iptables', {}).get('rules', {}).get('nat', set()),
+            'filter': node.metadata.get('iptables', {}).get('rules', {}).get('filter', set()),
         },
         'needs': ['pkg_apt:iptables', 'pkg_apt:iptables-persistent'],
         'triggers': ['action:iptables-restore-ipv4'],
@@ -57,9 +57,9 @@ if node.metadata.get('iptables', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
         'context': {
-            'mangle': node.metadata.get('iptables', {}).get('rules', {}).get('mangle_v6', []),
-            'nat': node.metadata.get('iptables', {}).get('rules', {}).get('nat_v6', []),
-            'filter': node.metadata.get('iptables', {}).get('rules', {}).get('filter_v6', []),
+            'mangle': node.metadata.get('iptables', {}).get('rules', {}).get('mangle_v6', set()),
+            'nat': node.metadata.get('iptables', {}).get('rules', {}).get('nat_v6', set()),
+            'filter': node.metadata.get('iptables', {}).get('rules', {}).get('filter_v6', set()),
         },
         'needs': ['pkg_apt:iptables', 'pkg_apt:iptables-persistent'],
         'triggers': ['action:iptables-restore-ipv6'],

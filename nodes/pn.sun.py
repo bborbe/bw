@@ -3,6 +3,20 @@ nodes['pn.sun'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'backup_server': {
+            'enabled': True,
+            'targets': {
+                'co2hz.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
+                'co2wz.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
+                'fire.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
+                'nova.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
+                'nuke.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
+                'rasp.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
+                'star.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
+                'sun.pn.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
+                'v22016124049440903.goodsrv.de': {'allow': '172.16.72.0/24'},
+            }
+        },
         'dns-update': {
             'enabled': True,
             'updates': {
@@ -36,10 +50,10 @@ nodes['pn.sun'] = {
             'enabled': True,
             'nat_interfaces': ['br0'],
             'rules': {
-                'filter': [
+                'filter': {
                     # allow forward
                     '-A FORWARD -j ACCEPT',
-                ],
+                },
             },
         },
         'kernel_modules': {
@@ -50,8 +64,6 @@ nodes['pn.sun'] = {
             'enabled': True,
         },
         'networking': {
-            'enabled': True,
-            'nameservers': ['8.8.4.4', '8.8.8.8'],
             'interfaces': {
                 'eth0': {},
                 'br0': {
@@ -76,29 +88,6 @@ nodes['pn.sun'] = {
         },
         'nfs-server': {
             'enabled': True,
-            'exports': {
-                '/backup/fire.hm.benjamin-borbe.de': {
-                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
-                },
-                '/backup/nova.hm.benjamin-borbe.de': {
-                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
-                },
-                '/backup/nuke.hm.benjamin-borbe.de': {
-                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
-                },
-                '/backup/v22016124049440903.goodsrv.de': {
-                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
-                },
-                '/backup/rasp.hm.benjamin-borbe.de': {
-                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
-                },
-                '/backup/star.hm.benjamin-borbe.de': {
-                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
-                },
-                '/backup/sun.pn.benjamin-borbe.de': {
-                    '172.16.72.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
-                },
-            },
         },
         'samba': {
             'enabled': True,
@@ -139,15 +128,6 @@ nodes['pn.sun'] = {
                     'devices': ['/dev/sdb', '/dev/sdc', '/dev/sdd'],
                     'mounts': {
                         '/backup': {},
-                        '/backup/fire.hm.benjamin-borbe.de': {},
-                        '/backup/host.sm.benjamin-borbe.de': {},
-                        '/backup/kubernetes-backup.sm.benjamin-borbe.de': {},
-                        '/backup/nova.hm.benjamin-borbe.de': {},
-                        '/backup/nuke.hm.benjamin-borbe.de': {},
-                        '/backup/v22016124049440903.goodsrv.de': {},
-                        '/backup/rasp.hm.benjamin-borbe.de': {},
-                        '/backup/star.hm.benjamin-borbe.de': {},
-                        '/backup/sun.pn.benjamin-borbe.de': {},
                         '/data': {},
                         '/timemachine': {},
                         '/timemachine/borbe.pn.benjamin-borbe.de': {},

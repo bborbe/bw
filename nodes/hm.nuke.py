@@ -3,6 +3,12 @@ nodes['hm.nuke'] = {
     'metadata': {
         'os': 'ubuntu',
         'release': 'xenial',
+        'backup_server': {
+            'enabled': True,
+            'targets': {
+                'fire.hm.benjamin-borbe.de': {'allow': '172.16.24.0/24'},
+            }
+        },
         'git': {
             'clones': {
                 'kubernetes': {
@@ -23,10 +29,10 @@ nodes['hm.nuke'] = {
             'enabled': True,
             'nat_interfaces': [],
             'rules': {
-                'filter': [
+                'filter': {
                     # allow forward
                     '-A FORWARD -j ACCEPT',
-                ],
+                },
             },
         },
         'kernel_modules': {
@@ -38,8 +44,6 @@ nodes['hm.nuke'] = {
             'gui': True,
         },
         'networking': {
-            'enabled': True,
-            'nameservers': ['8.8.4.4', '8.8.8.8'],
             'interfaces': {
                 'eth0': {},
                 'br0': {
@@ -66,11 +70,6 @@ nodes['hm.nuke'] = {
         },
         'nfs-server': {
             'enabled': True,
-            'exports': {
-                '/backup/fire.hm.benjamin-borbe.de': {
-                    '172.16.24.0/24': ['rw', 'async', 'no_subtree_check', 'no_root_squash'],
-                },
-            },
         },
         'ubuntu-desktop': {
             'enabled': False,
@@ -95,7 +94,6 @@ nodes['hm.nuke'] = {
                     'devices': ['/dev/sdd', '/dev/sde', '/dev/sdf'],
                     'mounts': {
                         '/backup': {},
-                        '/backup/fire.hm.benjamin-borbe.de': {},
                         '/home': {},
                         '/home/bborbe': {},
                         '/home/jana': {},
