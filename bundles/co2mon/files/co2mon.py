@@ -94,6 +94,7 @@ def publish_openhab_status(key, value):
             data=value,
             auth=auth,
             headers={'Content-type': 'text/plain'},
+            timeout=(10, 60),
         )
         if int(res.status_code / 100) != 2:
             LOG.error('request %s=%s to openhab failed with status %d %s', key, value, res.status_code, res.text)
