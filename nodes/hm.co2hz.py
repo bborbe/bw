@@ -20,9 +20,9 @@ nodes['hm.co2hz'] = {
             'enabled': True,
             'device': '/dev/co2mini0',
             'openhab-url': 'http://rasp.hm.benjamin-borbe.de',
-            'openhab-co2-name': 'HZ_CO2',
-            'openhab-temperatur-name': 'HZ_TEMP',
-            'openhab-humidity-name': 'HZ_HUM',
+            'co2-name': 'HZ_CO2',
+            'temperatur-name': 'HZ_TEMP',
+            'humidity-name': 'HZ_HUM',
         },
         'iptables': {
             'enabled': True,

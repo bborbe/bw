@@ -11,9 +11,8 @@ ExecStart=/opt/co2mon/.env/bin/python /opt/co2mon/co2mon.py \
 --openhab-url "${context['openhab-url']}" \
 --openhab-user "${context.get('openhab-user','')}" \
 --openhab-pass "${context.get('openhab-pass','')}" \
---openhab-co2-name "${context.get('openhab-co2-name','')}" \
---openhab-temperatur-name "${context.get('openhab-temperatur-name','')}" \
---openhab-humidity-name "${context.get('openhab-humidity-name','')}"
+--co2-name "${context.get('co2-name','')}" \
+--temperatur-name "${context.get('temperatur-name','')}"
 
 [Install]
 WantedBy=multi-user.target

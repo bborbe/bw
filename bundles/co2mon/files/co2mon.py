@@ -21,6 +21,8 @@ parser.add_argument(
     help='device name of co2mini',
     required=True,
 )
+
+# openHAB Params
 parser.add_argument(
     '--openhab-url',
     action='store',
@@ -37,23 +39,19 @@ parser.add_argument(
     action='store',
     help='openhab password',
 )
+
+# Paramter names
 parser.add_argument(
-    '--openhab-co2-name',
+    '--co2-name',
     action='store',
-    help='openhab name for co2',
+    help='name for co2',
     default='CO2',
 )
 parser.add_argument(
-    '--openhab-temperatur-name',
+    '--temperatur-name',
     action='store',
-    help='openhab name for temperatur',
+    help='name for temperatur',
     default='TEMP',
-)
-parser.add_argument(
-    '--openhab-humidity-name',
-    action='store',
-    help='openhab name for humidity',
-    default='HUM',
 )
 
 args = parser.parse_args()
@@ -73,9 +71,6 @@ def callback(sensor, value):
         publish_openhab_status(args.openhab_co2_name, '{0:.0f}'.format(value))
     if sensor == CO2METER_TEMP:
         publish_openhab_status(args.openhab_temperatur_name, '{0:.2f}'.format(value))
-    if sensor == CO2METER_HUM:
-        publish_openhab_status(args.openhab_temperatur_name, '{0:.2f}'.format(value))
-
 
 Meter = CO2Meter(args.device, callback=callback)
 
