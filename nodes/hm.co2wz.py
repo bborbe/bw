@@ -6,7 +6,7 @@ nodes['hm.co2wz'] = {
         'networking': {
             'interfaces': {
                 'eth0': {
-                    'address': '192.168.178.28',
+                    'address': '192.168.178.7',
                     'netmask': '255.255.255.0',
                     'gateway': '192.168.178.1',
                 },
