@@ -6,6 +6,7 @@ import logging
 import requests
 
 from CO2Meter import *
+import paho.mqtt.client as paho
 
 
 class Co2mon:
@@ -49,7 +50,25 @@ class Co2mon:
             self.publish_mqtt_status(key=key, value=value)
 
     def publish_mqtt_status(self, key, value):
-        pass
+        try:
+            client = paho.Client()
+            if self.mqtt_user and self.mqtt_pass:
+                LOG.debug('set mqtt username and password')
+                client.username_pw_set(username=self.mqtt_user, password=self.mqtt_pass)
+            LOG.debug('connecting to broker {}'.format(self.mqtt_host))
+            res = client.connect(self.mqtt_host)
+            if res != paho.MQTT_ERR_SUCCESS:
+                raise Exception('connect failed: {}'.format(paho.error_string(res)))
+            LOG.debug('publishing to {}'.format(self.mqtt_queue))
+            res = client.publish(self.mqtt_queue, '{}={}'.format(key, value))
+            if res[0] != paho.MQTT_ERR_SUCCESS:
+                raise Exception('publish failed: {}'.format(paho.error_string(res)))
+            res = client.disconnect()
+            if res != paho.MQTT_ERR_SUCCESS:
+                raise Exception('disconnect failed: {}'.format(paho.error_string(res)))
+            LOG.debug('message published')
+        except Exception as e:
+            LOG.error(e)
 
     def publish_openhab_status(self, key, value):
         try:
