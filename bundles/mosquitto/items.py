@@ -38,6 +38,7 @@ if node.metadata.get('mosquitto', {}).get('enabled', False):
         'needs': [
             'pkg_apt:mosquitto',
             'file:/etc/mosquitto/conf.d/auth.conf',
+            'file:/etc/mosquitto/conf.d/default.conf',
             'file:/etc/mosquitto/passwd',
         ],
     }
@@ -52,6 +53,13 @@ if node.metadata.get('mosquitto', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
         'source': 'auth.conf',
+        'triggers': ['svc_systemd:mosquitto:restart'],
+    }
+    files['/etc/mosquitto/conf.d/default.conf'] = {
+        'mode': '0644',
+        'owner': 'root',
+        'group': 'root',
+        'source': 'default.conf',
         'triggers': ['svc_systemd:mosquitto:restart'],
     }
 else:
