@@ -22,6 +22,9 @@ if node.metadata.get('co2mon', {}).get('enabled', False):
     actions['install_co2mon_deps'] = {
         'command': '/opt/co2mon/.env/bin/pip install -r /opt/co2mon/requirements.txt',
         'triggered': True,
+        'triggers': [
+            'svc_systemd:co2mon:restart',
+        ],
     }
     files['/etc/udev/rules.d/90-co2mini.rules'] = {
         'source': '90-co2mini.rules',
@@ -50,7 +53,6 @@ if node.metadata.get('co2mon', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
         'triggers': [
-            'svc_systemd:co2mon:restart',
             'action:install_co2mon_deps',
         ],
     }

@@ -25,6 +25,7 @@ nodes['hm.co2wz'] = {
             'temperatur-name': 'WZ_TEMP',
             'openhab-url': 'http://rasp.hm.benjamin-borbe.de',
             'mqtt-host': 'rasp.hm.benjamin-borbe.de',
+            'mqtt-queue':'co2mon',
             'mqtt-username': teamvault.username('9qNx3O', site='benjamin-borbe'),
             'mqtt-password': teamvault.password('9qNx3O', site='benjamin-borbe'),
         },

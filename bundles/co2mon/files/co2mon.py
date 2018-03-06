@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import argparse
-import time
 import logging
 import requests
+import time
 
 from CO2Meter import *
 import paho.mqtt.client as paho
@@ -46,7 +46,7 @@ class Co2mon:
         LOG.debug('publish status: %s=%s', key, value)
         if self.openhab_url:
             self.publish_openhab_status(key=key, value=value)
-        if self.mqtt_host:
+        if self.mqtt_host and self.mqtt_queue:
             self.publish_mqtt_status(key=key, value=value)
 
     def publish_mqtt_status(self, key, value):
@@ -60,15 +60,16 @@ class Co2mon:
             if res != paho.MQTT_ERR_SUCCESS:
                 raise Exception('connect failed: {}'.format(paho.error_string(res)))
             LOG.debug('publishing to {}'.format(self.mqtt_queue))
-            res = client.publish(self.mqtt_queue, '{}={}'.format(key, value))
+            queue = '{}/{}'.format(self.mqtt_queue, key)
+            res = client.publish(queue, value)
             if res[0] != paho.MQTT_ERR_SUCCESS:
                 raise Exception('publish failed: {}'.format(paho.error_string(res)))
             res = client.disconnect()
             if res != paho.MQTT_ERR_SUCCESS:
                 raise Exception('disconnect failed: {}'.format(paho.error_string(res)))
-            LOG.debug('message published')
+            LOG.info('push %s=%s successful to mqtt', queue, value)
         except Exception as e:
-            LOG.error(e)
+            LOG.exception('send to mqtt failed')
 
     def publish_openhab_status(self, key, value):
         try:
@@ -90,19 +91,20 @@ class Co2mon:
             else:
                 LOG.info('send %s=%s successful to openhab', key, value)
         except Exception as e:
-            LOG.error(e)
+            LOG.exception('send to openhab failed')
 
     def run(self):
         LOG.info('use device %s', self.device)
         LOG.info('openhab %s', self.openhab_url)
+        LOG.info('mqtt %s %s', self.mqtt_host, self.mqtt_queue)
         Meter = CO2Meter(self.device, callback=self.callback)
         while True:
             measurement = Meter.get_data()
             LOG.debug('measurement: %s', measurement)
             if 'co2' in measurement:
-                self.publish_status(self.openhab_co2_name, '{0:.0f}'.format(measurement['co2']))
+                self.publish_status(self.co2_name, '{0:.0f}'.format(measurement['co2']))
             if 'temperature' in measurement:
-                self.publish_status(self.openhab_temperatur_name, '{0:.2f}'.format(measurement['temperature']))
+                self.publish_status(self.temperatur_name, '{0:.2f}'.format(measurement['temperature']))
             time.sleep(60)
 
 
