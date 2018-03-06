@@ -51,6 +51,7 @@ if node.metadata.get('co2mon', {}).get('enabled', False):
         'group': 'root',
         'triggers': [
             'svc_systemd:co2mon:restart',
+            'action:install_co2mon_deps',
         ],
     }
     svc_systemd['co2mon'] = {

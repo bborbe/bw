@@ -7,14 +7,14 @@ User=co2mon
 Group=co2mon
 WorkingDirectory=/opt/co2mon
 ExecStart=/opt/co2mon/.env/bin/python /opt/co2mon/co2mon.py \
---device "${context['device']}" \
+--device "${context.get('device','')}" \
 --co2-name "${context.get('co2-name','')}" \
 --temperatur-name "${context.get('temperatur-name','')}" \
---openhab-url "${context['openhab-url']}" \
+--openhab-url "${context.get('openhab-url','')}" \
 --openhab-username "${context.get('openhab-username','')}" \
 --openhab-password "${context.get('openhab-password','')}" \
---mqtt-host "${context['mqtt-host']}" \
---mqtt-queue "${context['mqtt-queue']}" \
+--mqtt-host "${context.get('mqtt-host','')}" \
+--mqtt-queue "${context.get('mqtt-queue','')}" \
 --mqtt-username "${context.get('mqtt-username','')}" \
 --mqtt-password "${context.get('mqtt-password','')}"
 
