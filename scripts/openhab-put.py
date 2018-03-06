@@ -19,12 +19,12 @@ parser.add_argument(
     required=True,
 )
 parser.add_argument(
-    '--openhab-user',
+    '--openhab-username',
     action='store',
     help='openhab user',
 )
 parser.add_argument(
-    '--openhab-pass',
+    '--openhab-password',
     action='store',
     help='openhab password',
 )
@@ -50,8 +50,8 @@ else:
 
 LOG.info('openhab %s', args.openhab_url)
 
-if args.openhab_user and args.openhab_pass:
-    auth = (args.openhab_user, args.openhab_pass)
+if args.openhab_username and args.openhab_password:
+    auth = (args.openhab_username, args.openhab_password)
 else:
     auth = None
 

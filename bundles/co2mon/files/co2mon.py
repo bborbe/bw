@@ -17,23 +17,23 @@ class Co2mon:
         co2_name,
         temperatur_name,
         openhab_url,
-        openhab_user,
-        openhab_pass,
+        openhab_username,
+        openhab_password,
         mqtt_host,
         mqtt_queue,
-        mqtt_user,
-        mqtt_pass,
+        mqtt_username,
+        mqtt_password,
     ):
         self.device = device
         self.co2_name = co2_name
         self.temperatur_name = temperatur_name
         self.openhab_url = openhab_url
-        self.openhab_user = openhab_user
-        self.openhab_pass = openhab_pass
+        self.openhab_username = openhab_username
+        self.openhab_password = openhab_password
         self.mqtt_host = mqtt_host
         self.mqtt_queue = mqtt_queue
-        self.mqtt_user = mqtt_user
-        self.mqtt_pass = mqtt_pass
+        self.mqtt_username = mqtt_username
+        self.mqtt_password = mqtt_password
 
     def callback(self, sensor, value):
         LOG.debug('callback called with %s %s', sensor, value)
@@ -52,9 +52,9 @@ class Co2mon:
     def publish_mqtt_status(self, key, value):
         try:
             client = paho.Client()
-            if self.mqtt_user and self.mqtt_pass:
+            if self.mqtt_username and self.mqtt_password:
                 LOG.debug('set mqtt username and password')
-                client.username_pw_set(username=self.mqtt_user, password=self.mqtt_pass)
+                client.username_pw_set(username=self.mqtt_username, password=self.mqtt_password)
             LOG.debug('connecting to broker {}'.format(self.mqtt_host))
             res = client.connect(self.mqtt_host)
             if res != paho.MQTT_ERR_SUCCESS:
@@ -72,8 +72,8 @@ class Co2mon:
 
     def publish_openhab_status(self, key, value):
         try:
-            if self.openhab_user and self.openhab_pass:
-                auth = (self.openhab_user, self.openhab_pass)
+            if self.openhab_username and self.openhab_password:
+                auth = (self.openhab_username, self.openhab_password)
             else:
                 auth = None
             url = '{}/rest/items/{}/state'.format(self.openhab_url, key)
@@ -146,12 +146,12 @@ def main():
         help='mqtt queue',
     )
     parser.add_argument(
-        '--mqtt-user',
+        '--mqtt-username',
         action='store',
         help='mqtt user',
     )
     parser.add_argument(
-        '--mqtt-pass',
+        '--mqtt-password',
         action='store',
         help='mqtt password',
     )
@@ -163,12 +163,12 @@ def main():
         help='openhab url',
     )
     parser.add_argument(
-        '--openhab-user',
+        '--openhab-username',
         action='store',
         help='openhab user',
     )
     parser.add_argument(
-        '--openhab-pass',
+        '--openhab-password',
         action='store',
         help='openhab password',
     )
@@ -184,12 +184,12 @@ def main():
         co2_name=args.co2_name,
         temperatur_name=args.temperatur_name,
         openhab_url=args.openhab_url,
-        openhab_user=args.openhab_user,
-        openhab_pass=args.openhab_pass,
+        openhab_username=args.openhab_username,
+        openhab_password=args.openhab_password,
         mqtt_host=args.mqtt_host,
         mqtt_queue=args.mqtt_queue,
-        mqtt_user=args.mqtt_user,
-        mqtt_pass=args.mqtt_pass,
+        mqtt_username=args.mqtt_username,
+        mqtt_password=args.mqtt_password,
     )
     co2mon.run()
 

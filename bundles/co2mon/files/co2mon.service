@@ -8,11 +8,15 @@ Group=co2mon
 WorkingDirectory=/opt/co2mon
 ExecStart=/opt/co2mon/.env/bin/python /opt/co2mon/co2mon.py \
 --device "${context['device']}" \
---openhab-url "${context['openhab-url']}" \
---openhab-user "${context.get('openhab-user','')}" \
---openhab-pass "${context.get('openhab-pass','')}" \
 --co2-name "${context.get('co2-name','')}" \
---temperatur-name "${context.get('temperatur-name','')}"
+--temperatur-name "${context.get('temperatur-name','')}" \
+--openhab-url "${context['openhab-url']}" \
+--openhab-username "${context.get('openhab-username','')}" \
+--openhab-password "${context.get('openhab-password','')}" \
+--mqtt-host "${context['mqtt-host']}" \
+--mqtt-queue "${context['mqtt-queue']}" \
+--mqtt-username "${context.get('mqtt-username','')}" \
+--mqtt-password "${context.get('mqtt-password','')}"
 
 [Install]
 WantedBy=multi-user.target

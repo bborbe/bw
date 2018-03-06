@@ -19,10 +19,12 @@ nodes['hm.co2hz'] = {
         'co2mon': {
             'enabled': True,
             'device': '/dev/co2mini0',
-            'openhab-url': 'http://rasp.hm.benjamin-borbe.de',
             'co2-name': 'HZ_CO2',
             'temperatur-name': 'HZ_TEMP',
-            'humidity-name': 'HZ_HUM',
+            'openhab-url': 'http://rasp.hm.benjamin-borbe.de',
+            'mqtt-host': 'rasp.hm.benjamin-borbe.de',
+            'mqtt-username': teamvault.username('9qNx3O', site='benjamin-borbe'),
+            'mqtt-password': teamvault.password('9qNx3O', site='benjamin-borbe'),
         },
         'iptables': {
             'enabled': True,
