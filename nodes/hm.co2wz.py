@@ -1,3 +1,5 @@
+import bwtv as teamvault
+
 nodes['hm.co2wz'] = {
     'hostname': 'co2wz.hm.benjamin-borbe.de',
     'metadata': {

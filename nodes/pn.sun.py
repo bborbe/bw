@@ -1,3 +1,5 @@
+import bwtv as teamvault
+
 nodes['pn.sun'] = {
     'hostname': 'sun.pn.benjamin-borbe.de',
     'metadata': {

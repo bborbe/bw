@@ -1,3 +1,5 @@
+import bwtv as teamvault
+
 nodes['vagrant.bw'] = {
     'hostname': 'vagrant.bw',
     'metadata': {
