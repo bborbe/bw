@@ -1,4 +1,6 @@
-# Bundle Wrap Configuration
+# BundleWrap Configuration
+
+This repo contains my BundleWrap configuration. For more info about BundleWrap see: [http://bundlewrap.org/](http://BundleWrap.org/).
 
 ## Install pyenv
 
