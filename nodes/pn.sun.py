@@ -87,6 +87,11 @@ nodes['pn.sun'] = {
         },
         'openvpn': {
             'enabled': True,
+            'services': {
+                'home.benjamin-borbe.de': {
+                    'enabled': True,
+                },
+            },
         },
         'nfs-server': {
             'enabled': True,
