@@ -18,6 +18,13 @@ svc_systemd['openvpn'] = {
     'needs': ['pkg_apt:openvpn'],
 }
 
+for service, data in node.metadata.get('openvpn', {}).get('services', {}).items():
+    svc_systemd['openvpn@{}.service'.format(service)] = {
+        'running': node.metadata.get('openvpn', {}).get('enabled', False) and data.get('enabled', False),
+        'enabled': node.metadata.get('openvpn', {}).get('enabled', False) and data.get('enabled', False),
+        'needs': ['pkg_apt:openvpn'],
+    }
+
 files['/etc/default/openvpn'] = {
     'source': 'openvpn',
     'content_type': 'mako',
