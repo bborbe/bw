@@ -3,11 +3,10 @@ Group                   SensorTemp      "Temperature Sensors"           <tempera
 Group                   SensorHum       "Humidity Sensors"              <humidity>          ["SensorHum"]
 Group:Switch:OR(ON,OFF) AlarmCo2
 
-Number                  HZ_CO2          "CO2 [%.1f ppm]"                <fire>              (SensorCo2)
-Number                  HZ_TEMP         "Temperature [%.1f °C]"         <temperature>       (SensorTemp)
+Number                  HZ_CO2          "CO2 [%.1f ppm]"                <fire>              (SensorCo2)      {mqtt="<[mosquitto:co2mon/HZ_CO2:state:default]"}
+Number                  HZ_TEMP         "Temperature [%.1f °C]"         <temperature>       (SensorTemp)     {mqtt="<[mosquitto:co2mon/HZ_TEMP:state:default]"}
 Number                  HZ_HUM          "Humidity [%.1f %%]"            <humidity>          (SensorHum)
 
-Number                  WZ_CO2          "CO2 [%.1f ppm]"                <fire>              (SensorCo2)
-Number                  WZ_TEMP         "Temperature [%.1f °C]"         <temperature>       (SensorTemp)
+Number                  WZ_CO2          "CO2 [%.1f ppm]"                <fire>              (SensorCo2)      {mqtt="<[mosquitto:co2mon/WZ_CO2:state:default]"}
+Number                  WZ_TEMP         "Temperature [%.1f °C]"         <temperature>       (SensorTemp)     {mqtt="<[mosquitto:co2mon/WZ_TEMP:state:default]"}
 Number                  WZ_HUM          "Humidity [%.1f %%]"            <humidity>          (SensorHum)
-
