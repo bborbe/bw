@@ -7,6 +7,7 @@ groups['meta-user'] = {
             'root': {
                 'enabled': True,
                 'home': '/root',
+                'generate_password': True,
             },
             'vagrant': {
             },
