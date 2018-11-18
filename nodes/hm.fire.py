@@ -8,7 +8,7 @@ nodes['hm.fire'] = {
         'backup_server': {
             'enabled': True,
             'targets': {
-                'sun.pn.benjamin-borbe.de': {'allow': '172.16.22.0/24'},
+                'sun.pn.benjamin-borbe.de': {'allow': '192.168.178.3/32'},
             }
         },
         'git': {
@@ -34,6 +34,8 @@ nodes['hm.fire'] = {
                 'filter': {
                     # allow forward
                     '-A FORWARD -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 6443 -j ACCEPT',
                 },
             },
         },
@@ -41,27 +43,12 @@ nodes['hm.fire'] = {
             'lp': {},
             'loop': {},
         },
-        'kvm': {
-            'enabled': True,
-            'gui': True,
-        },
         'networking': {
             'interfaces': {
-                'eth0': {},
-                'br0': {
+                'eth0': {
                     'address': '192.168.178.3',
                     'netmask': '255.255.255.0',
                     'gateway': '192.168.178.1',
-                    'bridge_ports': 'eth0',
-                    'bridge_stp': 'on',
-                    'bridge_fd': '0',
-                    'bridge_maxwait': '0',
-                },
-                'host-k8s': {
-                    'address': '172.16.22.1',
-                    'netmask': '255.255.255.0',
-                    'pre-up': 'brctl addbr host-k8s',
-                    'post-down': 'brctl delbr host-k8s',
                 },
             },
             'routes': {
