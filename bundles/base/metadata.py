@@ -1,10 +1,4 @@
 @metadata_processor
-def install_mountall(metadata):
-    metadata.setdefault('apt', {}).setdefault('packages', {}).setdefault('mountall', {}).setdefault('installed', node.os == 'ubuntu')
-    return metadata, DONE
-
-
-@metadata_processor
 def install_apt_packages(metadata):
     pkgs_install = (
         'bash',
