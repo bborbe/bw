@@ -4,7 +4,7 @@ nodes['hm.fire'] = {
     'hostname': 'fire.hm.benjamin-borbe.de',
     'metadata': {
         'os': 'ubuntu',
-        'release': 'xenial',
+        'release': 'bionic',
         'backup_server': {
             'enabled': True,
             'targets': {

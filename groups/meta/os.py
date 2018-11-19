@@ -22,6 +22,22 @@ groups['ubuntu-xenial'] = {
     },
 }
 
+groups['ubuntu-bionic'] = {
+    'members_add': lambda node: node.metadata.get('os') == 'ubuntu' and node.metadata.get('release') == 'bionic',
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (18, 4),
+    'metadata': {
+        'apt': {
+            'packages': {
+                'linux-image-virtual': {},
+                'linux-image-extra-virtual': {},
+            },
+        },
+    },
+}
+
 groups['debian'] = {
     'members_add': lambda node: node.metadata.get('os') == 'debian',
     'bundles': (

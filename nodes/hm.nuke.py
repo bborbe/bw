@@ -2,7 +2,7 @@ nodes['hm.nuke'] = {
     'hostname': 'nuke.hm.benjamin-borbe.de',
     'metadata': {
         'os': 'ubuntu',
-        'release': 'xenial',
+        'release': 'bionic',
         'backup_server': {
             'enabled': True,
             'targets': {

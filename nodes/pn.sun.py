@@ -55,6 +55,8 @@ nodes['pn.sun'] = {
                 'filter': {
                     # allow forward
                     '-A FORWARD -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 6443 -j ACCEPT',
                 },
             },
         },
