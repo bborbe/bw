@@ -11,14 +11,6 @@ nodes['hm.fire'] = {
                 'sun.pn.benjamin-borbe.de': {'allow': '192.168.178.3/32'},
             }
         },
-        'git': {
-            'clones': {
-                'kubernetes': {
-                    'repo': 'https://github.com/bborbe/kubernetes-cluster-fire.git',
-                    'target': '/var/lib/libvirt/images/kubernetes',
-                },
-            }
-        },
         'groups': {
             'data': {
                 'enabled': True,

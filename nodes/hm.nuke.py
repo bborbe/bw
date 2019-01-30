@@ -9,14 +9,6 @@ nodes['hm.nuke'] = {
                 'fire.hm.benjamin-borbe.de': {'allow': '192.168.178.5/32'},
             }
         },
-        'git': {
-            'clones': {
-                'kubernetes': {
-                    'repo': 'https://github.com/bborbe/kubernetes-cluster-nuke.git',
-                    'target': '/var/lib/libvirt/images/kubernetes',
-                },
-            }
-        },
         'groups': {
             'data': {
                 'enabled': True,
