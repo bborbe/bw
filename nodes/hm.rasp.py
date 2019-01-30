@@ -4,7 +4,7 @@ nodes['hm.rasp'] = {
     'hostname': 'rasp.hm.benjamin-borbe.de',
     'metadata': {
         'os': 'debian',
-        'release': 'jessie',
+        'release': 'stretch',
         'networking': {
             'interfaces': {
                 'eth0': {
