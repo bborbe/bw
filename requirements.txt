@@ -1,2 +1,2 @@
-bundlewrap>=3.5.1
-bundlewrap-teamvault>=2.1.0/bw/groups.py
+bundlewrap>=3.5.3
+bundlewrap-teamvault>=2.1.0
