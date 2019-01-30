@@ -1,4 +1,4 @@
-if node.os != 'ubuntu' and node.os != 'debian':
+if node.os != 'ubuntu' and node.os != 'raspbian':
     raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
 pkg_apt = {}
@@ -22,6 +22,8 @@ if node.metadata.get('grub', {}).get('enabled', False):
         name = 'Ubuntu'
     if node.os == 'debian':
         name = 'Debian'
+    if node.os == 'raspbian':
+        name = 'Raspbian'
     if len(name) == 0:
         raise Exception('can not find name for grub files')
 

@@ -50,9 +50,6 @@ nodes['hm.nuke'] = {
         'nfs-server': {
             'enabled': True,
         },
-        'ubuntu-desktop': {
-            'enabled': False,
-        },
         'users': {
             'bborbe': {
                 'enabled': True,

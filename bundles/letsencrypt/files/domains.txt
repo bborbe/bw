@@ -1,3 +1,0 @@
-% for domain, aliases in sorted(domains.items()):
-${" ".join([domain] + aliases)}
-% endfor

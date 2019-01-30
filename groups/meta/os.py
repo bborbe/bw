@@ -61,3 +61,27 @@ groups['debian-stretch'] = {
     ),
     'os_version': (9, 0),
 }
+
+groups['raspbian'] = {
+    'members_add': lambda node: node.metadata.get('os') == 'raspbian',
+    'bundles': (
+        'apt',
+    ),
+    'os': 'raspbian',
+}
+
+groups['raspbian-jessie'] = {
+    'members_add': lambda node: node.metadata.get('os') == 'raspbian' and node.metadata.get('release') == 'jessie',
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (8, 0),
+}
+
+groups['raspbian-stretch'] = {
+    'members_add': lambda node: node.metadata.get('os') == 'raspbian' and node.metadata.get('release') == 'stretch',
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (9, 0),
+}

@@ -3,7 +3,7 @@ import bwtv as teamvault
 nodes['hm.co2hz'] = {
     'hostname': 'co2hz.hm.benjamin-borbe.de',
     'metadata': {
-        'os': 'debian',
+        'os': 'raspbian',
         'release': 'stretch',
         'networking': {
             'interfaces': {

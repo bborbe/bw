@@ -7,7 +7,7 @@ pkg_apt['monit'] = {
     'installed': node.metadata.get('monit', {}).get('enabled', False),
 }
 
-if node.os == 'debian':
+if node.os == 'raspbian':
     svc_systemd['monit'] = {
         'running': node.metadata.get('monit', {}).get('enabled', False),
         'needs': ['pkg_apt:monit'],
