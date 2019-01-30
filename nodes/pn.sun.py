@@ -8,15 +8,15 @@ nodes['pn.sun'] = {
         'backup_server': {
             'enabled': True,
             'targets': {
-                'co2hz.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
-                'co2wz.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
-                'fire.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
-                'nova.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
-                'nuke.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
-                'rasp.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
-                'star.hm.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
-                'sun.pn.benjamin-borbe.de': {'allow': '172.16.72.0/24'},
-                'v22016124049440903.goodsrv.de': {'allow': '172.16.72.0/24'},
+                'co2hz.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
+                'co2wz.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
+                'fire.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
+                'nova.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
+                'nuke.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
+                'rasp.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
+                'star.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
+                'sun.pn.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
+                'v22016124049440903.goodsrv.de': {'allow': '192.168.2.3/32'},
             }
         },
         'dns-update': {
