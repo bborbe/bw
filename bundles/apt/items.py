@@ -17,39 +17,54 @@ actions['apt_update'] = {
     'cascade_skip': False,
 }
 
-# if node.metadata.get('os') == 'ubuntu' and node.metadata.get('release'):
-files['/etc/apt/sources.list'] = {
-    'source': 'source.list',
-    'content_type': 'mako',
-    'mode': '0644',
-    'owner': 'root',
-    'group': 'root',
-    'context': {
-        'lines': [
-            'deb     http://ftp.uni-stuttgart.de/ubuntu {}-backports main restricted universe multiverse'.format(node.metadata.get('release')),
-            'deb-src http://ftp.uni-stuttgart.de/ubuntu {}-backports main restricted universe multiverse'.format(node.metadata.get('release')),
-            'deb     http://ftp.uni-stuttgart.de/ubuntu {} main restricted'.format(node.metadata.get('release')),
-            'deb-src http://ftp.uni-stuttgart.de/ubuntu {} main restricted'.format(node.metadata.get('release')),
-            'deb     http://ftp.uni-stuttgart.de/ubuntu {} multiverse'.format(node.metadata.get('release')),
-            'deb-src http://ftp.uni-stuttgart.de/ubuntu {} multiverse'.format(node.metadata.get('release')),
-            'deb     http://ftp.uni-stuttgart.de/ubuntu {} universe'.format(node.metadata.get('release')),
-            'deb-src http://ftp.uni-stuttgart.de/ubuntu {} universe'.format(node.metadata.get('release')),
-            'deb     http://ftp.uni-stuttgart.de/ubuntu {}-updates main restricted'.format(node.metadata.get('release')),
-            'deb-src http://ftp.uni-stuttgart.de/ubuntu {}-updates main restricted'.format(node.metadata.get('release')),
-            'deb     http://ftp.uni-stuttgart.de/ubuntu {}-updates multiverse'.format(node.metadata.get('release')),
-            'deb-src http://ftp.uni-stuttgart.de/ubuntu {}-updates multiverse'.format(node.metadata.get('release')),
-            'deb     http://ftp.uni-stuttgart.de/ubuntu {}-updates universe'.format(node.metadata.get('release')),
-            'deb-src http://ftp.uni-stuttgart.de/ubuntu {}-updates universe'.format(node.metadata.get('release')),
-            'deb     http://security.ubuntu.com/ubuntu {}-security main restricted'.format(node.metadata.get('release')),
-            'deb-src http://security.ubuntu.com/ubuntu {}-security main restricted'.format(node.metadata.get('release')),
-            'deb     http://security.ubuntu.com/ubuntu {}-security multiverse'.format(node.metadata.get('release')),
-            'deb-src http://security.ubuntu.com/ubuntu {}-security multiverse'.format(node.metadata.get('release')),
-            'deb     http://security.ubuntu.com/ubuntu {}-security universe'.format(node.metadata.get('release')),
-            'deb-src http://security.ubuntu.com/ubuntu {}-security universe'.format(node.metadata.get('release')),
-        ],
-    },
-    'triggers': ['action:apt_update'],
-}
+if node.metadata.get('os') == 'ubuntu' and node.metadata.get('release'):
+    files['/etc/apt/sources.list'] = {
+        'source': 'source.list',
+        'content_type': 'mako',
+        'mode': '0644',
+        'owner': 'root',
+        'group': 'root',
+        'context': {
+            'lines': [
+                'deb     http://ftp.uni-stuttgart.de/ubuntu {}-backports main restricted universe multiverse'.format(node.metadata.get('release')),
+                'deb-src http://ftp.uni-stuttgart.de/ubuntu {}-backports main restricted universe multiverse'.format(node.metadata.get('release')),
+                'deb     http://ftp.uni-stuttgart.de/ubuntu {} main restricted'.format(node.metadata.get('release')),
+                'deb-src http://ftp.uni-stuttgart.de/ubuntu {} main restricted'.format(node.metadata.get('release')),
+                'deb     http://ftp.uni-stuttgart.de/ubuntu {} multiverse'.format(node.metadata.get('release')),
+                'deb-src http://ftp.uni-stuttgart.de/ubuntu {} multiverse'.format(node.metadata.get('release')),
+                'deb     http://ftp.uni-stuttgart.de/ubuntu {} universe'.format(node.metadata.get('release')),
+                'deb-src http://ftp.uni-stuttgart.de/ubuntu {} universe'.format(node.metadata.get('release')),
+                'deb     http://ftp.uni-stuttgart.de/ubuntu {}-updates main restricted'.format(node.metadata.get('release')),
+                'deb-src http://ftp.uni-stuttgart.de/ubuntu {}-updates main restricted'.format(node.metadata.get('release')),
+                'deb     http://ftp.uni-stuttgart.de/ubuntu {}-updates multiverse'.format(node.metadata.get('release')),
+                'deb-src http://ftp.uni-stuttgart.de/ubuntu {}-updates multiverse'.format(node.metadata.get('release')),
+                'deb     http://ftp.uni-stuttgart.de/ubuntu {}-updates universe'.format(node.metadata.get('release')),
+                'deb-src http://ftp.uni-stuttgart.de/ubuntu {}-updates universe'.format(node.metadata.get('release')),
+                'deb     http://security.ubuntu.com/ubuntu {}-security main restricted'.format(node.metadata.get('release')),
+                'deb-src http://security.ubuntu.com/ubuntu {}-security main restricted'.format(node.metadata.get('release')),
+                'deb     http://security.ubuntu.com/ubuntu {}-security multiverse'.format(node.metadata.get('release')),
+                'deb-src http://security.ubuntu.com/ubuntu {}-security multiverse'.format(node.metadata.get('release')),
+                'deb     http://security.ubuntu.com/ubuntu {}-security universe'.format(node.metadata.get('release')),
+                'deb-src http://security.ubuntu.com/ubuntu {}-security universe'.format(node.metadata.get('release')),
+            ],
+        },
+        'triggers': ['action:apt_update'],
+    }
+if node.metadata.get('os') == 'debian' and node.metadata.get('release'):
+    files['/etc/apt/sources.list'] = {
+        'source': 'source.list',
+        'content_type': 'mako',
+        'mode': '0644',
+        'owner': 'root',
+        'group': 'root',
+        'context': {
+            'lines': [
+                'deb http://raspbian.raspberrypi.org/raspbian/ {} main contrib non-free rpi'.format(node.metadata.get('release')),
+                '#deb-src http://raspbian.raspberrypi.org/raspbian/ {} main contrib non-free rpi'.format(node.metadata.get('release')),
+            ],
+        },
+        'triggers': ['action:apt_update'],
+    }
 
 for name, data in node.metadata.get('apt', {}).get('repos', {}).items():
     if data['installed']:
