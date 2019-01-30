@@ -4,7 +4,7 @@ nodes['pn.sun'] = {
     'hostname': 'sun.pn.benjamin-borbe.de',
     'metadata': {
         'os': 'ubuntu',
-        'release': 'xenial',
+        'release': 'bionic',
         'backup_server': {
             'enabled': True,
             'targets': {
@@ -32,14 +32,6 @@ nodes['pn.sun'] = {
                 },
             },
         },
-        'git': {
-            'clones': {
-                'kubernetes': {
-                    'repo': 'https://github.com/bborbe/kubernetes-cluster-sun.git',
-                    'target': '/var/lib/libvirt/images/kubernetes',
-                },
-            }
-        },
         'groups': {
             'data': {
                 'enabled': True,
@@ -50,7 +42,7 @@ nodes['pn.sun'] = {
         },
         'iptables': {
             'enabled': True,
-            'nat_interfaces': ['br0'],
+            'nat_interfaces': [],
             'rules': {
                 'filter': {
                     # allow forward
@@ -64,26 +56,12 @@ nodes['pn.sun'] = {
             'lp': {},
             'loop': {},
         },
-        'kvm': {
-            'enabled': True,
-        },
         'networking': {
             'interfaces': {
-                'eth0': {},
-                'br0': {
+                'eth0': {
                     'address': '192.168.2.3',
                     'netmask': '255.255.255.0',
                     'gateway': '192.168.2.1',
-                    'bridge_ports': 'eth0',
-                    'bridge_stp': 'on',
-                    'bridge_fd': '0',
-                    'bridge_maxwait': '0',
-                },
-                'host-k8s': {
-                    'address': '172.16.72.1',
-                    'netmask': '255.255.255.0',
-                    'pre-up': 'brctl addbr host-k8s',
-                    'post-down': 'brctl delbr host-k8s',
                 },
             },
         },
