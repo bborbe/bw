@@ -12,7 +12,6 @@ pkg_apt['resolvconf'] = {
 }
 
 if node.metadata.get('networking', {}).get('enabled', False):
-
     pkg_apt['bridge-utils'] = {
         'installed': True,
     }
@@ -36,7 +35,11 @@ if node.metadata.get('networking', {}).get('enabled', False):
         'triggers': ['svc_systemd:networking:restart'],
     }
 
-    files['/etc/resolv.conf'] = {
+    resolvConf = '/etc/resolv.conf'
+    if node.os == 'ubuntu':
+        resolvConf = '/run/systemd/resolve/resolv.conf'
+
+    files[resolvConf] = {
         'source': 'resolv.conf',
         'content_type': 'mako',
         'mode': '0644',
