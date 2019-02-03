@@ -35,6 +35,14 @@ nodes['nc.v22016124049440903'] = {
                 },
             },
         },
+        'nfs-server': {
+            'enabled': True,
+            'exports': {
+                '/data': {
+                    '185.170.112.48/32': ['rw', 'async', 'no_subtree_check', 'no_root_squash']
+                },
+            },
+        },
         'users': {
             'bborbe': {
                 'enabled': True,
