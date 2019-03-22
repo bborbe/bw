@@ -22,7 +22,6 @@ groups['meta-bundles'] = {
         'monit',
         'mosquitto',
         'networking',
-        'nfs-server',
         'nginx',
         'ntp',
         'openhab',

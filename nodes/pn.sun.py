@@ -73,9 +73,6 @@ nodes['pn.sun'] = {
                 },
             },
         },
-        'nfs-server': {
-            'enabled': True,
-        },
         'samba': {
             'enabled': True,
             'server_name': 'sun.pn.benjamin-borbe.de',

@@ -47,9 +47,6 @@ nodes['hm.nuke'] = {
                 'up route add -net 192.168.2.0/24 gw 192.168.178.2': {},
             },
         },
-        'nfs-server': {
-            'enabled': True,
-        },
         'users': {
             'bborbe': {
                 'enabled': True,

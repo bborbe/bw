@@ -49,9 +49,6 @@ nodes['hm.fire'] = {
                 'up route add -net 192.168.2.0/24 gw 192.168.178.2': {},
             },
         },
-        'nfs-server': {
-            'enabled': True,
-        },
         'samba': {
             'enabled': True,
             'server_name': 'fire.hm.benjamin-borbe.de',
