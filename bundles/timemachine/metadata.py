@@ -1,3 +1,5 @@
+import bwtv as teamvault
+
 @metadata_processor
 def timemachine_users(metadata):
     if metadata.get('timemachine', {}).get('enabled', False):
@@ -5,7 +7,10 @@ def timemachine_users(metadata):
             path = data.get('path', '')
             if len(path) == 0:
                 raise Exception('path missing')
-            password = data.get('password', '')
+            if 'password_hash' in data:
+                password = teamvault.password(data['password_hash'], site='benjamin-borbe')
+            else:
+                password = data.get('password', '')
             if len(password) == 0:
                 raise Exception('password missing')
             data = metadata.setdefault('users', {})

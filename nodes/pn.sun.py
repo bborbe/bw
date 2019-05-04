@@ -85,7 +85,7 @@ nodes['pn.sun'] = {
             'users': {
                 'borbe': {
                     'path': '/timemachine/borbe.pn.benjamin-borbe.de',
-                    'password': teamvault.password('mwxBLK', site='benjamin-borbe'),
+                    'password_hash': 'mwxBLK',
                     'size': '400000',
                 },
             },

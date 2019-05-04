@@ -61,12 +61,12 @@ nodes['hm.fire'] = {
             'users': {
                 'nova': {
                     'path': '/timemachine/nova.hm.benjamin-borbe.de',
-                    'password': teamvault.password('BwjGOV', site='benjamin-borbe'),
+                    'password_hash': 'BwjGOV',
                     'size': '600000',
                 },
                 'star': {
                     'path': '/timemachine/star.hm.benjamin-borbe.de',
-                    'password': teamvault.password('BOrkLo', site='benjamin-borbe'),
+                    'password_hash': 'BOrkLo',
                     'size': '400000',
                 },
             },
