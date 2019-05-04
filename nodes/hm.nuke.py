@@ -47,10 +47,13 @@ nodes['hm.nuke'] = {
                 'up route add -net 192.168.2.0/24 gw 192.168.178.2': {},
             },
         },
+        'ubuntu-desktop': {
+            'enabled': True,
+        },
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['libvirtd'],
+                'groups': ['libvirtd', 'sudo'],
             },
             'jana': {
                 'enabled': True,

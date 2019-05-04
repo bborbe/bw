@@ -1,5 +1,3 @@
-import bwtv as teamvault
-
 nodes['hm.fire'] = {
     'hostname': 'fire.hm.benjamin-borbe.de',
     'metadata': {
@@ -71,10 +69,13 @@ nodes['hm.fire'] = {
                 },
             },
         },
+        'ubuntu-desktop': {
+            'enabled': True,
+        },
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'libvirtd'],
+                'groups': ['data', 'libvirtd', 'sudo'],
             },
             'jana': {
                 'enabled': True,

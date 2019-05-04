@@ -33,6 +33,7 @@ groups['meta-bundles'] = {
         'sysctl',
         'timemachine',
         'timezone',
+        'ubuntu-desktop',
         'user',
         'zfs',
     ),
