@@ -17,6 +17,7 @@ def install_apt_packages(metadata):
         'openssh-client',
         'rsync',
         'nfs-common',
+        'zsh',
     )
     for package_name in pkgs_install:
         metadata.setdefault('apt', {}).setdefault('packages', {}).setdefault(package_name, {}).setdefault('installed', True)

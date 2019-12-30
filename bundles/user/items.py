@@ -4,9 +4,7 @@ if node.os != 'ubuntu' and node.os != 'raspbian':
 users = {}
 directories = {}
 
-pkg_apt = {
-    'zsh': {},
-}
+pkg_apt = {}
 
 for username, data in node.metadata.get('users', {}).items():
     if 'enabled' in data:
