@@ -91,7 +91,7 @@ nodes['pn.sun'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'libvirtd'],
+                'groups': ['data'],
             },
             'walter': {
                 'enabled': True,
