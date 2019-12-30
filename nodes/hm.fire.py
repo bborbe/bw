@@ -69,9 +69,6 @@ nodes['hm.fire'] = {
                 },
             },
         },
-        'ubuntu-desktop': {
-            'enabled': True,
-        },
         'users': {
             'bborbe': {
                 'enabled': True,
