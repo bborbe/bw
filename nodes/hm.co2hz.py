@@ -13,10 +13,6 @@ nodes['hm.co2hz'] = {
                     'gateway': '192.168.178.1',
                 },
             },
-            'routes': {
-                'up route add -net 172.16.0.0/12 gw 192.168.178.2': {},
-                'up route add -net 192.168.2.0/24 gw 192.168.178.2': {},
-            },
         },
         'co2mon': {
             'enabled': True,

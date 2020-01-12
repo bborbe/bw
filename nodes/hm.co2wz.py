@@ -13,10 +13,7 @@ nodes['hm.co2wz'] = {
                     'gateway': '192.168.178.1',
                 },
             },
-            'routes': {
-                'up route add -net 172.16.0.0/12 gw 192.168.178.2': {},
-                'up route add -net 192.168.2.0/24 gw 192.168.178.2': {},
-            },
+            'routes': {},
         },
         'co2mon': {
             'enabled': True,
@@ -24,7 +21,7 @@ nodes['hm.co2wz'] = {
             'co2-name': 'WZ_CO2',
             'temperatur-name': 'WZ_TEMP',
             'mqtt-host': 'rasp.hm.benjamin-borbe.de',
-            'mqtt-queue':'co2mon',
+            'mqtt-queue': 'co2mon',
             'mqtt-username': teamvault.username('9qNx3O', site='benjamin-borbe'),
             'mqtt-password': teamvault.password('9qNx3O', site='benjamin-borbe'),
         },

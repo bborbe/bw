@@ -13,10 +13,7 @@ nodes['hm.rasp'] = {
                     'gateway': '192.168.178.1',
                 },
             },
-            'routes': {
-                'up route add -net 172.16.22.0/24 gw 172.16.23.3': {},
-                'up route add -net 172.16.24.0/24 gw 172.16.23.5': {},
-            },
+            'routes': {},
         },
         'nginx': {
             'enabled': True,

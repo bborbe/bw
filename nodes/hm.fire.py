@@ -41,11 +41,7 @@ nodes['hm.fire'] = {
                     'gateway': '192.168.178.1',
                 },
             },
-            'routes': {
-                'up route add -net 172.16.0.0/12 gw 192.168.178.2': {},
-                'up route add -net 172.16.24.0/24 gw 192.168.178.5': {},
-                'up route add -net 192.168.2.0/24 gw 192.168.178.2': {},
-            },
+            'routes': {},
         },
         'samba': {
             'enabled': True,
