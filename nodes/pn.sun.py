@@ -63,14 +63,6 @@ nodes['pn.sun'] = {
                 },
             },
         },
-        'openvpn': {
-            'enabled': True,
-            'services': {
-                'home.benjamin-borbe.de': {
-                    'enabled': True,
-                },
-            },
-        },
         'samba': {
             'enabled': True,
             'server_name': 'sun.pn.benjamin-borbe.de',

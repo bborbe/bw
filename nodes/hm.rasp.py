@@ -49,21 +49,11 @@ nodes['hm.rasp'] = {
             'username': teamvault.username('9qNx3O', site='benjamin-borbe'),
             'password': teamvault.password('9qNx3O', site='benjamin-borbe'),
         },
-        'openvpn': {
-            'enabled': True,
-            'services': {
-                'server': {
-                    'enabled': True,
-                },
-            },
-        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
             'rules': {
                 'filter': {
-                    # allow openvpn
-                    '-A INPUT -m state --state NEW -p tcp --dport 563 -j ACCEPT',
                     # allow forward
                     '-A FORWARD -j ACCEPT',
                 },

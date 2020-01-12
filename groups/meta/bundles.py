@@ -25,7 +25,6 @@ groups['meta-bundles'] = {
         'nginx',
         'ntp',
         'openhab',
-        'openvpn',
         'samba',
         'smart',
         'ssh',
