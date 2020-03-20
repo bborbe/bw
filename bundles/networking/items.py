@@ -5,11 +5,15 @@ files = {}
 
 svc_systemd = {}
 
-pkg_apt = {}
-
-pkg_apt['resolvconf'] = {
-    'installed': False,
+pkg_apt = {
+    'resolvconf': {
+        'installed': False,
+    },
+    'network-manager': {
+        'installed': False,
+    },
 }
+
 if node.metadata.get('networking', {}).get('enabled', False):
     pkg_apt['bridge-utils'] = {
         'installed': True,
