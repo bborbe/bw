@@ -17,6 +17,7 @@ nodes['hz.hetzner-1'] = {
                     '-A INPUT -p tcp -m state --state NEW -m tcp --dport 143 -j ACCEPT',
                     '-A INPUT -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT',
                     '-A INPUT -p tcp -m state --state NEW -m tcp --dport 465 -j ACCEPT',
+                    '-A INPUT -p tcp -m state --state NEW -m tcp --dport 563 -j ACCEPT',
                     '-A INPUT -p tcp -m state --state NEW -m tcp --dport 587 -j ACCEPT',
                     '-A INPUT -p tcp -m state --state NEW -m tcp --dport 993 -j ACCEPT',
                     '-A INPUT -p tcp -m state --state NEW -m tcp --dport 2222 -j ACCEPT',
