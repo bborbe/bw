@@ -38,6 +38,22 @@ groups['ubuntu-bionic'] = {
     },
 }
 
+groups['ubuntu-focal'] = {
+    'members_add': lambda node: node.metadata.get('os') == 'ubuntu' and node.metadata.get('release') == 'focal',
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (20, 4),
+    'metadata': {
+        'apt': {
+            'packages': {
+                'linux-image-virtual': {},
+                'linux-image-extra-virtual': {},
+            },
+        },
+    },
+}
+
 groups['debian'] = {
     'members_add': lambda node: node.metadata.get('os') == 'debian',
     'bundles': (
@@ -62,6 +78,16 @@ groups['debian-stretch'] = {
     'os_version': (9, 0),
 }
 
+
+groups['debian-buster'] = {
+    'members_add': lambda node: node.metadata.get('os') == 'debian' and node.metadata.get('release') == 'buster',
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (10, 0),
+}
+
+
 groups['raspbian'] = {
     'members_add': lambda node: node.metadata.get('os') == 'raspbian',
     'bundles': (
@@ -85,3 +111,12 @@ groups['raspbian-stretch'] = {
     ),
     'os_version': (9, 0),
 }
+
+groups['raspbian-buster'] = {
+    'members_add': lambda node: node.metadata.get('os') == 'raspbian' and node.metadata.get('release') == 'buster',
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (10, 0),
+}
+
