@@ -56,12 +56,12 @@ nodes['hm.fire'] = {
                 'nova': {
                     'path': '/timemachine/nova.hm.benjamin-borbe.de',
                     'password_hash': 'BwjGOV',
-                    'size': '600000',
+                    'size': '750000',
                 },
                 'star': {
                     'path': '/timemachine/star.hm.benjamin-borbe.de',
                     'password_hash': 'BOrkLo',
-                    'size': '400000',
+                    'size': '500000',
                 },
             },
         },
