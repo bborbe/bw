@@ -13,6 +13,7 @@ groups['meta-bundles'] = {
         'dns-update',
         'dotfiles',
         'git',
+        'go',
         'group',
         'grub',
         'hostname',

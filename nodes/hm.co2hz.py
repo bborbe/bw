@@ -25,6 +25,12 @@ nodes['hm.co2hz'] = {
             'mqtt-username': teamvault.username('9qNx3O', site='benjamin-borbe'),
             'mqtt-password': teamvault.password('9qNx3O', site='benjamin-borbe'),
         },
+        'go': {
+            'enabled': True,
+            'arch': 'armv6l',
+            'version': '1.15.5',
+            'os': 'linux',
+        },
         'iptables': {
             'enabled': True,
         },

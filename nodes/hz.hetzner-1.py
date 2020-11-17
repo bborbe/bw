@@ -4,6 +4,12 @@ nodes['hz.hetzner-1'] = {
         'ubuntu-bionic',
     },
     'metadata': {
+        'go': {
+            'enabled': True,
+            'arch': 'amd64',
+            'version': '1.15.5',
+            'os': 'linux',
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],

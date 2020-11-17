@@ -1,4 +1,3 @@
-
 nodes['hm.nuke'] = {
     'hostname': 'nuke.hm.benjamin-borbe.de',
     'groups': {
@@ -10,6 +9,12 @@ nodes['hm.nuke'] = {
             'targets': {
                 'fire.hm.benjamin-borbe.de': {'allow': '192.168.178.5/32'},
             }
+        },
+        'go': {
+            'enabled': True,
+            'arch': 'amd64',
+            'version': '1.15.5',
+            'os': 'linux',
         },
         'groups': {
             'data': {

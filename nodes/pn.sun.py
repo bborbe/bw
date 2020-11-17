@@ -4,6 +4,12 @@ nodes['pn.sun'] = {
         'ubuntu-bionic',
     },
     'metadata': {
+        'go': {
+            'enabled': True,
+            'arch': 'amd64',
+            'version': '1.15.5',
+            'os': 'linux',
+        },
         'backup_server': {
             'enabled': True,
             'targets': {

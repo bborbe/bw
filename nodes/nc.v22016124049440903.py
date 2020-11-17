@@ -4,6 +4,12 @@ nodes['nc.v22016124049440903'] = {
         'ubuntu-bionic',
     },
     'metadata': {
+        'go': {
+            'enabled': True,
+            'arch': 'amd64',
+            'version': '1.15.5',
+            'os': 'linux',
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],

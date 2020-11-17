@@ -6,6 +6,12 @@ nodes['hm.rasp'] = {
         'raspbian-stretch',
     },
     'metadata': {
+        'go': {
+            'enabled': True,
+            'arch': 'armv6l',
+            'version': '1.15.5',
+            'os': 'linux',
+        },
         'networking': {
             'interfaces': {
                 'eth0': {
