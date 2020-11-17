@@ -2,9 +2,10 @@ import bwtv as teamvault
 
 nodes['hm.co2hz'] = {
     'hostname': 'co2hz.hm.benjamin-borbe.de',
+    'groups': {
+        'raspbian-stretch',
+    },
     'metadata': {
-        'os': 'raspbian',
-        'release': 'stretch',
         'networking': {
             'interfaces': {
                 'eth0': {

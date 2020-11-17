@@ -45,6 +45,6 @@ if node.metadata.get('networking', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
         'context': {
-            'nameservers': node.metadata.get('networking', {}).get('nameservers', []),
+            'nameservers': node.metadata.get('networking', {}).get('nameservers', set()),
         },
     }

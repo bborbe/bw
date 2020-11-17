@@ -1,8 +1,9 @@
 nodes['hz.hetzner-1'] = {
     'hostname': 'hetzner-1.benjamin-borbe.de',
+    'groups': {
+        'ubuntu-bionic',
+    },
     'metadata': {
-        'os': 'ubuntu',
-        'release': 'bionic',
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],

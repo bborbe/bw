@@ -1,4 +1,4 @@
-@metadata_processor
+@metadata_reactor
 def install_apt_packages(metadata):
     pkgs_install = (
         'bash',
@@ -19,16 +19,26 @@ def install_apt_packages(metadata):
         'nfs-common',
         'zsh',
     )
+    result = {
+        'apt': {
+            'packages': {}
+        }
+    }
     for package_name in pkgs_install:
-        metadata.setdefault('apt', {}).setdefault('packages', {}).setdefault(package_name, {}).setdefault('installed', True)
-    return metadata, DONE
+        result['apt']['packages'][package_name] = {
+            'installed': True
+        }
+    return result
 
 
-@metadata_processor
+@metadata_reactor
 def uninstall_apt_packages(metadata):
-    pkgs_uninstall = (
-        'mlocate',
-    )
-    for package_name in pkgs_uninstall:
-        metadata.setdefault('apt', {}).setdefault('packages', {}).setdefault(package_name, {}).setdefault('installed', False)
-    return metadata, DONE
+    return {
+        'apt': {
+            'packages': {
+                'mlocate': {
+                    'installed': False
+                }
+            }
+        }
+    }

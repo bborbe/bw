@@ -1,14 +1,9 @@
 import bwtv as teamvault
 
 groups['meta-monit'] = {
-    'members': [
-        'hm.co2hz',
-        'hm.co2wz',
-        'hm.fire',
-        'hm.rasp',
-        'hm.nuke',
-        'pn.sun',
-    ],
+    'subgroup_patterns': (
+        r".+",
+    ),
     'metadata': {
         'monit': {
             'enabled': True,

@@ -1,4 +1,12 @@
-@metadata_processor
+@metadata_reactor
 def install_git(metadata):
-    metadata.setdefault('apt', {}).setdefault('packages', {}).setdefault('git',{})['installed'] = True
-    return metadata, DONE
+    return {
+        'apt': {
+            'packages': {
+                'git': {
+                    'installed': True,
+                },
+            }
+        },
+    }
+

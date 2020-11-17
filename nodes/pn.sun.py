@@ -1,8 +1,9 @@
 nodes['pn.sun'] = {
     'hostname': 'sun.pn.benjamin-borbe.de',
+    'groups': {
+        'ubuntu-bionic',
+    },
     'metadata': {
-        'os': 'ubuntu',
-        'release': 'bionic',
         'backup_server': {
             'enabled': True,
             'targets': {
@@ -35,9 +36,6 @@ nodes['pn.sun'] = {
                 'enabled': True,
             },
         },
-        'grub': {
-            'enabled': True,
-        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
@@ -49,10 +47,6 @@ nodes['pn.sun'] = {
                     '-A INPUT -m state --state NEW -p tcp --dport 6443 -j ACCEPT',
                 },
             },
-        },
-        'kernel_modules': {
-            'lp': {},
-            'loop': {},
         },
         'networking': {
             'interfaces': {

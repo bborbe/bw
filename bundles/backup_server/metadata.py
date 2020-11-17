@@ -1,8 +1,15 @@
-@metadata_processor
+@metadata_reactor
 def zfs_backup_volumes(metadata):
+    result = {
+        'zfs': {
+            'pools': {
+                'tank1': {
+                    'mounts': {}
+                }
+            }
+        }
+    }
     if metadata.get('backup_server', {}).get('enabled', False) and metadata.get('zfs', {}).get('enabled', False):
-        targets = metadata.get('backup_server', {}).get('targets', {})
-        mounts = metadata.setdefault('zfs', {}).setdefault('pools', {}).setdefault('tank1', {}).setdefault('mounts', {})
-        for name, data in targets.items():
-            mounts['/backup/{}'.format(name)] = {}
-    return metadata, DONE
+        for name, data in metadata.get('backup_server', {}).get('targets', {}).items():
+            result['zfs']['pools']['tank1']['mounts']['/backup/{}'.format(name)] = {}
+    return result

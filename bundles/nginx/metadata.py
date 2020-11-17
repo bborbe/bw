@@ -1,7 +1,13 @@
-@metadata_processor
+@metadata_reactor
 def iptables(metadata):
+    rules = set()
     if metadata.get('nginx', {}).get('enabled', False):
-        list = metadata.setdefault('iptables', {}).setdefault('rules', {}).setdefault('filter', set())
         for name, data in metadata.get('nginx', {}).get('vhosts', {}).items():
-            list.add('-A INPUT -m state --state NEW -p tcp --dport {} -j ACCEPT'.format(data.get('port', 80)))
-    return metadata, DONE
+            rules.add('-A INPUT -m state --state NEW -p tcp --dport {} -j ACCEPT'.format(data.get('port', 80)))
+    return {
+        'iptables': {
+            'rules': {
+                'filter': rules,
+            },
+        },
+    }

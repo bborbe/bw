@@ -2,9 +2,10 @@ import bwtv as teamvault
 
 nodes['hm.rasp'] = {
     'hostname': 'rasp.hm.benjamin-borbe.de',
+    'groups': {
+        'raspbian-stretch',
+    },
     'metadata': {
-        'os': 'raspbian',
-        'release': 'stretch',
         'networking': {
             'interfaces': {
                 'eth0': {

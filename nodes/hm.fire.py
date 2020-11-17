@@ -1,8 +1,9 @@
 nodes['hm.fire'] = {
     'hostname': 'fire.hm.benjamin-borbe.de',
+    'groups': {
+        'ubuntu-bionic',
+    },
     'metadata': {
-        'os': 'ubuntu',
-        'release': 'bionic',
         'backup_server': {
             'enabled': True,
             'targets': {
@@ -13,9 +14,6 @@ nodes['hm.fire'] = {
             'data': {
                 'enabled': True,
             },
-        },
-        'grub': {
-            'enabled': True,
         },
         'iptables': {
             'enabled': True,
@@ -28,10 +26,6 @@ nodes['hm.fire'] = {
                     '-A INPUT -m state --state NEW -p tcp --dport 6443 -j ACCEPT',
                 },
             },
-        },
-        'kernel_modules': {
-            'lp': {},
-            'loop': {},
         },
         'networking': {
             'interfaces': {

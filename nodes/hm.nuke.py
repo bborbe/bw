@@ -1,8 +1,10 @@
+
 nodes['hm.nuke'] = {
     'hostname': 'nuke.hm.benjamin-borbe.de',
+    'groups': {
+        'ubuntu-bionic',
+    },
     'metadata': {
-        'os': 'ubuntu',
-        'release': 'bionic',
         'backup_server': {
             'enabled': True,
             'targets': {
@@ -13,9 +15,6 @@ nodes['hm.nuke'] = {
             'data': {
                 'enabled': True,
             },
-        },
-        'grub': {
-            'enabled': True,
         },
         'iptables': {
             'enabled': True,
@@ -28,10 +27,6 @@ nodes['hm.nuke'] = {
                     '-A INPUT -m state --state NEW -p tcp --dport 6443 -j ACCEPT',
                 },
             },
-        },
-        'kernel_modules': {
-            'lp': {},
-            'loop': {},
         },
         'networking': {
             'interfaces': {

@@ -1,12 +1,20 @@
-@metadata_processor
+@metadata_reactor
 def defaultnameservers(metadata):
-    metadata.setdefault('networking', {}).setdefault('nameservers', ['8.8.4.4', '8.8.8.8'])
-    return metadata, DONE
+    return {
+        'networking': {
+            'nameservers': set(['8.8.4.4', '8.8.8.8']),
+        }
+    }
 
 
-@metadata_processor
+@metadata_reactor
 def enable_routing(metadata):
     if metadata.get('networking', {}).get('enabled', False):
-        options = metadata.setdefault('sysctl', {}).setdefault('options', {})
-        options['net.ipv4.ip_forward'] = '1'
-    return metadata, DONE
+        return {
+            'sysctl': {
+                'options': {
+                    'net.ipv4.ip_forward': '1'
+                }
+            }
+        }
+    return {}

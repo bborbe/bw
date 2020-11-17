@@ -1,7 +1,11 @@
 import bwtv as teamvault
 
-@metadata_processor
+
+@metadata_reactor
 def timemachine_users(metadata):
+    result = {
+        'users': {}
+    }
     if metadata.get('timemachine', {}).get('enabled', False):
         for username, data in metadata.get('timemachine', {}).get('users', {}).items():
             path = data.get('path', '')
@@ -13,15 +17,26 @@ def timemachine_users(metadata):
                 password = data.get('password', '')
             if len(password) == 0:
                 raise Exception('password missing')
-            data = metadata.setdefault('users', {})
-            data[username]['enabled'] = True
-            data[username]['home'] = path
-            data[username]['shell'] = '/bin/false'
-            data[username]['password'] = password
-            data[username]['salt'] = 'w9AVl6dZcq4i3Q3d'
-    else:
-        for username, data in metadata.get('timemachine', {}).get('users', {}).items():
-            metadata.setdefault('users', {})[username] = {
-                'enabled': False,
+            result['users'][username] = {
+                'enabled': True,
+                'home': path,
+                'shell': '/bin/false',
+                'password': password,
+                'salt': 'w9AVl6dZcq4i3Q3d',
             }
-    return metadata, DONE
+    return result
+
+
+@metadata_reactor
+def iptables(metadata):
+    rules = set()
+    if metadata.get('timemachine', {}).get('enabled', False):
+        # allow netatalk
+        rules.add('-A INPUT -m state --state NEW -p tcp --dport 548 -j ACCEPT')
+    return {
+        'iptables': {
+            'rules': {
+                'filter': rules,
+            },
+        },
+    }
