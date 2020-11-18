@@ -35,7 +35,7 @@ if node.metadata.get('grub', {}).get('enabled', False):
         'group': 'root',
         'context': {
             'name': name,
-            'default': node.metadata.get('grub', {}).get('default', '0'),
+            'default': node.metadata.get('grub', {}).get('default', ''),
             'cmd_args': node.metadata.get('grub', {}).get('cmd_args', {}),
             'serial': node.metadata.get('grub', {}).get('serial', False),
         },

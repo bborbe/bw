@@ -21,6 +21,9 @@ nodes['hm.nuke'] = {
                 'enabled': True,
             },
         },
+        'grub': {
+            'default': 'Windows Boot Manager (on /dev/nvme0n1p2)',
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
