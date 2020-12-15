@@ -30,7 +30,7 @@ if node.metadata.get('controller', {}).get('enabled', False):
             'file:/lib/systemd/system/controller.service',
             'user:controller',
             'group:controller',
-            'action:git_checkout_hue',
+            'action:git_pull_hue',
             'action:install_golang',
         ],
     }
