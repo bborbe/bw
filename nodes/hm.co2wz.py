@@ -21,15 +21,15 @@ nodes['hm.co2wz'] = {
             'device': '/dev/co2mini0',
             'co2-name': 'WZ_CO2',
             'temperatur-name': 'WZ_TEMP',
-            'mqtt-host': 'rasp.hm.benjamin-borbe.de',
+            'mqtt-host': 'rasp3.hm.benjamin-borbe.de',
             'mqtt-queue': 'co2mon',
             'mqtt-username': teamvault.username('9qNx3O', site='benjamin-borbe'),
             'mqtt-password': teamvault.password('9qNx3O', site='benjamin-borbe'),
         },
-        'go': {
+        'golang': {
             'enabled': True,
             'arch': 'armv6l',
-            'version': '1.15.5',
+            'version': '1.15.6',
             'os': 'linux',
         },
         'iptables': {

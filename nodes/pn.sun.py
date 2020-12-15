@@ -4,10 +4,10 @@ nodes['pn.sun'] = {
         'ubuntu-bionic',
     },
     'metadata': {
-        'go': {
+        'golang': {
             'enabled': True,
             'arch': 'amd64',
-            'version': '1.15.5',
+            'version': '1.15.6',
             'os': 'linux',
         },
         'backup_server': {
@@ -18,7 +18,8 @@ nodes['pn.sun'] = {
                 'fire.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
                 'nova.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
                 'nuke.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
-                'rasp.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
+                'rasp3.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
+                'rasp4.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
                 'star.hm.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
                 'sun.pn.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
                 'v22016124049440903.goodsrv.de': {'allow': '192.168.2.3/32'},

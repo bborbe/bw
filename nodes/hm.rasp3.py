@@ -1,15 +1,15 @@
 import bwtv as teamvault
 
-nodes['hm.rasp'] = {
-    'hostname': 'rasp.hm.benjamin-borbe.de',
+nodes['hm.rasp3'] = {
+    'hostname': 'rasp3.hm.benjamin-borbe.de',
     'groups': {
         'raspbian-stretch',
     },
     'metadata': {
-        'go': {
+        'golang': {
             'enabled': True,
             'arch': 'armv6l',
-            'version': '1.15.5',
+            'version': '1.15.6',
             'os': 'linux',
         },
         'networking': {
@@ -21,35 +21,6 @@ nodes['hm.rasp'] = {
                 },
             },
             'routes': {},
-        },
-        'nginx': {
-            'enabled': True,
-            'vhosts': {
-                'openhab': {
-                    'locations': {
-                        '/': [
-                            ('proxy_pass', 'http://localhost:8080/'),
-                            ('proxy_set_header', 'Host $http_host'),
-                            ('proxy_set_header', 'X-Real-IP $remote_addr'),
-                            ('proxy_set_header', 'X-Forwarded-For $proxy_add_x_forwarded_for'),
-                            ('proxy_set_header', 'X-Forwarded-Proto $scheme'),
-                        ],
-                    },
-                },
-            },
-        },
-        'openhab': {
-            'enabled': True,
-            'telegram': {
-                'hausalertbot': {
-                    'chatId': teamvault.username('pLvYPO', site='benjamin-borbe'),
-                    'token': teamvault.password('pLvYPO', site='benjamin-borbe'),
-                },
-            },
-            'mosquitto': {
-                'username': teamvault.username('9qNx3O', site='benjamin-borbe'),
-                'password': teamvault.password('9qNx3O', site='benjamin-borbe'),
-            },
         },
         'mosquitto': {
             'enabled': True,

@@ -16,9 +16,6 @@ class Co2mon:
         device,
         co2_name,
         temperatur_name,
-        openhab_url,
-        openhab_username,
-        openhab_password,
         mqtt_host,
         mqtt_queue,
         mqtt_username,
@@ -27,9 +24,6 @@ class Co2mon:
         self.device = device
         self.co2_name = co2_name
         self.temperatur_name = temperatur_name
-        self.openhab_url = openhab_url
-        self.openhab_username = openhab_username
-        self.openhab_password = openhab_password
         self.mqtt_host = mqtt_host
         self.mqtt_queue = mqtt_queue
         self.mqtt_username = mqtt_username
@@ -44,8 +38,6 @@ class Co2mon:
 
     def publish_status(self, key, value):
         LOG.debug('publish status: %s=%s', key, value)
-        if self.openhab_url:
-            self.publish_openhab_status(key=key, value=value)
         if self.mqtt_host and self.mqtt_queue:
             self.publish_mqtt_status(key=key, value=value)
 
@@ -71,31 +63,9 @@ class Co2mon:
         except Exception as e:
             LOG.exception('send to mqtt failed')
 
-    def publish_openhab_status(self, key, value):
-        try:
-            if self.openhab_username and self.openhab_password:
-                auth = (self.openhab_username, self.openhab_password)
-            else:
-                auth = None
-            url = '{}/rest/items/{}/state'.format(self.openhab_url, key)
-            LOG.debug('send %s to %s', value, url)
-            res = requests.put(
-                url,
-                data=value,
-                auth=auth,
-                headers={'Content-type': 'text/plain'},
-                timeout=(10, 60),
-            )
-            if int(res.status_code / 100) != 2:
-                LOG.error('request %s=%s to openhab failed with status %d %s', key, value, res.status_code, res.text)
-            else:
-                LOG.info('send %s=%s successful to openhab', key, value)
-        except Exception as e:
-            LOG.exception('send to openhab failed')
 
     def run(self):
         LOG.info('use device %s', self.device)
-        LOG.info('openhab %s', self.openhab_url)
         LOG.info('mqtt %s %s', self.mqtt_host, self.mqtt_queue)
         Meter = CO2Meter(self.device, callback=self.callback)
         while True:
@@ -158,23 +128,6 @@ def main():
         help='mqtt password',
     )
 
-    # openHAB Params
-    parser.add_argument(
-        '--openhab-url',
-        action='store',
-        help='openhab url',
-    )
-    parser.add_argument(
-        '--openhab-username',
-        action='store',
-        help='openhab user',
-    )
-    parser.add_argument(
-        '--openhab-password',
-        action='store',
-        help='openhab password',
-    )
-
     args = parser.parse_args()
     if args.debug:
         logging.basicConfig(level=logging.DEBUG)
@@ -185,9 +138,6 @@ def main():
         device=args.device,
         co2_name=args.co2_name,
         temperatur_name=args.temperatur_name,
-        openhab_url=args.openhab_url,
-        openhab_username=args.openhab_username,
-        openhab_password=args.openhab_password,
         mqtt_host=args.mqtt_host,
         mqtt_queue=args.mqtt_queue,
         mqtt_username=args.mqtt_username,

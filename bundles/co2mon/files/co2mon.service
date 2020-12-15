@@ -11,9 +11,6 @@ ExecStart=/opt/co2mon/.env/bin/python /opt/co2mon/co2mon.py \
 --device "${context.get('device','')}" \
 --co2-name "${context.get('co2-name','')}" \
 --temperatur-name "${context.get('temperatur-name','')}" \
---openhab-url "${context.get('openhab-url','')}" \
---openhab-username "${context.get('openhab-username','')}" \
---openhab-password "${context.get('openhab-password','')}" \
 --mqtt-host "${context.get('mqtt-host','')}" \
 --mqtt-queue "${context.get('mqtt-queue','')}" \
 --mqtt-username "${context.get('mqtt-username','')}" \

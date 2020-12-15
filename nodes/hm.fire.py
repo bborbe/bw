@@ -10,10 +10,10 @@ nodes['hm.fire'] = {
                 'sun.pn.benjamin-borbe.de': {'allow': '192.168.178.3/32'},
             }
         },
-        'go': {
+        'golang': {
             'enabled': True,
             'arch': 'amd64',
-            'version': '1.15.5',
+            'version': '1.15.6',
             'os': 'linux',
         },
         'groups': {
