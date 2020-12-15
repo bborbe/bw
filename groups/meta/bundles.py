@@ -8,6 +8,7 @@ groups['meta-bundles'] = {
         'backup_server',
         'base',
         'co2mon',
+        'controller',
         'cron',
         'dhcpclient',
         'dns-update',

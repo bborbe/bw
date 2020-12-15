@@ -6,6 +6,9 @@ nodes['hm.rasp4'] = {
         'raspbian-buster',
     },
     'metadata': {
+        'controller': {
+            'enabled': True,
+        },
         'golang': {
             'enabled': True,
             'arch': 'armv6l',

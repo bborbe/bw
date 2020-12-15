@@ -82,6 +82,9 @@ groups['meta-user'] = {
                 'full_name': 'Ubuntu',
                 'uid': '11018',
             },
+            'controller': {
+                'uid': '11019',
+            },
         },
         'groups': {
             'bborbe': {
@@ -140,6 +143,9 @@ groups['meta-user'] = {
             },
             'ubuntu': {
                 'gid': '11018',
+            },
+            'controller': {
+                'gid': '11019',
             },
             'data': {
                 'gid': '20000',

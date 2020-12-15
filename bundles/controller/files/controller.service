@@ -1,0 +1,15 @@
+[Unit]
+Description=controller
+After=network.target
+
+[Service]
+User=controller
+Group=controller
+WorkingDirectory=/opt/hue/cmd/controller
+Restart=on-failure
+ExecStart=/opt/go/bin/go run main.go \
+-token="${context.get('token','')}" \
+-v=2
+
+[Install]
+WantedBy=multi-user.target

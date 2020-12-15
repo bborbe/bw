@@ -16,3 +16,13 @@ for name, v in node.metadata.get('git', {}).get('clones', {}).items():
         'unless': 'test -e {target}'.format(target=target),
         'needs': ['pkg_apt:git'],
     }
+
+    actions['git_fetch_{name}'.format(name=name)] = {
+        'command': 'git --git-dir {target}/.git fetch -p'.format(target=target),
+        'needs': ['action:git_clone_{name}'.format(name=name)],
+    }
+
+    actions['git_checkout_{name}'.format(name=name)] = {
+        'command': 'git --git-dir {target}/.git checkout {branch}'.format(branch=v.get('branch', 'master'), target=target),
+        'needs': ['action:git_fetch_{name}'.format(name=name)],
+    }
