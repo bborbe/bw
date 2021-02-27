@@ -5,21 +5,21 @@ import bwtv as teamvault
 def crons(metadata):
     result = {
         'cron': {
-            'jobs': {
-                'dns-update': {
-                    'enabled': metadata.get('dns-update', {}).get('enabled', False),
-                }
-            },
+            'jobs': {},
         },
     }
     for name, data in metadata.get('dns-update', {}).get('updates', {}).items():
-        result['cron']['jobs']['dns-update']['expression'] = '/usr/local/bin/dns-update.sh {server} /etc/dns-update/keys/{name} {zone} {node} {ip} >> /var/log/dns-update.log'.format(
+        expression = '/usr/local/bin/dns-update.sh {server} /etc/dns-update/keys/{name} {zone} {node} {ip} >> /var/log/dns-update.log'.format(
             server=data.get('dns-server', ''),
             name=name,
             zone=data.get('zone', ''),
             node=data.get('node', ''),
             ip=data.get('ip-url', ''),
         )
+        result['cron']['jobs']['dns-update-{}'.format(data.get('zone', ''))] = {
+            'expression': expression,
+            'enabled': metadata.get('dns-update', {}).get('enabled', False),
+        }
     return result
 
 
