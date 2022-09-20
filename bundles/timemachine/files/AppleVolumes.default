@@ -1,4 +1,0 @@
-:DEFAULT: options:upriv,usedots
-% for username, data in sorted(users.items()):
-${data.get('path','')} "${username}" options:tm volsizelimit:${data.get('size','')} allow:${username}
-% endfor
