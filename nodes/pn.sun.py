@@ -7,7 +7,7 @@ nodes['pn.sun'] = {
         'golang': {
             'enabled': True,
             'arch': 'amd64',
-            'version': '1.15.6',
+            'version': '1.16.4',
             'os': 'linux',
         },
         'backup_server': {
@@ -24,19 +24,6 @@ nodes['pn.sun'] = {
                 'sun.pn.benjamin-borbe.de': {'allow': '192.168.2.3/32'},
                 'v22016124049440903.goodsrv.de': {'allow': '192.168.2.3/32'},
             }
-        },
-        'dns-update': {
-            'enabled': True,
-            'updates': {
-                'pn.benjamin-borbe.de': {
-                    'zone': 'benjamin-borbe.de',
-                    'node': 'pn',
-                    'dns-server': 'ns.rocketsource.de',
-                    'ip-url': 'https://ip.benjamin-borbe.de',
-                    'private_hash': 'aL50O8',
-                    'key_hash': '9L64w3',
-                },
-            },
         },
         'groups': {
             'data': {
@@ -70,16 +57,6 @@ nodes['pn.sun'] = {
         },
         'smart': {
             'enabled': True,
-        },
-        'timemachine': {
-            'enabled': True,
-            'users': {
-                'borbe': {
-                    'path': '/timemachine/borbe.pn.benjamin-borbe.de',
-                    'password_hash': 'mwxBLK',
-                    'size': '400000',
-                },
-            },
         },
         'users': {
             'bborbe': {

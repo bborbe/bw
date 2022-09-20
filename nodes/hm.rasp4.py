@@ -3,7 +3,7 @@ import bwtv as teamvault
 nodes['hm.rasp4'] = {
     'hostname': 'rasp4.hm.benjamin-borbe.de',
     'groups': {
-        'raspbian-buster',
+        'raspbian-bullseye',
     },
     'metadata': {
         'controller': {
@@ -12,7 +12,7 @@ nodes['hm.rasp4'] = {
         'golang': {
             'enabled': True,
             'arch': 'armv6l',
-            'version': '1.15.6',
+            'version': '1.16.4',
             'os': 'linux',
         },
         'networking': {

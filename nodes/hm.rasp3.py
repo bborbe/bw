@@ -3,13 +3,13 @@ import bwtv as teamvault
 nodes['hm.rasp3'] = {
     'hostname': 'rasp3.hm.benjamin-borbe.de',
     'groups': {
-        'raspbian-stretch',
+        'raspbian-bullseye',
     },
     'metadata': {
         'golang': {
             'enabled': True,
             'arch': 'armv6l',
-            'version': '1.15.6',
+            'version': '1.16.4',
             'os': 'linux',
         },
         'networking': {
@@ -34,27 +34,6 @@ nodes['hm.rasp3'] = {
                 'filter': {
                     # allow forward
                     '-A FORWARD -j ACCEPT',
-                },
-            },
-        },
-        'dns-update': {
-            'enabled': True,
-            'updates': {
-                'home.benjamin-borbe.de': {
-                    'zone': 'benjamin-borbe.de',
-                    'node': 'home',
-                    'dns-server': 'ns.rocketsource.de',
-                    'ip-url': 'https://ip.benjamin-borbe.de',
-                    'private': teamvault.file('aL50O8', site='benjamin-borbe'),
-                    'key': teamvault.file('9L64w3', site='benjamin-borbe'),
-                },
-                'home.rocketnews.de': {
-                    'zone': 'rocketnews.de',
-                    'node': 'home',
-                    'dns-server': 'ns.rocketsource.de',
-                    'ip-url': 'https://ip.benjamin-borbe.de',
-                    'private': teamvault.file('aL50O8', site='benjamin-borbe'),
-                    'key': teamvault.file('9L64w3', site='benjamin-borbe'),
                 },
             },
         },

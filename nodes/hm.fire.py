@@ -13,7 +13,7 @@ nodes['hm.fire'] = {
         'golang': {
             'enabled': True,
             'arch': 'amd64',
-            'version': '1.15.6',
+            'version': '1.16.4',
             'os': 'linux',
         },
         'groups': {
@@ -49,21 +49,6 @@ nodes['hm.fire'] = {
         },
         'smart': {
             'enabled': True,
-        },
-        'timemachine': {
-            'enabled': True,
-            'users': {
-                'nova': {
-                    'path': '/timemachine/nova.hm.benjamin-borbe.de',
-                    'password_hash': 'BwjGOV',
-                    'size': '750000',
-                },
-                'star': {
-                    'path': '/timemachine/star.hm.benjamin-borbe.de',
-                    'password_hash': 'BOrkLo',
-                    'size': '500000',
-                },
-            },
         },
         'users': {
             'bborbe': {

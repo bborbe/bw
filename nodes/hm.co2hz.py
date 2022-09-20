@@ -3,7 +3,7 @@ import bwtv as teamvault
 nodes['hm.co2hz'] = {
     'hostname': 'co2hz.hm.benjamin-borbe.de',
     'groups': {
-        'raspbian-stretch',
+        'raspbian-bullseye',
     },
     'metadata': {
         'networking': {
@@ -28,7 +28,7 @@ nodes['hm.co2hz'] = {
         'golang': {
             'enabled': True,
             'arch': 'armv6l',
-            'version': '1.15.6',
+            'version': '1.16.4',
             'os': 'linux',
         },
         'iptables': {
