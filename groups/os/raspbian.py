@@ -41,3 +41,13 @@ groups['raspbian-buster'] = {
         'release': 'buster',
     },
 }
+
+groups['raspbian-bullseye'] = {
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (11, 0),
+    'metadata': {
+        'release': 'bullseye',
+    },
+}
