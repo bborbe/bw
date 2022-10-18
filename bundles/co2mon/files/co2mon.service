@@ -7,7 +7,7 @@ User=co2mon
 Group=co2mon
 WorkingDirectory=/opt/co2mon
 Restart=on-failure
-ExecStart=/opt/co2mon/.env/bin/python /opt/co2mon/co2mon.py \
+ExecStart=/opt/co2mon/.env/bin/python /opt/co2mon/service.py \
 --device "${context.get('device','')}" \
 --co2-name "${context.get('co2-name','')}" \
 --temperatur-name "${context.get('temperatur-name','')}" \

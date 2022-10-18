@@ -36,8 +36,8 @@ if node.metadata.get('co2mon', {}).get('enabled', False):
             'svc_systemd:co2mon:restart',
         ],
     }
-    files['/opt/co2mon/co2mon.py'] = {
-        'source': 'co2mon.py',
+    files['/opt/co2mon/service.py'] = {
+        'source': 'service.py',
         'content_type': 'text',
         'mode': '0555',
         'owner': 'root',
@@ -59,7 +59,7 @@ if node.metadata.get('co2mon', {}).get('enabled', False):
     svc_systemd['co2mon'] = {
         'needs': [
             'file:/lib/systemd/system/co2mon.service',
-            'file:/opt/co2mon/co2mon.py',
+            'file:/opt/co2mon/service.py',
             'action:install_co2mon',
             'user:co2mon',
             'group:co2mon',
