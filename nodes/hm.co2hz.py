@@ -1,5 +1,8 @@
 import bwtv as teamvault
 
+
+
+
 nodes['hm.co2hz'] = {
     'hostname': 'co2hz.hm.benjamin-borbe.de',
     'groups': {
@@ -17,13 +20,13 @@ nodes['hm.co2hz'] = {
         },
         'co2mon': {
             'enabled': True,
-            'device': '/dev/co2mini0',
-            'co2-name': 'HZ_CO2',
-            'temperatur-name': 'HZ_TEMP',
-            'mqtt-host': 'rasp3.hm.benjamin-borbe.de',
-            'mqtt-queue': 'co2mon',
+            'mqtt-host': 'rasp4.hm.benjamin-borbe.de',
             'mqtt-username': teamvault.username('9qNx3O', site='benjamin-borbe'),
             'mqtt-password': teamvault.password('9qNx3O', site='benjamin-borbe'),
+            'mqtt-queue': 'co2mon',
+            'co2-name': 'HZ_CO2',
+            'temperatur-name': 'HZ_TEMP',
+            'device': '/dev/co2mini0',
         },
         'golang': {
             'enabled': True,

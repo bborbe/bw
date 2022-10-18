@@ -25,5 +25,10 @@ nodes['hm.rasp4'] = {
             },
             'routes': {},
         },
+        'mosquitto': {
+            'enabled': True,
+            'username': teamvault.username('9qNx3O', site='benjamin-borbe'),
+            'password': teamvault.password('9qNx3O', site='benjamin-borbe'),
+        },
     },
 }

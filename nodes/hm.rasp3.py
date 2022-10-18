@@ -6,6 +6,9 @@ nodes['hm.rasp3'] = {
         'raspbian-bullseye',
     },
     'metadata': {
+        'kernel_modules': {
+            'i2c-dev': {},
+        },
         'golang': {
             'enabled': True,
             'arch': 'armv6l',
@@ -22,11 +25,6 @@ nodes['hm.rasp3'] = {
             },
             'routes': {},
         },
-        'mosquitto': {
-            'enabled': True,
-            'username': teamvault.username('9qNx3O', site='benjamin-borbe'),
-            'password': teamvault.password('9qNx3O', site='benjamin-borbe'),
-        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
@@ -36,6 +34,16 @@ nodes['hm.rasp3'] = {
                     '-A FORWARD -j ACCEPT',
                 },
             },
+        },
+        'bme280': {
+            'enabled': True,
+            'mqtt-host': 'rasp4.hm.benjamin-borbe.de',
+            'mqtt-username': teamvault.username('9qNx3O', site='benjamin-borbe'),
+            'mqtt-password': teamvault.password('9qNx3O', site='benjamin-borbe'),
+            'mqtt-queue': 'bme280',
+            'pressure-name': 'HZ_PRESSURE',
+            'humidity-name': 'HZ_HUMIDITY',
+            'temperatur-name': 'HZ_TEMPERATUR',
         },
     },
 }
