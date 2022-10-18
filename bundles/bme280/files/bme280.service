@@ -1,0 +1,20 @@
+[Unit]
+Description=bme280
+After=network.target
+
+[Service]
+User=bme280
+Group=bme280
+WorkingDirectory=/opt/bme280
+Restart=on-failure
+ExecStart=/opt/bme280/.env/bin/python /opt/bme280/service.py \
+--pressure-name "${context.get('pressure-name','')}" \
+--humidity-name "${context.get('humidity-name','')}" \
+--temperatur-name "${context.get('temperatur-name','')}" \
+--mqtt-host "${context.get('mqtt-host','')}" \
+--mqtt-queue "${context.get('mqtt-queue','')}" \
+--mqtt-username "${context.get('mqtt-username','')}" \
+--mqtt-password "${context.get('mqtt-password','')}"
+
+[Install]
+WantedBy=multi-user.target
