@@ -23,9 +23,9 @@ nodes['hm.co2hz'] = {
             'mqtt-host': 'rasp4.hm.benjamin-borbe.de',
             'mqtt-username': teamvault.username('9qNx3O', site='benjamin-borbe'),
             'mqtt-password': teamvault.password('9qNx3O', site='benjamin-borbe'),
-            'mqtt-queue': 'co2mon',
-            'co2-name': 'HZ_CO2',
-            'temperatur-name': 'HZ_TEMP',
+            'mqtt-queue': 'sensors',
+            'co2-name': 'co2hz/co2',
+            'temperatur-name': 'co2hz/temperatur',
             'device': '/dev/co2mini0',
         },
         'golang': {
