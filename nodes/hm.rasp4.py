@@ -6,6 +6,17 @@ nodes['hm.rasp4'] = {
         'raspbian-bullseye',
     },
     'metadata': {
+        'influxdb' : {
+            'enabled': True,
+        },
+        'grafana' : {
+            'enabled': True,
+        },
+        'telegraf' : {
+            'enabled': True,
+            'mqtt_username': teamvault.username('9qNx3O', site='benjamin-borbe'),
+            'mqtt_password': teamvault.password('9qNx3O', site='benjamin-borbe'),
+        },
         'controller': {
             'enabled': True,
         },
