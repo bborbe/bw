@@ -1,7 +1,7 @@
 nodes['pn.sun'] = {
     'hostname': 'sun.pn.benjamin-borbe.de',
     'groups': {
-        'ubuntu-bionic',
+        'ubuntu-jammy',
     },
     'metadata': {
         'golang': {

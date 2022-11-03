@@ -1,7 +1,7 @@
 nodes['hm.fire'] = {
     'hostname': 'fire.hm.benjamin-borbe.de',
     'groups': {
-        'ubuntu-bionic',
+        'ubuntu-jammy',
     },
     'metadata': {
         'backup_server': {
@@ -53,7 +53,7 @@ nodes['hm.fire'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'libvirtd', 'sudo'],
+                'groups': ['data', 'sudo'],
             },
             'jana': {
                 'enabled': True,
@@ -72,9 +72,6 @@ nodes['hm.fire'] = {
                         '/home': {},
                         '/home/bborbe': {},
                         '/home/jana': {},
-                        '/timemachine': {},
-                        '/timemachine/nova.hm.benjamin-borbe.de': {},
-                        '/timemachine/star.hm.benjamin-borbe.de': {},
                     },
                 },
             },

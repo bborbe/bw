@@ -1,7 +1,7 @@
 nodes['hz.hetzner-1'] = {
     'hostname': 'hetzner-1.benjamin-borbe.de',
     'groups': {
-        'ubuntu-bionic',
+        'ubuntu-jammy',
     },
     'metadata': {
         'golang': {
