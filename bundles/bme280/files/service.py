@@ -68,9 +68,9 @@ class Bme280:
         while True:
             data = bme280.sample(bus, address)
             LOG.debug('temperature: {} {} {}'.format(data.temperature, data.humidity, data.pressure))
-            self.publish_status(self.temperatur_name, '{0:.0f}'.format(data.temperature))
-            self.publish_status(self.humidity_name, '{0:.0f}'.format(data.humidity))
-            self.publish_status(self.pressure_name, '{0:.0f}'.format(data.pressure))
+            self.publish_status(self.temperatur_name, '{0:.2f}'.format(data.temperature))
+            self.publish_status(self.humidity_name, '{0:.2f}'.format(data.humidity))
+            self.publish_status(self.pressure_name, '{0:.2f}'.format(data.pressure))
             time.sleep(60)
 
 
