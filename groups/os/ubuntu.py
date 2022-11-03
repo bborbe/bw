@@ -38,3 +38,10 @@ groups['ubuntu-focal'] = {
     ),
     'os_version': (20, 4),
 }
+
+groups['ubuntu-jammy'] = {
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (20, 4),
+}
