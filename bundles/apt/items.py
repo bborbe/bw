@@ -67,7 +67,7 @@ if node.metadata.get('os') == 'raspbian' and node.metadata.get('release'):
     }
 
 for name, data in node.metadata.get('apt', {}).get('repos', {}).items():
-    if data['installed']:
+    if data.get('installed', False):
         actions['add_gpg_key_{}'.format(data['gpg_key'])] = {
             'command': 'apt-key adv --keyserver keyserver.ubuntu.com --recv-keys {}'.format(data['gpg_key']),
             'unless': 'apt-key list | tr -d "[:blank:]" | grep {}'.format(data['gpg_key']),
@@ -88,7 +88,7 @@ for name, data in node.metadata.get('apt', {}).get('repos', {}).items():
         }
     else:
         files['/etc/apt/sources.list.d/{}.list'.format(name)] = {
-            'delete': not data['installed'],
+            'delete': True,
             'triggers': ['action:apt_update'],
         }
 
