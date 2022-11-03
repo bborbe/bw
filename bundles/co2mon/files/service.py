@@ -8,7 +8,6 @@ import time
 from CO2Meter import *
 import paho.mqtt.client as paho
 
-
 class Co2mon:
 
     def __init__(
@@ -34,7 +33,7 @@ class Co2mon:
         if sensor == CO2METER_CO2:
             self.publish_status(self.co2_name, '{0:.0f}'.format(value))
         if sensor == CO2METER_TEMP:
-            self.publish_status(self.temperatur_name, '{0:.2f}'.format(value))
+            self.publish_status(self.temperatur_name, '{0:.2f}'.format(round(value / 16.0 - 273.1, 1)))
 
     def publish_status(self, key, value):
         LOG.debug('publish status: %s=%s', key, value)
@@ -70,7 +69,7 @@ class Co2mon:
         Meter = CO2Meter(self.device, callback=self.callback)
         while True:
             measurement = Meter.get_data()
-            LOG.debug('measurement: %s', measurement)
+            LOG.info('measurement: %s', measurement)
             if 'co2' in measurement:
                 self.publish_status(self.co2_name, '{0:.0f}'.format(measurement['co2']))
             if 'temperature' in measurement:
