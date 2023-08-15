@@ -15,6 +15,13 @@ groups['ubuntu'] = {
             'lp': {},
             'loop': {},
         },
+        'apt': {
+            'packages': {
+                'unattended-upgrades': {
+                    'installed': True,
+                }
+            },
+        },
     },
 }
 
