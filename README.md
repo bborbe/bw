@@ -2,6 +2,13 @@
 
 This repo contains my BundleWrap configuration. For more info about BundleWrap see: [http://bundlewrap.org/](http://BundleWrap.org/).
 
+## Upgrade requirements.txt
+
+```bash
+pip install pip-upgrader
+pip-upgrade
+```
+
 ## Install pyenv
 
 ```bash

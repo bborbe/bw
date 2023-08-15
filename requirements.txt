@@ -1,5 +1,5 @@
-bundlewrap==4.2.2
-bundlewrap-teamvault==3.0.0
+bundlewrap==4.17.2
+bundlewrap-teamvault==3.1.3
 certifi>=2020.11.8
 cffi>=1.14.3
 chardet>=3.0.4
