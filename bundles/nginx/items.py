@@ -11,7 +11,7 @@ if node.metadata.get('nginx', {}).get('enabled', False):
         'mode': '0755',
         'owner': 'root',
         'group': 'root',
-        'purge': True,
+        'purge': False, # set true again if all vhosts are managed by bw
     }
     pkg_apt['nginx'] = {
         'installed': True,
