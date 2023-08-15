@@ -4,6 +4,9 @@ nodes['hz.hetzner-1'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'nginx': {
+            'enabled': True,
+        },
         'golang': {
             'enabled': True,
             'arch': 'amd64',
