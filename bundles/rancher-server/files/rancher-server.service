@@ -1,0 +1,24 @@
+[Unit]
+Description=Rancher Server
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+RestartSec=20s
+EnvironmentFile=/etc/environment
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill rancher-server
+ExecStartPre=-/usr/bin/docker rm rancher-server
+ExecStart=/usr/bin/docker run \
+	--name=rancher-server \
+	--restart=unless-stopped \
+	-v /opt/rancher:/var/lib/rancher \
+	-p 80:80 \
+	-p 443:443 \
+	--privileged \
+	rancher/rancher:v2.7.6
+ExecStop=/usr/bin/docker stop rancher-server
+
+[Install]
+WantedBy=multi-user.target
