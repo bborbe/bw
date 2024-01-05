@@ -4,8 +4,14 @@ nodes['hm.nuke'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'docker': {
+            'enabled': True,
+        },
         'groups': {
             'data': {
+                'enabled': True,
+            },
+            'docker': {
                 'enabled': True,
             },
         },
@@ -34,11 +40,7 @@ nodes['hm.nuke'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'sudo'],
-            },
-            'jana': {
-                'enabled': True,
-                'groups': ['data'],
+                'groups': ['docker', 'data', 'sudo'],
             },
         },
     },

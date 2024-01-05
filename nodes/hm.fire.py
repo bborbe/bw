@@ -4,6 +4,9 @@ nodes['hm.fire'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'docker': {
+            'enabled': True,
+        },
         'backup_server': {
             'enabled': True,
             'targets': {
@@ -18,6 +21,9 @@ nodes['hm.fire'] = {
         },
         'groups': {
             'data': {
+                'enabled': True,
+            },
+            'docker': {
                 'enabled': True,
             },
         },
@@ -53,7 +59,7 @@ nodes['hm.fire'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'sudo'],
+                'groups': ['data', 'sudo', 'docker'],
             },
             'jana': {
                 'enabled': True,
