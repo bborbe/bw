@@ -4,6 +4,12 @@ nodes['pn.sun'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'trading': {
+            'enabled': True,
+        },
+        'teamvault': {
+            'enabled': True,
+        },
         'golang': {
             'enabled': True,
             'arch': 'amd64',
@@ -61,7 +67,7 @@ nodes['pn.sun'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data'],
+                'groups': ['data', 'sudo', 'docker'],
             },
             'walter': {
                 'enabled': True,
@@ -81,8 +87,6 @@ nodes['pn.sun'] = {
                     'mounts': {
                         '/backup': {},
                         '/data': {},
-                        '/timemachine': {},
-                        '/timemachine/borbe.pn.benjamin-borbe.de': {},
                     },
                 },
             },
