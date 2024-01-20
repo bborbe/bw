@@ -71,7 +71,7 @@ nodes['hm.fire'] = {
             'pools': {
                 'tank1': {
                     'type': 'raidz',
-                    'devices': ['/dev/sdc', '/dev/sdd', '/dev/sde'],
+                    'devices': ['/dev/sda', '/dev/sdb', '/dev/sdc'],
                     'mounts': {
                         '/backup': {},
                         '/data': {},
