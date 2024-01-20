@@ -8,7 +8,7 @@ def install_apt_packages(metadata):
         'file',
         'iproute2',
         'iputils-ping',
-        'locale',
+        'locales',
         'mailutils',
         'net-tools',
         'nfs-common',
