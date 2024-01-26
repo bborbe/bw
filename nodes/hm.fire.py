@@ -4,28 +4,37 @@ nodes['hm.fire'] = {
         'ubuntu-jammy',
     },
     'metadata': {
-        'docker': {
+        'k3s': {
             'enabled': True,
         },
+        'letsencrypt': {
+            'enabled': True,
+        },
+        'docker-registry': {
+            'enabled': True,
+        },
+        # 'docker': {
+        #     'enabled': True,
+        # },
         'backup_server': {
             'enabled': True,
             'targets': {
                 'sun.pn.benjamin-borbe.de': {'allow': '192.168.178.3/32'},
             }
         },
-        'golang': {
-            'enabled': True,
-            'arch': 'amd64',
-            'version': '1.16.4',
-            'os': 'linux',
-        },
+        # 'golang': {
+        #     'enabled': True,
+        #     'arch': 'amd64',
+        #     'version': '1.16.4',
+        #     'os': 'linux',
+        # },
         'groups': {
             'data': {
                 'enabled': True,
             },
-            'docker': {
-                'enabled': True,
-            },
+            # 'docker': {
+            #     'enabled': True,
+            # },
         },
         'iptables': {
             'enabled': True,
@@ -59,7 +68,7 @@ nodes['hm.fire'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'sudo', 'docker'],
+                'groups': ['data', 'sudo'],
             },
             'jana': {
                 'enabled': True,
@@ -78,6 +87,7 @@ nodes['hm.fire'] = {
                         '/home': {},
                         '/home/bborbe': {},
                         '/home/jana': {},
+                        '/var/lib/docker-registry': {},
                     },
                 },
             },

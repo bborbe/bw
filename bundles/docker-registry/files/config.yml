@@ -1,0 +1,27 @@
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/docker-registry
+  delete:
+    enabled: true
+http:
+  addr: :5000
+  tls:
+    certificate: /etc/letsencrypt/live/fire.hm.benjamin-borbe.de/fullchain.pem
+    key: /etc/letsencrypt/live/fire.hm.benjamin-borbe.de/privkey.pem
+  headers:
+    X-Content-Type-Options: [nosniff]
+auth:
+  htpasswd:
+    realm: basic-realm
+    path: /etc/docker/registry/htpasswd
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
