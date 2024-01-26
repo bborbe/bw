@@ -16,6 +16,9 @@ if node.metadata.get('nginx', {}).get('enabled', False):
     pkg_apt['nginx'] = {
         'installed': True,
     }
+    pkg_apt['apache2-utils'] = {
+        'installed': True,
+    }
     svc_systemd['nginx'] = {
         'running': True,
         'enabled': True,
@@ -43,6 +46,9 @@ else:
         'delete': True,
     }
     pkg_apt['nginx'] = {
+        'installed': False,
+    }
+    pkg_apt['apache2-utils'] = {
         'installed': False,
     }
     svc_systemd['nginx'] = {
