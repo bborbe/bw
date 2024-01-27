@@ -88,6 +88,7 @@ nodes['hm.fire'] = {
                         '/home/bborbe': {},
                         '/home/jana': {},
                         '/var/lib/docker-registry': {},
+                        '/var/lib/rancher/k3s/storage/hdd': {},
                     },
                 },
             },
