@@ -13,28 +13,16 @@ nodes['hm.fire'] = {
         'docker-registry': {
             'enabled': True,
         },
-        # 'docker': {
-        #     'enabled': True,
-        # },
         'backup_server': {
             'enabled': True,
             'targets': {
                 'sun.pn.benjamin-borbe.de': {'allow': '192.168.178.3/32'},
             }
         },
-        # 'golang': {
-        #     'enabled': True,
-        #     'arch': 'amd64',
-        #     'version': '1.16.4',
-        #     'os': 'linux',
-        # },
         'groups': {
             'data': {
                 'enabled': True,
             },
-            # 'docker': {
-            #     'enabled': True,
-            # },
         },
         'iptables': {
             'enabled': True,
@@ -75,6 +63,11 @@ nodes['hm.fire'] = {
                 'groups': ['data'],
             },
             'data': {
+                'enabled': True,
+                'groups': [],
+                'shell': '/usr/sbin/nologin',
+            },
+            'k8s': {
                 'enabled': True,
                 'groups': [],
                 'shell': '/usr/sbin/nologin',

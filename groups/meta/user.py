@@ -89,6 +89,9 @@ groups['meta-user'] = {
             'data': {
                 'uid': '20000',
             },
+            'k8s': {
+                'uid': '20001',
+            },
         },
         'groups': {
             'bborbe': {
@@ -153,6 +156,9 @@ groups['meta-user'] = {
             },
             'data': {
                 'gid': '20000',
+            },
+            'k8s': {
+                'gid': '20001',
             },
         },
     },
