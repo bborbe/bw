@@ -86,6 +86,9 @@ groups['meta-user'] = {
             'controller': {
                 'uid': '11019',
             },
+            'data': {
+                'uid': '20000',
+            },
         },
         'groups': {
             'bborbe': {

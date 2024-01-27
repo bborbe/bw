@@ -74,6 +74,11 @@ nodes['hm.fire'] = {
                 'enabled': True,
                 'groups': ['data'],
             },
+            'data': {
+                'enabled': True,
+                'groups': [],
+                'shell': '/usr/sbin/nologin',
+            },
         },
         'zfs': {
             'enabled': True,
