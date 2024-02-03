@@ -21,6 +21,11 @@ if node.metadata.get('k3s', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
     }
+    directories['/var/lib/rancher/k3s/storage/lvm'] = {
+        'mode': '0700',
+        'owner': 'root',
+        'group': 'root',
+    }
     svc_systemd['k3s'] = {
         'running': True,
         'enabled': True,

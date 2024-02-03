@@ -115,8 +115,9 @@ data:
           {
               "node": "fire",
               "paths": [
+				  "/var/lib/rancher/k3s/storage/ssd",
                   "/var/lib/rancher/k3s/storage/hdd",
-                  "/var/lib/rancher/k3s/storage/ssd"
+                  "/var/lib/rancher/k3s/storage/lvm"
               ]
           }
       ]
