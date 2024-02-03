@@ -4,12 +4,6 @@ nodes['hm.hell'] = {
         'ubuntu-jammy',
     },
     'metadata': {
-        'golang': {
-            'enabled': True,
-            'arch': 'amd64',
-            'version': '1.16.4',
-            'os': 'linux',
-        },
         'groups': {
             'data': {
                 'enabled': True,
@@ -53,6 +47,25 @@ nodes['hm.hell'] = {
                 'enabled': True,
                 'groups': ['data'],
             },
-        },    
+        },
+        'zfs': {
+            'enabled': True,
+            'pools': {
+                'tank1': {
+                    'type': 'raidz',
+                    'devices': ['/dev/sdb', '/dev/sdc', '/dev/sdd'],
+                    'mounts': {
+                        '/data': {},
+                    },
+                },
+                'tank2': {
+                    'type': 'raidz',
+                    'devices': ['/dev/sde', '/dev/sdf', '/dev/sdg'],
+                    'mounts': {
+                        '/backup': {},
+                    },
+                },
+            },
+        },
     },
 }
