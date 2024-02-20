@@ -1,7 +1,8 @@
-@metadata_reactor
+@metadata_reactor.provides(
+    'apt/packages',
+)
 def install_apt_packages(metadata):
     pkgs = (
-        'chromium-browser',
         'gedit',
         'gnome-terminal',
         'ubuntu-desktop',
@@ -14,23 +15,24 @@ def install_apt_packages(metadata):
         }
     }
     for package_name in pkgs:
-        result[package_name] = {
+        result['apt']['packages'][package_name] = {
             'installed': metadata.get('ubuntu-desktop', {}).get('enabled', False)
         }
     return result
 
 
-@metadata_reactor
+@metadata_reactor.provides(
+    'apt/repos/google-chrome',
+)
 def google_chrome_repo(metadata):
     if metadata.get('ubuntu-desktop', {}).get('enabled', False):
         return {
             'apt': {
                 'repos': {
-                    'google-chrome': {
+                    'google-chrome-stable': {
                         'installed': True,
-                        'gpg_key': 'E88979FB9B30ACF2',
+                        'gpg_key': 'EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796',
                         'sources': ['deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'],
-                        #'sources': ['deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main'],
                     },
                 }
             }
