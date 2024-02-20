@@ -8,6 +8,7 @@ def install_apt_packages(metadata):
         'ubuntu-desktop',
         'unzip',
         'google-chrome-stable',
+        'enpass',
     )
     result = {
         'apt': {
@@ -29,7 +30,7 @@ def google_chrome_repo(metadata):
         return {
             'apt': {
                 'repos': {
-                    'google-chrome-stable': {
+                    'google-chrome': {
                         'installed': True,
                         'gpg_key': 'EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796',
                         'sources': ['deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'],
@@ -39,3 +40,26 @@ def google_chrome_repo(metadata):
         }
     else:
         return {}
+
+
+
+@metadata_reactor.provides(
+    'apt/repos/enpass',
+)
+def enpass_repo(metadata):
+    if metadata.get('ubuntu-desktop', {}).get('enabled', False):
+        return {
+            'apt': {
+                'repos': {
+                    'enpass': {
+                        'installed': True,
+                        'gpg_key': 'B6DA722E2E65721AF54B93966F7565879798C2FC',
+                        'sources': ['deb https://apt.enpass.io/  stable main'],
+                    },
+                }
+            }
+        }
+    else:
+        return {}
+
+
