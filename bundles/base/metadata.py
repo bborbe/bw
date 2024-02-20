@@ -1,4 +1,6 @@
-@metadata_reactor
+@metadata_reactor.provides(
+    'apt/packages',
+)
 def install_apt_packages(metadata):
     pkgs_install = (
         'augeas-tools',
@@ -34,8 +36,9 @@ def install_apt_packages(metadata):
         }
     return result
 
-
-@metadata_reactor
+@metadata_reactor.provides(
+    'apt/packages',
+)
 def uninstall_apt_packages(metadata):
     return {
         'apt': {

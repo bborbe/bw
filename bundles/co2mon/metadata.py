@@ -1,4 +1,6 @@
-@metadata_reactor
+@metadata_reactor.provides(
+    'apt/packages',
+)
 def install_apt_packages(metadata):
     pkgs_install = (
         'python3-pip',
