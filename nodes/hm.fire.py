@@ -4,6 +4,9 @@ nodes['hm.fire'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'ubuntu-desktop': {
+            'enabled': True,
+        },
         'k3s': {
             'enabled': True,
         },
