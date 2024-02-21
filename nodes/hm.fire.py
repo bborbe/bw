@@ -4,6 +4,12 @@ nodes['hm.fire'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'golang': {
+            'enabled': True,
+            'arch': 'amd64',
+            'version': '1.21.7',
+            'os': 'linux',
+        },
         'ubuntu-desktop': {
             'enabled': True,
         },
