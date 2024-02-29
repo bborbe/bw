@@ -4,6 +4,9 @@ nodes['hm.nuke'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'kvm': {
+            'enabled': True,
+        },
         'groups': {
             'data': {
                 'enabled': True,

@@ -46,5 +46,6 @@ groups['meta-bundles'] = {
         'ubuntu-desktop',
         'user',
         'zfs',
+        'kvm',
     ),
 }
