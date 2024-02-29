@@ -4,6 +4,9 @@ nodes['hm.nuke'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'ubuntu-desktop': {
+            'enabled': True,
+        },
         'kvm': {
             'enabled': True,
         },
@@ -49,7 +52,7 @@ nodes['hm.nuke'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['docker', 'data', 'sudo'],
+                'groups': ['data', 'sudo', 'libvirt'],
             },
         },
     },
