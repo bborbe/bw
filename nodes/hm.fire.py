@@ -22,12 +22,15 @@ nodes['hm.fire'] = {
         'docker-registry': {
             'enabled': True,
         },
-        'backup_server': {
+        'trading': {
             'enabled': True,
-            'targets': {
-                'sun.pn.benjamin-borbe.de': {'allow': '192.168.178.3/32'},
-            }
         },
+        # 'backup_server': {
+        #     'enabled': True,
+        #     'targets': {
+        #         'sun.pn.benjamin-borbe.de': {'allow': '192.168.178.3/32'},
+        #     }
+        # },
         'groups': {
             'data': {
                 'enabled': True,
@@ -40,19 +43,30 @@ nodes['hm.fire'] = {
                 'filter': {
                     # allow forward
                     '-A FORWARD -j ACCEPT',
-                    '-A INPUT -m state --state NEW -p tcp --dport 20000 -j ACCEPT',
                 },
             },
         },
-        'networking': {
-            'interfaces': {
+        'netplan': {
+            'enabled': True,
+            'ethernets': {
                 'eth0': {
-                    'address': '192.168.178.3',
-                    'netmask': '255.255.255.0',
-                    'gateway': '192.168.178.1',
+                    'dhcp4': False,
                 },
             },
-            'routes': {},
+            'bridges': {
+                'br0': {
+                    'dhcp4': False,
+                    'interfaces': ['eth0'],
+                    'addresses': ['192.168.178.3/24'],
+                    'routes': [
+                        {
+                            'to': 'default',
+                            'via': '192.168.178.1',
+                        }
+                    ],
+                    'nameservers': ['8.8.8.8', '8.8.4.4'],
+                },
+            },
         },
         'samba': {
             'enabled': True,
