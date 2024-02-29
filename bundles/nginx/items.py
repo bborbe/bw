@@ -31,7 +31,7 @@ if node.metadata.get('nginx', {}).get('enabled', False):
             'group': 'root',
             'mode': '0644',
             'context': {
-                'port': data.get('port', 80),
+                'port': data.get('listen', ':80'),
                 'root': data.get('root', None),
                 'locations': data.get('locations', {}),
                 'server_names': data.get('server_names', []),

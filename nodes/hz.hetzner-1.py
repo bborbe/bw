@@ -15,6 +15,18 @@ nodes['hz.hetzner-1'] = {
         },
         'nginx': {
             'enabled': True,
+            'vhosts': {
+                'kickstart': {
+                    'listen': '159.69.203.89:80',
+                    'root': '/var/lib/kickstart',
+                    'locations': {},
+                    'server_names': [
+                        'ks.benjamin-borbe.de',
+                        'kickstart.benjamin-borbe.de',
+                    ],
+                    'indexes': [],
+                },
+            },
         },
         'golang': {
             'enabled': True,
