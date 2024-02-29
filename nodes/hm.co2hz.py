@@ -1,20 +1,24 @@
 import bwtv as teamvault
 
-
-
-
 nodes['hm.co2hz'] = {
     'hostname': 'co2hz.hm.benjamin-borbe.de',
     'groups': {
         'raspbian-bullseye',
     },
     'metadata': {
-        'networking': {
-            'interfaces': {
+        'netplan': {
+            'enabled': True,
+            'ethernets': {
                 'eth0': {
-                    'address': '192.168.178.6',
-                    'netmask': '255.255.255.0',
-                    'gateway': '192.168.178.1',
+                    'dhcp4': False,
+                    'addresses': ['192.168.178.6/24'],
+                    'routes': [
+                        {
+                            'to': '0.0.0.0/0',
+                            'via': '192.168.178.1',
+                        }
+                    ],
+                    'nameservers': ['8.8.8.8', '8.8.4.4'],
                 },
             },
         },
