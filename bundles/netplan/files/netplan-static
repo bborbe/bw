@@ -1,0 +1,68 @@
+network:
+  version: 2
+  renderer: networkd
+% if len(ethernets) > 0:
+  ethernets:
+% for interface, data in sorted(ethernets.items()):
+    ${interface}:
+      dhcp4: ${ 'true' if data.get('dhcp') else 'false' }
+% if len(data.get('addresses',[])) > 0:
+      addresses:
+% for address in sorted(data.get('addresses',[])):
+      - ${address}
+% endfor
+% endif
+% if len(data.get('routes',[])) > 0:
+      routes:
+% for route in sorted(data.get('routes',[])):
+      - to: ${route['to']}
+        via: ${route['via']}
+% endfor
+% endif
+% if len(data.get('nameservers',[])) > 0:
+      nameservers:
+        addresses:
+% for nameserver in sorted(data.get('nameservers',[])):
+        - ${nameserver}
+% endfor
+% endif
+% endfor
+% endif
+
+
+
+
+
+% if len(bridges) > 0:
+  bridges:
+% for interface, data in sorted(bridges.items()):
+    ${interface}:
+      dhcp4: ${ 'true' if data.get('dhcp') else 'false' }
+% if len(data.get('interfaces',[])) > 0:
+      interfaces:
+% for interface in sorted(data.get('interfaces',[])):
+      - ${interface}
+% endfor
+% endif
+% if len(data.get('addresses',[])) > 0:
+      addresses:
+% for address in sorted(data.get('addresses',[])):
+      - ${address}
+% endfor
+% endif
+% if len(data.get('routes',[])) > 0:
+      routes:
+% for route in sorted(data.get('routes',[])):
+      - to: ${route['to']}
+        via: ${route['via']}
+% endfor
+% endif
+% if len(data.get('nameservers',[])) > 0:
+      nameservers:
+        addresses:
+% for nameserver in sorted(data.get('nameservers',[])):
+        - ${nameserver}
+% endfor
+% endif
+% endfor
+% endif

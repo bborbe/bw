@@ -31,6 +31,7 @@ groups['meta-bundles'] = {
         'monit',
         'mosquitto',
         'networking',
+        'netplan',
         'nginx',
         'rancher-server',
         'samba',
