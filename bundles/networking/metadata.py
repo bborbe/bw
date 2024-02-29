@@ -1,13 +1,19 @@
-@metadata_reactor
+@metadata_reactor.provides(
+    'networking/nameservers',
+)
 def defaultnameservers(metadata):
-    return {
-        'networking': {
-            'nameservers': set(['8.8.4.4', '8.8.8.8']),
+    if metadata.get('networking', {}).get('enabled', False):
+        return {
+            'networking': {
+                'nameservers': {'8.8.4.4', '8.8.8.8'},
+            }
         }
-    }
+    return {}
 
 
-@metadata_reactor
+@metadata_reactor.provides(
+    'sysctl/options',
+)
 def enable_routing(metadata):
     if metadata.get('networking', {}).get('enabled', False):
         return {
