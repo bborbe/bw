@@ -21,15 +21,27 @@ nodes['hm.hell'] = {
                 },
             },
         },
-        'networking': {
-            'interfaces': {
+        'netplan': {
+            'enabled': True,
+            'ethernets': {
                 'eth0': {
-                    'address': '192.168.178.9',
-                    'netmask': '255.255.255.0',
-                    'gateway': '192.168.178.1',
+                    'dhcp4': False,
                 },
             },
-            'routes': {},
+            'bridges': {
+                'br0': {
+                    'dhcp4': False,
+                    'interfaces': ['eth0'],
+                    'addresses': ['192.168.178.9/24'],
+                    'routes': [
+                        {
+                            'to': 'default',
+                            'via': '192.168.178.1',
+                        }
+                    ],
+                    'nameservers': ['8.8.8.8', '8.8.4.4'],
+                },
+            },
         },
         'samba': {
             'enabled': True,
