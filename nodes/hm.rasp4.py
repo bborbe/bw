@@ -6,13 +6,13 @@ nodes['hm.rasp4'] = {
         'raspbian-bullseye',
     },
     'metadata': {
-        'influxdb' : {
+        'influxdb': {
             'enabled': True,
         },
-        'grafana' : {
+        'grafana': {
             'enabled': True,
         },
-        'telegraf' : {
+        'telegraf': {
             'enabled': True,
             'mqtt_username': teamvault.username('9qNx3O', site='benjamin-borbe'),
             'mqtt_password': teamvault.password('9qNx3O', site='benjamin-borbe'),
@@ -26,15 +26,21 @@ nodes['hm.rasp4'] = {
             'version': '1.16.4',
             'os': 'linux',
         },
-        'networking': {
-            'interfaces': {
+        'netplan': {
+            'enabled': True,
+            'ethernets': {
                 'eth0': {
-                    'address': '192.168.178.8',
-                    'netmask': '255.255.255.0',
-                    'gateway': '192.168.178.1',
+                    'dhcp4': False,
+                    'addresses': ['192.168.178.8/24'],
+                    'routes': [
+                        {
+                            'to': '0.0.0.0/0',
+                            'via': '192.168.178.1',
+                        }
+                    ],
+                    'nameservers': ['8.8.8.8', '8.8.4.4'],
                 },
             },
-            'routes': {},
         },
         'mosquitto': {
             'enabled': True,
