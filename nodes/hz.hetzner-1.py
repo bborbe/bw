@@ -17,13 +17,17 @@ nodes['hz.hetzner-1'] = {
             'enabled': True,
             'vhosts': {
                 'kickstart': {
-                    'listen': '159.69.203.89:80',
+                    'ip': '159.69.203.89',
                     'root': '/var/lib/kickstart',
                     'locations': {},
                     'server_names': [
-                        'ks.benjamin-borbe.de',
                         'kickstart.benjamin-borbe.de',
+                        'ks.benjamin-borbe.de',
                     ],
+                    'ssl': {
+                        'cert': '/etc/letsencrypt/live/kickstart.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/kickstart.benjamin-borbe.de/privkey.pem',
+                    },
                     'indexes': [],
                 },
             },

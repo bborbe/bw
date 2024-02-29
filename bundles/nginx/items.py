@@ -2,7 +2,6 @@ if node.os != 'ubuntu' and node.os != 'raspbian':
     raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
 files = {}
-pkg_apt = {}
 svc_systemd = {}
 directories = {}
 
@@ -11,13 +10,7 @@ if node.metadata.get('nginx', {}).get('enabled', False):
         'mode': '0755',
         'owner': 'root',
         'group': 'root',
-        'purge': False, # set true again if all vhosts are managed by bw
-    }
-    pkg_apt['nginx'] = {
-        'installed': True,
-    }
-    pkg_apt['apache2-utils'] = {
-        'installed': True,
+        'purge': False,  # set true again if all vhosts are managed by bw
     }
     svc_systemd['nginx'] = {
         'running': True,
@@ -31,11 +24,12 @@ if node.metadata.get('nginx', {}).get('enabled', False):
             'group': 'root',
             'mode': '0644',
             'context': {
-                'port': data.get('listen', ':80'),
+                'ip': data.get('ip', ''),
                 'root': data.get('root', None),
                 'locations': data.get('locations', {}),
                 'server_names': data.get('server_names', []),
                 'indexes': data.get('indexes', []),
+                'ssl': data.get('ssl', {}),
             },
             'content_type': 'mako',
             'needs': ['pkg_apt:nginx'],
@@ -44,12 +38,6 @@ if node.metadata.get('nginx', {}).get('enabled', False):
 else:
     files['/etc/nginx/sites-enabled'] = {
         'delete': True,
-    }
-    pkg_apt['nginx'] = {
-        'installed': False,
-    }
-    pkg_apt['apache2-utils'] = {
-        'installed': False,
     }
     svc_systemd['nginx'] = {
         'running': False,
