@@ -4,12 +4,15 @@
 def install_apt_packages(metadata):
     if metadata.get('kvm', {}).get('enabled', False):
         pkgs_install = (
-            'cpu-checker',
-            'qemu-system-x86',
-            'libvirt-daemon-system',
-            'libvirt-clients',
             'bridge-utils',
+            'cloud-utils',
+            'cpu-checker',
+            'libvirt-clients',
+            'libvirt-daemon-system',
+            'qemu-system-x86',
+            'qemu-utils',
             'virtinst',
+            'whois',
         )
         result = {
             'apt': {
