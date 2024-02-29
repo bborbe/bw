@@ -2,15 +2,10 @@ if node.os != 'ubuntu' and node.os != 'raspbian':
     raise Exception('{} {} is not supported by this bundle'.format(node.os, node.os_version))
 
 files = {}
-pkg_apt = {}
 actions = {}
 
-pkg_apt['locale-gen'] = {
-    'installed': True,
-}
-
 actions['locale-gen'] = {
-    'needs': ['pkg_apt:locale-gen'],
+    'needs': ['pkg_apt:locales'],
     'command': 'locale-gen',
     'triggered': True,
     'cascade_skip': False,
