@@ -48,12 +48,25 @@ nodes['pn.sun'] = {
                 },
             },
         },
-        'networking': {
-            'interfaces': {
+        'netplan': {
+            'enabled': True,
+            'ethernets': {
                 'eth0': {
-                    'address': '192.168.2.3',
-                    'netmask': '255.255.255.0',
-                    'gateway': '192.168.2.1',
+                    'dhcp4': False,
+                },
+            },
+            'bridges': {
+                'br0': {
+                    'dhcp4': False,
+                    'interfaces': ['eth0'],
+                    'addresses': ['192.168.178.10/24'],
+                    'routes': [
+                        {
+                            'to': 'default',
+                            'via': '192.168.178.1',
+                        }
+                    ],
+                    'nameservers': ['8.8.8.8', '8.8.4.4'],
                 },
             },
         },
