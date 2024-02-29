@@ -4,6 +4,15 @@ nodes['hz.hetzner-1'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'netplan': {
+            'enabled': True,
+            'ethernets': {
+                'ens4': {
+                    'dhcp4': True,
+                    'dhcp6': False,
+                },
+            },
+        },
         'nginx': {
             'enabled': True,
         },

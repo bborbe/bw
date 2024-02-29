@@ -11,15 +11,6 @@ if node.metadata.get('netplan', {}).get('enabled', False):
         pkg_apt['netplan.io'] = {
             'installed': True,
         }
-    pkg_apt['resolvconf'] = {
-        'installed': False,
-    }
-    pkg_apt['network-manager'] = {
-        'installed': False,
-    }
-    pkg_apt['bridge-utils'] = {
-        'installed': True,
-    }
     actions = {
         'netplan_apply': {
             'command': 'netplan apply',

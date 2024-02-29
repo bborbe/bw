@@ -11,3 +11,25 @@ def enable_routing(metadata):
             }
         }
     return {}
+
+
+@metadata_reactor.provides(
+    'apt/packages',
+)
+def install_apt_packages(metadata):
+    result = {
+        'apt': {
+            'packages': {}
+        }
+    }
+    if metadata.get('netplan', {}).get('enabled', False):
+        result['apt']['packages']['resolvconf'] = {
+            'installed': False,
+        }
+        result['apt']['packages']['network-manager'] = {
+            'installed': False,
+        }
+        result['apt']['packages']['bridge-utils'] = {
+            'installed': True,
+        }
+    return result

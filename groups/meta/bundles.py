@@ -30,7 +30,6 @@ groups['meta-bundles'] = {
         'locale',
         'monit',
         'mosquitto',
-        'networking',
         'netplan',
         'nginx',
         'rancher-server',
