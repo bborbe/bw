@@ -5,7 +5,8 @@ network:
   ethernets:
 % for interface, data in sorted(ethernets.items()):
     ${interface}:
-      dhcp4: ${ 'true' if data.get('dhcp') else 'false' }
+      dhcp4: ${ 'true' if data.get('dhcp4') else 'false' }
+      dhcp6: ${ 'true' if data.get('dhcp6') else 'false' }
 % if len(data.get('addresses',[])) > 0:
       addresses:
 % for address in sorted(data.get('addresses',[])):
@@ -15,8 +16,9 @@ network:
 % if len(data.get('routes',[])) > 0:
       routes:
 % for route in sorted(data.get('routes',[])):
-      - to: ${route['to']}
-        via: ${route['via']}
+      - to: ${route.get('to','default')}
+        via: ${route.get('via')}
+        metric: ${route.get('metric',100)}
 % endfor
 % endif
 % if len(data.get('nameservers',[])) > 0:
@@ -37,7 +39,8 @@ network:
   bridges:
 % for interface, data in sorted(bridges.items()):
     ${interface}:
-      dhcp4: ${ 'true' if data.get('dhcp') else 'false' }
+      dhcp4: ${ 'true' if data.get('dhcp4') else 'false' }
+      dhcp6: ${ 'true' if data.get('dhcp6') else 'false' }
 % if len(data.get('interfaces',[])) > 0:
       interfaces:
 % for interface in sorted(data.get('interfaces',[])):

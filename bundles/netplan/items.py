@@ -7,6 +7,10 @@ svc_systemd = {}
 pkg_apt = {}
 
 if node.metadata.get('netplan', {}).get('enabled', False):
+    if node.os == 'raspbian':
+        pkg_apt['netplan.io'] = {
+            'installed': True,
+        }
     pkg_apt['resolvconf'] = {
         'installed': False,
     }
