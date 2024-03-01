@@ -51,6 +51,7 @@ nodes['hm.fire'] = {
             'ethernets': {
                 'eth0': {
                     'dhcp4': False,
+                    'dhcp6': False,
                 },
             },
             'bridges': {
@@ -62,6 +63,7 @@ nodes['hm.fire'] = {
                     'mtu': 1500,
                     'macaddress': 'd0:50:99:5a:18:be',
                     'dhcp4': False,
+                    'dhcp6': False,
                     'interfaces': ['eth0'],
                     'addresses': ['192.168.178.3/24'],
                     'routes': [

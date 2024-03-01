@@ -32,6 +32,7 @@ nodes['hm.nuke'] = {
             'ethernets': {
                 'eth0': {
                     'dhcp4': False,
+                    'dhcp6': False,
                 },
             },
             'bridges': {
@@ -43,6 +44,7 @@ nodes['hm.nuke'] = {
                     'mtu': 1500,
                     'macaddress': '70:85:c2:b9:64:65',
                     'dhcp4': False,
+                    'dhcp6': False,
                     'interfaces': ['eth0'],
                     'addresses': ['192.168.178.5/24'],
                     'routes': [
