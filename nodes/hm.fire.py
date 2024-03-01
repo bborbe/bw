@@ -22,7 +22,7 @@ nodes['hm.fire'] = {
         'docker-registry': {
             'enabled': True,
         },
-        'trading': {
+        'kvm': {
             'enabled': True,
         },
         # 'backup_server': {
@@ -55,6 +55,12 @@ nodes['hm.fire'] = {
             },
             'bridges': {
                 'br0': {
+                    'parameters': {
+                        'stp': 'true',
+                        'forward-delay': '4',
+                    },
+                    'mtu': 1500,
+                    'macaddress': 'd0:50:99:5a:18:be',
                     'dhcp4': False,
                     'interfaces': ['eth0'],
                     'addresses': ['192.168.178.3/24'],
