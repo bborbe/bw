@@ -41,6 +41,12 @@ network:
     ${interface}:
       dhcp4: ${ 'true' if data.get('dhcp4') else 'false' }
       dhcp6: ${ 'true' if data.get('dhcp6') else 'false' }
+% if data.get('macaddress',None) is not None:
+      macaddress: ${data.get('macaddress')}
+% endif
+% if data.get('mtu',None) is not None:
+      mtu: ${data.get('mtu')}
+% endif
 % if len(data.get('interfaces',[])) > 0:
       interfaces:
 % for interface in sorted(data.get('interfaces',[])):
@@ -67,5 +73,13 @@ network:
         - ${nameserver}
 % endfor
 % endif
+
+% if len(data.get('parameters',{})) > 0:
+      parameters:
+% for k, v in sorted(data.get('parameters',{}).items()):
+        ${k}: ${v}
+% endfor
+% endif
+
 % endfor
 % endif
