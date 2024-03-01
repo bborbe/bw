@@ -1,0 +1,6 @@
+<network>
+	<name>br0</name>
+	<uuid>e4163f91-7df5-419f-afcb-f000ae735fe0</uuid>
+	<forward mode='bridge'/>
+	<bridge name='br0'/>
+</network>
