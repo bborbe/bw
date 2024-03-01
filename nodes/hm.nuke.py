@@ -36,6 +36,12 @@ nodes['hm.nuke'] = {
             },
             'bridges': {
                 'br0': {
+                    'parameters': {
+                        'stp': 'true',
+                        'forward-delay': '4',
+                    },
+                    'mtu': 1500,
+                    'macaddress': '70:85:c2:b9:64:65',
                     'dhcp4': False,
                     'interfaces': ['eth0'],
                     'addresses': ['192.168.178.5/24'],
