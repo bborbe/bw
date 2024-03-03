@@ -13,6 +13,7 @@ def install_apt_packages(metadata):
             'qemu-utils',
             'virtinst',
             'whois',
+            'virt-top',
         )
         result = {
             'apt': {
