@@ -13,9 +13,6 @@ nodes['hm.fire'] = {
         'ubuntu-desktop': {
             'enabled': True,
         },
-        'k3s': {
-            'enabled': True,
-        },
         'letsencrypt': {
             'enabled': True,
         },
