@@ -19,6 +19,9 @@ nodes['hm.hell'] = {
                 },
             },
         },
+        'k3s': {
+            'enabled': True,
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {
