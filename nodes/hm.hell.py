@@ -24,11 +24,19 @@ nodes['hm.hell'] = {
             'ethernets': {
                 'eth0': {
                     'dhcp4': False,
+                    'dhcp6': False,
                 },
             },
             'bridges': {
                 'br0': {
+                    'parameters': {
+                        'stp': 'true',
+                        'forward-delay': '4',
+                    },
+                    'mtu': 1500,
+                    'macaddress': 'bc:5f:f4:71:15:c4',
                     'dhcp4': False,
+                    'dhcp6': False,
                     'interfaces': ['eth0'],
                     'addresses': ['192.168.178.9/24'],
                     'routes': [
