@@ -61,9 +61,10 @@ nodes['hm.hell'] = {
                 'enabled': True,
                 'groups': ['data', 'sudo'],
             },
-            'jana': {
+            'data': {
                 'enabled': True,
-                'groups': ['data'],
+                'groups': [],
+                'shell': '/usr/sbin/nologin',
             },
         },
         'zfs': {
