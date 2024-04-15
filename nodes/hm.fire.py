@@ -4,6 +4,9 @@ nodes['hm.fire'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'backup_client': {
+            'enabled': True,
+        },
         'golang': {
             'enabled': True,
             'arch': 'amd64',
