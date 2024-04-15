@@ -74,7 +74,15 @@ nodes['hm.hell'] = {
             'enabled': True,
             'pool': 'tank2',
             'targets': {
-                'fire.hm.benjamin-borbe.de': {'allow': '192.168.178.3/32'},
+                'co2hz.hm.benjamin-borbe.de': {},
+                'co2wz.hm.benjamin-borbe.de': {},
+                'fire-k3s-dev.hm.benjamin-borbe.de': {},
+                'fire-k3s-master.hm.benjamin-borbe.de': {},
+                'fire-k3s-prod.hm.benjamin-borbe.de': {},
+                'fire.hm.benjamin-borbe.de': {},
+                'hetzner-1.benjamin-borbe.de': {},
+                'rasp3.hm.benjamin-borbe.de': {},
+                'rasp4.hm.benjamin-borbe.de': {},
             }
         },
         'zfs': {
