@@ -70,6 +70,13 @@ nodes['hm.hell'] = {
                 'shell': '/usr/sbin/nologin',
             },
         },
+        'backup_server': {
+            'enabled': True,
+            'pool': 'tank2',
+            'targets': {
+                'fire.hm.benjamin-borbe.de': {'allow': '192.168.178.3/32'},
+            }
+        },
         'zfs': {
             'enabled': True,
             'pools': {
@@ -85,6 +92,7 @@ nodes['hm.hell'] = {
                     'devices': ['/dev/sde', '/dev/sdf', '/dev/sdg'],
                     'mounts': {
                         '/backup': {},
+                        # '/backup/fire.hm.benjamin-borbe.de': {},
                     },
                 },
             },

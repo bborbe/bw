@@ -22,12 +22,6 @@ nodes['hm.fire'] = {
         'kvm': {
             'enabled': True,
         },
-        # 'backup_server': {
-        #     'enabled': True,
-        #     'targets': {
-        #         'sun.pn.benjamin-borbe.de': {'allow': '192.168.178.3/32'},
-        #     }
-        # },
         'groups': {
             'data': {
                 'enabled': True,
