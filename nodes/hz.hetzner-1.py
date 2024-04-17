@@ -4,6 +4,9 @@ nodes['hz.hetzner-1'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'backup_client': {
+            'enabled': True,
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {

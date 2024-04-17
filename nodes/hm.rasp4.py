@@ -6,6 +6,9 @@ nodes['hm.rasp4'] = {
         'raspbian-bullseye',
     },
     'metadata': {
+        'backup_client': {
+            'enabled': True,
+        },
         'influxdb': {
             'enabled': True,
         },

@@ -6,6 +6,9 @@ nodes['hm.rasp3'] = {
         'raspbian-bullseye',
     },
     'metadata': {
+        'backup_client': {
+            'enabled': True,
+        },
         'kernel_modules': {
             'i2c-dev': {},
         },

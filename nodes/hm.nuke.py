@@ -4,6 +4,9 @@ nodes['hm.nuke'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'backup_client': {
+            'enabled': True,
+        },
         'ubuntu-desktop': {
             'enabled': True,
         },

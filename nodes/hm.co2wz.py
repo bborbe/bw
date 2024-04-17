@@ -6,6 +6,9 @@ nodes['hm.co2wz'] = {
         'raspbian-bullseye',
     },
     'metadata': {
+        'backup_client': {
+            'enabled': True,
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {

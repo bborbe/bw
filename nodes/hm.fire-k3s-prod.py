@@ -4,6 +4,9 @@ nodes['hm.fire-k3s-prod'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'backup_client': {
+            'enabled': True,
+        },
         'k3s': {
             'enabled': True,
         },
