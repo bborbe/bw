@@ -104,7 +104,6 @@ nodes['hm.fire'] = {
                     'type': 'raidz',
                     'devices': ['/dev/sda', '/dev/sdb', '/dev/sdc'],
                     'mounts': {
-                        '/backup': {},
                         '/data': {},
                         '/home': {},
                         '/home/bborbe': {},
