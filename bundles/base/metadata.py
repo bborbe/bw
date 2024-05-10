@@ -17,6 +17,7 @@ def install_apt_packages(metadata):
         'nfs-common',
         'openssh-client',
         'postfix',
+        'psmisc',
         'python-is-python3',
         'rsync',
         'screen',
