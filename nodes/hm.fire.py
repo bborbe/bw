@@ -22,7 +22,7 @@ nodes['hm.fire'] = {
         'docker-registry': {
             'enabled': True,
         },
-        'kvm': {
+        'kvm-host': {
             'enabled': True,
         },
         'groups': {

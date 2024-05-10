@@ -10,7 +10,7 @@ nodes['hm.nuke'] = {
         'ubuntu-desktop': {
             'enabled': True,
         },
-        'kvm': {
+        'kvm-host': {
             'enabled': True,
         },
         'groups': {
