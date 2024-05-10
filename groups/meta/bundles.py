@@ -46,5 +46,6 @@ groups['meta-bundles'] = {
         'user',
         'zfs',
         'kvm',
+        'kvm-guest',
     ),
 }

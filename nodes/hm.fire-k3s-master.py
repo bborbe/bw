@@ -4,6 +4,9 @@ nodes['hm.fire-k3s-master'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'kvm-guest': {
+            'enabled': True,
+        },
         'backup_client': {
             'enabled': True,
         },
