@@ -11,14 +11,24 @@ if node.metadata.get('k3s', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
     }
-    svc_systemd['k3s'] = {
-        'running': True,
-        'enabled': True,
-        'needs': [
-            # 'file:/etc/rancher/k3s/config.yaml',
-            # 'file:/var/lib/rancher/k3s/server/manifests/local-path.yaml',
-        ],
-    }
+    if node.metadata.get('k3s', {}).get('agent', False):
+        svc_systemd['k3s-agent'] = {
+            'running': True,
+            'enabled': True,
+            'needs': [
+                # 'file:/etc/rancher/k3s/config.yaml',
+                # 'file:/var/lib/rancher/k3s/server/manifests/local-path.yaml',
+            ],
+        }
+    else:
+        svc_systemd['k3s'] = {
+            'running': True,
+            'enabled': True,
+            'needs': [
+                # 'file:/etc/rancher/k3s/config.yaml',
+                # 'file:/var/lib/rancher/k3s/server/manifests/local-path.yaml',
+            ],
+        }
     # files['/etc/rancher/k3s/config.yaml'] = {
     #     'source': 'config.yaml',
     #     'content_type': 'text',
@@ -43,6 +53,10 @@ else:
     #     'delete': True,
     # }
     svc_systemd['k3s'] = {
+        'running': False,
+        'enabled': False,
+    }
+    svc_systemd['k3s-agent'] = {
         'running': False,
         'enabled': False,
     }
