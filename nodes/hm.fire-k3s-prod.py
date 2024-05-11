@@ -12,6 +12,7 @@ nodes['hm.fire-k3s-prod'] = {
         },
         'k3s': {
             'enabled': True,
+            'agent': True,
         },
         'iptables': {
             'enabled': True,
