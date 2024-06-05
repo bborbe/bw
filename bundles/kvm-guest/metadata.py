@@ -19,3 +19,20 @@ def install_apt_packages(metadata):
             }
         return result
     return {}
+
+
+@metadata_reactor.provides(
+    'sysctl/options',
+)
+def kvm_quest_sysctl(metadata):
+    if metadata.get('kvm-guest', {}).get('enabled', False):
+        return {
+            'sysctl': {
+                'options': {
+                    'fs.inotify.max_user_watches': '2099999999',
+                    'fs.inotify.max_user_instances': '2099999999',
+                    'fs.inotify.max_queued_events': '2099999999'
+                }
+            }
+        }
+    return {}
