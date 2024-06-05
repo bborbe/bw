@@ -1,3 +1,4 @@
+
 nodes['hm.fire-k3s-dev'] = {
     'hostname': 'fire-k3s-dev.hm.benjamin-borbe.de',
     'groups': {
@@ -19,7 +20,7 @@ nodes['hm.fire-k3s-dev'] = {
             'nat_interfaces': [],
             'rules': {
                 'filter': {
-                    # allow forward
+                    '-A INPUT -j ACCEPT',
                     '-A FORWARD -j ACCEPT',
                 },
             },
@@ -35,3 +36,4 @@ nodes['hm.fire-k3s-dev'] = {
         },
     },
 }
+

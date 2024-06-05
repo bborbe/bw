@@ -18,7 +18,7 @@ nodes['hm.fire-k3s-master'] = {
             'nat_interfaces': [],
             'rules': {
                 'filter': {
-                    # allow forward
+                    '-A INPUT -j ACCEPT',
                     '-A FORWARD -j ACCEPT',
                 },
             },
