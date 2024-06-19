@@ -37,6 +37,7 @@ if node.metadata.get('grub', {}).get('enabled', False):
             'name': name,
             'default': node.metadata.get('grub', {}).get('default', ''),
             'cmd_args': node.metadata.get('grub', {}).get('cmd_args', {}),
+            'cmd_default_args': node.metadata.get('grub', {}).get('cmd_default_args', {}),
             'serial': node.metadata.get('grub', {}).get('serial', False),
         },
         'triggers': ['action:update-grub'],

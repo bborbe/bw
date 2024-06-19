@@ -1,5 +1,5 @@
 GRUB_CMDLINE_LINUX="${" ".join(sorted(cmd_args.keys()))}"
-GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+GRUB_CMDLINE_LINUX_DEFAULT="${" ".join(sorted(cmd_default_args.keys()))}"
 % if default:
 GRUB_DEFAULT="${default}"
 % else:

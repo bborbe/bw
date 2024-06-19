@@ -5,7 +5,10 @@ def default_cmd_args(metadata):
             'cmd_args': {
                 'net.ifnames=0': {},
                 'acpi=noirq': {},
-            }
+            },
+            'cmd_default_args': {
+                'quiet': {},
+            },
         }
     }
     if metadata.get('grub', {}).get('serial', False):
