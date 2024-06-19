@@ -15,6 +15,7 @@ def install_apt_packages(metadata):
             'virt-top',
             'virtinst',
             'whois',
+            'swtpm-tools',
         )
         result = {
             'apt': {
