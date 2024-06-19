@@ -30,6 +30,9 @@ groups['ubuntu-xenial'] = {
         'systemd',
     ),
     'os_version': (16, 4),
+    'metadata': {
+        'release': 'xenial',
+    },
 }
 
 groups['ubuntu-bionic'] = {
@@ -37,6 +40,9 @@ groups['ubuntu-bionic'] = {
         'systemd',
     ),
     'os_version': (18, 4),
+    'metadata': {
+        'release': 'bionic',
+    },
 }
 
 groups['ubuntu-focal'] = {
@@ -44,11 +50,27 @@ groups['ubuntu-focal'] = {
         'systemd',
     ),
     'os_version': (20, 4),
+    'metadata': {
+        'release': 'focal',
+    },
 }
 
 groups['ubuntu-jammy'] = {
     'bundles': (
         'systemd',
     ),
-    'os_version': (20, 4),
+    'os_version': (22, 4),
+    'metadata': {
+        'release': 'jammy',
+    },
+}
+
+groups['ubuntu-noble'] = {
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (24, 4),
+    'metadata': {
+        'release': 'noble',
+    },
 }
