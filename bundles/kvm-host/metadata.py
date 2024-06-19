@@ -9,11 +9,12 @@ def install_apt_packages(metadata):
             'cpu-checker',
             'libvirt-clients',
             'libvirt-daemon-system',
+            'ovmf',
             'qemu-system-x86',
             'qemu-utils',
+            'virt-top',
             'virtinst',
             'whois',
-            'virt-top',
         )
         result = {
             'apt': {
