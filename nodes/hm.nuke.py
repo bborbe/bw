@@ -10,6 +10,21 @@ nodes['hm.nuke'] = {
         'ubuntu-desktop': {
             'enabled': True,
         },
+                'enpass': {
+                    'enabled': True,
+                },
+        'intellij': {
+            'enabled': True,
+        },
+        'google-chrome': {
+            'enabled': True,
+        },
+        'golang': {
+            'enabled': True,
+            'arch': 'amd64',
+            'version': '1.22.4',
+            'os': 'linux',
+        },
         'kvm-host': {
             'enabled': True,
         },

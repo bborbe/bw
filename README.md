@@ -24,13 +24,13 @@ cd ~/.pyenv/plugins/python-build/../.. && git pull && cd -
 ## Install Python
 
 ```bash
-pyenv install 3.10.13
+pyenv install 3.10.14
 ```
 
 ## Install pyenv-virtualenv
 
 ```bash
-git clone https://github.com/yyuu/pyenv-virtualenv
+    git clone https://github.com/yyuu/pyenv-virtualenv
 cd pyenv-virtualenv
 sudo ./install.sh
 ```
@@ -38,7 +38,7 @@ sudo ./install.sh
 ## Create Bundlewrap env
 
 ```bash
-pyenv virtualenv 3.6.4 bw
+pyenv virtualenv 3.10.14 bw
 pyenv local bw
 ```
 
