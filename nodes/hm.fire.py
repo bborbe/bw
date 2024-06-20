@@ -4,16 +4,25 @@ nodes['hm.fire'] = {
         'ubuntu-jammy',
     },
     'metadata': {
-        'backup_client': {
+        'ubuntu-desktop': {
+            'enabled': True,
+        },
+        'enpass': {
+            'enabled': True,
+        },
+        'intellij': {
+            'enabled': True,
+        },
+        'google-chrome': {
             'enabled': True,
         },
         'golang': {
             'enabled': True,
             'arch': 'amd64',
-            'version': '1.21.7',
+            'version': '1.22.4',
             'os': 'linux',
         },
-        'ubuntu-desktop': {
+        'backup_client': {
             'enabled': True,
         },
         'letsencrypt': {

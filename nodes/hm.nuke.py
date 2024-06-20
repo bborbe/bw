@@ -10,9 +10,9 @@ nodes['hm.nuke'] = {
         'ubuntu-desktop': {
             'enabled': True,
         },
-                'enpass': {
-                    'enabled': True,
-                },
+        'enpass': {
+            'enabled': True,
+        },
         'intellij': {
             'enabled': True,
         },
