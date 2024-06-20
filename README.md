@@ -21,10 +21,10 @@ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-
 cd ~/.pyenv/plugins/python-build/../.. && git pull && cd -
 ```
 
-## Install Python 3.6.4
+## Install Python
 
 ```bash
-pyenv install 3.6.4
+pyenv install 3.10.13
 ```
 
 ## Install pyenv-virtualenv
