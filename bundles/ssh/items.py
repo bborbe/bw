@@ -7,10 +7,9 @@ pkg_apt = {
     },
 }
 
-ssh_service_name = 'sshd'
+ssh_service_name = 'ssh'
 permitrootlogin = 'prohibit-password'
 if node.os == 'raspbian' or node.os == 'debian':
-    ssh_service_name = 'ssh'
     permitrootlogin = 'without-password'
 
 svc_systemd = {
