@@ -1,7 +1,7 @@
 nodes['hm.nuke'] = {
     'hostname': 'nuke.hm.benjamin-borbe.de',
     'groups': {
-        'ubuntu-jammy',
+        'ubuntu-noble',
     },
     'metadata': {
         'backup_client': {
