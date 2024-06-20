@@ -9,6 +9,10 @@ def install_apt_packages(metadata):
         'unzip',
         'google-chrome-stable',
         'enpass',
+        'libxcb-icccm4',
+        'libxcb-image0',
+        'libxcb-keysyms1',
+        'libxcb-render-util0',
     )
     result = {
         'apt': {

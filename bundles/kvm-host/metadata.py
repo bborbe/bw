@@ -2,7 +2,7 @@
     'apt/packages',
 )
 def install_apt_packages(metadata):
-    if metadata.get('kvm', {}).get('enabled', False):
+    if metadata.get('kvm-host', {}).get('enabled', False):
         pkgs_install = (
             'bridge-utils',
             'cloud-utils',

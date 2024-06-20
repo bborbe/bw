@@ -7,7 +7,7 @@ svc_systemd = {}
 directories = {}
 symlinks = {}
 
-if node.metadata.get('kvm', {}).get('enabled', False):
+if node.metadata.get('kvm-host', {}).get('enabled', False):
     svc_systemd['libvirtd'] = {
         'running': True,
         'enabled': True,
