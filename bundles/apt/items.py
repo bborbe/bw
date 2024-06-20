@@ -68,26 +68,46 @@ if node.metadata.get('os') == 'raspbian' and node.metadata.get('release'):
 
 for name, data in node.metadata.get('apt', {}).get('repos', {}).items():
     if data.get('installed', False):
-        actions['add_gpg_key_{}'.format(data['gpg_key'])] = {
-            'command': 'apt-key adv --keyserver keyserver.ubuntu.com --recv-keys {}'.format(data['gpg_key']),
-            'unless': 'apt-key list | tr -d "[:blank:]" | grep {}'.format(data['gpg_key']),
-            'cascade_skip': False,
-            'needed_by': ['action:apt_update'],
-        }
-        files['/etc/apt/sources.list.d/{}.list'.format(name)] = {
-            'source': 'source.list',
-            'content_type': 'mako',
-            'mode': '0644',
-            'owner': 'root',
-            'group': 'root',
-            'context': {
-                'lines': data['sources'],
-            },
-            'needs': ['action:add_gpg_key_{}'.format(data['gpg_key'])],
-            'triggers': ['action:apt_update'],
-        }
+        if data.get('gpg_key', False):
+            actions['add_gpg_key_{}'.format(data['gpg_key'])] = {
+                'command': 'apt-key adv --keyserver keyserver.ubuntu.com --recv-keys {}'.format(data['gpg_key']),
+                'unless': 'apt-key list | tr -d "[:blank:]" | grep {}'.format(data['gpg_key']),
+                'cascade_skip': False,
+                'needed_by': ['action:apt_update'],
+            }
+            files['/etc/apt/sources.list.d/{}.list'.format(name)] = {
+                'source': 'source.list',
+                'content_type': 'mako',
+                'mode': '0644',
+                'owner': 'root',
+                'group': 'root',
+                'context': {
+                    'lines': data['sources'],
+                },
+                'needs': ['action:add_gpg_key_{}'.format(data['gpg_key'])],
+                'triggers': ['action:apt_update'],
+            }
+        elif data.get('url_key', False):
+            actions['apt_key_download_{name}'.format(name=name)] = {
+                'command': 'wget -q -O - {url} > /etc/apt/keyrings/{name}.pub'.format(url=data['url_key'], name=name),
+                'unless': 'test -e /etc/apt/keyrings/{name}.pub'.format(name=name),
+                'cascade_skip': False,
+                'needed_by': ['action:apt_update'],
+            }
+            files['/etc/apt/sources.list.d/{name}.list'.format(name=name)] = {
+                'source': 'source.list',
+                'content_type': 'mako',
+                'mode': '0644',
+                'owner': 'root',
+                'group': 'root',
+                'context': {
+                    'lines': data['sources'],
+                },
+                'needs': ['action:apt_key_download_{name}'.format(name=name)],
+                'triggers': ['action:apt_update'],
+            }
     else:
-        files['/etc/apt/sources.list.d/{}.list'.format(name)] = {
+        files['/etc/apt/sources.list.d/{name}.list'.format(name=name)] = {
             'delete': True,
             'triggers': ['action:apt_update'],
         }

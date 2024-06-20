@@ -32,15 +32,14 @@ def google_chrome_repo(metadata):
                 'repos': {
                     'google-chrome': {
                         'installed': True,
-                        'gpg_key': 'EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796',
-                        'sources': ['deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'],
+                        'url_key': 'https://dl-ssl.google.com/linux/linux_signing_key.pub',
+                        'sources': ['deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.pub] http://dl.google.com/linux/chrome/deb/ stable main'],
                     },
                 }
             }
         }
     else:
         return {}
-
 
 
 @metadata_reactor.provides(
@@ -53,13 +52,12 @@ def enpass_repo(metadata):
                 'repos': {
                     'enpass': {
                         'installed': True,
-                        'gpg_key': 'B6DA722E2E65721AF54B93966F7565879798C2FC',
-                        'sources': ['deb https://apt.enpass.io/  stable main'],
+                        # 'gpg_key': 'B6DA722E2E65721AF54B93966F7565879798C2FC',
+                        'url_key': 'https://apt.enpass.io/keys/enpass-linux.key',
+                        'sources': ['deb [arch=amd64 signed-by=/etc/apt/keyrings/enpass.pub] https://apt.enpass.io/ stable main'],
                     },
                 }
             }
         }
     else:
         return {}
-
-
