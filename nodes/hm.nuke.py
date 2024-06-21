@@ -22,6 +22,9 @@ nodes['hm.nuke'] = {
         'docker': {
             'enabled': True,
         },
+        'gcloud-sdk': {
+            'enabled': True,
+        },
         'golang': {
             'enabled': True,
             'arch': 'amd64',

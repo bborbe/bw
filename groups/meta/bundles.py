@@ -12,6 +12,7 @@ groups['meta-bundles'] = {
         'controller',
         'cron',
         'dhcpclient',
+        'gcloud-sdk',
         'docker-engine',
         'docker-registry',
         'dotfiles',
