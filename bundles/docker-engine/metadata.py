@@ -1,4 +1,6 @@
-@metadata_reactor
+@metadata_reactor.provides(
+    'apt/repos/docker',
+)
 def docker_repo(metadata):
     if metadata.get('docker', {}).get('enabled', False):
         return {
@@ -6,11 +8,35 @@ def docker_repo(metadata):
                 'repos': {
                     'docker': {
                         'installed': True,
-                        'gpg_key': '9DC858229FC7DD38854AE2D88D81803C0EBFCD88',
-                        'sources': ['deb [arch=amd64] https://download.docker.com/linux/ubuntu {} stable'.format(node.metadata.get('release'))],
+                        'url_key': 'https://download.docker.com/linux/ubuntu/gpg',
+                        'sources': [
+                            'deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.pub] https://download.docker.com/linux/ubuntu {} stable'.format(node.metadata.get('release'))
+                        ],
                     },
                 }
             }
         }
     else:
         return {}
+
+@metadata_reactor.provides(
+    'apt/packages',
+)
+def install_apt_packages(metadata):
+    pkgs = (
+        'docker-ce',
+        'docker-ce-cli',
+        'containerd.io',
+        'docker-buildx-plugin',
+        'docker-compose-plugin',
+    )
+    result = {
+        'apt': {
+            'packages': {}
+        }
+    }
+    for package_name in pkgs:
+        result['apt']['packages'][package_name] = {
+            'installed': metadata.get('docker', {}).get('enabled', False)
+        }
+    return result

@@ -10,13 +10,16 @@ nodes['hm.nuke'] = {
         'ubuntu-desktop': {
             'enabled': True,
         },
-                'enpass': {
-                    'enabled': True,
-                },
+        'enpass': {
+            'enabled': True,
+        },
         'intellij': {
             'enabled': True,
         },
         'google-chrome': {
+            'enabled': True,
+        },
+        'docker': {
             'enabled': True,
         },
         'golang': {
@@ -78,7 +81,7 @@ nodes['hm.nuke'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'sudo', 'libvirt'],
+                'groups': ['data', 'sudo', 'libvirt', 'docker'],
             },
         },
     },
