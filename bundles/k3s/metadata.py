@@ -1,4 +1,6 @@
-@metadata_reactor
+@metadata_reactor.provides(
+    'iptables/rules/filter',
+)
 def iptables(metadata):
     rules = set()
     if metadata.get('k3s', {}).get('enabled', False):
@@ -16,3 +18,21 @@ def iptables(metadata):
             },
         },
     }
+
+
+@metadata_reactor.provides(
+    'git/clones/repo',
+)
+def git_clone_scripts(metadata):
+    if metadata.get('k3s', {}).get('enabled', False):
+        return {
+            'git': {
+                'clones': {
+                    'scripts': {
+                        'repo': 'https://github.com/bborbe/scripts.git',
+                        'target': '/root/scripts',
+                    },
+                },
+            },
+        }
+    return {}
