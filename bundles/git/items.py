@@ -12,7 +12,8 @@ for name, v in node.metadata.get('git', {}).get('clones', {}).items():
         raise Exception('git {} has no target'.format(name))
 
     actions['git_clone_{name}'.format(name=name)] = {
-        'command': 'mkdir -p {target} && git clone -b {branch} --single-branch {repo} {target}'.format(branch=v.get('branch', 'master'), repo=repo, target=target),
+        'command': 'mkdir -p {target} && '
+                   'git clone -b {branch} --single-branch {repo} {target}'.format(branch=v.get('branch', 'master'), repo=repo, target=target),
         'unless': 'test -e {target}'.format(target=target),
         'needs': ['pkg_apt:git'],
     }
