@@ -1,4 +1,3 @@
-
 nodes['hm.fire-k3s-dev'] = {
     'hostname': 'fire-k3s-dev.hm.benjamin-borbe.de',
     'groups': {
