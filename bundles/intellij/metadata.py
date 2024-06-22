@@ -15,3 +15,19 @@ def install_apt_packages(metadata):
             'installed': metadata.get('intellij', {}).get('enabled', False)
         }
     return result
+
+
+@metadata_reactor.provides(
+    'sysctl/options',
+)
+def kvm_quest_sysctl(metadata):
+    if metadata.get('intellij', {}).get('enabled', False):
+        return {
+            'sysctl': {
+                'options': {
+                    'fs.inotify.max_user_watches': '1048576',
+
+                }
+            }
+        }
+    return {}

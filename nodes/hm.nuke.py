@@ -19,6 +19,12 @@ nodes['hm.nuke'] = {
         'google-chrome': {
             'enabled': True,
         },
+        'docker': {
+            'enabled': True,
+        },
+        'gcloud-sdk': {
+            'enabled': True,
+        },
         'golang': {
             'enabled': True,
             'arch': 'amd64',
@@ -78,7 +84,7 @@ nodes['hm.nuke'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'sudo', 'libvirt'],
+                'groups': ['data', 'sudo', 'libvirt', 'docker'],
             },
         },
     },
