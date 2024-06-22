@@ -74,6 +74,7 @@ nodes['hm.hell'] = {
             'enabled': True,
             'pool': 'tank2',
             'targets': {
+                'burn.hm.benjamin-borbe.de': {},
                 'co2hz.hm.benjamin-borbe.de': {},
                 'co2wz.hm.benjamin-borbe.de': {},
                 'fire-k3s-dev.hm.benjamin-borbe.de': {},
