@@ -4,6 +4,9 @@ nodes['hz.hetzner-1'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'docker': {
+            'enabled': True,
+        },
         'backup_client': {
             'enabled': True,
         },
