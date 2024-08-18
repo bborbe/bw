@@ -4,6 +4,9 @@ nodes['hm.fire'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'docker': {
+            'enabled': True,
+        },
         'ubuntu-desktop': {
             'enabled': True,
         },
@@ -89,7 +92,7 @@ nodes['hm.fire'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'sudo', 'libvirt'],
+                'groups': ['data', 'sudo', 'libvirt', 'docker'],
             },
             'jana': {
                 'enabled': True,
