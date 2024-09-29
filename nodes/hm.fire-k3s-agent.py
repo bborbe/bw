@@ -30,8 +30,7 @@ nodes['hm.fire-k3s-agent'] = {
                 'groups': ['sudo'],
             },
             'install': {
-                'enabled': True,
-                'groups': ['sudo'],
+                'enabled': False,
             },
         },
     },
