@@ -77,6 +77,7 @@ nodes['hm.hell'] = {
                 'burn.hm.benjamin-borbe.de': {},
                 'co2hz.hm.benjamin-borbe.de': {},
                 'co2wz.hm.benjamin-borbe.de': {},
+                'fire-k3s-agent.hm.benjamin-borbe.de': {},
                 'fire-k3s-dev-capitalcom.hm.benjamin-borbe.de': {},
                 'fire-k3s-dev-mt5.hm.benjamin-borbe.de': {},
                 'fire-k3s-dev.hm.benjamin-borbe.de': {},
