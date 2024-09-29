@@ -87,6 +87,7 @@ nodes['hm.hell'] = {
                 'fire-k3s-prod.hm.benjamin-borbe.de': {},
                 'fire.hm.benjamin-borbe.de': {},
                 'hetzner-1.benjamin-borbe.de': {},
+                'nuke-k3s-agent.hm.benjamin-borbe.de': {},
                 'nuke.hm.benjamin-borbe.de': {},
                 'rasp3.hm.benjamin-borbe.de': {},
                 'rasp4.hm.benjamin-borbe.de': {},
