@@ -20,9 +20,6 @@ nodes['hm.rasp4'] = {
             'mqtt_username': teamvault.username('9qNx3O', site='benjamin-borbe'),
             'mqtt_password': teamvault.password('9qNx3O', site='benjamin-borbe'),
         },
-        'controller': {
-            'enabled': True,
-        },
         'golang': {
             'enabled': True,
             'arch': 'armv6l',
