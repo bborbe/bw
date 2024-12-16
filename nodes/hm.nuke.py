@@ -28,7 +28,7 @@ nodes['hm.nuke'] = {
         'golang': {
             'enabled': True,
             'arch': 'amd64',
-            'version': '1.23.0',
+            'version': '1.23.4',
             'os': 'linux',
         },
         'kvm-host': {
