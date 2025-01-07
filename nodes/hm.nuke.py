@@ -28,7 +28,7 @@ nodes['hm.nuke'] = {
         'golang': {
             'enabled': True,
             'arch': 'amd64',
-            'version': '1.22.4',
+            'version': '1.23.4',
             'os': 'linux',
         },
         'kvm-host': {
@@ -66,7 +66,7 @@ nodes['hm.nuke'] = {
                         'forward-delay': '4',
                     },
                     'mtu': 1500,
-                    'macaddress': '70:85:c2:b9:64:65',
+                    'macaddress': '70:85:c2:b9:64:66',
                     'dhcp4': False,
                     'dhcp6': False,
                     'interfaces': ['eth0'],

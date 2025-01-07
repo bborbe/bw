@@ -4,6 +4,9 @@ nodes['hm.fire'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'docker': {
+            'enabled': True,
+        },
         'ubuntu-desktop': {
             'enabled': True,
         },
@@ -19,7 +22,7 @@ nodes['hm.fire'] = {
         'golang': {
             'enabled': True,
             'arch': 'amd64',
-            'version': '1.22.4',
+            'version': '1.23.4',
             'os': 'linux',
         },
         'backup_client': {
@@ -89,7 +92,7 @@ nodes['hm.fire'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'sudo', 'libvirt'],
+                'groups': ['data', 'sudo', 'libvirt', 'docker'],
             },
             'jana': {
                 'enabled': True,

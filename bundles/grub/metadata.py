@@ -4,7 +4,6 @@ def default_cmd_args(metadata):
         'grub': {
             'cmd_args': {
                 'net.ifnames=0': {},
-                'acpi=noirq': {},
             },
             'cmd_default_args': {
                 'quiet': {},

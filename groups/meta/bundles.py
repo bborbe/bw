@@ -9,7 +9,6 @@ groups['meta-bundles'] = {
         'base',
         'bme280',
         'co2mon',
-        'controller',
         'cron',
         'dhcpclient',
         'gcloud-sdk',
