@@ -1,5 +1,6 @@
 version: 0.1
 log:
+  level: warn
   fields:
     service: registry
 storage:
