@@ -22,6 +22,7 @@ def install_apt_packages(metadata):
     if metadata.get('ubuntu-desktop', {}):
         for package_name in (
             'build-essential',
+            'gnome-tweaks',
             'libbz2-dev',
             'libffi-dev',
             'libldap2-dev',

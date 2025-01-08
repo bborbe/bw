@@ -4,6 +4,9 @@ nodes['hm.fire'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'systemd': {
+            'disable-power-button': True,
+        },
         'docker': {
             'enabled': True,
         },

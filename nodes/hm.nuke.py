@@ -4,6 +4,9 @@ nodes['hm.nuke'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'systemd': {
+            'disable-power-button': True,
+        },
         'backup_client': {
             'enabled': True,
         },
