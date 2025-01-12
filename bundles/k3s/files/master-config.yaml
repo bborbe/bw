@@ -1,1 +1,4 @@
 disable: local-storage
+kubelet-arg:
+  - image-gc-high-threshold=85
+  - image-gc-low-threshold=80
