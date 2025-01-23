@@ -11,6 +11,16 @@ if node.metadata.get('k3s', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
     }
+
+    svc_systemd['multipathd.service'] = {
+        'running': False,
+        'enabled': False,
+    }
+    svc_systemd['multipathd.socket'] = {
+        'running': False,
+        'enabled': False,
+    }
+
     if node.metadata.get('k3s', {}).get('agent', False):
         svc_systemd['k3s-agent'] = {
             'running': True,
