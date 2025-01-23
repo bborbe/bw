@@ -101,6 +101,7 @@ nodes['hm.hell'] = {
                     'devices': ['/dev/sdb', '/dev/sdc', '/dev/sdd'],
                     'mounts': {
                         '/data': {},
+                        '/minio': {},
                     },
                 },
                 'tank2': {
