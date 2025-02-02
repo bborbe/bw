@@ -1,5 +1,5 @@
-nodes['hm.fire-k3s-master'] = {
-    'hostname': 'fire-k3s-master.hm.benjamin-borbe.de',
+nodes['hm.nuke-k3s-dev-misc'] = {
+    'hostname': 'nuke-k3s-dev-misc.hm.benjamin-borbe.de',
     'groups': {
         'ubuntu-jammy',
     },
@@ -12,6 +12,7 @@ nodes['hm.fire-k3s-master'] = {
         },
         'k3s': {
             'enabled': True,
+            'agent': True,
         },
         'iptables': {
             'enabled': True,

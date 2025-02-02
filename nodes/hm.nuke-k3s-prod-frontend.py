@@ -1,5 +1,5 @@
-nodes['hm.fire-k3s-prod-capitalcom'] = {
-    'hostname': 'fire-k3s-prod-capitalcom.hm.benjamin-borbe.de',
+nodes['hm.nuke-k3s-prod-frontend'] = {
+    'hostname': 'nuke-k3s-prod-frontend.hm.benjamin-borbe.de',
     'groups': {
         'ubuntu-jammy',
     },

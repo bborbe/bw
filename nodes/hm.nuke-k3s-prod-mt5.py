@@ -1,5 +1,5 @@
-nodes['hm.fire-k3s-agent'] = {
-    'hostname': 'fire-k3s-agent.hm.benjamin-borbe.de',
+nodes['hm.nuke-k3s-prod-mt5'] = {
+    'hostname': 'nuke-k3s-prod-mt5.hm.benjamin-borbe.de',
     'groups': {
         'ubuntu-jammy',
     },
