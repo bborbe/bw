@@ -28,3 +28,18 @@ def install_apt_packages(metadata):
             }
         return result
     return {}
+
+@metadata_reactor.provides(
+    'sysctl/options',
+)
+def kvm_quest_sysctl(metadata):
+    if metadata.get('kvm-host', {}).get('enabled', False):
+        return {
+            'sysctl': {
+                'options': {
+                    'vm.swappiness': '1',
+
+                }
+            }
+        }
+    return {}
