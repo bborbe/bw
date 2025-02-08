@@ -91,6 +91,12 @@ nodes['hm.hell'] = {
                 'nuke.hm.benjamin-borbe.de': {},
                 'rasp3.hm.benjamin-borbe.de': {},
                 'rasp4.hm.benjamin-borbe.de': {},
+                'nuke-k3s-master-0.hm.benjamin-borbe.de': {},
+                'nuke-k3s-master-1.hm.benjamin-borbe.de': {},
+                'nuke-k3s-master-2.hm.benjamin-borbe.de': {},
+                'nuke-k3s-kafka-0.hm.benjamin-borbe.de': {},
+                'nuke-k3s-kafka-1.hm.benjamin-borbe.de': {},
+                'nuke-k3s-kafka-2.hm.benjamin-borbe.de': {},
             }
         },
         'zfs': {
