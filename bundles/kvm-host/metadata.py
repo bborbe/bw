@@ -40,7 +40,6 @@ def kvm_quest_sysctl(metadata):
             'sysctl': {
                 'options': {
                     'vm.swappiness': '1',
-
                 }
             }
         }
