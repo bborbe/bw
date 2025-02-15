@@ -2,32 +2,34 @@
     'apt/packages',
 )
 def install_apt_packages(metadata):
-    if metadata.get('kvm-host', {}).get('enabled', False):
-        pkgs_install = (
-            'bridge-utils',
-            'cloud-utils',
-            'cpu-checker',
-            'libvirt-clients',
-            'libvirt-daemon-system',
-            'ovmf',
-            'qemu-system-x86',
-            'qemu-utils',
-            'virt-top',
-            'virtinst',
-            'whois',
-            'swtpm-tools',
-        )
-        result = {
-            'apt': {
-                'packages': {}
-            }
+    if not metadata.get('kvm-host', {}).get('enabled', False):
+        return {}
+
+    pkgs_install = (
+        'bmon',
+        'bridge-utils',
+        'cloud-utils',
+        'cpu-checker',
+        'iotop',
+        'libvirt-clients',
+        'libvirt-daemon-system',
+        'ovmf',
+        'qemu-system-x86',
+        'qemu-utils',
+        'swtpm-tools',
+        'virt-top',
+        'virtinst',
+        'whois',
+    )
+    result = {
+        'apt': {
+            'packages': {}
         }
-        for package_name in pkgs_install:
-            result['apt']['packages'][package_name] = {
-                'installed': True
-            }
-        return result
-    return {}
+    }
+    for package_name in pkgs_install:
+        result.setdefault('apt', {}).setdefault('packages', {}).setdefault(package_name, {}).setdefault('installed', True)
+    return result
+
 
 @metadata_reactor.provides(
     'sysctl/options',

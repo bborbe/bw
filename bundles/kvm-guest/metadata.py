@@ -2,23 +2,24 @@
     'apt/packages',
 )
 def install_apt_packages(metadata):
-    if metadata.get('kvm-guest', {}).get('enabled', False):
-        pkgs_install = (
-            'acpi',
-            'acpid',
-            'qemu-guest-agent',
-        )
-        result = {
-            'apt': {
-                'packages': {}
-            }
+    if not metadata.get('kvm-guest', {}).get('enabled', False):
+        return {}
+
+    pkgs_install = (
+        'acpi',
+        'acpid',
+        'bmon',
+        'iotop',
+        'qemu-guest-agent',
+    )
+    result = {
+        'apt': {
+            'packages': {}
         }
-        for package_name in pkgs_install:
-            result['apt']['packages'][package_name] = {
-                'installed': True
-            }
-        return result
-    return {}
+    }
+    for package_name in pkgs_install:
+        result.setdefault('apt', {}).setdefault('packages', {}).setdefault(package_name, {}).setdefault('installed', True)
+    return result
 
 
 @metadata_reactor.provides(
