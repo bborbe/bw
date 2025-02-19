@@ -5,6 +5,7 @@ def install_apt_packages(metadata):
     pkgs_install = (
         'augeas-tools',
         'bash',
+        'bind9-dnsutils',
         'ca-certificates',
         'curl',
         'file',
