@@ -9,12 +9,6 @@ nodes['hm.rasp4'] = {
         'backup_client': {
             'enabled': True,
         },
-        'influxdb': {
-            'enabled': True,
-        },
-        'grafana': {
-            'enabled': True,
-        },
         'telegraf': {
             'enabled': True,
             'mqtt_username': teamvault.username('9qNx3O', site='benjamin-borbe'),
