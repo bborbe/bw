@@ -25,7 +25,7 @@ nodes['hm.fire'] = {
         'golang': {
             'enabled': True,
             'arch': 'amd64',
-            'version': '1.24.0',
+            'version': '1.24.1',
             'os': 'linux',
         },
         'backup_client': {
