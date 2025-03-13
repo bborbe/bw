@@ -3,7 +3,7 @@ import bwtv as teamvault
 nodes['hm.rasp4'] = {
     'hostname': 'rasp4.hm.benjamin-borbe.de',
     'groups': {
-        'raspbian-bullseye',
+        'raspbian-bookworm',
     },
     'metadata': {
         'backup_client': {

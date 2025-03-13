@@ -51,3 +51,14 @@ groups['raspbian-bullseye'] = {
         'release': 'bullseye',
     },
 }
+
+
+groups['raspbian-bookworm'] = {
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (12, 0),
+    'metadata': {
+        'release': 'bookworm',
+    },
+}
