@@ -74,11 +74,11 @@ nodes['hm.fire'] = {
                     'dhcp4': False,
                     'dhcp6': False,
                     'interfaces': ['eth0'],
-                    'addresses': ['192.168.178.3/24'],
+                    'addresses': ['192.168.179.3/24'],
                     'routes': [
                         {
                             'to': 'default',
-                            'via': '192.168.178.1',
+                            'via': '192.168.179.1',
                         }
                     ],
                     'nameservers': ['8.8.8.8', '8.8.4.4'],
