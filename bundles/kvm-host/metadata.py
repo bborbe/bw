@@ -11,6 +11,7 @@ def install_apt_packages(metadata):
         'cloud-utils',
         'cpu-checker',
         'iotop',
+        'iperf3',
         'libvirt-clients',
         'libvirt-daemon-system',
         'ovmf',
