@@ -41,11 +41,11 @@ nodes['hm.hell'] = {
                     'dhcp4': False,
                     'dhcp6': False,
                     'interfaces': ['eth0'],
-                    'addresses': ['192.168.179.9/24'],
+                    'addresses': ['192.168.180.9/24'],
                     'routes': [
                         {
                             'to': 'default',
-                            'via': '192.168.179.1',
+                            'via': '192.168.180.1',
                         }
                     ],
                     'nameservers': {

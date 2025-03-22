@@ -24,11 +24,11 @@ nodes['hm.rasp3'] = {
                 'eth0': {
                     'dhcp4': False,
                     'dhcp6': False,
-                    'addresses': ['192.168.178.2/24'],
+                    'addresses': ['192.168.177.2/24'],
                     'routes': [
                         {
                             'to': '0.0.0.0/0',
-                            'via': '192.168.178.1',
+                            'via': '192.168.177.1',
                             'metric': '100',
                         }
                     ],

@@ -14,11 +14,11 @@ nodes['hm.co2wz'] = {
             'ethernets': {
                 'eth0': {
                     'dhcp4': False,
-                    'addresses': ['192.168.178.7/24'],
+                    'addresses': ['192.168.177.7/24'],
                     'routes': [
                         {
                             'to': '0.0.0.0/0',
-                            'via': '192.168.178.1',
+                            'via': '192.168.177.1',
                         }
                     ],
                     'nameservers': {
