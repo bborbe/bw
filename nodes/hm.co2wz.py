@@ -9,25 +9,6 @@ nodes['hm.co2wz'] = {
         'backup_client': {
             'enabled': True,
         },
-        'netplan': {
-            'enabled': True,
-            'ethernets': {
-                'eth0': {
-                    'dhcp4': False,
-                    'addresses': ['192.168.177.7/24'],
-                    'routes': [
-                        {
-                            'to': '0.0.0.0/0',
-                            'via': '192.168.177.1',
-                        }
-                    ],
-                    'nameservers': {
-                        'addresses': ['8.8.8.8', '8.8.4.4'],
-                        'search': ['hm.benjamin-borbe.de'],
-                    },
-                },
-            },
-        },
         'co2mon': {
             'enabled': True,
             'mqtt-host': 'rasp4.hm.benjamin-borbe.de',
