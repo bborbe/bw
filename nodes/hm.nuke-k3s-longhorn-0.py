@@ -15,11 +15,11 @@ nodes['hm.nuke-k3s-longhorn-0'] = {
                         'name': 'en*',
                     },
                     'set-name': 'eth0',
-                    'addresses': ['192.168.178.32/24'],
+                    'addresses': ['192.168.180.32/24'],
                     'routes': [
                         {
                             'to': 'default',
-                            'via': '192.168.178.1',
+                            'via': '192.168.180.1',
                         }
                     ],
                     'nameservers': {
