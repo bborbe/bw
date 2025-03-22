@@ -32,7 +32,10 @@ nodes['hm.rasp3'] = {
                             'metric': '100',
                         }
                     ],
-                    'nameservers': ['8.8.8.8', '8.8.4.4'],
+                    'nameservers': {
+                        'addresses': ['8.8.8.8', '8.8.4.4'],
+                        'search': ['hm.benjamin-borbe.de'],
+                    },
                 },
             },
         },

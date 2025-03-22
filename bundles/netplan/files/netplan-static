@@ -7,6 +7,16 @@ network:
     ${interface}:
       dhcp4: ${ 'true' if data.get('dhcp4') else 'false' }
       dhcp6: ${ 'true' if data.get('dhcp6') else 'false' }
+% if data.get('optional', False):
+      optional: true
+% endif
+% if len(data.get('match', {}).get('name','')) > 0:
+      match:
+        name: ${data.get('match', {}).get('name','')}
+% endif
+% if len(data.get('set-name', '')) > 0:
+      set-name: ${data.get('set-name', '')}
+% endif
 % if len(data.get('addresses',[])) > 0:
       addresses:
 % for address in sorted(data.get('addresses',[])):
@@ -21,12 +31,20 @@ network:
         metric: ${route.get('metric',100)}
 % endfor
 % endif
-% if len(data.get('nameservers',[])) > 0:
+% if len(data.get('nameservers',{}).get('addresses',[])) > 0 or len(data.get('nameservers',{}).get('search',[])) > 0:
       nameservers:
+% if len(data.get('nameservers',{}).get('addresses',[])) > 0:
         addresses:
-% for nameserver in sorted(data.get('nameservers',[])):
+% for nameserver in sorted(data.get('nameservers',{}).get('addresses',[])):
         - ${nameserver}
 % endfor
+% endif
+% if len(data.get('nameservers',{}).get('search',[])) > 0:
+        search:
+% for search in sorted(data.get('nameservers',{}).get('search',[])):
+        - ${search}
+% endfor
+% endif
 % endif
 % endfor
 % endif
@@ -66,13 +84,23 @@ network:
         via: ${route['via']}
 % endfor
 % endif
-% if len(data.get('nameservers',[])) > 0:
+
+% if len(data.get('nameservers',{}).get('addresses',[])) > 0 or len(data.get('nameservers',{}).get('search',[])) > 0:
       nameservers:
+% if len(data.get('nameservers',{}).get('addresses',[])) > 0:
         addresses:
-% for nameserver in sorted(data.get('nameservers',[])):
+% for nameserver in sorted(data.get('nameservers',{}).get('addresses',[])):
         - ${nameserver}
 % endfor
 % endif
+% if len(data.get('nameservers',{}).get('search',[])) > 0:
+        search:
+% for search in sorted(data.get('nameservers',{}).get('search',[])):
+        - ${search}
+% endfor
+% endif
+% endif
+
 
 % if len(data.get('parameters',{})) > 0:
       parameters:

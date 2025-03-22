@@ -21,7 +21,10 @@ nodes['hm.co2hz'] = {
                             'via': '192.168.178.1',
                         }
                     ],
-                    'nameservers': ['8.8.8.8', '8.8.4.4'],
+                    'nameservers': {
+                        'addresses': ['8.8.8.8', '8.8.4.4'],
+                        'search': ['hm.benjamin-borbe.de'],
+                    },
                 },
             },
         },
