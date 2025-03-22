@@ -15,11 +15,11 @@ nodes['hm.nuke-k3s-prod-misc'] = {
                         'name': 'en*',
                     },
                     'set-name': 'eth0',
-                    'addresses': ['192.168.180.20/24'],
+                    'addresses': ['192.168.178.20/24'],
                     'routes': [
                         {
                             'to': 'default',
-                            'via': '192.168.180.1',
+                            'via': '192.168.178.1',
                         }
                     ],
                     'nameservers': {

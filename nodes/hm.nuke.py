@@ -73,11 +73,11 @@ nodes['hm.nuke'] = {
                     'dhcp4': False,
                     'dhcp6': False,
                     'interfaces': ['eth0'],
-                    'addresses': ['192.168.180.5/24'],
+                    'addresses': ['192.168.178.5/24'],
                     'routes': [
                         {
                             'to': 'default',
-                            'via': '192.168.180.1',
+                            'via': '192.168.178.1',
                         }
                     ],
                     'nameservers': {

@@ -15,11 +15,11 @@ nodes['hm.nuke-k3s-agent-0'] = {
                         'name': 'en*',
                     },
                     'set-name': 'eth0',
-                    'addresses': ['192.168.180.35/24'],
+                    'addresses': ['192.168.178.35/24'],
                     'routes': [
                         {
                             'to': 'default',
-                            'via': '192.168.180.1',
+                            'via': '192.168.178.1',
                         }
                     ],
                     'nameservers': {
