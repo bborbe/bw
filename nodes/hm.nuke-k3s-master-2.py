@@ -37,6 +37,16 @@ nodes['hm.nuke-k3s-master-2'] = {
         },
         'k3s': {
             'enabled': True,
+            'config': {
+                'disable': 'local-storage',
+                # 'kube-controller-manager-arg': [
+                #     'node-cidr-mask-size=22'
+                # ],
+                'kubelet-arg': [
+                    'image-gc-high-threshold=90',
+                    'image-gc-low-threshold=80',
+                ]
+            },
         },
         'iptables': {
             'enabled': True,

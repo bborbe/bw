@@ -38,6 +38,12 @@ nodes['hm.nuke-k3s-kafka-0'] = {
         'k3s': {
             'enabled': True,
             'agent': True,
+            'config': {
+                'kubelet-arg': [
+                    'image-gc-high-threshold=90',
+                    'image-gc-low-threshold=80',
+                ]
+            },
         },
         'iptables': {
             'enabled': True,
