@@ -18,6 +18,7 @@ def install_apt_packages(metadata):
         'qemu-system-x86',
         'qemu-utils',
         'swtpm-tools',
+        'sysstat',
         'virt-top',
         'virtinst',
         'whois',

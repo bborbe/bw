@@ -11,6 +11,7 @@ def install_apt_packages(metadata):
         'bmon',
         'iotop',
         'qemu-guest-agent',
+        'sysstat',
     )
     result = {
         'apt': {
