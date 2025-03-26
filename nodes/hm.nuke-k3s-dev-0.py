@@ -42,6 +42,7 @@ nodes['hm.nuke-k3s-dev-0'] = {
                 'kubelet-arg': [
                     'image-gc-high-threshold=90',
                     'image-gc-low-threshold=80',
+                    'max-pods=512',
                 ]
             },
         },
