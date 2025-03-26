@@ -39,9 +39,9 @@ nodes['hm.nuke-k3s-master-0'] = {
             'enabled': True,
             'config': {
                 'disable': 'local-storage',
-                # 'kube-controller-manager-arg': [
-                #     'node-cidr-mask-size=22'
-                # ],
+                'kube-controller-manager-arg': [
+                    'node-cidr-mask-size=22'
+                ],
                 'kubelet-arg': [
                     'image-gc-high-threshold=90',
                     'image-gc-low-threshold=80',
