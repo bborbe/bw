@@ -25,7 +25,7 @@ network:
 % endif
 % if len(data.get('routes',[])) > 0:
       routes:
-% for route in sorted(data.get('routes',[])):
+% for route in data.get('routes',[]):
       - to: ${route.get('to','default')}
         via: ${route.get('via')}
         metric: ${route.get('metric',100)}
@@ -79,9 +79,10 @@ network:
 % endif
 % if len(data.get('routes',[])) > 0:
       routes:
-% for route in sorted(data.get('routes',[])):
-      - to: ${route['to']}
-        via: ${route['via']}
+% for route in data.get('routes',[]):
+      - to: ${route.get('to','default')}
+        via: ${route.get('via')}
+        metric: ${route.get('metric',100)}
 % endfor
 % endif
 
