@@ -22,7 +22,7 @@ nodes['hm.co2wz'] = {
         'golang': {
             'enabled': True,
             'arch': 'armv6l',
-            'version': '1.16.4',
+            'version': '1.24.2',
             'os': 'linux',
         },
         'iptables': {
