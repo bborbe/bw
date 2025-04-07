@@ -7,6 +7,9 @@ network:
     ${interface}:
       dhcp4: ${ 'true' if data.get('dhcp4') else 'false' }
       dhcp6: ${ 'true' if data.get('dhcp6') else 'false' }
+% if data.get('wakeonlan', False):
+      wakeonlan: true
+% endif
 % if data.get('optional', False):
       optional: true
 % endif

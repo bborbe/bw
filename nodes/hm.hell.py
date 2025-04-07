@@ -28,6 +28,7 @@ nodes['hm.hell'] = {
                 'eth0': {
                     'dhcp4': False,
                     'dhcp6': False,
+                    'wakeonlan': True,
                 },
             },
             'bridges': {
