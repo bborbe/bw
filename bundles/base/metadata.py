@@ -38,6 +38,7 @@ def install_apt_packages(metadata):
         }
     return result
 
+
 @metadata_reactor.provides(
     'apt/packages',
 )
@@ -50,4 +51,20 @@ def uninstall_apt_packages(metadata):
                 }
             }
         }
+    }
+
+
+@metadata_reactor.provides(
+    'git/clones/repo',
+)
+def git_clone_scripts(metadata):
+    return {
+        'git': {
+            'clones': {
+                'scripts': {
+                    'repo': 'https://github.com/bborbe/scripts.git',
+                    'target': '/root/scripts',
+                },
+            },
+        },
     }
