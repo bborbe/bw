@@ -4,24 +4,6 @@ nodes['hm.hell'] = {
         'ubuntu-jammy',
     },
     'metadata': {
-        'groups': {
-            'data': {
-                'enabled': True,
-            },
-        },
-        'iptables': {
-            'enabled': True,
-            'nat_interfaces': [],
-            'rules': {
-                'filter': {
-                    # allow forward
-                    '-A FORWARD -j ACCEPT',
-                },
-            },
-        },
-        'k3s': {
-            'enabled': True,
-        },
         'netplan': {
             'enabled': True,
             'ethernets': {
@@ -56,6 +38,24 @@ nodes['hm.hell'] = {
                 },
             },
         },
+        'iptables': {
+            'enabled': True,
+            'nat_interfaces': [],
+            'rules': {
+                'filter': set({
+                    '-A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 6443 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 30000:32767 -j ACCEPT',
+                    # '-A INPUT -j ACCEPT',
+                    # '-A FORWARD -j ACCEPT',
+                }),
+            },
+        },
+        'k3s': {
+            'enabled': True,
+            'network': '192.168.180.9/32',
+        },
         'samba': {
             'enabled': True,
             'server_name': 'hell.hm.benjamin-borbe.de',
@@ -72,6 +72,11 @@ nodes['hm.hell'] = {
                 'enabled': True,
                 'groups': [],
                 'shell': '/usr/sbin/nologin',
+            },
+        },
+        'groups': {
+            'data': {
+                'enabled': True,
             },
         },
         'backup_server': {
