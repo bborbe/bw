@@ -3,9 +3,40 @@ import bwtv as teamvault
 nodes['hm.co2wz'] = {
     'hostname': 'co2wz.hm.benjamin-borbe.de',
     'groups': {
-        'raspbian-bullseye',
+        'raspbian-bookworm',
     },
     'metadata': {
+        'netplan': {
+            'enabled': True,
+            'ethernets': {
+                'eth0': {
+                    'dhcp4': False,
+                    'dhcp6': False,
+                    'addresses': ['192.168.177.7/24'],
+                    'routes': [
+                        {
+                            'to': '0.0.0.0/0',
+                            'via': '192.168.177.1',
+                            'metric': '100',
+                        },
+                        {
+                            'to': '192.168.178.0/24',
+                            'via': '192.168.177.3',
+                            'metric': '100',
+                        },
+                        {
+                            'to': '192.168.180.0/24',
+                            'via': '192.168.177.3',
+                            'metric': '100',
+                        },
+                    ],
+                    'nameservers': {
+                        'addresses': ['8.8.8.8', '8.8.4.4'],
+                        'search': ['hm.benjamin-borbe.de'],
+                    },
+                },
+            },
+        },
         'backup_client': {
             'enabled': True,
         },
