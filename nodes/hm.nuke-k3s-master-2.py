@@ -37,6 +37,7 @@ nodes['hm.nuke-k3s-master-2'] = {
         },
         'k3s': {
             'enabled': True,
+            'network': '192.168.178.0/24',
             'config': {
                 'disable': 'local-storage',
                 'kube-controller-manager-arg': [
@@ -52,10 +53,14 @@ nodes['hm.nuke-k3s-master-2'] = {
             'enabled': True,
             'nat_interfaces': [],
             'rules': {
-                'filter': {
+                'filter': set({
+                    '-A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 6443 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 30000:32767 -j ACCEPT',
                     '-A INPUT -j ACCEPT',
                     '-A FORWARD -j ACCEPT',
-                },
+                }),
             },
         },
         'users': {

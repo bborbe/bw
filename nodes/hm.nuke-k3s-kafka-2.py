@@ -38,6 +38,7 @@ nodes['hm.nuke-k3s-kafka-2'] = {
         'k3s': {
             'enabled': True,
             'agent': True,
+            'network': '192.168.178.0/24',
             'config': {
                 'kubelet-arg': [
                     'image-gc-high-threshold=90',
@@ -49,10 +50,10 @@ nodes['hm.nuke-k3s-kafka-2'] = {
             'enabled': True,
             'nat_interfaces': [],
             'rules': {
-                'filter': {
-                    '-A INPUT -j ACCEPT',
-                    '-A FORWARD -j ACCEPT',
-                },
+                'filter': set({
+                    # '-A INPUT -j ACCEPT',
+                    # '-A FORWARD -j ACCEPT',
+                }),
             },
         },
         'users': {
