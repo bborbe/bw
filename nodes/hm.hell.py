@@ -32,7 +32,7 @@ nodes['hm.hell'] = {
                         }
                     ],
                     'nameservers': {
-                        'addresses': ['8.8.8.8', '8.8.4.4'],
+                        'addresses': ['192.168.180.1'],
                         'search': ['hm.benjamin-borbe.de'],
                     },
                 },
@@ -78,6 +78,12 @@ nodes['hm.hell'] = {
             'data': {
                 'enabled': True,
             },
+        },
+        'golang': {
+            'enabled': True,
+            'arch': 'amd64',
+            'version': '1.24.2',
+            'os': 'linux',
         },
         'backup_server': {
             'enabled': True,

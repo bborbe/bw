@@ -40,6 +40,9 @@ nodes['hm.fire'] = {
         'kvm-host': {
             'enabled': True,
         },
+        'gcloud-sdk': {
+            'enabled': True,
+        },
         'groups': {
             'data': {
                 'enabled': True,
@@ -82,7 +85,7 @@ nodes['hm.fire'] = {
                         }
                     ],
                     'nameservers': {
-                        'addresses': ['8.8.8.8', '8.8.4.4'],
+                        'addresses': ['192.168.180.1'],
                         'search': ['hm.benjamin-borbe.de'],
                     },
                 },
@@ -123,10 +126,9 @@ nodes['hm.fire'] = {
                     'devices': ['/dev/sda', '/dev/sdb', '/dev/sdc'],
                     'mounts': {
                         '/data': {},
-                        '/home': {},
-                        '/home/bborbe': {},
-                        '/home/jana': {},
-                        '/var/lib/docker-registry': {},
+                        '/storage': {},
+                        '/storage/bborbe': {},
+                        '/storage/jana': {},
                     },
                 },
             },
