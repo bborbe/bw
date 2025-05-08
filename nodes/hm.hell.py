@@ -82,7 +82,7 @@ nodes['hm.hell'] = {
         'golang': {
             'enabled': True,
             'arch': 'amd64',
-            'version': '1.24.2',
+            'version': '1.24.3',
             'os': 'linux',
         },
         'backup_server': {

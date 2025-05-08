@@ -15,7 +15,7 @@ nodes['hm.rasp3'] = {
         'golang': {
             'enabled': True,
             'arch': 'armv6l',
-            'version': '1.24.2',
+            'version': '1.24.3',
             'os': 'linux',
         },
         'netplan': {
