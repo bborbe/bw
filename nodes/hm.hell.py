@@ -68,6 +68,9 @@ nodes['hm.hell'] = {
         'smart': {
             'enabled': True,
         },
+        # 'grub': {
+        #     'predictable-nic': True,
+        # },
         'users': {
             'bborbe': {
                 'enabled': True,
