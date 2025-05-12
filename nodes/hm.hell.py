@@ -68,9 +68,13 @@ nodes['hm.hell'] = {
         'smart': {
             'enabled': True,
         },
-        # 'grub': {
-        #     'predictable-nic': True,
-        # },
+        'grub': {
+            'predictable-nic': True,
+        },
+        'udev': {
+            'eth0': '00:e0:4c:00:65:66',
+            'eth1': 'bc:5f:f4:79:ec:59',
+        },
         'users': {
             'bborbe': {
                 'enabled': True,

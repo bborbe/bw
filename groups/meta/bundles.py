@@ -22,6 +22,7 @@ groups['meta-bundles'] = {
         'grafana',
         'group',
         'grub',
+        'udev',
         'hostname',
         'influxdb',
         'intellij',

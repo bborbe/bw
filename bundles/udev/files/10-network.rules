@@ -1,0 +1,3 @@
+% for device, mac in sorted(modules.items()):
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="${mac}", NAME="${device}"
+% endfor
