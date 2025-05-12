@@ -58,6 +58,12 @@ nodes['hm.fire'] = {
                 },
             },
         },
+        'grub': {
+            'predictable-nic': True,
+        },
+        'udev': {
+            'eth0': 'd0:50:99:5a:18:be',
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {
@@ -126,10 +132,15 @@ nodes['hm.fire'] = {
                     'devices': ['/dev/sda', '/dev/sdb', '/dev/sdc'],
                     'mounts': {
                         '/data': {},
-                        '/storage': {},
-                        '/storage/bborbe': {},
-                        '/storage/jana': {},
+                        '/home': {},
+                        '/home/bborbe': {},
+                        '/home/jana': {},
                     },
+                },
+                'tank2': {
+                    'type': 'raidz',
+                    'devices': ['/dev/sdd', '/dev/sde', '/dev/sdf'],
+                    'mounts': {},
                 },
             },
         },
