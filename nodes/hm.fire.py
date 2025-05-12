@@ -62,7 +62,8 @@ nodes['hm.fire'] = {
             'predictable-nic': True,
         },
         'udev': {
-            'eth0': 'd0:50:99:5a:18:be',
+            'eth0': 'c4:62:37:05:f1:19',
+            'eth1': 'd0:50:99:5a:18:be',
         },
         'netplan': {
             'enabled': True,
