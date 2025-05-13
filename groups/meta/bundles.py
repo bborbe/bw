@@ -21,6 +21,7 @@ groups['meta-bundles'] = {
         'google-chrome',
         'grafana',
         'group',
+        'mdadm',
         'grub',
         'udev',
         'hostname',

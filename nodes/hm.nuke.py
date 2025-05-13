@@ -28,6 +28,16 @@ nodes['hm.nuke'] = {
         'gcloud-sdk': {
             'enabled': True,
         },
+        'mdadm': {
+            '/dev/md0': {
+                'level': 'raid5',
+                'num-devices': '4',
+                'metadata': '1.2',
+                'name': 'nuke:0',
+                'uuid': '625d2f94:60c6852c:40cc4d28:f0733ac8',
+                'devices': ['/dev/nvme0n1', '/dev/nvme1n1', '/dev/nvme2n1', '/dev/nvme3n1'],
+            }
+        },
         'golang': {
             'enabled': True,
             'arch': 'amd64',
