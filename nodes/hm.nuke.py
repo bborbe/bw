@@ -34,6 +34,9 @@ nodes['hm.nuke'] = {
             'version': '1.24.3',
             'os': 'linux',
         },
+        'smart': {
+            'enabled': True,
+        },
         'kvm-host': {
             'enabled': True,
         },
