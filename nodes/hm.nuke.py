@@ -28,6 +28,12 @@ nodes['hm.nuke'] = {
         'gcloud-sdk': {
             'enabled': True,
         },
+        'grub': {
+            'predictable-nic': True,
+        },
+        'udev': {
+            'eth0': 'a8:a1:59:7e:f8:22',
+        },
         'mdadm': {
             '/dev/md0': {
                 'level': 'raid5',
