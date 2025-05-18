@@ -65,6 +65,9 @@ nodes['hm.hell'] = {
             'enabled': True,
             'server_name': 'hell.hm.benjamin-borbe.de',
         },
+        'kvm-host': {
+            'enabled': True,
+        },
         'smart': {
             'enabled': True,
         },
