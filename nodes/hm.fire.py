@@ -61,14 +61,14 @@ nodes['hm.fire'] = {
         'grub': {
             'predictable-nic': True,
         },
-        'udev': {
-            'eth0': 'c4:62:37:05:f1:19',
-            'eth1': 'd0:50:99:5a:18:be',
-        },
         'netplan': {
             'enabled': True,
             'ethernets': {
-                'eth0': {
+                'enp2s0': {
+                    'dhcp4': False,
+                    'dhcp6': False,
+                },
+                'enp0s25': {
                     'dhcp4': False,
                     'dhcp6': False,
                 },
@@ -83,7 +83,7 @@ nodes['hm.fire'] = {
                     'macaddress': 'd0:50:99:5a:18:be',
                     'dhcp4': False,
                     'dhcp6': False,
-                    'interfaces': ['eth0'],
+                    'interfaces': ['enp2s0'],
                     'addresses': ['192.168.180.3/24'],
                     'routes': [
                         {

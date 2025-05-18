@@ -7,12 +7,12 @@ nodes['hm.hell'] = {
         'netplan': {
             'enabled': True,
             'ethernets': {
-                'eth0': {
+                'enp55s0': {
                     'dhcp4': False,
                     'dhcp6': False,
                     'wakeonlan': True,
                 },
-                'eth1': {
+                'enp51s0': {
                     'dhcp4': False,
                     'dhcp6': False,
                     'wakeonlan': True,
@@ -28,7 +28,7 @@ nodes['hm.hell'] = {
                     'macaddress': 'bc:5f:f4:71:15:c4',
                     'dhcp4': False,
                     'dhcp6': False,
-                    'interfaces': ['eth0'],
+                    'interfaces': ['enp55s0'],
                     'addresses': ['192.168.180.9/24'],
                     'routes': [
                         {
@@ -70,10 +70,6 @@ nodes['hm.hell'] = {
         },
         'grub': {
             'predictable-nic': True,
-        },
-        'udev': {
-            'eth0': '00:e0:4c:00:65:66',
-            'eth1': 'bc:5f:f4:79:ec:59',
         },
         'users': {
             'bborbe': {

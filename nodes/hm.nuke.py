@@ -31,9 +31,6 @@ nodes['hm.nuke'] = {
         'grub': {
             'predictable-nic': True,
         },
-        'udev': {
-            'eth0': 'a8:a1:59:7e:f8:22',
-        },
         'mdadm': {
             '/dev/md0': {
                 'level': 'raid5',
@@ -76,7 +73,7 @@ nodes['hm.nuke'] = {
         'netplan': {
             'enabled': True,
             'ethernets': {
-                'eth0': {
+                'enp6s0': {
                     'dhcp4': False,
                     'dhcp6': False,
                 },
@@ -91,7 +88,7 @@ nodes['hm.nuke'] = {
                     'macaddress': '70:85:c2:b9:64:66',
                     'dhcp4': False,
                     'dhcp6': False,
-                    'interfaces': ['eth0'],
+                    'interfaces': ['enp6s0'],
                     'addresses': ['192.168.178.5/24'],
                     'routes': [
                         {
