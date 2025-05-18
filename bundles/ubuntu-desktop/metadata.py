@@ -13,7 +13,12 @@ def install_apt_packages(metadata):
         'gnome-terminal',
         'tk-dev',
         'ubuntu-desktop',
-        'gnome-tweaks'
+        'gnome-tweaks',
+        'fonts-dejavu-core',
+        'fonts-dejavu',
+        'fonts-ubuntu',
+        'fonts-noto-mono',
+        'gdm3',
     ):
         result['apt']['packages'][package_name] = {
             'installed': metadata.get('ubuntu-desktop', {}).get('enabled', False)
