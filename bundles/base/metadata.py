@@ -8,6 +8,7 @@ def install_apt_packages(metadata):
         'bind9-dnsutils',
         'ca-certificates',
         'curl',
+        'ethtool',
         'file',
         'iproute2',
         'iputils-ping',
