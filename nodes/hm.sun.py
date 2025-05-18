@@ -4,7 +4,19 @@ nodes['hm.sun'] = {
         'ubuntu-jammy',
     },
     'metadata': {
+        'google-chrome': {
+            'enabled': True,
+        },
+        'enpass': {
+            'enabled': True,
+        },
+        'intellij': {
+            'enabled': True,
+        },
         'docker': {
+            'enabled': True,
+        },
+        'gcloud-sdk': {
             'enabled': True,
         },
         'ubuntu-desktop': {
