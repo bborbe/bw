@@ -77,7 +77,7 @@ nodes['hm.hell'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'sudo'],
+                'groups': ['data', 'libvirt', 'sudo'],
             },
             'data': {
                 'enabled': True,
