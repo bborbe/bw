@@ -7,12 +7,7 @@ nodes['hm.hell'] = {
         'netplan': {
             'enabled': True,
             'ethernets': {
-                'enp55s0': {
-                    'dhcp4': False,
-                    'dhcp6': False,
-                    'wakeonlan': True,
-                },
-                'enp51s0': {
+                'enp54s0': {
                     'dhcp4': False,
                     'dhcp6': False,
                     'wakeonlan': True,
@@ -28,7 +23,7 @@ nodes['hm.hell'] = {
                     'macaddress': 'bc:5f:f4:71:15:c4',
                     'dhcp4': False,
                     'dhcp6': False,
-                    'interfaces': ['enp55s0'],
+                    'interfaces': ['enp54s0'],
                     'addresses': ['192.168.180.9/24'],
                     'routes': [
                         {
