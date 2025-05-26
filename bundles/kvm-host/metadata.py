@@ -10,6 +10,7 @@ def install_apt_packages(metadata):
         'bridge-utils',
         'cloud-utils',
         'cpu-checker',
+        'dnsmasq',
         'iotop',
         'iperf3',
         'libvirt-clients',
