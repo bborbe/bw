@@ -37,7 +37,8 @@ files = {
         'owner': 'root',
         'group': 'root',
         'context': {
-            'password': node.metadata.get('ssh', {}).get('password', False),
+            'PasswordAuthentication': node.metadata.get('ssh', {}).get('PasswordAuthentication', False),
+            'X11Forwarding': node.metadata.get('ssh', {}).get('X11Forwarding', False),
             'permitrootlogin': permitrootlogin,
         },
         'needs': ['pkg_apt:openssh-server'],

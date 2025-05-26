@@ -28,7 +28,11 @@ PermitEmptyPasswords no
 # some PAM modules and threads)
 ChallengeResponseAuthentication no
 
+% if X11Forwarding:
 X11Forwarding yes
+% else:
+X11Forwarding no
+% endif
 X11DisplayOffset 10
 PrintMotd no
 PrintLastLog yes
@@ -49,7 +53,7 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 # PAM authentication, then enable this but set PasswordAuthentication
 # and ChallengeResponseAuthentication to 'no'.
 UsePAM yes
-% if password:
+% if PasswordAuthentication:
 PasswordAuthentication yes
 % else:
 PasswordAuthentication no
