@@ -1,7 +1,7 @@
 nodes['hm.fire'] = {
     'hostname': 'fire.hm.benjamin-borbe.de',
     'groups': {
-        'ubuntu-jammy',
+        'ubuntu-noble',
     },
     'metadata': {
         'systemd': {
@@ -14,9 +14,6 @@ nodes['hm.fire'] = {
             'enabled': True,
         },
         'enpass': {
-            'enabled': True,
-        },
-        'intellij': {
             'enabled': True,
         },
         'google-chrome': {

@@ -32,7 +32,6 @@ def install_apt_packages(metadata):
             'libffi-dev',
             'libldap2-dev',
             'liblzma-dev',
-            'libncursesw5-dev',
             'libreadline-dev',
             'libsasl2-dev',
             'libsqlite3-dev',
