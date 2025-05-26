@@ -1,7 +1,7 @@
 nodes['hm.hell'] = {
     'hostname': 'hell.hm.benjamin-borbe.de',
     'groups': {
-        'ubuntu-jammy',
+        'ubuntu-noble',
     },
     'metadata': {
         'netplan': {

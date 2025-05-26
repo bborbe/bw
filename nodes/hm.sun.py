@@ -1,7 +1,7 @@
 nodes['hm.sun'] = {
     'hostname': 'sun.hm.benjamin-borbe.de',
     'groups': {
-        'ubuntu-jammy',
+        'ubuntu-noble',
     },
     'metadata': {
         'google-chrome': {
