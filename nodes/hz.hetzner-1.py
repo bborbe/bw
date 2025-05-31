@@ -13,7 +13,7 @@ nodes['hz.hetzner-1'] = {
         'netplan': {
             'enabled': True,
             'ethernets': {
-                'ens4': {
+                'eth0': {
                     'dhcp4': True,
                     'dhcp6': False,
                 },
