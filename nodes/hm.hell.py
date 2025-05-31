@@ -76,6 +76,9 @@ nodes['hm.hell'] = {
         'grub': {
             'predictable-nic': True,
         },
+        'systemd': {
+            'disable-power-button': True,
+        },
         'users': {
             'bborbe': {
                 'enabled': True,
