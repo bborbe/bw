@@ -10,18 +10,6 @@ nodes['hm.nuke'] = {
         'backup_client': {
             'enabled': True,
         },
-        'ubuntu-desktop': {
-            'enabled': True,
-        },
-        'enpass': {
-            'enabled': True,
-        },
-        'intellij': {
-            'enabled': True,
-        },
-        'google-chrome': {
-            'enabled': True,
-        },
         'docker': {
             'enabled': True,
         },
