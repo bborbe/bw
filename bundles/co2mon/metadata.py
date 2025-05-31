@@ -2,6 +2,8 @@
     'apt/packages',
 )
 def install_apt_packages(metadata):
+    if not metadata.get('co2mon', {}).get('enabled', False):
+        return {}
     pkgs_install = (
         'python3-pip',
         'virtualenv',
