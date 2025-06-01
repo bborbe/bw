@@ -2,6 +2,12 @@
 
 This repo contains my BundleWrap configuration. For more info about BundleWrap see: [http://bundlewrap.org/](http://BundleWrap.org/).
 
+## Root password for node
+
+```bash
+./scripts/user-password hm.nuke root
+```
+
 ## Upgrade requirements.txt
 
 ```bash
