@@ -1,7 +1,7 @@
 nodes['hm.nuke-k3s-master-2'] = {
     'hostname': 'nuke-k3s-master-2.hm.benjamin-borbe.de',
     'groups': {
-        'ubuntu-jammy',
+        'ubuntu-noble',
     },
     'metadata': {
         'netplan': {
