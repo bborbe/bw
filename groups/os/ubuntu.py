@@ -1,6 +1,7 @@
 groups['ubuntu'] = {
     'bundles': (
         'apt',
+        'ubuntu',
     ),
     'subgroup_patterns': (
         r"ubuntu-.+",
