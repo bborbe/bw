@@ -39,7 +39,10 @@ nodes['hm.nuke-k3s-master-2'] = {
             'enabled': True,
             'network': '192.168.178.0/24',
             'config': {
-                'disable': 'local-storage',
+                'disable': [
+                    'local-storage',
+                    'traefik',
+                ],
                 'kube-controller-manager-arg': [
                     'node-cidr-mask-size=22'
                 ],
