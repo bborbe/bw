@@ -10,9 +10,6 @@ nodes['hm.sun'] = {
         'enpass': {
             'enabled': True,
         },
-        'intellij': {
-            'enabled': True,
-        },
         'docker': {
             'enabled': True,
         },
