@@ -61,7 +61,7 @@ nodes['hm.fire'] = {
         'netplan': {
             'enabled': True,
             'ethernets': {
-                'enp2s0': {
+                'enp3s0': {
                     'dhcp4': False,
                     'dhcp6': False,
                 },
@@ -80,7 +80,7 @@ nodes['hm.fire'] = {
                     'macaddress': 'd0:50:99:5a:18:be',
                     'dhcp4': False,
                     'dhcp6': False,
-                    'interfaces': ['enp2s0'],
+                    'interfaces': ['enp3s0'],
                     'addresses': ['192.168.180.3/24'],
                     'routes': [
                         {
@@ -89,7 +89,7 @@ nodes['hm.fire'] = {
                         }
                     ],
                     'nameservers': {
-                        'addresses': ['192.168.180.1'],
+                        'addresses': ['8.8.8.8', '8.8.4.4'],
                         'search': ['hm.benjamin-borbe.de'],
                     },
                 },

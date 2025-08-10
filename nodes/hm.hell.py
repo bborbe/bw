@@ -39,7 +39,7 @@ nodes['hm.hell'] = {
                         }
                     ],
                     'nameservers': {
-                        'addresses': ['192.168.180.1'],
+                        'addresses': ['8.8.8.8', '8.8.4.4'],
                         'search': ['hm.benjamin-borbe.de'],
                     },
                 },
