@@ -33,7 +33,10 @@ def kvm_quest_sysctl(metadata):
                 'options': {
                     'fs.inotify.max_user_watches': '2099999999',
                     'fs.inotify.max_user_instances': '2099999999',
-                    'fs.inotify.max_queued_events': '2099999999'
+                    'fs.inotify.max_queued_events': '2099999999',
+                    'net.ipv4.tcp_fin_timeout': '30',
+                    'net.ipv4.tcp_tw_reuse': '2',
+                    'net.ipv4.tcp_max_tw_buckets': '65536',
                 }
             }
         }
