@@ -22,6 +22,9 @@ nodes['hm.sun'] = {
         'kvm-host': {
             'enabled': True,
         },
+        'backup_client': {
+            'enabled': True,
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {
