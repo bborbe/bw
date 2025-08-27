@@ -45,11 +45,11 @@ nodes['hm.sun'] = {
                     'dhcp4': False,
                     'dhcp6': False,
                     'interfaces': ['enp10s0'],
-                    'addresses': ['192.168.177.9/24'],
+                    'addresses': ['192.168.30.2/24'],
                     'routes': [
                         {
                             'to': 'default',
-                            'via': '192.168.177.1',
+                            'via': '192.168.30.1',
                         }
                     ],
                     'nameservers': {
