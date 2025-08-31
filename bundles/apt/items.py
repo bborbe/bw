@@ -4,6 +4,7 @@ if node.os != 'ubuntu' and node.os != 'raspbian':
 pkg_apt = {
     'apt-transport-https': {},
     'aptitude': {},
+    'curl': {},
 }
 
 actions = {}
@@ -59,6 +60,10 @@ if node.metadata.get('os') == 'ubuntu' and node.metadata.get('release'):
             'triggers': ['action:apt_update'],
         }
 if node.metadata.get('os') == 'raspbian' and node.metadata.get('release'):
+    actions['install_raspbian_gpg_key'] = {
+        'command': 'mkdir -p /usr/share/keyrings && curl -fsSL https://archive.raspbian.org/raspbian.public.key | gpg --dearmor -o /usr/share/keyrings/raspbian.gpg',
+        'unless': 'test -f /usr/share/keyrings/raspbian.gpg',
+    }
     files['/etc/apt/sources.list'] = {
         'source': 'source.list',
         'content_type': 'mako',
@@ -67,10 +72,11 @@ if node.metadata.get('os') == 'raspbian' and node.metadata.get('release'):
         'group': 'root',
         'context': {
             'lines': [
-                'deb http://raspbian.raspberrypi.org/raspbian/ {} main contrib non-free rpi'.format(node.metadata.get('release')),
-                '#deb-src http://raspbian.raspberrypi.org/raspbian/ {} main contrib non-free rpi'.format(node.metadata.get('release')),
+                'deb [signed-by=/usr/share/keyrings/raspbian.gpg] http://raspbian.raspberrypi.org/raspbian/ {} main contrib non-free rpi'.format(node.metadata.get('release')),
+                '#deb-src [signed-by=/usr/share/keyrings/raspbian.gpg] http://raspbian.raspberrypi.org/raspbian/ {} main contrib non-free rpi'.format(node.metadata.get('release')),
             ],
         },
+        'needs': ['action:install_raspbian_gpg_key'],
         'triggers': ['action:apt_update'],
     }
 
