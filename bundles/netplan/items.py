@@ -35,3 +35,9 @@ if node.metadata.get('netplan', {}).get('enabled', False):
         },
         'triggers': ['action:netplan_apply'],
     }
+
+    files['/etc/network/interfaces'] = {
+        'source': 'network-interfaces',
+        'owner': 'root',
+        'group': 'root',
+    }
