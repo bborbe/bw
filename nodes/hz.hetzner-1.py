@@ -55,7 +55,10 @@ nodes['hz.hetzner-1'] = {
             'rules': {
                 'filter': {
                     # allow forward
-                    '-A FORWARD -j ACCEPT',
+                    # '-A FORWARD -j ACCEPT',
+                    '-A FORWARD -i tun0 -o tun0 -j DROP',
+                    '-A FORWARD -i tun0 -o eth0 -j ACCEPT',
+                    '-A FORWARD -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT',
                     '-A INPUT -p tcp -m state --state NEW -m tcp --dport 25 -j ACCEPT',
                     '-A INPUT -p tcp -m state --state NEW -m tcp --dport 53 -j ACCEPT',
                     '-A INPUT -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT',
