@@ -17,6 +17,7 @@ groups['meta-bundles'] = {
         'dotfiles',
         'enpass',
         'git',
+        'screego',
         'golang',
         'google-chrome',
         'grafana',
