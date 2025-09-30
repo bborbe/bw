@@ -4,6 +4,10 @@ nodes['hm.sun'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'samba': {
+            'enabled': True,
+            'server_name': 'sun.hm.benjamin-borbe.de',
+        },
         'google-chrome': {
             'enabled': True,
         },
@@ -33,6 +37,11 @@ nodes['hm.sun'] = {
                     'dhcp6': False,
                     'wakeonlan': True,
                 },
+                'enp12s0': {
+                    'dhcp4': False,
+                    'dhcp6': False,
+                    'wakeonlan': True,
+                },
             },
             'bridges': {
                 'br0': {
@@ -44,7 +53,7 @@ nodes['hm.sun'] = {
                     'macaddress': 'bc:5f:f4:71:15:c5',
                     'dhcp4': False,
                     'dhcp6': False,
-                    'interfaces': ['enp10s0'],
+                    'interfaces': ['enp12s0'],
                     'addresses': ['192.168.30.2/24'],
                     'routes': [
                         {
