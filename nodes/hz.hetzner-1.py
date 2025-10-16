@@ -49,7 +49,6 @@ nodes['hz.hetzner-1'] = {
         'golang': {
             'enabled': True,
             'arch': 'amd64',
-            'version': '1.24.4',
             'os': 'linux',
         },
         'iptables': {
