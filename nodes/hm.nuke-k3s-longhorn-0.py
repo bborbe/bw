@@ -41,8 +41,9 @@ nodes['hm.nuke-k3s-longhorn-0'] = {
             'network': '192.168.178.0/24',
             'config': {
                 'kubelet-arg': [
-                    'image-gc-high-threshold=90',
-                    'image-gc-low-threshold=80',
+                    'image-gc-high-threshold=80',
+                    'image-gc-low-threshold=70',
+                    'eviction-hard=imagefs.available<10%',
                 ]
             },
         },

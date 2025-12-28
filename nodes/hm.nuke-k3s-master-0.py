@@ -47,8 +47,9 @@ nodes['hm.nuke-k3s-master-0'] = {
                     'node-cidr-mask-size=22'
                 ],
                 'kubelet-arg': [
-                    'image-gc-high-threshold=90',
-                    'image-gc-low-threshold=80',
+                    'image-gc-high-threshold=80',
+                    'image-gc-low-threshold=70',
+                    'eviction-hard=imagefs.available<10%',
                 ]
             },
         },
