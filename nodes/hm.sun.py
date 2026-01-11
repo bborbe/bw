@@ -32,15 +32,15 @@ nodes['hm.sun'] = {
         'netplan': {
             'enabled': True,
             'ethernets': {
+                'enp9s0': {
+                    'dhcp4': False,
+                    'dhcp6': False,
+                    'wakeonlan': False,
+                },
                 'enp10s0': {
                     'dhcp4': False,
                     'dhcp6': False,
-                    'wakeonlan': True,
-                },
-                'enp12s0': {
-                    'dhcp4': False,
-                    'dhcp6': False,
-                    'wakeonlan': True,
+                    'wakeonlan': False,
                 },
             },
             'bridges': {
@@ -53,7 +53,7 @@ nodes['hm.sun'] = {
                     'macaddress': 'bc:5f:f4:71:15:c5',
                     'dhcp4': False,
                     'dhcp6': False,
-                    'interfaces': ['enp12s0'],
+                    'interfaces': ['enp9s0'],
                     'addresses': ['192.168.30.2/24'],
                     'routes': [
                         {
