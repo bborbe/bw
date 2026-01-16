@@ -41,3 +41,33 @@ groups['debian-buster'] = {
         'release': 'buster',
     },
 }
+
+groups['debian-bullseye'] = {
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (11, 0),
+    'metadata': {
+        'release': 'bullseye',
+    },
+}
+
+groups['debian-bookworm'] = {
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (12, 0),
+    'metadata': {
+        'release': 'bookworm',
+    },
+}
+
+groups['debian-trixie'] = {
+    'bundles': (
+        'systemd',
+    ),
+    'os_version': (13, 0),
+    'metadata': {
+        'release': 'trixie',
+    },
+}
