@@ -8,6 +8,9 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v0.1.2
+- Add docker group to bborbe user on nuke-workspace
+
 ## v0.1.1
 - Move kubectl from node-specific bundle to meta-bundles group
 

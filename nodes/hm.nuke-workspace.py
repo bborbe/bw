@@ -55,7 +55,7 @@ nodes['hm.nuke-workspace'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['sudo'],
+                'groups': ['sudo', 'docker'],
             },
             'install': {
                 'enabled': False,
