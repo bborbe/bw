@@ -12,10 +12,8 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 - Move kubectl from node-specific bundle to meta-bundles group
 
 ## v0.1.0
-
 - Add kubectl bundle with modern signed-by keyring pattern
 - Enable kubectl on nuke-workspace node
 
 ## v0.0.1
-
 - Initial release
