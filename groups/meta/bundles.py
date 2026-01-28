@@ -8,6 +8,7 @@ groups['meta-bundles'] = {
         'backup_server',
         'base',
         'bme280',
+        'kubectl',
         'co2mon',
         'cron',
         'dhcpclient',

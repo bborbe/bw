@@ -3,13 +3,13 @@ nodes['hm.nuke-workspace'] = {
     'groups': {
         'ubuntu-noble',
     },
-    'bundles': {
-        'kubectl',
-    },
     'metadata': {
         'kubectl': {
             'enabled': True,
             'version': 'v1.35',
+        },
+        'docker': {
+            'enabled': True,
         },
         'netplan': {
             'enabled': True,
