@@ -56,7 +56,7 @@ def uninstall_apt_packages(metadata):
 
 
 @metadata_reactor.provides(
-    'git/clones/repo',
+    'git/clones/scripts',
 )
 def git_clone_scripts(metadata):
     return {
