@@ -8,6 +8,11 @@ nodes['hm.nuke-workspace'] = {
             'enabled': True,
             'version': 'v1.35',
         },
+        'golang': {
+            'enabled': True,
+            'arch': 'amd64',
+            'os': 'linux',
+        },
         'docker': {
             'enabled': True,
         },
