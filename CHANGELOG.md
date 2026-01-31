@@ -8,6 +8,11 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v0.2.1
+- Update bundlewrap to 4.24.0
+- Update bundlewrap-teamvault to 3.1.5
+- Remove transitive dependencies from requirements.txt
+
 ## v0.2.0
 - Add trivy bundle to meta-bundles group
 - Enable trivy on nuke-workspace node
