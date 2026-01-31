@@ -24,6 +24,8 @@ nodes['hm.nuke-workspace'] = {
                 'libffi-dev': {'installed': True},
                 'liblzma-dev': {'installed': True},
                 'git': {'installed': True},
+                'keychain': {'installed': True},
+                'direnv': {'installed': True},
             },
         },
         'kubectl': {
