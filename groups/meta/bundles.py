@@ -51,6 +51,7 @@ groups['meta-bundles'] = {
         'telegraf',
         'timezone',
         'trading',
+        'trivy',
         'ubuntu-desktop',
         'user',
         'zfs',

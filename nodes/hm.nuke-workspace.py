@@ -16,6 +16,9 @@ nodes['hm.nuke-workspace'] = {
         'docker': {
             'enabled': True,
         },
+        'trivy': {
+            'enabled': True,
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {
