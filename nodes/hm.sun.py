@@ -14,6 +14,10 @@ nodes['hm.sun'] = {
         'enpass': {
             'enabled': True,
         },
+        'kubectl': {
+            'enabled': True,
+            'version': 'v1.35',
+        },
         'docker': {
             'enabled': True,
         },
