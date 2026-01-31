@@ -122,6 +122,7 @@ nodes['hm.hell'] = {
                 'nuke-k3s-master-1.hm.benjamin-borbe.de': {},
                 'nuke-k3s-master-2.hm.benjamin-borbe.de': {},
                 'nuke-k3s-prod-0.hm.benjamin-borbe.de': {},
+                'nuke-workspace.hm.benjamin-borbe.de': {},
                 'nuke.hm.benjamin-borbe.de': {},
                 'rasp3.hm.benjamin-borbe.de': {},
                 'sun.hm.benjamin-borbe.de': {},
