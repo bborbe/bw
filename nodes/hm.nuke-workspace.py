@@ -26,6 +26,7 @@ nodes['hm.nuke-workspace'] = {
                 'git': {'installed': True},
                 'keychain': {'installed': True},
                 'direnv': {'installed': True},
+                'ripgrep': {'installed': True},
             },
         },
         'kubectl': {
