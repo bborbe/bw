@@ -2,7 +2,7 @@ directories = {}
 actions = {}
 files = {}
 
-default_golang_version = '1.25.6'
+default_golang_version = '1.25.7'
 
 if node.metadata.get('golang', {}).get('enabled', False):
     directories['/opt/go'] = {
