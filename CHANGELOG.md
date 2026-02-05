@@ -8,6 +8,13 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v0.3.0
+- Add workspace bundle with development tools (gnupg2, build-essential, git, direnv, ripgrep, etc.)
+- Enable workspace on hm.fire, hm.sun, and hm.nuke-workspace nodes
+- Update golang to 1.25.7
+- Add ripgrep to meta-bundles
+- Add disk configuration for nuke-workspace
+
 ## v0.2.1
 - Update bundlewrap to 4.24.0
 - Update bundlewrap-teamvault to 3.1.5

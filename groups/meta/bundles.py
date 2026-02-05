@@ -9,6 +9,7 @@ groups['meta-bundles'] = {
         'base',
         'bme280',
         'kubectl',
+        'workspace',
         'co2mon',
         'cron',
         'dhcpclient',

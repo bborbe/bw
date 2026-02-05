@@ -4,30 +4,8 @@ nodes['hm.nuke-workspace'] = {
         'ubuntu-noble',
     },
     'metadata': {
-        'apt': {
-            'packages': {
-                'gnupg2': {'installed': True},
-                'pinentry-tty': {'installed': True},
-                'build-essential': {'installed': True},
-                'libssl-dev': {'installed': True},
-                'zlib1g-dev': {'installed': True},
-                'libbz2-dev': {'installed': True},
-                'libreadline-dev': {'installed': True},
-                'libsqlite3-dev': {'installed': True},
-                'wget': {'installed': True},
-                'curl': {'installed': True},
-                'llvm': {'installed': True},
-                'xz-utils': {'installed': True},
-                'tk-dev': {'installed': True},
-                'libxml2-dev': {'installed': True},
-                'libxmlsec1-dev': {'installed': True},
-                'libffi-dev': {'installed': True},
-                'liblzma-dev': {'installed': True},
-                'git': {'installed': True},
-                'keychain': {'installed': True},
-                'direnv': {'installed': True},
-                'ripgrep': {'installed': True},
-            },
+        'workspace': {
+            'enabled': True,
         },
         'kubectl': {
             'enabled': True,

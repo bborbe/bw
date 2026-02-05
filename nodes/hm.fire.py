@@ -4,11 +4,26 @@ nodes['hm.fire'] = {
         'ubuntu-noble',
     },
     'metadata': {
-        'systemd': {
-            'disable-power-button': True,
+        'workspace': {
+            'enabled': True,
+        },
+        'kubectl': {
+            'enabled': True,
+            'version': 'v1.35',
+        },
+        'golang': {
+            'enabled': True,
+            'arch': 'amd64',
+            'os': 'linux',
         },
         'docker': {
             'enabled': True,
+        },
+        'trivy': {
+            'enabled': True,
+        },
+        'systemd': {
+            'disable-power-button': True,
         },
         'ubuntu-desktop': {
             'enabled': True,
@@ -18,11 +33,6 @@ nodes['hm.fire'] = {
         },
         'google-chrome': {
             'enabled': True,
-        },
-        'golang': {
-            'enabled': True,
-            'arch': 'amd64',
-            'os': 'linux',
         },
         'backup_client': {
             'enabled': True,

@@ -4,6 +4,24 @@ nodes['hm.sun'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'workspace': {
+            'enabled': True,
+        },
+        'kubectl': {
+            'enabled': True,
+            'version': 'v1.35',
+        },
+        'golang': {
+            'enabled': True,
+            'arch': 'amd64',
+            'os': 'linux',
+        },
+        'docker': {
+            'enabled': True,
+        },
+        'trivy': {
+            'enabled': True,
+        },
         'samba': {
             'enabled': True,
             'server_name': 'sun.hm.benjamin-borbe.de',
@@ -12,13 +30,6 @@ nodes['hm.sun'] = {
             'enabled': True,
         },
         'enpass': {
-            'enabled': True,
-        },
-        'kubectl': {
-            'enabled': True,
-            'version': 'v1.35',
-        },
-        'docker': {
             'enabled': True,
         },
         'gcloud-sdk': {
@@ -103,11 +114,6 @@ nodes['hm.sun'] = {
             'data': {
                 'enabled': True,
             },
-        },
-        'golang': {
-            'enabled': True,
-            'arch': 'amd64',
-            'os': 'linux',
         },
     },
 }
