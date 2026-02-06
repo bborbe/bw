@@ -28,6 +28,9 @@ nodes['hz.hetzner-2'] = {
             'bborbe': {
                 'enabled': True,
             },
+            'openclaw': {
+                'enabled': True,
+            },
         },
     },
 }

@@ -86,6 +86,10 @@ groups['meta-user'] = {
             'controller': {
                 'uid': '11019',
             },
+            'openclaw': {
+                'uid': '11020',
+                'full_name': 'OpenClaw',
+            },
             'data': {
                 'uid': '20000',
             },
@@ -153,6 +157,9 @@ groups['meta-user'] = {
             },
             'controller': {
                 'gid': '11019',
+            },
+            'openclaw': {
+                'gid': '11020',
             },
             'data': {
                 'gid': '20000',
