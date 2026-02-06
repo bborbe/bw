@@ -32,5 +32,17 @@ nodes['hz.hetzner-2'] = {
                 'enabled': True,
             },
         },
+        'kubectl': {
+            'enabled': True,
+            'version': 'v1.35',
+        },
+        'golang': {
+            'enabled': True,
+            'arch': 'amd64',
+            'os': 'linux',
+        },
+        'trivy': {
+            'enabled': True,
+        },
     },
 }
