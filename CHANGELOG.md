@@ -8,6 +8,9 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v0.3.3
+- Improve Docker build cache GC policy with aggressive cleanup rules (10GB limit, 7-day retention)
+
 ## v0.3.2
 - Add automatic Docker build cache cleanup with 20GB limit to daemon.json
 
