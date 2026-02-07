@@ -1,3 +1,9 @@
 {
-	"ipv6": false
+	"ipv6": false,
+	"builder": {
+		"gc": {
+			"enabled": true,
+			"defaultKeepStorage": "20GB"
+		}
+	}
 }
