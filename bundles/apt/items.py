@@ -102,8 +102,12 @@ for name, data in node.metadata.get('apt', {}).get('repos', {}).items():
                 'triggers': ['action:apt_update'],
             }
         elif data.get('url_key', False):
+            if data.get('gpg_dearmor', False):
+                download_cmd = 'curl -fsSL {url} | gpg --dearmor -o /etc/apt/keyrings/{name}.pub'.format(url=data['url_key'], name=name)
+            else:
+                download_cmd = 'wget -q -O - {url} > /etc/apt/keyrings/{name}.pub'.format(url=data['url_key'], name=name)
             actions['apt_key_download_{name}'.format(name=name)] = {
-                'command': 'wget -q -O - {url} > /etc/apt/keyrings/{name}.pub'.format(url=data['url_key'], name=name),
+                'command': download_cmd,
                 'unless': 'test -e /etc/apt/keyrings/{name}.pub'.format(name=name),
                 'cascade_skip': False,
                 'needed_by': ['action:apt_update'],
