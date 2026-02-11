@@ -11,6 +11,7 @@ groups['meta-bundles'] = {
         'kubectl',
         'workspace',
         'co2mon',
+        'conduit-server',
         'cron',
         'dhcpclient',
         'gcloud-sdk',
