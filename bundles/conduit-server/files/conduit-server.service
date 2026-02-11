@@ -13,11 +13,9 @@ ExecStartPre=-/usr/bin/docker rm conduit-server
 ExecStart=/usr/bin/docker run \
 	--name=conduit-server \
 	-v /opt/conduit:/var/lib/matrix-conduit \
+	-v /opt/conduit/conduit.toml:/etc/conduit.toml:ro \
 	-p ${port}:6167 \
-	-e CONDUIT_SERVER_NAME=${server_name} \
-	-e CONDUIT_DATABASE_BACKEND=rocksdb \
-	-e CONDUIT_ALLOW_REGISTRATION=${allow_registration} \
-	-e CONDUIT_ALLOW_FEDERATION=${allow_federation} \
+	-e CONDUIT_CONFIG=/etc/conduit.toml \
 	registry.gitlab.com/famedly/conduit/matrix-conduit:${version}
 ExecStop=/usr/bin/docker stop conduit-server
 

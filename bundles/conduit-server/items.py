@@ -8,9 +8,24 @@ if node.metadata.get('conduit-server', {}).get('enabled', False):
         'group': 'root',
         'mode': '0755',
     }
+    files['/opt/conduit/conduit.toml'] = {
+        'group': 'root',
+        'mode': '0644',
+        'owner': 'root',
+        'source': 'conduit.toml',
+        'content_type': 'mako',
+        'context': node.metadata.get('conduit-server', {}),
+        'triggers': [
+            'svc_systemd:conduit-server:restart',
+        ],
+        'needs': [
+            'directory:/opt/conduit',
+        ],
+    }
     svc_systemd['conduit-server'] = {
         'needs': [
             'file:/lib/systemd/system/conduit-server.service',
+            'file:/opt/conduit/conduit.toml',
             'directory:/opt/conduit',
         ],
     }
@@ -33,5 +48,8 @@ else:
         'enabled': False,
     }
     files['/lib/systemd/system/conduit-server.service'] = {
+        'delete': True,
+    }
+    files['/opt/conduit/conduit.toml'] = {
         'delete': True,
     }
