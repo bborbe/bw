@@ -1,3 +1,2 @@
 # GitHub CLI (gh) bundle
-# Key and sources.list are managed in items.py
-# This metadata file is intentionally minimal
+# Package installed from Ubuntu universe repository
