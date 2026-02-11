@@ -35,6 +35,9 @@ nodes['hm.sun'] = {
         'gcloud-sdk': {
             'enabled': True,
         },
+        'helm': {
+            'enabled': True,
+        },
         'ubuntu-desktop': {
             'enabled': True,
         },
@@ -103,7 +106,7 @@ nodes['hm.sun'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'sudo', 'libvirt', 'docker'],
+                'groups': ['data', 'sudo', 'libvirt', 'docker', 'ollama'],
             },
             'data': {
                 'enabled': True,

@@ -22,6 +22,9 @@ nodes['hm.nuke-workspace'] = {
         'trivy': {
             'enabled': True,
         },
+        'helm': {
+            'enabled': True,
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {

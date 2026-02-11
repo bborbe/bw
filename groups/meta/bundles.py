@@ -27,6 +27,7 @@ groups['meta-bundles'] = {
         'group',
         'mdadm',
         'grub',
+        'helm',
         'udev',
         'hostname',
         'influxdb',

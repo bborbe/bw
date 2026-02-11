@@ -26,6 +26,7 @@ def install_apt_packages(metadata):
         'keychain',
         'direnv',
         'ripgrep',
+        'gh',
     )
     result = {
         'apt': {
