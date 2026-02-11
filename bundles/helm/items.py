@@ -4,7 +4,7 @@ if not node.metadata.get('helm', {}).get('enabled', False):
 actions = {
     'helm_gpg_key': {
         'command': 'curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor -o /etc/apt/keyrings/helm.gpg',
-        'unless': 'test -e /etc/apt/keyrings/helm.gpg',
+        'unless': 'apt-key --keyring /etc/apt/keyrings/helm.gpg list 2>/dev/null | grep -q 4B196BE9C4313D06',
         'cascade_skip': False,
         'needed_by': ['action:apt_update'],
     },
