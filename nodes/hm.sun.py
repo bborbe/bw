@@ -106,7 +106,7 @@ nodes['hm.sun'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
-                'groups': ['data', 'sudo', 'libvirt', 'docker'],
+                'groups': ['data', 'sudo', 'libvirt', 'docker', 'ollama'],
             },
             'data': {
                 'enabled': True,
