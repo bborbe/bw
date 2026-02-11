@@ -38,9 +38,6 @@ nodes['hm.sun'] = {
         'helm': {
             'enabled': True,
         },
-        'gh': {
-            'enabled': True,
-        },
         'ubuntu-desktop': {
             'enabled': True,
         },

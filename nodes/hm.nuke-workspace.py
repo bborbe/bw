@@ -25,9 +25,6 @@ nodes['hm.nuke-workspace'] = {
         'helm': {
             'enabled': True,
         },
-        'gh': {
-            'enabled': True,
-        },
         'netplan': {
             'enabled': True,
             'ethernets': {
