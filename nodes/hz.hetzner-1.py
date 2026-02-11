@@ -4,6 +4,12 @@ nodes['hz.hetzner-1'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'conduit-server': {
+            'enabled': True,
+            'server_name': 'matrix.benjamin-borbe.de',
+            'well_known_base_domain': 'benjamin-borbe.de',
+            'well_known_ip': '159.69.203.89',
+        },
         'docker': {
             'enabled': True,
         },
@@ -41,6 +47,25 @@ nodes['hz.hetzner-1'] = {
                         'force': False,
                         'cert': '/etc/letsencrypt/live/kickstart.benjamin-borbe.de/fullchain.pem',
                         'key': '/etc/letsencrypt/live/kickstart.benjamin-borbe.de/privkey.pem',
+                    },
+                    'indexes': [],
+                },
+                'matrix': {
+                    'ip': '159.69.203.89',
+                    'server_names': [
+                        'matrix.benjamin-borbe.de',
+                    ],
+                    'ssl': {
+                        'force': True,
+                        'cert': '/etc/letsencrypt/live/matrix.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/matrix.benjamin-borbe.de/privkey.pem',
+                    },
+                    'locations': {
+                        '/': {
+                            'proxy_pass': 'http://127.0.0.1:8448',
+                            'proxy_set_header Host': '$host',
+                            'proxy_set_header X-Real-IP': '$remote_addr',
+                        },
                     },
                     'indexes': [],
                 },

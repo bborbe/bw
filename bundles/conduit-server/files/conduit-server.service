@@ -1,0 +1,23 @@
+[Unit]
+Description=Conduit Matrix Server
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+RestartSec=20s
+EnvironmentFile=/etc/environment
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill conduit-server
+ExecStartPre=-/usr/bin/docker rm conduit-server
+ExecStart=/usr/bin/docker run \
+	--name=conduit-server \
+	-v /opt/conduit:/var/lib/matrix-conduit \
+	-v /opt/conduit/conduit.toml:/etc/conduit.toml:ro \
+	-p ${port}:6167 \
+	-e CONDUIT_CONFIG=/etc/conduit.toml \
+	registry.gitlab.com/famedly/conduit/matrix-conduit:${version}
+ExecStop=/usr/bin/docker stop conduit-server
+
+[Install]
+WantedBy=multi-user.target
