@@ -7,6 +7,8 @@ nodes['hz.hetzner-1'] = {
         'conduit-server': {
             'enabled': True,
             'server_name': 'matrix.benjamin-borbe.de',
+            'well_known_base_domain': 'benjamin-borbe.de',
+            'well_known_ip': '159.69.203.89',
         },
         'docker': {
             'enabled': True,
