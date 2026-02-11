@@ -35,6 +35,12 @@ nodes['hm.sun'] = {
         'gcloud-sdk': {
             'enabled': True,
         },
+        'helm': {
+            'enabled': True,
+        },
+        'gh': {
+            'enabled': True,
+        },
         'ubuntu-desktop': {
             'enabled': True,
         },
