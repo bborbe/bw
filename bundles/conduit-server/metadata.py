@@ -3,8 +3,8 @@ defaults = {
         'enabled': False,
         'server_name': 'localhost',
         'port': 8448,
-        'version': 'latest',
-        'allow_registration': 'true',
+        'version': 'v0.10.11',
+        'allow_registration': 'false',
         'allow_federation': 'false',
     },
 }
