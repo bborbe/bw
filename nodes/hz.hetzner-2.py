@@ -13,6 +13,9 @@ nodes['hz.hetzner-2'] = {
                 },
             },
         },
+        'workspace': {
+            'enabled': True,
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],

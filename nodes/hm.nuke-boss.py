@@ -4,6 +4,26 @@ nodes['hm.nuke-boss'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'workspace': {
+            'enabled': True,
+        },
+        'kvm-guest': {
+            'enabled': True,
+        },
+        'backup_client': {
+            'enabled': True,
+        },
+        'iptables': {
+            'enabled': True,
+            'nat_interfaces': [],
+            'rules': {
+                'filter': set({
+                    '-A INPUT -m state --state NEW -p tcp --dport 18789 -j ACCEPT',
+                    # '-A INPUT -j ACCEPT',
+                    # '-A FORWARD -j ACCEPT',
+                }),
+            },
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {
@@ -21,13 +41,6 @@ nodes['hm.nuke-boss'] = {
                     },
                 },
             },
-        },
-        'kvm-guest': {'enabled': True},
-        'backup_client': {'enabled': True},
-        'iptables': {
-            'enabled': True,
-            'nat_interfaces': [],
-            'rules': {'filter': set()},
         },
         'users': {
             'bborbe': {'enabled': True, 'groups': ['sudo']},
