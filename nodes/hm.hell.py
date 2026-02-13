@@ -109,6 +109,8 @@ nodes['hm.hell'] = {
                 'co2wz.hm.benjamin-borbe.de': {},
                 'fire.hm.benjamin-borbe.de': {},
                 'hetzner-1.benjamin-borbe.de': {},
+                'hetzner-2.benjamin-borbe.de': {},
+                'nuke-boss.hm.benjamin-borbe.de': {},
                 'nuke-k3s-agent-0.hm.benjamin-borbe.de': {},
                 'nuke-k3s-agent-1.hm.benjamin-borbe.de': {},
                 'nuke-k3s-agent.hm.benjamin-borbe.de': {},
