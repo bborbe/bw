@@ -1,0 +1,37 @@
+nodes['hm.nuke-boss'] = {
+    'hostname': 'nuke-boss.hm.benjamin-borbe.de',
+    'groups': {
+        'ubuntu-noble',
+    },
+    'metadata': {
+        'netplan': {
+            'enabled': True,
+            'ethernets': {
+                'eth0': {
+                    'dhcp4': False,
+                    'dhcp6': False,
+                    'optional': True,
+                    'match': {'name': 'en*'},
+                    'set-name': 'eth0',
+                    'addresses': ['192.168.178.30/24'],
+                    'routes': [{'to': 'default', 'via': '192.168.178.1'}],
+                    'nameservers': {
+                        'addresses': ['8.8.8.8', '8.8.4.4'],
+                        'search': ['hm.benjamin-borbe.de'],
+                    },
+                },
+            },
+        },
+        'kvm-guest': {'enabled': True},
+        'backup_client': {'enabled': True},
+        'iptables': {
+            'enabled': True,
+            'nat_interfaces': [],
+            'rules': {'filter': set()},
+        },
+        'users': {
+            'bborbe': {'enabled': True, 'groups': ['sudo']},
+            'install': {'enabled': False},
+        },
+    },
+}
