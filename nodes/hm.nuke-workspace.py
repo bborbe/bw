@@ -71,6 +71,9 @@ nodes['hm.nuke-workspace'] = {
                 'enabled': True,
                 'groups': ['sudo', 'docker'],
             },
+            'openclaw': {
+                'enabled': True,
+            },
             'install': {
                 'enabled': False,
             },

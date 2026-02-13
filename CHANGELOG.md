@@ -8,6 +8,13 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v0.3.5
+- Fix CI test failures by ignoring missing vault faults
+- Add new VM configuration for hm.hell
+- Disable UI on nuke-boss
+- Add workspace configuration for hetzner-2
+- Add openclaw user to nuke-workspace
+
 ## v0.3.4
 - Add GitHub Actions CI workflow for automated testing
 - Add openclaw user to nuke-boss node
