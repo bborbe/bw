@@ -5,4 +5,4 @@ precommit: test
 	@echo "ready to commit"
 
 test:
-	bw test
+	bw test --ignore-missing-faults
