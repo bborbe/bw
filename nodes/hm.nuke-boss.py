@@ -31,6 +31,7 @@ nodes['hm.nuke-boss'] = {
         },
         'users': {
             'bborbe': {'enabled': True, 'groups': ['sudo']},
+            'openclaw': {'enabled': True},
             'install': {'enabled': False},
         },
     },

@@ -8,6 +8,10 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v0.3.4
+- Add GitHub Actions CI workflow for automated testing
+- Add openclaw user to nuke-boss node
+
 ## v0.3.3
 - Improve Docker build cache GC policy with aggressive cleanup rules (10GB limit, 7-day retention)
 
