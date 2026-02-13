@@ -18,7 +18,7 @@ nodes['hm.nuke-boss'] = {
             'nat_interfaces': [],
             'rules': {
                 'filter': set({
-                    '-A INPUT -m state --state NEW -p tcp --dport 18789 -j ACCEPT',
+                    # '-A INPUT -m state --state NEW -p tcp --dport 18789 -j ACCEPT',
                     # '-A INPUT -j ACCEPT',
                     # '-A FORWARD -j ACCEPT',
                 }),
