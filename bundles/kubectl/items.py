@@ -17,11 +17,12 @@ if node.metadata.get('kubectl', {}).get('enabled', False):
     # Download and install Kubernetes GPG key
     version = node.metadata.get('kubectl', {}).get('version', 'v1.35')
     actions['install_kubernetes_gpg_key'] = {
-        'command': 'curl -fsSL https://pkgs.k8s.io/core:/stable:/{version}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg'.format(version=version),
+        'command': 'curl -fsSL https://pkgs.k8s.io/core:/stable:/{version}/deb/Release.key | gpg --batch --yes --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg'.format(version=version),
         'unless': 'test -f /etc/apt/keyrings/kubernetes-apt-keyring.gpg',
         'needs': [
             'directory:/etc/apt/keyrings',
         ],
+        'interactive': False,
     }
 
     # Add Kubernetes apt repository

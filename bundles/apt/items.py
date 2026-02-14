@@ -61,7 +61,7 @@ if node.metadata.get('os') == 'ubuntu' and node.metadata.get('release'):
         }
 if node.metadata.get('os') == 'raspbian' and node.metadata.get('release'):
     actions['install_raspbian_gpg_key'] = {
-        'command': 'mkdir -p /usr/share/keyrings && curl -fsSL https://archive.raspbian.org/raspbian.public.key | gpg --dearmor -o /usr/share/keyrings/raspbian.gpg',
+        'command': 'mkdir -p /usr/share/keyrings && curl -fsSL https://archive.raspbian.org/raspbian.public.key | gpg --batch --yes --dearmor -o /usr/share/keyrings/raspbian.gpg',
         'unless': 'test -f /usr/share/keyrings/raspbian.gpg',
     }
     files['/etc/apt/sources.list'] = {

@@ -9,8 +9,9 @@ directories = {}
 if node.metadata.get('trivy', {}).get('enabled', False):
     # Download and install Trivy GPG key
     actions['install_trivy_gpg_key'] = {
-        'command': 'mkdir -p /etc/apt/keyrings && curl -fsSL https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor -o /etc/apt/keyrings/trivy.gpg && chmod 644 /etc/apt/keyrings/trivy.gpg',
+        'command': 'mkdir -p /etc/apt/keyrings && curl -fsSL https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --batch --yes --dearmor -o /etc/apt/keyrings/trivy.gpg && chmod 644 /etc/apt/keyrings/trivy.gpg',
         'unless': 'test -f /etc/apt/keyrings/trivy.gpg',
+        'interactive': False,
     }
 
     # Add Trivy apt repository
