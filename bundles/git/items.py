@@ -21,14 +21,17 @@ for name, v in node.metadata.get('git', {}).get('clones', {}).items():
     actions['git_fetch_{name}'.format(name=name)] = {
         'command': 'git --git-dir {target}/.git fetch -p'.format(target=target),
         'needs': ['action:git_clone_{name}'.format(name=name)],
+        'interactive': False,
     }
 
     actions['git_checkout_{name}'.format(name=name)] = {
         'command': 'git --git-dir {target}/.git checkout {branch}'.format(branch=v.get('branch', 'master'), target=target),
+        'unless': 'git --git-dir {target}/.git rev-parse --abbrev-ref HEAD | grep -q "^{branch}$"'.format(branch=v.get('branch', 'master'), target=target),
         'needs': ['action:git_fetch_{name}'.format(name=name)],
     }
 
     actions['git_pull_{name}'.format(name=name)] = {
         'command': 'git --git-dir {target}/.git pull'.format(target=target),
+        'unless': 'test "$(git --git-dir {target}/.git rev-parse HEAD)" = "$(git --git-dir {target}/.git rev-parse @{{u}})"'.format(target=target),
         'needs': ['action:git_checkout_{name}'.format(name=name)],
     }
