@@ -52,6 +52,7 @@ groups['meta-bundles'] = {
         'sysctl',
         'teamvault',
         'telegraf',
+        'timesyncd',
         'timezone',
         'trading',
         'trivy',
