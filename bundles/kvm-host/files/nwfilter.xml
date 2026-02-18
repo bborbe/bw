@@ -1,0 +1,31 @@
+<filter name='${filter_name}' chain='root'>
+% for idx, rule in enumerate(rules):
+%   if rule.get('action') == 'accept' and rule.get('ip') and rule.get('port'):
+  <!-- Accept ${rule['ip']}:${rule['port']} -->
+  <rule action='accept' direction='out' priority='${100 + idx}'>
+    <ip dstipaddr='${rule['ip']}'/>
+    <tcp dstportstart='${rule['port']}' dstportend='${rule['port']}'/>
+  </rule>
+%   elif rule.get('action') == 'accept' and rule.get('ip'):
+  <!-- Accept ${rule['ip']} -->
+  <rule action='accept' direction='out' priority='${100 + idx}'>
+    <ip dstipaddr='${rule['ip']}'/>
+  </rule>
+%   elif rule.get('action') == 'drop' and rule.get('subnet'):
+<%
+    subnet_parts = rule['subnet'].split('/')
+    subnet_ip = subnet_parts[0]
+    subnet_mask = subnet_parts[1] if len(subnet_parts) > 1 else '24'
+%>\
+  <!-- Drop ${rule['subnet']} -->
+  <rule action='drop' direction='out' priority='${100 + idx}'>
+    <ip dstipaddr='${subnet_ip}' dstipmask='${subnet_mask}'/>
+  </rule>
+%   elif rule.get('action') == 'accept' and rule.get('all'):
+  <!-- Accept all -->
+  <rule action='accept' direction='out' priority='${100 + idx}'>
+    <all/>
+  </rule>
+%   endif
+% endfor
+</filter>

@@ -8,6 +8,9 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## Unreleased
+- Update nwfilter configuration to use explicit rule-based format for better clarity
+
 ## v0.3.5
 - Fix CI test failures by ignoring missing vault faults
 - Add new VM configuration for hm.hell
