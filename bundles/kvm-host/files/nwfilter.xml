@@ -15,7 +15,10 @@
 <%
     subnet_parts = rule['subnet'].split('/')
     subnet_ip = subnet_parts[0]
-    subnet_mask = subnet_parts[1] if len(subnet_parts) > 1 else '24'
+    cidr = int(subnet_parts[1]) if len(subnet_parts) > 1 else 24
+    # Convert CIDR to netmask (e.g., 24 -> 255.255.255.0)
+    mask_int = (0xffffffff >> (32 - cidr)) << (32 - cidr)
+    subnet_mask = '.'.join([str((mask_int >> (24 - i * 8)) & 0xff) for i in range(4)])
 %>\
   <!-- Drop ${rule['subnet']} -->
   <rule action='drop' direction='out' priority='${100 + idx}'>
