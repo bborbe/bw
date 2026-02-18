@@ -56,6 +56,6 @@ if node.metadata.get('kvm-host', {}).get('enabled', False):
             'group': 'root',
             'context': {
                 'filter_name': filter_name,
-                'allow_destinations': filter_config.get('allow_destinations', []),
+                'rules': filter_config.get('rules', []),
             },
         }

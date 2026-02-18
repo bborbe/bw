@@ -41,16 +41,20 @@ nodes['hm.nuke'] = {
             'enabled': True,
             'nwfilters': {
                 'nuke-boss': {
-                    'allow_destinations': [
-                        {'ip': '192.168.178.1'},  # opnsense (internet/trading API)
+                    'rules': [
+                        {'action': 'accept', 'ip': '192.168.178.1'},  # opnsense (internet/trading API)
+                        {'action': 'drop', 'subnet': '192.168.178.0/24'},  # block direct K8s access
+                        {'action': 'accept', 'all': True},  # allow everything else (internet, SSH)
                     ],
                 },
                 'nuke-workspace': {
-                    'allow_destinations': [
-                        {'ip': '192.168.178.1'},  # opnsense (internet/trading API)
-                        {'ip': '192.168.178.38', 'port': 6443},  # k8s master-0 (kubectl)
-                        {'ip': '192.168.178.39', 'port': 6443},  # k8s master-1 (kubectl)
-                        {'ip': '192.168.178.40', 'port': 6443},  # k8s master-2 (kubectl)
+                    'rules': [
+                        {'action': 'accept', 'ip': '192.168.178.1'},  # opnsense (internet/trading API)
+                        {'action': 'accept', 'ip': '192.168.178.38', 'port': 6443},  # k8s master-0 (kubectl)
+                        {'action': 'accept', 'ip': '192.168.178.39', 'port': 6443},  # k8s master-1 (kubectl)
+                        {'action': 'accept', 'ip': '192.168.178.40', 'port': 6443},  # k8s master-2 (kubectl)
+                        {'action': 'drop', 'subnet': '192.168.178.0/24'},  # block other K8s nodes
+                        {'action': 'accept', 'all': True},  # allow everything else (internet, SSH)
                     ],
                 },
             },
