@@ -1,0 +1,27 @@
+<filter name='${filter_name}' chain='root'>
+  <!-- Allow specific destinations with optional port restrictions -->
+% for idx, dest in enumerate(allow_destinations):
+  <!-- Allow destination: ${dest.get('ip')}${':' + str(dest.get('port')) if dest.get('port') else ''} -->
+%   if dest.get('port'):
+  <rule action='accept' direction='out' priority='${100 + idx}'>
+    <ip dstipaddr='${dest['ip']}'/>
+    <tcp dstportstart='${dest['port']}' dstportend='${dest['port']}'/>
+  </rule>
+%   else:
+  <rule action='accept' direction='out' priority='${100 + idx}'>
+    <ip dstipaddr='${dest['ip']}'/>
+  </rule>
+%   endif
+% endfor
+
+  <!-- Block all other traffic to local subnet (192.168.178.0/24) -->
+  <!-- This blocks direct access to K8s nodes and other VMs -->
+  <rule action='drop' direction='out' priority='1000'>
+    <ip dstipaddr='192.168.178.0' dstipmask='255.255.255.0'/>
+  </rule>
+
+  <!-- Allow everything else (internet, SSH from outside, etc.) -->
+  <rule action='accept' direction='out' priority='10000'>
+    <all/>
+  </rule>
+</filter>

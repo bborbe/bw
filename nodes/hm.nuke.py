@@ -39,6 +39,21 @@ nodes['hm.nuke'] = {
         },
         'kvm-host': {
             'enabled': True,
+            'nwfilters': {
+                'nuke-boss': {
+                    'allow_destinations': [
+                        {'ip': '192.168.178.1'},  # opnsense (internet/trading API)
+                    ],
+                },
+                'nuke-workspace': {
+                    'allow_destinations': [
+                        {'ip': '192.168.178.1'},  # opnsense (internet/trading API)
+                        {'ip': '192.168.178.38', 'port': 6443},  # k8s master-0 (kubectl)
+                        {'ip': '192.168.178.39', 'port': 6443},  # k8s master-1 (kubectl)
+                        {'ip': '192.168.178.40', 'port': 6443},  # k8s master-2 (kubectl)
+                    ],
+                },
+            },
         },
         'groups': {
             'data': {
