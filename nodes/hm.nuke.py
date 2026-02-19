@@ -43,6 +43,9 @@ nodes['hm.nuke'] = {
                 'nuke-boss': {
                     'rules': [
                         {'action': 'accept', 'ip': '192.168.178.1'},  # opnsense (internet/trading API)
+                        {'action': 'accept', 'ip': '192.168.178.38', 'port': 443},  # k8s master-0 (HTTPS ingresses)
+                        {'action': 'accept', 'ip': '192.168.178.39', 'port': 443},  # k8s master-1 (HTTPS ingresses)
+                        {'action': 'accept', 'ip': '192.168.178.40', 'port': 443},  # k8s master-2 (HTTPS ingresses)
                         {'action': 'drop', 'subnet': '192.168.178.0/24'},  # block direct K8s access
                         {'action': 'accept', 'all': True},  # allow everything else (internet, SSH)
                     ],
@@ -50,6 +53,12 @@ nodes['hm.nuke'] = {
                 'nuke-workspace': {
                     'rules': [
                         {'action': 'accept', 'ip': '192.168.178.1'},  # opnsense (internet/trading API)
+                        {'action': 'accept', 'ip': '192.168.178.38', 'port': 6443},  # k8s master-0 (kubectl)
+                        {'action': 'accept', 'ip': '192.168.178.39', 'port': 6443},  # k8s master-1 (kubectl)
+                        {'action': 'accept', 'ip': '192.168.178.40', 'port': 6443},  # k8s master-2 (kubectl)
+                        {'action': 'accept', 'ip': '192.168.178.38', 'port': 443},  # k8s master-0 (HTTPS ingresses)
+                        {'action': 'accept', 'ip': '192.168.178.39', 'port': 443},  # k8s master-1 (HTTPS ingresses)
+                        {'action': 'accept', 'ip': '192.168.178.40', 'port': 443},  # k8s master-2 (HTTPS ingresses)
                         {'action': 'drop', 'subnet': '192.168.178.0/24'},  # block other K8s nodes
                         {'action': 'accept', 'all': True},  # allow everything else (internet, SSH)
                     ],
