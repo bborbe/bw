@@ -3,8 +3,7 @@
 %   if rule.get('action') == 'accept' and rule.get('ip') and rule.get('port'):
   <!-- Accept ${rule['ip']}:${rule['port']} -->
   <rule action='accept' direction='out' priority='${100 + idx}'>
-    <ip dstipaddr='${rule['ip']}'/>
-    <tcp dstportstart='${rule['port']}' dstportend='${rule['port']}'/>
+    <tcp dstipaddr='${rule['ip']}' dstportstart='${rule['port']}' dstportend='${rule['port']}'/>
   </rule>
 %   elif rule.get('action') == 'accept' and rule.get('ip'):
   <!-- Accept ${rule['ip']} -->
