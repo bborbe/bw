@@ -1,9 +1,13 @@
 <filter name='${filter_name}' chain='root'>
+  <!-- Accept return traffic for established connections -->
+  <rule action='accept' direction='in' priority='10'>
+    <all state='ESTABLISHED,RELATED'/>
+  </rule>
 % for idx, rule in enumerate(rules):
 %   if rule.get('action') == 'accept' and rule.get('ip') and rule.get('port'):
   <!-- Accept ${rule['ip']}:${rule['port']} -->
-  <rule action='accept' direction='out' priority='${100 + idx}'>
-    <tcp dstipaddr='${rule['ip']}' dstportstart='${rule['port']}' dstportend='${rule['port']}'/>
+  <rule action='accept' direction='out' priority='${50 + idx}'>
+    <ip protocol='tcp' dstipaddr='${rule['ip']}' dstportstart='${rule['port']}' dstportend='${rule['port']}'/>
   </rule>
 %   elif rule.get('action') == 'accept' and rule.get('ip'):
   <!-- Accept ${rule['ip']} -->
