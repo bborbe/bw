@@ -7,6 +7,9 @@ nodes['hm.nuke-workspace'] = {
         'workspace': {
             'enabled': True,
         },
+        'openclaw': {
+            'enabled': True,
+        },
         'kubectl': {
             'enabled': True,
             'version': 'v1.35',
