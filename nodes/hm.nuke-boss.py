@@ -13,6 +13,11 @@ nodes['hm.nuke-boss'] = {
         'backup_client': {
             'enabled': True,
         },
+        'golang': {
+            'enabled': True,
+            'arch': 'amd64',
+            'os': 'linux',
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
