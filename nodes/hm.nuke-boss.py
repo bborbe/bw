@@ -7,6 +7,9 @@ nodes['hm.nuke-boss'] = {
         'workspace': {
             'enabled': True,
         },
+        'openclaw': {
+            'enabled': True,
+        },
         'kvm-guest': {
             'enabled': True,
         },
