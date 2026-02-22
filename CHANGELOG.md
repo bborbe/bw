@@ -10,6 +10,7 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 - Update nwfilter configuration to use explicit rule-based format for better clarity
+- Fix nwfilter reload to preserve UUID and avoid libvirt format drift
 
 ## v0.3.5
 - Fix CI test failures by ignoring missing vault faults

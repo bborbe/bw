@@ -71,6 +71,10 @@ if node.metadata.get('kvm-host', {}).get('enabled', False):
 
         # Only define if different from current
         actions[f'nwfilter_reload_{filter_name}'] = {
-            'command': f'virsh nwfilter-define /etc/bundlewrap/nwfilter/{filter_name}.xml',
+            'command': (
+                f'UUID=$(virsh nwfilter-dumpxml {filter_name} 2>/dev/null | grep -oP "(?<=<uuid>)[^<]+") && '
+                f'sed "1 a\\  <uuid>$UUID</uuid>" /etc/bundlewrap/nwfilter/{filter_name}.xml | virsh nwfilter-define /dev/stdin || '
+                f'virsh nwfilter-define /etc/bundlewrap/nwfilter/{filter_name}.xml'
+            ),
             'triggered': True,
         }
