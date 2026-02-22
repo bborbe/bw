@@ -6,6 +6,7 @@ pkg_apt = {}
 svc_systemd = {}
 directories = {}
 symlinks = {}
+actions = {}
 
 if node.metadata.get('kvm-host', {}).get('enabled', False):
     svc_systemd['libvirtd'] = {
@@ -45,24 +46,31 @@ if node.metadata.get('kvm-host', {}).get('enabled', False):
     }
 
     # nwfilter support for VM network restrictions
+    directories['/etc/bundlewrap/nwfilter'] = {
+        'owner': 'root',
+        'group': 'root',
+        'mode': '0755',
+    }
+
     for vm_name, filter_config in node.metadata.get('kvm-host', {}).get('nwfilters', {}).items():
         filter_name = f'restrict-{vm_name}'
 
-        files[f'/etc/libvirt/nwfilter/{filter_name}.xml'] = {
+        # Store our template in bundlewrap directory (not libvirt's)
+        files[f'/etc/bundlewrap/nwfilter/{filter_name}.xml'] = {
             'source': 'nwfilter.xml',
             'content_type': 'mako',
-            'mode': '0600',
+            'mode': '0644',
             'owner': 'root',
             'group': 'root',
             'context': {
                 'filter_name': filter_name,
                 'rules': filter_config.get('rules', []),
             },
-            'triggers': [f'action:nwfilter_define_{filter_name}'],
+            'triggers': [f'action:nwfilter_reload_{filter_name}'],
         }
 
-        actions[f'nwfilter_define_{filter_name}'] = {
-            'command': f'virsh nwfilter-define /etc/libvirt/nwfilter/{filter_name}.xml',
+        # Only define if different from current
+        actions[f'nwfilter_reload_{filter_name}'] = {
+            'command': f'virsh nwfilter-define /etc/bundlewrap/nwfilter/{filter_name}.xml',
             'triggered': True,
-            'cascade_skip': False,
         }
