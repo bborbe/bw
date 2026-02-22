@@ -8,12 +8,12 @@ groups['meta-monit'] = {
         'monit': {
             'enabled': True,
             'mailserver': {
-                'sender': teamvault.username('KwRoO7', site='benjamin-borbe'),
+                'sender': 'monit@nuke.hm.benjamin-borbe.de',
                 'recipient': 'bborbe@rocketnews.de',
-                'server': 'mail.benjamin-borbe.de',
-                'port': 587,
-                'username': teamvault.username('KwRoO7', site='benjamin-borbe'),
-                'password': teamvault.password('KwRoO7', site='benjamin-borbe'),
+                'server': '172.16.90.1',
+                'port': 25,
+                'username': '',
+                'password': '',
             },
         },
     },
