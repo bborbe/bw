@@ -46,7 +46,6 @@ groups['meta-bundles'] = {
         'netplan',
         'nginx',
         'openclaw',
-        'postfix',
         'rancher-server',
         'samba',
         'smart',
