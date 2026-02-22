@@ -45,6 +45,7 @@ groups['meta-bundles'] = {
         'mosquitto',
         'netplan',
         'nginx',
+        'postfix',
         'openclaw',
         'rancher-server',
         'samba',
