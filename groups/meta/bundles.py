@@ -41,6 +41,7 @@ groups['meta-bundles'] = {
         'letsencrypt',
         'locale',
         'monit',
+        'msmtp',
         'mosquitto',
         'netplan',
         'nginx',
