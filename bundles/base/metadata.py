@@ -2,7 +2,7 @@
     'apt/packages',
 )
 def install_apt_packages(metadata):
-    pkgs_install = (
+    pkgs_install = [
         'augeas-tools',
         'bash',
         'bind9-dnsutils',
@@ -18,7 +18,6 @@ def install_apt_packages(metadata):
         'net-tools',
         'nfs-common',
         'openssh-client',
-        'postfix',
         'psmisc',
         'python-is-python3',
         'rsync',
@@ -27,7 +26,12 @@ def install_apt_packages(metadata):
         'vim',
         'wget',
         'zsh',
-    )
+    ]
+    
+    # Only install postfix if msmtp is not enabled (avoid MTA conflict)
+    if not metadata.get('msmtp', {}).get('enabled', False):
+        pkgs_install.append('postfix')
+    
     result = {
         'apt': {
             'packages': {}
@@ -37,6 +41,13 @@ def install_apt_packages(metadata):
         result['apt']['packages'][package_name] = {
             'installed': True
         }
+    
+    # Explicitly remove postfix when msmtp is enabled
+    if metadata.get('msmtp', {}).get('enabled', False):
+        result['apt']['packages']['postfix'] = {
+            'installed': False
+        }
+    
     return result
 
 
