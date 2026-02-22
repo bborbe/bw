@@ -29,9 +29,6 @@ nodes['hm.nuke'] = {
                 'devices': ['/dev/nvme0n1', '/dev/nvme1n1', '/dev/nvme2n1', '/dev/nvme3n1'],
             }
         },
-        'monit': {
-            'test_alert': True,
-        },
         'msmtp': {
             'enabled': True,
             'host': '172.16.90.1',
