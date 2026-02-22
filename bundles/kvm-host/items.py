@@ -58,4 +58,11 @@ if node.metadata.get('kvm-host', {}).get('enabled', False):
                 'filter_name': filter_name,
                 'rules': filter_config.get('rules', []),
             },
+            'triggers': [f'action:nwfilter_define_{filter_name}'],
+        }
+
+        actions[f'nwfilter_define_{filter_name}'] = {
+            'command': f'virsh nwfilter-define /etc/libvirt/nwfilter/{filter_name}.xml',
+            'triggered': True,
+            'cascade_skip': False,
         }
