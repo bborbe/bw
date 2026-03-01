@@ -50,5 +50,8 @@ nodes['hz.hetzner-2'] = {
         'trivy': {
             'enabled': True,
         },
+        'backup_client': {
+            'enabled': True,
+        },
     },
 }
