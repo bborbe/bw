@@ -4,6 +4,10 @@ nodes['hm.nuke'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'kubectl': {
+            'enabled': True,
+            'version': 'v1.35',
+        },
         'systemd': {
             'disable-power-button': True,
         },
