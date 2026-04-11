@@ -107,6 +107,18 @@ nodes['hm.fire'] = {
         'samba': {
             'enabled': True,
             'server_name': 'fire.hm.benjamin-borbe.de',
+            'shares': {
+                'data': {
+                    'comment': 'Data',
+                    'path': '/data',
+                    'valid_users': '@data',
+                    'force_group': 'data',
+                },
+            },
+            'homes': {
+                'enabled': True,
+                'valid_users': ['bborbe', 'jana', 'brigitte', 'walter'],
+            },
         },
         'smart': {
             'enabled': True,
