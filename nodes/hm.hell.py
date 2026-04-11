@@ -140,6 +140,7 @@ nodes['hm.hell'] = {
                         '/data': {},
                         '/home': {},
                         '/minio': {},
+                        '/kafka-topic-backup': {},
                     },
                 },
                 'tank2': {
