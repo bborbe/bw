@@ -6,11 +6,14 @@ files = {}
 pkg_apt = {}
 directories = {}
 
+samba_metadata = node.metadata.get('samba', {})
+samba_enabled = samba_metadata.get('enabled', False)
+
 pkg_apt['samba'] = {
-    'installed': node.metadata.get('samba', {}).get('enabled', False),
+    'installed': samba_enabled,
 }
 
-if node.metadata.get('samba', {}).get('enabled', False):
+if samba_enabled:
     svc_systemd['smbd'] = {
         'running': True,
         'enabled': True,
@@ -21,17 +24,6 @@ if node.metadata.get('samba', {}).get('enabled', False):
         'enabled': True,
         'needs': ['pkg_apt:samba'],
     }
-else:
-    svc_systemd['smbd'] = {
-        'running': False,
-        'enabled': False,
-    }
-    svc_systemd['nmbd'] = {
-        'running': False,
-        'enabled': False,
-    }
-
-if node.metadata.get('samba', {}).get('enabled', False):
     files['/etc/samba/smb.conf'] = {
         'source': 'smb.conf',
         'content_type': 'mako',
@@ -39,7 +31,9 @@ if node.metadata.get('samba', {}).get('enabled', False):
         'owner': 'root',
         'group': 'root',
         'context': {
-            'server_name': node.metadata.get('samba', {}).get('server_name', ''),
+            'server_name': samba_metadata.get('server_name', ''),
+            'shares': samba_metadata.get('shares', {}),
+            'homes': samba_metadata.get('homes', {}),
         },
         'needs': ['pkg_apt:samba'],
         'triggers': [
@@ -48,6 +42,14 @@ if node.metadata.get('samba', {}).get('enabled', False):
         ],
     }
 else:
+    svc_systemd['smbd'] = {
+        'running': False,
+        'enabled': False,
+    }
+    svc_systemd['nmbd'] = {
+        'running': False,
+        'enabled': False,
+    }
     files['/etc/samba/smb.conf'] = {
         'delete': True,
     }

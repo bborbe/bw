@@ -25,6 +25,18 @@ nodes['hm.sun'] = {
         'samba': {
             'enabled': True,
             'server_name': 'sun.hm.benjamin-borbe.de',
+            'shares': {
+                'data': {
+                    'comment': 'Data',
+                    'path': '/data',
+                    'valid_users': '@data',
+                    'force_group': 'data',
+                },
+            },
+            'homes': {
+                'enabled': True,
+                'valid_users': ['bborbe', 'jana', 'brigitte', 'walter'],
+            },
         },
         'google-chrome': {
             'enabled': True,

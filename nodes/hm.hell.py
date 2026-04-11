@@ -66,6 +66,24 @@ nodes['hm.hell'] = {
         'samba': {
             'enabled': True,
             'server_name': 'hell.hm.benjamin-borbe.de',
+            'shares': {
+                'data': {
+                    'comment': 'Data',
+                    'path': '/data',
+                    'valid_users': '@data',
+                    'force_group': 'data',
+                },
+                'kafka-topic-backup': {
+                    'comment': 'Kafka Topic Backup',
+                    'path': '/kafka-topic-backup',
+                    'valid_users': '@data',
+                    'force_group': 'data',
+                },
+            },
+            'homes': {
+                'enabled': True,
+                'valid_users': ['bborbe', 'jana', 'brigitte', 'walter'],
+            },
         },
         'kvm-host': {
             'enabled': True,
