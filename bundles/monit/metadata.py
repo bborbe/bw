@@ -59,6 +59,19 @@ def monit_admin_password(metadata):
     }
 
 
+@metadata_reactor.provides(
+    'monit/mailserver/sender',
+)
+def monit_sender(metadata):
+    return {
+        'monit': {
+            'mailserver': {
+                'sender': 'monit-{}@benjamin-borbe.de'.format(node.name),
+            },
+        },
+    }
+
+
 @metadata_reactor
 def monit_test_alert(metadata):
     if metadata.get('monit', {}).get('test_alert', False):

@@ -8,7 +8,6 @@ groups['meta-monit'] = {
         'monit': {
             'enabled': True,
             'mailserver': {
-                'sender': 'monit@nuke.hm.benjamin-borbe.de',
                 'recipient': 'bborbe@rocketnews.de',
                 'server': '172.16.90.1',
                 'port': 25,
