@@ -115,6 +115,9 @@ nodes['hm.sun'] = {
         'grub': {
             'predictable-nic': True,
         },
+        'ssh': {
+            'allow_agent_forwarding': True,
+        },
         'users': {
             'bborbe': {
                 'enabled': True,
