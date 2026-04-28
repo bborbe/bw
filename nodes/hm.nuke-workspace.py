@@ -4,6 +4,9 @@ nodes['hm.nuke-workspace'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'ssh': {
+            'allow_agent_forwarding': True,
+        },
         'workspace': {
             'enabled': True,
         },
