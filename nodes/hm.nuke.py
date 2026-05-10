@@ -22,6 +22,13 @@ nodes['hm.nuke'] = {
         },
         'grub': {
             'predictable-nic': True,
+            'cmd_default_args': {
+                # Disable NVMe APST deep-sleep states. Samsung 990 PRO firmware 4B2QJXD7
+                # has a bug where the drive vanishes from the PCI bus on wake from PS4.
+                # Hit nvme0n1 on 2026-05-09 22:53:45 → array degraded → recovered.
+                # See: 50 Knowledge Base/Nuke Storage SMART Report 2026-05-10.md
+                'nvme_core.default_ps_max_latency_us=0': {},
+            },
         },
         'mdadm': {
             '/dev/md0': {
