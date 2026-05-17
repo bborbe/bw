@@ -8,9 +8,11 @@ directories = {}
 
 if node.metadata.get('trivy', {}).get('enabled', False):
     # Download and install Trivy GPG key
+    # Refresh GPG key on every apply — upstream rotates keys (e.g. trivy
+    # rotated on 2026-04-15). `unless` skipped refresh while file existed,
+    # leaving cached stale keys until apt warned NO_PUBKEY.
     actions['install_trivy_gpg_key'] = {
         'command': 'mkdir -p /etc/apt/keyrings && curl -fsSL https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --batch --yes --dearmor -o /etc/apt/keyrings/trivy.gpg && chmod 644 /etc/apt/keyrings/trivy.gpg',
-        'unless': 'test -f /etc/apt/keyrings/trivy.gpg',
         'interactive': False,
     }
 
