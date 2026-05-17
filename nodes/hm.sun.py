@@ -71,6 +71,7 @@ nodes['hm.sun'] = {
                     'dhcp4': False,
                     'dhcp6': False,
                     'wakeonlan': False,
+                    'optional': True,
                 },
             },
             'bridges': {
