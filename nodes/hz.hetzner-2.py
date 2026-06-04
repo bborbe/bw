@@ -1,3 +1,5 @@
+import bwtv as teamvault
+
 nodes['hz.hetzner-2'] = {
     'hostname': 'hetzner-2.benjamin-borbe.de',
     'groups': {
@@ -18,6 +20,12 @@ nodes['hz.hetzner-2'] = {
         },
         'openclaw': {
             'enabled': True,
+            'matrix': {
+                'enabled': True,
+                'homeserver': 'https://matrix.benjamin-borbe.de',
+                'user_id': teamvault.username('7qGn5L', site='benjamin-borbe'),
+                'password': teamvault.password('7qGn5L', site='benjamin-borbe'),
+            },
         },
         'iptables': {
             'enabled': True,

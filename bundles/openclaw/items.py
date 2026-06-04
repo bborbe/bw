@@ -11,7 +11,7 @@ env_file = '{}/.env'.format(openclaw_dir)
 if openclaw.get('enabled', False) and matrix.get('enabled', False):
     directories[openclaw_dir] = {
         'owner': user,
-        'group': 'root',
+        'group': user,
         'mode': '0700',
     }
     files[env_file] = {
@@ -19,7 +19,7 @@ if openclaw.get('enabled', False) and matrix.get('enabled', False):
         'content_type': 'mako',
         'mode': '0600',
         'owner': user,
-        'group': 'root',
+        'group': user,
         'context': {
             'env': {
                 'MATRIX_HOMESERVER': matrix['homeserver'],
