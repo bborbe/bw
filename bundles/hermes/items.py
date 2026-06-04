@@ -4,10 +4,11 @@ svc_systemd = {}
 
 hermes = node.metadata.get('hermes', {})
 matrix = hermes.get('matrix', {})
+brave = hermes.get('brave', {})
 user = hermes.get('user', 'hermes')
 home = '/home/{}'.format(user)
 hermes_dir = '{}/.hermes'.format(home)
-env_file = '{}/.env'.format(hermes_dir)
+credentials_file = '{}/bw-credentials.env'.format(hermes_dir)
 service_file = '/etc/systemd/system/hermes.service'
 
 if hermes.get('enabled', False):
@@ -19,6 +20,7 @@ if hermes.get('enabled', False):
         'group': 'root',
         'context': {
             'user': user,
+            'credentials_file': credentials_file,
         },
         'triggers': [
             'action:systemd-reload',
@@ -42,13 +44,26 @@ else:
         'enabled': False,
     }
 
+env_vars = {}
+
 if hermes.get('enabled', False) and matrix.get('enabled', False):
     for field in ('homeserver', 'user_id', 'password'):
         if not matrix.get(field):
             raise Exception(
                 'hermes.matrix.{} required when matrix.enabled on {}'.format(field, node.name)
             )
+    env_vars['MATRIX_HOMESERVER'] = matrix['homeserver']
+    env_vars['MATRIX_USER'] = matrix['user_id']
+    env_vars['MATRIX_PASSWORD'] = matrix['password']
 
+if hermes.get('enabled', False) and brave.get('enabled', False):
+    if not brave.get('api_key'):
+        raise Exception(
+            'hermes.brave.api_key required when brave.enabled on {}'.format(node.name)
+        )
+    env_vars['BRAVE_SEARCH_API_KEY'] = brave['api_key']
+
+if env_vars:
     directories[hermes_dir] = {
         'owner': user,
         'group': user,
@@ -57,18 +72,14 @@ if hermes.get('enabled', False) and matrix.get('enabled', False):
             'user:{}'.format(user),
         ],
     }
-    files[env_file] = {
+    files[credentials_file] = {
         'source': 'env',
         'content_type': 'mako',
         'mode': '0600',
         'owner': user,
         'group': user,
         'context': {
-            'env': {
-                'MATRIX_HOMESERVER': matrix['homeserver'],
-                'MATRIX_USER': matrix['user_id'],
-                'MATRIX_PASSWORD': matrix['password'],
-            },
+            'env': env_vars,
         },
         'needs': [
             'directory:{}'.format(hermes_dir),
@@ -78,6 +89,6 @@ if hermes.get('enabled', False) and matrix.get('enabled', False):
         ],
     }
 else:
-    files[env_file] = {
+    files[credentials_file] = {
         'delete': True,
     }

@@ -8,6 +8,10 @@ defaults = {
             'user_id': None,
             'password': None,
         },
+        'brave': {
+            'enabled': False,
+            'api_key': None,
+        },
     },
 }
 

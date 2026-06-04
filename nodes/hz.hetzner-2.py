@@ -35,6 +35,10 @@ nodes['hz.hetzner-2'] = {
                 'user_id': teamvault.username('VO053L', site='benjamin-borbe'),
                 'password': teamvault.password('VO053L', site='benjamin-borbe'),
             },
+            'brave': {
+                'enabled': True,
+                'api_key': teamvault.password('dwkkzw', site='benjamin-borbe'),
+            },
         },
         'iptables': {
             'enabled': True,

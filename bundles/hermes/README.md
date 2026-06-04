@@ -34,9 +34,25 @@ on env-file changes. (Note: still requires the Hermes binary to be
 installed first via the upstream curl|bash above — the service will
 fail-loop until then.)
 
-### Matrix credentials (opt-in)
+### Credentials → `bw-credentials.env`, not `~/.hermes/.env`
 
-Provisions `~/.hermes/.env` (chmod 0600) with `MATRIX_HOMESERVER` / `MATRIX_USER` / `MATRIX_PASSWORD` when `hermes.matrix.enabled = True`. Disabled by default — opt in per node. (`MATRIX_USER`, not `MATRIX_USER_ID` — the openclaw env var. Different agents, different conventions.)
+`~/.hermes/.env` is **owned by Hermes** — Hermes's interactive setup writes
+config + runtime state there (room IDs, allowlists, encryption flags, …)
+that bw can't possibly know upfront. bw managing that file would erase
+Hermes's state on every apply.
+
+Instead, bw provisions a **separate** file `/home/<user>/.hermes/bw-credentials.env`
+(chmod 0600) that the systemd unit loads via `EnvironmentFile=`. The
+gateway process inherits bw-injected credentials at start; Hermes's
+own `.env` stays untouched. Credential rotation flows TeamVault → `bw
+apply` → systemd restart, without touching Hermes state.
+
+The file is built from whatever credential blocks are `enabled`:
+
+- `hermes.matrix.enabled = True` → adds `MATRIX_HOMESERVER` / `MATRIX_USER` / `MATRIX_PASSWORD` (`MATRIX_USER`, not `MATRIX_USER_ID` — openclaw uses `_ID`; different agents, different conventions)
+- `hermes.brave.enabled = True` → adds `BRAVE_SEARCH_API_KEY`
+
+If no credential blocks are enabled, the file is deleted.
 
 ## Usage
 
@@ -48,7 +64,7 @@ Minimal:
 },
 ```
 
-With Matrix:
+With Matrix + Brave:
 
 ```python
 'hermes': {
@@ -58,6 +74,10 @@ With Matrix:
         'homeserver': 'https://matrix.benjamin-borbe.de',
         'user_id': teamvault.username('<key>', site='benjamin-borbe'),
         'password': teamvault.password('<key>', site='benjamin-borbe'),
+    },
+    'brave': {
+        'enabled': True,
+        'api_key': teamvault.password('<key>', site='benjamin-borbe'),
     },
 },
 ```

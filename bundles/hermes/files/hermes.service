@@ -9,6 +9,9 @@ Group=${user}
 WorkingDirectory=/home/${user}
 Environment=PATH=/home/${user}/.local/bin:/usr/local/bin:/usr/bin:/bin
 Environment=HOME=/home/${user}
+# Credentials provisioned by bw from TeamVault; missing file is OK
+# (gateway will fail to authenticate but won't refuse to start).
+EnvironmentFile=-${credentials_file}
 ExecStart=/home/${user}/.local/bin/hermes gateway
 Restart=on-failure
 RestartSec=10
