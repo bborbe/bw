@@ -1,7 +1,7 @@
 defaults = {
-    'openclaw': {
+    'hermes': {
         'enabled': False,
-        'user': 'openclaw',
+        'user': 'hermes',
         'matrix': {
             'enabled': False,
             'homeserver': None,
@@ -16,10 +16,10 @@ defaults = {
     'users',
 )
 def add_user(metadata):
-    openclaw = metadata.get('openclaw', {})
-    if not openclaw.get('enabled', False):
+    hermes = metadata.get('hermes', {})
+    if not hermes.get('enabled', False):
         return {}
-    user = openclaw.get('user', 'openclaw')
+    user = hermes.get('user', 'hermes')
     return {
         'users': {
             user: {
@@ -33,7 +33,7 @@ def add_user(metadata):
     'apt/packages',
 )
 def install_apt_packages(metadata):
-    if not metadata.get('openclaw', {}).get('enabled', False):
+    if not metadata.get('hermes', {}).get('enabled', False):
         return {}
 
     pkgs_install = (

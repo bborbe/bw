@@ -90,6 +90,10 @@ groups['meta-user'] = {
                 'uid': '11020',
                 'full_name': 'OpenClaw',
             },
+            'hermes': {
+                'uid': '11021',
+                'full_name': 'Hermes',
+            },
             'data': {
                 'uid': '20000',
             },
@@ -160,6 +164,9 @@ groups['meta-user'] = {
             },
             'openclaw': {
                 'gid': '11020',
+            },
+            'hermes': {
+                'gid': '11021',
             },
             'data': {
                 'gid': '20000',

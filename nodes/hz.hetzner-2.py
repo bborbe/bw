@@ -27,6 +27,9 @@ nodes['hz.hetzner-2'] = {
                 'password': teamvault.password('7qGn5L', site='benjamin-borbe'),
             },
         },
+        'hermes': {
+            'enabled': True,
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
@@ -40,9 +43,6 @@ nodes['hz.hetzner-2'] = {
         },
         'users': {
             'bborbe': {
-                'enabled': True,
-            },
-            'openclaw': {
                 'enabled': True,
             },
         },
