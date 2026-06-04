@@ -5,6 +5,7 @@ svc_systemd = {}
 hermes = node.metadata.get('hermes', {})
 matrix = hermes.get('matrix', {})
 brave = hermes.get('brave', {})
+telegram = hermes.get('telegram', {})
 user = hermes.get('user', 'hermes')
 home = '/home/{}'.format(user)
 hermes_dir = '{}/.hermes'.format(home)
@@ -68,6 +69,23 @@ if hermes.get('enabled', False) and brave.get('enabled', False):
             'hermes.brave.api_key required when brave.enabled on {}'.format(node.name)
         )
     env_vars['BRAVE_SEARCH_API_KEY'] = brave['api_key']
+
+if hermes.get('enabled', False) and telegram.get('enabled', False):
+    # `is None` — see same comment above re: bw Fault / TeamVault resolution.
+    if telegram.get('bot_token') is None:
+        raise Exception(
+            'hermes.telegram.bot_token required when telegram.enabled on {}'.format(node.name)
+        )
+    if telegram.get('allowed_users') is None:
+        # Required-by-bw policy: open Telegram bots on a public bot API let
+        # anyone with the bot's username DM and command it. Force an
+        # allowlist; set to "" only if open access is genuinely intentional.
+        raise Exception(
+            'hermes.telegram.allowed_users required when telegram.enabled on {} '
+            '(set to "" to opt into open access)'.format(node.name)
+        )
+    env_vars['TELEGRAM_BOT_TOKEN'] = telegram['bot_token']
+    env_vars['TELEGRAM_ALLOWED_USERS'] = telegram['allowed_users']
 
 if env_vars:
     directories[hermes_dir] = {

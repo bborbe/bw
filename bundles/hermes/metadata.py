@@ -12,6 +12,11 @@ defaults = {
             'enabled': False,
             'api_key': None,
         },
+        'telegram': {
+            'enabled': False,
+            'bot_token': None,
+            'allowed_users': None,  # comma-separated numeric Telegram user IDs (prefer over @usernames — IDs survive handle changes)
+        },
     },
 }
 

@@ -65,6 +65,7 @@ The file is built from whatever credential blocks are `enabled`:
 
 - `hermes.matrix.enabled = True` → adds `MATRIX_HOMESERVER` / `MATRIX_USER` / `MATRIX_PASSWORD` (`MATRIX_USER`, not `MATRIX_USER_ID` — openclaw uses `_ID`; different agents, different conventions)
 - `hermes.brave.enabled = True` → adds `BRAVE_SEARCH_API_KEY`
+- `hermes.telegram.enabled = True` → adds `TELEGRAM_BOT_TOKEN` + `TELEGRAM_ALLOWED_USERS`. The allowlist is **required** by this bundle (set to `""` only if open access is genuinely intentional) — Telegram's public bot API means anyone can DM an unlocked bot.
 
 If no credential blocks are enabled, the file is deleted.
 

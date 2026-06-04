@@ -39,6 +39,11 @@ nodes['hz.hetzner-2'] = {
                 'enabled': True,
                 'api_key': teamvault.password('dwkkzw', site='benjamin-borbe'),
             },
+            'telegram': {
+                'enabled': True,
+                'bot_token': teamvault.password('XO7Qxq', site='benjamin-borbe'),
+                'allowed_users': '112230768',  # @bborbe numeric ID — survives handle changes
+            },
         },
         'iptables': {
             'enabled': True,
