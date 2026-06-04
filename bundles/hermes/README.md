@@ -27,7 +27,7 @@ Auto-injected via `users` metadata reactor when `hermes.enabled = True`. UID/GID
 
 ### Matrix credentials (opt-in)
 
-Provisions `~/.hermes/.env` (chmod 0600) with `MATRIX_HOMESERVER` / `MATRIX_USER_ID` / `MATRIX_PASSWORD` when `hermes.matrix.enabled = True`. Disabled by default — opt in per node.
+Provisions `~/.hermes/.env` (chmod 0600) with `MATRIX_HOMESERVER` / `MATRIX_USER` / `MATRIX_PASSWORD` when `hermes.matrix.enabled = True`. Disabled by default — opt in per node. (`MATRIX_USER`, not `MATRIX_USER_ID` — the openclaw env var. Different agents, different conventions.)
 
 ## Usage
 

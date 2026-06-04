@@ -10,7 +10,7 @@ env_file = '{}/.env'.format(hermes_dir)
 
 if hermes.get('enabled', False) and matrix.get('enabled', False):
     for field in ('homeserver', 'user_id', 'password'):
-        if matrix.get(field) is None:
+        if not matrix.get(field):
             raise Exception(
                 'hermes.matrix.{} required when matrix.enabled on {}'.format(field, node.name)
             )

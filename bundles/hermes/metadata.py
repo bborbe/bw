@@ -37,6 +37,7 @@ def install_apt_packages(metadata):
         return {}
 
     pkgs_install = (
+        # CLI tools
         'bat',
         'fd-find',
         'ffmpeg',
@@ -46,6 +47,30 @@ def install_apt_packages(metadata):
         'pipx',
         'ripgrep',
         'trash-cli',
+        # Playwright Chromium system libs (Ubuntu 24.04 / Noble).
+        # Source: microsoft/playwright nativeDeps.ts ubuntu24.04-x64.chromium.
+        # Avoids the manual `sudo npx playwright install-deps chromium` step.
+        'libasound2t64',
+        'libatk-bridge2.0-0t64',
+        'libatk1.0-0t64',
+        'libatspi2.0-0t64',
+        'libcairo2',
+        'libcups2t64',
+        'libdbus-1-3',
+        'libdrm2',
+        'libgbm1',
+        'libglib2.0-0t64',
+        'libnspr4',
+        'libnss3',
+        'libpango-1.0-0',
+        'libx11-6',
+        'libxcb1',
+        'libxcomposite1',
+        'libxdamage1',
+        'libxext6',
+        'libxfixes3',
+        'libxkbcommon0',
+        'libxrandr2',
     )
     result = {
         'apt': {
