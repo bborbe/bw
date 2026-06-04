@@ -27,3 +27,26 @@ Enable in node metadata:
     'enabled': True,
 },
 ```
+
+### Matrix integration
+
+Provision `~/.openclaw/.env` (chmod 0600) with Matrix credentials sourced from
+TeamVault. Required only on nodes whose OpenClaw instance connects to a Matrix
+homeserver. Disabled by default — opt in per node.
+
+```python
+'openclaw': {
+    'enabled': True,
+    'matrix': {
+        'enabled': True,
+        'homeserver': 'https://matrix.benjamin-borbe.de',
+        'user_id': teamvault.username('7qGn5L', site='benjamin-borbe'),
+        'password': teamvault.password('7qGn5L', site='benjamin-borbe'),
+    },
+},
+```
+
+`homeserver` is a plain URL (bwtv has no `.url()` helper — only `.file()`,
+`.username()`, `.password()`). The TeamVault secret holds MXID (username field)
++ password. Per-instance accounts use their own TeamVault secret. Example
+`7qGn5L` = `@openclaw:matrix.benjamin-borbe.de`.
