@@ -48,7 +48,10 @@ env_vars = {}
 
 if hermes.get('enabled', False) and matrix.get('enabled', False):
     for field in ('homeserver', 'user_id', 'password'):
-        if not matrix.get(field):
+        # `is None` (not `not matrix.get(...)`) — the value can be a bw
+        # Fault (lazy TeamVault ref). Truthy/`not` checks force resolution,
+        # which fails in CI where TeamVault credentials aren't present.
+        if matrix.get(field) is None:
             raise Exception(
                 'hermes.matrix.{} required when matrix.enabled on {}'.format(field, node.name)
             )
@@ -59,7 +62,8 @@ if hermes.get('enabled', False) and matrix.get('enabled', False):
     env_vars['MATRIX_PASSWORD'] = matrix['password']
 
 if hermes.get('enabled', False) and brave.get('enabled', False):
-    if not brave.get('api_key'):
+    # `is None` — see same comment above re: bw Fault / TeamVault resolution.
+    if brave.get('api_key') is None:
         raise Exception(
             'hermes.brave.api_key required when brave.enabled on {}'.format(node.name)
         )

@@ -10,7 +10,10 @@ env_file = '{}/.env'.format(openclaw_dir)
 
 if openclaw.get('enabled', False) and matrix.get('enabled', False):
     for field in ('homeserver', 'user_id', 'password'):
-        if not matrix.get(field):
+        # `is None` (not `not matrix.get(...)`) — the value can be a bw
+        # Fault (lazy TeamVault ref). Truthy/`not` checks force resolution,
+        # which fails in CI where TeamVault credentials aren't present.
+        if matrix.get(field) is None:
             raise Exception(
                 'openclaw.matrix.{} required when matrix.enabled on {}'.format(field, node.name)
             )
