@@ -53,6 +53,8 @@ if hermes.get('enabled', False) and matrix.get('enabled', False):
                 'hermes.matrix.{} required when matrix.enabled on {}'.format(field, node.name)
             )
     env_vars['MATRIX_HOMESERVER'] = matrix['homeserver']
+    # Hermes expects MATRIX_USER (not MATRIX_USER_ID — that's the openclaw
+    # convention). Different agents, different env-var names. Do not "fix".
     env_vars['MATRIX_USER'] = matrix['user_id']
     env_vars['MATRIX_PASSWORD'] = matrix['password']
 
@@ -91,4 +93,7 @@ if env_vars:
 else:
     files[credentials_file] = {
         'delete': True,
+        'triggers': [
+            'svc_systemd:hermes:restart',
+        ],
     }
