@@ -3,11 +3,16 @@
 Provisions a Hermes Agent ([NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)) instance: linux user, standard CLI tools, optional Matrix credentials. Mirrors the `openclaw` bundle.
 
 The Hermes binary itself is **not** managed by bw — install manually as the
-`hermes` user via the upstream installer:
+`hermes` user via the upstream installer (auto-detects pipx and installs into
+`~/.local/share/pipx/venvs/hermes-agent/`, symlinking `~/.local/bin/hermes`):
 
 ```bash
 sudo su - hermes
+pipx ensurepath                   # pipx is installed by this bundle's apt deps
+exec $SHELL                       # reload PATH
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+hermes doctor
+hermes --version
 ```
 
 ## What it installs

@@ -43,6 +43,7 @@ def install_apt_packages(metadata):
         'fzf',
         'gh',
         'jq',
+        'pipx',
         'ripgrep',
         'trash-cli',
     )

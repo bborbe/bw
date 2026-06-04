@@ -32,7 +32,7 @@ if hermes.get('enabled', False) and matrix.get('enabled', False):
         'context': {
             'env': {
                 'MATRIX_HOMESERVER': matrix['homeserver'],
-                'MATRIX_USER_ID': matrix['user_id'],
+                'MATRIX_USER': matrix['user_id'],
                 'MATRIX_PASSWORD': matrix['password'],
             },
         },
