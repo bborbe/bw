@@ -11,6 +11,9 @@ user = hermes.get('user', 'hermes')
 home = '/home/{}'.format(user)
 hermes_dir = '{}/.hermes'.format(home)
 credentials_file = '{}/bw-credentials.env'.format(hermes_dir)
+systemd_user_dir = '{}/.config/systemd/user'.format(home)
+dropin_dir = '{}/hermes-gateway.service.d'.format(systemd_user_dir)
+dropin_file = '{}/bw-credentials.conf'.format(dropin_dir)
 
 # Hermes manages its own gateway lifecycle via a user-level systemd unit
 # (~/.config/systemd/user/hermes-gateway.service, installed by the upstream
@@ -31,6 +34,61 @@ if hermes.get('enabled', False):
         'needs': [
             'user:{}'.format(user),
         ],
+    }
+
+    # Systemd user-level drop-in that adds EnvironmentFile= to Hermes's
+    # own ~/.config/systemd/user/hermes-gateway.service. We don't write
+    # the main unit (Hermes does); the drop-in is additive and survives
+    # Hermes updates that regenerate the main unit.
+    directories[systemd_user_dir] = {
+        'owner': user,
+        'group': user,
+        'mode': '0755',
+        'needs': [
+            'user:{}'.format(user),
+        ],
+    }
+    directories[dropin_dir] = {
+        'owner': user,
+        'group': user,
+        'mode': '0755',
+        'needs': [
+            'directory:{}'.format(systemd_user_dir),
+        ],
+    }
+    files[dropin_file] = {
+        'source': 'bw-credentials.conf',
+        'content_type': 'mako',
+        'mode': '0644',
+        'owner': user,
+        'group': user,
+        'context': {
+            'credentials_file': credentials_file,
+        },
+        'needs': [
+            'directory:{}'.format(dropin_dir),
+        ],
+        'triggers': [
+            'action:hermes_systemd_user_reload',
+        ],
+    }
+    actions['hermes_systemd_user_reload'] = {
+        # Run user-systemctl as the hermes user. Linger ensures a
+        # persistent /run/user/<uid> runtime dir exists.
+        'command': (
+            'sudo -u {user} XDG_RUNTIME_DIR=/run/user/$(id -u {user}) '
+            'systemctl --user daemon-reload && '
+            'sudo -u {user} XDG_RUNTIME_DIR=/run/user/$(id -u {user}) '
+            'systemctl --user restart hermes-gateway'
+        ).format(user=user),
+        'triggered': True,
+        'needs': [
+            'action:hermes_enable_linger',
+        ],
+    }
+else:
+    files[dropin_file] = {
+        'delete': True,
     }
 
 # Clean up the prior system-level unit from earlier commits of this bundle.
@@ -107,8 +165,15 @@ if env_vars:
         'needs': [
             'directory:{}'.format(hermes_dir),
         ],
+        'triggers': [
+            'action:hermes_systemd_user_reload',
+        ],
     }
 else:
-    files[credentials_file] = {
-        'delete': True,
-    }
+    # Note: only trigger the systemd reload when hermes is enabled —
+    # the action only exists in that branch. On disabled nodes we just
+    # delete the file with no further effect.
+    delete_creds = {'delete': True}
+    if hermes.get('enabled', False):
+        delete_creds['triggers'] = ['action:hermes_systemd_user_reload']
+    files[credentials_file] = delete_creds
