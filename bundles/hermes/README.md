@@ -26,27 +26,23 @@ Auto-injected via `users` metadata reactor when `hermes.enabled = True`. UID/GID
 
 - `bat`, `fd-find`, `ffmpeg`, `fzf`, `gh`, `jq`, `ripgrep`, `trash-cli`
 
-### Systemd unit
+### Gateway lifecycle — Hermes-managed, NOT bw
 
-`/etc/systemd/system/hermes.service` — system-level unit that runs
-`hermes gateway run --replace` as the `hermes` user. Enabled + running when
-`hermes.enabled = True`. Restarts on credentials-file changes. (Requires the
-Hermes binary to be installed first via the upstream curl|bash above — the
-service will fail-loop until then.)
+Hermes owns its own gateway process via a **user-level** systemd unit
+(`~/.config/systemd/user/hermes-gateway.service`, installed by the upstream
+installer / `hermes gateway service install`). The Hermes CLI
+(`hermes gateway restart/stop/run`) targets that unit.
 
-**`--replace`** kills any stray gateway and takes over, so systemd is the
-authoritative process manager. This matters because the Hermes installer
-also registers a **user-level** systemd service at
-`~/.config/systemd/user/hermes-gateway.service` — if that one is enabled,
-it spawns a competing gateway on user login that blocks ours. After
-running the installer, disable it:
+bw does **not** install `/etc/systemd/system/hermes.service`. A system-level
+unit fights upstream: Hermes detects it as "legacy" on every update, prints
+a `migrate-legacy` warning, and the CLI tooling can't see / control it.
+Earlier commits of this bundle did install one; current version actively
+cleans it up (`file: delete: True`, `svc_systemd: running/enabled: False`).
 
-```bash
-sudo -u hermes systemctl --user disable --now hermes-gateway
-```
-
-Without `--replace` in our unit, the bw-managed service would fail-loop
-with `Gateway already running` whenever the user-level one is up.
+What bw **does** do for lifecycle: enables **lingering** on the hermes user
+so its user-systemd unit survives logout and starts at boot without anyone
+logging in (`loginctl enable-linger hermes`, idempotent). Without this, the
+user-systemd unit only runs while the hermes user is logged in via SSH.
 
 ### Credentials → `bw-credentials.env`, not `~/.hermes/.env`
 

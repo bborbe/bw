@@ -1,6 +1,7 @@
 directories = {}
 files = {}
 svc_systemd = {}
+actions = {}
 
 hermes = node.metadata.get('hermes', {})
 matrix = hermes.get('matrix', {})
@@ -10,40 +11,38 @@ user = hermes.get('user', 'hermes')
 home = '/home/{}'.format(user)
 hermes_dir = '{}/.hermes'.format(home)
 credentials_file = '{}/bw-credentials.env'.format(hermes_dir)
-service_file = '/etc/systemd/system/hermes.service'
 
+# Hermes manages its own gateway lifecycle via a user-level systemd unit
+# (~/.config/systemd/user/hermes-gateway.service, installed by the upstream
+# installer / `hermes gateway service install`). A system-level
+# /etc/systemd/system/hermes.service fights it: Hermes detects it as
+# "legacy" on every update and prints a migrate-legacy warning, and the
+# Hermes CLI (`hermes gateway restart/stop/run`) targets a different
+# process than systemd.
+#
+# So bw does NOT manage /etc/systemd/system/hermes*.service. Instead:
+#   - enable-linger on the hermes user so its user-systemd survives logout
+#     (and starts at boot without anyone logging in)
+#   - clean up any prior bw-installed legacy unit
 if hermes.get('enabled', False):
-    files[service_file] = {
-        'source': 'hermes.service',
-        'content_type': 'mako',
-        'mode': '0644',
-        'owner': 'root',
-        'group': 'root',
-        'context': {
-            'user': user,
-            'credentials_file': credentials_file,
-        },
-        'triggers': [
-            'action:systemd-reload',
-            'svc_systemd:hermes:restart',
-        ],
-        'needed_by': [
-            'svc_systemd:hermes',
-        ],
-    }
-    svc_systemd['hermes'] = {
+    actions['hermes_enable_linger'] = {
+        'command': 'loginctl enable-linger {}'.format(user),
+        'unless': 'test "$(loginctl show-user {} -p Linger --value 2>/dev/null)" = yes'.format(user),
         'needs': [
-            'file:{}'.format(service_file),
+            'user:{}'.format(user),
         ],
     }
-else:
-    files[service_file] = {
-        'delete': True,
-    }
-    svc_systemd['hermes'] = {
-        'running': False,
-        'enabled': False,
-    }
+
+# Clean up the prior system-level unit from earlier commits of this bundle.
+# Stays on the disabled branch unconditionally so the cleanup happens even
+# if hermes is later disabled on a node that previously had it.
+files['/etc/systemd/system/hermes.service'] = {
+    'delete': True,
+}
+svc_systemd['hermes'] = {
+    'running': False,
+    'enabled': False,
+}
 
 env_vars = {}
 
@@ -108,14 +107,8 @@ if env_vars:
         'needs': [
             'directory:{}'.format(hermes_dir),
         ],
-        'triggers': [
-            'svc_systemd:hermes:restart',
-        ],
     }
 else:
     files[credentials_file] = {
         'delete': True,
-        'triggers': [
-            'svc_systemd:hermes:restart',
-        ],
     }
