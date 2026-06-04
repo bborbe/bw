@@ -2,8 +2,9 @@
 
 Provisions a Hermes Agent ([NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)) instance: linux user, standard CLI tools, optional Matrix credentials. Mirrors the `openclaw` bundle.
 
-The Hermes binary itself is **not** managed by bw — install manually as the
-`hermes` user via the upstream installer (auto-detects pipx and installs into
+The Hermes binary itself is **not** managed by bw (no .deb/release tarball
+upstream yet) — install manually as the `hermes` user via the upstream
+installer (auto-detects pipx and installs into
 `~/.local/share/pipx/venvs/hermes-agent/`, symlinking `~/.local/bin/hermes`):
 
 ```bash
@@ -24,6 +25,14 @@ Auto-injected via `users` metadata reactor when `hermes.enabled = True`. UID/GID
 ### APT packages
 
 - `bat`, `fd-find`, `ffmpeg`, `fzf`, `gh`, `jq`, `ripgrep`, `trash-cli`
+
+### Systemd unit
+
+`/etc/systemd/system/hermes.service` — runs `~/.local/bin/hermes gateway` as
+the `hermes` user. Enabled + running when `hermes.enabled = True`. Restarts
+on env-file changes. (Note: still requires the Hermes binary to be
+installed first via the upstream curl|bash above — the service will
+fail-loop until then.)
 
 ### Matrix credentials (opt-in)
 

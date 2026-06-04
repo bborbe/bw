@@ -1,0 +1,17 @@
+[Unit]
+Description=Hermes Agent
+After=network-online.target
+
+[Service]
+Type=simple
+User=${user}
+Group=${user}
+WorkingDirectory=/home/${user}
+Environment=PATH=/home/${user}/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=HOME=/home/${user}
+ExecStart=/home/${user}/.local/bin/hermes gateway
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
