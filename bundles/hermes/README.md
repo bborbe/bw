@@ -28,11 +28,25 @@ Auto-injected via `users` metadata reactor when `hermes.enabled = True`. UID/GID
 
 ### Systemd unit
 
-`/etc/systemd/system/hermes.service` — runs `~/.local/bin/hermes gateway` as
-the `hermes` user. Enabled + running when `hermes.enabled = True`. Restarts
-on env-file changes. (Note: still requires the Hermes binary to be
-installed first via the upstream curl|bash above — the service will
-fail-loop until then.)
+`/etc/systemd/system/hermes.service` — system-level unit that runs
+`hermes gateway run --replace` as the `hermes` user. Enabled + running when
+`hermes.enabled = True`. Restarts on credentials-file changes. (Requires the
+Hermes binary to be installed first via the upstream curl|bash above — the
+service will fail-loop until then.)
+
+**`--replace`** kills any stray gateway and takes over, so systemd is the
+authoritative process manager. This matters because the Hermes installer
+also registers a **user-level** systemd service at
+`~/.config/systemd/user/hermes-gateway.service` — if that one is enabled,
+it spawns a competing gateway on user login that blocks ours. After
+running the installer, disable it:
+
+```bash
+sudo -u hermes systemctl --user disable --now hermes-gateway
+```
+
+Without `--replace` in our unit, the bw-managed service would fail-loop
+with `Gateway already running` whenever the user-level one is up.
 
 ### Credentials → `bw-credentials.env`, not `~/.hermes/.env`
 
