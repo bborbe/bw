@@ -1,0 +1,3 @@
+% for key in sorted(env.keys()):
+${key}=${env[key]}
+% endfor

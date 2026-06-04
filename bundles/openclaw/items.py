@@ -2,32 +2,33 @@ directories = {}
 files = {}
 
 openclaw = node.metadata.get('openclaw', {})
+matrix = openclaw.get('matrix', {})
+user = openclaw.get('user', 'openclaw')
+home = '/home/{}'.format(user)
+openclaw_dir = '{}/.openclaw'.format(home)
+env_file = '{}/.env'.format(openclaw_dir)
 
-if openclaw.get('enabled', False) and openclaw.get('matrix', {}).get('enabled', False):
-    user = openclaw.get('user', 'openclaw')
-    matrix = openclaw['matrix']
-    home = '/home/{}'.format(user)
-    openclaw_dir = '{}/.openclaw'.format(home)
-    env_file = '{}/.env'.format(openclaw_dir)
-
+if openclaw.get('enabled', False) and matrix.get('enabled', False):
     directories[openclaw_dir] = {
         'owner': user,
-        'group': user,
+        'group': 'root',
         'mode': '0700',
     }
-
-    env_lines = [
-        'MATRIX_HOMESERVER={}'.format(matrix['homeserver']),
-        'MATRIX_USER_ID={}'.format(matrix['user_id']),
-        'MATRIX_PASSWORD={}'.format(matrix['password']),
-    ]
-
     files[env_file] = {
-        'owner': user,
-        'group': user,
+        'source': 'env',
+        'content_type': 'mako',
         'mode': '0600',
-        'content': '\n'.join(env_lines) + '\n',
-        'needs': [
-            'directory:{}'.format(openclaw_dir),
-        ],
+        'owner': user,
+        'group': 'root',
+        'context': {
+            'env': {
+                'MATRIX_HOMESERVER': matrix['homeserver'],
+                'MATRIX_USER_ID': matrix['user_id'],
+                'MATRIX_PASSWORD': matrix['password'],
+            },
+        },
+    }
+else:
+    files[env_file] = {
+        'delete': True,
     }
