@@ -1,3 +1,17 @@
+defaults = {
+    'openclaw': {
+        'enabled': False,
+        'user': 'openclaw',
+        'matrix': {
+            'enabled': False,
+            'homeserver': None,
+            'user_id': None,
+            'password': None,
+        },
+    },
+}
+
+
 @metadata_reactor.provides(
     'apt/packages',
 )
