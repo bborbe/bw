@@ -3,7 +3,7 @@ defaults = {
         'enabled': False,
         'server_name': 'localhost',
         'port': 8448,
-        'version': 'v0.10.11',
+        'version': 'v0.10.12', # https://gitlab.com/famedly/conduit/-/releases
         'allow_registration': 'false',
         'allow_federation': 'false',
         'well_known_base_domain': None,  # e.g. 'benjamin-borbe.de' for @user:benjamin-borbe.de
