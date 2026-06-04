@@ -29,6 +29,12 @@ nodes['hz.hetzner-2'] = {
         },
         'hermes': {
             'enabled': True,
+            'matrix': {
+                'enabled': True,
+                'homeserver': 'https://matrix.benjamin-borbe.de',
+                'user_id': teamvault.username('VO053L', site='benjamin-borbe'),
+                'password': teamvault.password('VO053L', site='benjamin-borbe'),
+            },
         },
         'iptables': {
             'enabled': True,
