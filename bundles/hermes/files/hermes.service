@@ -12,7 +12,7 @@ Environment=HOME=/home/${user}
 # Credentials provisioned by bw from TeamVault; missing file is OK
 # (gateway will fail to authenticate but won't refuse to start).
 EnvironmentFile=-${credentials_file}
-ExecStart=/home/${user}/.local/bin/hermes gateway
+ExecStart=/home/${user}/.local/bin/hermes gateway run --replace
 Restart=on-failure
 RestartSec=10
 
