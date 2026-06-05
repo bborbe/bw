@@ -27,6 +27,24 @@ nodes['hz.hetzner-2'] = {
                 'password': teamvault.password('7qGn5L', site='benjamin-borbe'),
             },
         },
+        'hermes': {
+            'enabled': True,
+            'matrix': {
+                'enabled': True,
+                'homeserver': 'https://matrix.benjamin-borbe.de',
+                'user_id': teamvault.username('VO053L', site='benjamin-borbe'),
+                'password': teamvault.password('VO053L', site='benjamin-borbe'),
+            },
+            'brave': {
+                'enabled': True,
+                'api_key': teamvault.password('dwkkzw', site='benjamin-borbe'),
+            },
+            'telegram': {
+                'enabled': True,
+                'bot_token': teamvault.password('XO7Qxq', site='benjamin-borbe'),
+                'allowed_users': '112230768',  # @bborbe numeric ID — survives handle changes
+            },
+        },
         'iptables': {
             'enabled': True,
             'nat_interfaces': [],
@@ -40,9 +58,6 @@ nodes['hz.hetzner-2'] = {
         },
         'users': {
             'bborbe': {
-                'enabled': True,
-            },
-            'openclaw': {
                 'enabled': True,
             },
         },

@@ -13,6 +13,23 @@ defaults = {
 
 
 @metadata_reactor.provides(
+    'users',
+)
+def add_user(metadata):
+    openclaw = metadata.get('openclaw', {})
+    if not openclaw.get('enabled', False):
+        return {}
+    user = openclaw.get('user', 'openclaw')
+    return {
+        'users': {
+            user: {
+                'enabled': True,
+            },
+        },
+    }
+
+
+@metadata_reactor.provides(
     'apt/packages',
 )
 def install_apt_packages(metadata):
