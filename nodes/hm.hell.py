@@ -13,7 +13,7 @@ nodes['hm.hell'] = {
                     'dhcp6': False,
                     'wakeonlan': True,
                 },
-                # 2.5gbit realtek
+                # 2.5gbit intel I226-V
                 'enp55s0': {
                     'dhcp4': False,
                     'dhcp6': False,
@@ -30,7 +30,7 @@ nodes['hm.hell'] = {
                     'macaddress': 'bc:5f:f4:71:15:c4',
                     'dhcp4': False,
                     'dhcp6': False,
-                    'interfaces': ['enp51s0'],
+                    'interfaces': ['enp55s0'],
                     'addresses': ['192.168.40.2/24'],
                     'routes': [
                         {
