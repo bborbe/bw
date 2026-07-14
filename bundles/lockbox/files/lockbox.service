@@ -14,11 +14,7 @@ ExecStart=/usr/bin/docker run \
 	--name=lockbox \
 	-v /opt/lockbox/data:/data \
 	-p 127.0.0.1:${port}:8080 \
-	-e LISTEN=:8080 \
-	-e DATADIR=/data \
-	-e LOCKBOX_ENCRYPTION_KEY=${encryption_key} \
-	-e BASIC_AUTH_USER=${basic_auth_user} \
-	-e BASIC_AUTH_PASS=${basic_auth_pass} \
+	--env-file /etc/lockbox/lockbox.env \
 	bborbe/lockbox:${version}
 ExecStop=/usr/bin/docker stop lockbox
 
