@@ -41,6 +41,7 @@ groups['meta-bundles'] = {
         'kvm-host',
         'letsencrypt',
         'locale',
+        'lockbox',
         'monit',
         'msmtp',
         'mosquitto',

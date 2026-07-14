@@ -1,3 +1,5 @@
+import bwtv as teamvault
+
 nodes['hz.hetzner-1'] = {
     'hostname': 'hetzner-1.benjamin-borbe.de',
     'groups': {
@@ -9,6 +11,14 @@ nodes['hz.hetzner-1'] = {
             'server_name': 'matrix.benjamin-borbe.de',
             'well_known_base_domain': 'benjamin-borbe.de',
             'well_known_ip': '159.69.203.89',
+        },
+        'lockbox': {
+            'enabled': True,
+            'version': 'v0.3.1',
+            'port': 8091,
+            'encryption_key': teamvault.password('VO05mL', site='benjamin-borbe'),
+            'basic_auth_user': teamvault.username('7qGnWL', site='benjamin-borbe'),
+            'basic_auth_pass': teamvault.password('7qGnWL', site='benjamin-borbe'),
         },
         'docker': {
             'enabled': True,
@@ -63,6 +73,25 @@ nodes['hz.hetzner-1'] = {
                     'locations': {
                         '/': {
                             'proxy_pass': 'http://127.0.0.1:8448',
+                            'proxy_set_header Host': '$host',
+                            'proxy_set_header X-Real-IP': '$remote_addr',
+                        },
+                    },
+                    'indexes': [],
+                },
+                'lockbox': {
+                    'ip': '159.69.203.89',
+                    'server_names': [
+                        'lockbox.benjamin-borbe.de',
+                    ],
+                    'ssl': {
+                        'force': True,
+                        'cert': '/etc/letsencrypt/live/lockbox.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/lockbox.benjamin-borbe.de/privkey.pem',
+                    },
+                    'locations': {
+                        '/': {
+                            'proxy_pass': 'http://127.0.0.1:8091',
                             'proxy_set_header Host': '$host',
                             'proxy_set_header X-Real-IP': '$remote_addr',
                         },
