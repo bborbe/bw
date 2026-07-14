@@ -1,0 +1,22 @@
+[Unit]
+Description=Lockbox Server
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+RestartSec=20s
+EnvironmentFile=/etc/environment
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill lockbox
+ExecStartPre=-/usr/bin/docker rm lockbox
+ExecStart=/usr/bin/docker run \
+	--name=lockbox \
+	-v /opt/lockbox/data:/data \
+	-p 127.0.0.1:${port}:8080 \
+	--env-file /etc/lockbox/lockbox.env \
+	bborbe/lockbox:${version}
+ExecStop=/usr/bin/docker stop lockbox
+
+[Install]
+WantedBy=multi-user.target
