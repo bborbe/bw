@@ -49,7 +49,7 @@ if node.metadata.get('lockbox', {}).get('enabled', False):
     _lb = node.metadata.get('lockbox', {})
     _env = (
         _lb['encryption_key'].format_into(
-            "LISTEN=:8080\nDATADIR=/data\nLOCKBOX_ENCRYPTION_KEY={}\n"
+            "LISTEN=:8080\nDATADIR=/data\nLOCKBOX_ENCRYPTION_KEYS={}\n"
         )
         + _lb['basic_auth_user'].format_into("BASIC_AUTH_USER={}\n")
         + _lb['basic_auth_pass'].format_into("BASIC_AUTH_PASS={}\n")
