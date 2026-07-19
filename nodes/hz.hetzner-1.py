@@ -14,7 +14,7 @@ nodes['hz.hetzner-1'] = {
         },
         'lockbox': {
             'enabled': True,
-            'version': 'v0.6.3',
+            'version': 'v0.8.0',
             'port': 8091,
             'encryption_key': teamvault.password('VO05mL', site='benjamin-borbe'),
             'basic_auth_user': teamvault.username('7qGnWL', site='benjamin-borbe'),

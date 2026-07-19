@@ -43,6 +43,7 @@ nodes['hm.nuke-k3s-dev'] = {
                     'image-gc-high-threshold=80',
                     'image-gc-low-threshold=70',
                     'eviction-hard=imagefs.available<10%',
+                    'max-pods=512',
                 ]
             },
         },
