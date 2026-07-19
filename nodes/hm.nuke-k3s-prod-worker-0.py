@@ -6,7 +6,6 @@
 # False after bborbe exists.
 nodes['hm.nuke-k3s-prod-worker-0'] = {
     'hostname': 'nuke-k3s-prod-worker-0.hm.benjamin-borbe.de',
-    'username': 'install',
     'groups': {
         'ubuntu-noble',
     },
