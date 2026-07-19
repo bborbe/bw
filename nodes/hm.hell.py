@@ -130,7 +130,6 @@ nodes['hm.hell'] = {
                 'hetzner-2.benjamin-borbe.de': {},
                 'nuke-boss.hm.benjamin-borbe.de': {},
                 'nuke-k3s-agent-0.hm.benjamin-borbe.de': {},
-                'nuke-k3s-agent-1.hm.benjamin-borbe.de': {},
                 'nuke-k3s-agent.hm.benjamin-borbe.de': {},
                 'nuke-k3s-dev-0.hm.benjamin-borbe.de': {},
                 'nuke-k3s-dev.hm.benjamin-borbe.de': {},
