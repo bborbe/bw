@@ -41,7 +41,7 @@ nodes['hm.nuke-boss'] = {
                     'optional': True,
                     'match': {'name': 'en*'},
                     'set-name': 'eth0',
-                    'addresses': ['192.168.178.30/24'],
+                    'addresses': ['192.168.178.45/24'],  # moved .30 -> .45 (2026-07-19; .30 reused by nuke-k3s-dev-master-0)
                     'routes': [{'to': 'default', 'via': '192.168.178.1'}],
                     'nameservers': {
                         'addresses': ['8.8.8.8', '8.8.4.4'],
