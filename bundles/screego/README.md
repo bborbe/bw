@@ -11,7 +11,7 @@ Migrated from the legacy `world` tool (`configuration/service/screego.go`).
 ```python
 'screego': {
     'enabled': True,
-    'version': '1.12.4',            # bborbe/screego image tag
+    'version': '1.12.4',            # screego/server image tag
     'external_ip': '159.69.203.89', # SCREEGO_EXTERNAL_IP (node public IP)
     'secret': teamvault.password('<key>', site='benjamin-borbe'),      # SCREEGO_SECRET
     'users_file': teamvault.password('<key>', site='benjamin-borbe'),  # "<name>:<bcrypt>" lines

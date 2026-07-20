@@ -1,5 +1,5 @@
 [Unit]
-Description=Screego screen sharing server (bborbe/screego)
+Description=Screego screen sharing server (screego/server)
 Requires=docker.service
 After=docker.service
 StartLimitIntervalSec=60
@@ -17,7 +17,7 @@ ExecStart=/usr/bin/docker run \
 	--net=host \
 	--env-file=/data/screego/environment \
 	-v /data/screego:/data/screego \
-	bborbe/screego:${version}
+	screego/server:${version}
 ExecStop=/usr/bin/docker stop screego
 
 [Install]
