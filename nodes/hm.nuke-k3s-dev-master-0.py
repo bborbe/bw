@@ -1,9 +1,3 @@
-# nuke-k3s-dev-master-0 (.30) — new dev cluster master (k3s server, SQLite, tainted).
-# Cloned from hm.nuke-k3s-prod.py (server template). bw owns netplan (durable static
-# IP) + k3s (enabled, server — no agent). node_type=master label + NoSchedule taint
-# live on the node object (from install); a k3s restart preserves them.
-# BOOTSTRAP: `username: install` for the first `bw apply`; remove + install.enabled
-# False after bborbe exists.
 nodes['hm.nuke-k3s-dev-master-0'] = {
     'hostname': 'nuke-k3s-dev-master-0.hm.benjamin-borbe.de',
     'groups': {
@@ -17,10 +11,17 @@ nodes['hm.nuke-k3s-dev-master-0'] = {
                     'dhcp4': False,
                     'dhcp6': False,
                     'optional': True,
-                    'match': {'name': 'en*'},
+                    'match': {
+                        'name': 'en*',
+                    },
                     'set-name': 'eth0',
                     'addresses': ['192.168.178.30/24'],
-                    'routes': [{'to': 'default', 'via': '192.168.178.1'}],
+                    'routes': [
+                        {
+                            'to': 'default',
+                            'via': '192.168.178.1',
+                        }
+                    ],
                     'nameservers': {
                         'addresses': ['8.8.8.8', '8.8.4.4'],
                         'search': ['hm.benjamin-borbe.de'],
@@ -28,8 +29,12 @@ nodes['hm.nuke-k3s-dev-master-0'] = {
                 },
             },
         },
-        'kvm-guest': {'enabled': True},
-        'backup_client': {'enabled': True},
+        'kvm-guest': {
+            'enabled': True,
+        },
+        'backup_client': {
+            'enabled': True,
+        },
         'k3s': {
             'enabled': True,
             'network': '192.168.178.0/24',
@@ -47,13 +52,21 @@ nodes['hm.nuke-k3s-dev-master-0'] = {
             'nat_interfaces': [],
             'rules': {
                 'filter': set({
+                    '-A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT',
                     '-A INPUT -m state --state NEW -p tcp --dport 6443 -j ACCEPT',
+                    '-A INPUT -m state --state NEW -p tcp --dport 30000:32767 -j ACCEPT',
                 }),
             },
         },
         'users': {
-            'bborbe': {'enabled': True, 'groups': ['sudo']},
-            'install': {'enabled': True},  # flip False after first apply
+            'bborbe': {
+                'enabled': True,
+                'groups': ['sudo'],
+            },
+            'install': {
+                'enabled': False,
+            },
         },
     },
 }
