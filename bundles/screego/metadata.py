@@ -1,3 +1,14 @@
+defaults = {
+    'screego': {
+        'enabled': False,
+        'version': '1.12.4',  # https://hub.docker.com/r/bborbe/screego/tags
+        'external_ip': '0.0.0.0',  # SCREEGO_EXTERNAL_IP — node's public IP
+        'secret': None,       # SCREEGO_SECRET — from TeamVault (set in node metadata)
+        'users_file': None,   # "<name>:<bcrypt>" content — from TeamVault (set in node metadata)
+    },
+}
+
+
 @metadata_reactor
 def iptables(metadata):
     rules = set()
