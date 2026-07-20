@@ -7,6 +7,7 @@ groups['meta-bundles'] = {
         'backup_client',
         'backup_server',
         'base',
+        'bind',
         'bme280',
         'kubectl',
         'workspace',
