@@ -7,10 +7,13 @@ poste = node.metadata.get('poste', {})
 if poste.get('enabled', False):
     # Mail data volume (mailboxes + config). Only the mount-point node is managed
     # here (non-recursive, no purge) — the poste.io container owns /data's contents.
+    # Owned by 'mail' (uid 8): poste.io runs its services as mail and writes the
+    # maildirs/config under /data — root ownership would deny the container write
+    # access, and bw would otherwise fight the container's boot-time chown.
     directories['/data/poste'] = {
-        'owner': 'root',
-        'group': 'root',
-        'mode': '0755',
+        'owner': 'mail',
+        'group': 'mail',
+        'mode': '0775',
     }
     # Container env (HTTPS off, clamav off). No secrets — plain file, kept outside
     # the /data/poste volume so it isn't exposed inside the container.
