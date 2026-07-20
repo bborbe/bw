@@ -11,7 +11,7 @@ if screego.get('enabled', False):
         'mode': '0755',
     }
     # Secret files owned by the 'screego' service user (uid 1001 — matches the
-    # container's USER in bborbe/screego), mode 0600. The container runs non-root
+    # container's USER in screego/server), mode 0600. The container runs non-root
     # and bind-mounts /data/screego, so files must be readable by uid 1001 —
     # root:root 0600 crashes it ("open /data/screego/users: permission denied").
     # Owning by the service user keeps them 0600 (not world-readable) AND readable
