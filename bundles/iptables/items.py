@@ -20,9 +20,28 @@ actions = {
         'command': 'iptables-restore < /etc/iptables/rules.v4',
         'triggered': True,
         'cascade_skip': False,
+        'triggers': ['action:docker-iptables-reconcile'],
     },
     'iptables-restore-ipv6': {
         'command': 'ip6tables-restore < /etc/iptables/rules.v6',
+        'triggered': True,
+        'cascade_skip': False,
+        'triggers': ['action:docker-iptables-reconcile'],
+    },
+    # iptables-restore replaces the whole mangle/nat/filter tables (the rules.v4
+    # template declares them wholesale), wiping Docker's dynamically-created
+    # DOCKER / DOCKER-USER / DOCKER-ISOLATION chains and its FORWARD jump rules.
+    # Without this, published-port (-p) containers lose networking until dockerd
+    # is restarted (seen live 2026-07-20 on hz.hetzner-1: docker run exit 125,
+    # "iptables: No chain/target/match by that name"). Restarting dockerd rebuilds
+    # all of its chains + per-container DNAT from its own state; the containers
+    # themselves self-heal via their systemd units (Restart=always), ~5-10s blip.
+    # `systemctl try-restart` is self-gating: no-op when docker isn't running.
+    # Hosts without docker installed exit 5 ("unit not found") — only that code
+    # is tolerated; any other failure (permissions, broken daemon config) fails
+    # the action visibly so a still-broken docker never goes unnoticed.
+    'docker-iptables-reconcile': {
+        'command': 'systemctl try-restart docker.service || [ $? -eq 5 ]',
         'triggered': True,
         'cascade_skip': False,
     },
