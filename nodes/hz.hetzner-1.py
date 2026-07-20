@@ -52,6 +52,10 @@ nodes['hz.hetzner-1'] = {
             'version': '2.5.13-2.0.1',
             'admin_port': 8001,
         },
+        'bind': {
+            'enabled': True,
+            'version': '1.4.1-202607',
+        },
         'nginx': {
             'enabled': True,
             'vhosts': {

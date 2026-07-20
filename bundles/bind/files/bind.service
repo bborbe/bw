@@ -1,0 +1,28 @@
+[Unit]
+Description=Bind DNS server (bborbe/bind)
+Requires=docker.service
+After=docker.service
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Restart=always
+RestartSec=20s
+TimeoutStartSec=20s
+TimeoutStopSec=20s
+ExecStartPre=-/usr/bin/docker kill bind
+ExecStartPre=-/usr/bin/docker rm bind
+ExecStart=/usr/bin/docker run \
+	--name=bind \
+	--memory=256m \
+	--memory-swap=0 \
+	--memory-swappiness=0 \
+	--net=host \
+	-v /data/bind:/etc/bind \
+	-v /data/bind:/var/lib/bind \
+	bborbe/bind:${version} \
+	/usr/sbin/named -u bind -g -f -4
+ExecStop=/usr/bin/docker stop bind
+
+[Install]
+WantedBy=multi-user.target
