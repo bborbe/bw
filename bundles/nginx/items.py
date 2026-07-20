@@ -21,6 +21,13 @@ if node.metadata.get('nginx', {}).get('enabled', False):
     # Rendered into a single sites-enabled file so nginx loads it inside http{}.
     upstreams = node.metadata.get('nginx', {}).get('upstreams', {})
     if upstreams:
+        # Fail fast at compile time (bw test / precommit) on malformed upstream
+        # metadata, rather than letting a bad render surface only at nginx reload.
+        for up_name, up_servers in upstreams.items():
+            if not up_name or not isinstance(up_servers, (list, tuple)) or not up_servers:
+                raise Exception(
+                    'nginx: upstream {!r} must have a non-empty list of servers'.format(up_name)
+                )
         files['/etc/nginx/sites-enabled/upstreams.conf'] = {
             'source': 'upstreams.conf',
             'owner': 'root',
