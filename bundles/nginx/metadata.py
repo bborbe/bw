@@ -26,6 +26,7 @@ def install_apt_packages(metadata):
         pkgs_install = (
             'apache2-utils',
             'nginx',
+            'libnginx-mod-http-dav-ext',  # dav_ext_methods (PROPFIND/OPTIONS) for webdav
         )
         for package_name in pkgs_install:
             result['apt']['packages'][package_name] = {
