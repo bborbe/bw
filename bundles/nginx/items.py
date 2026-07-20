@@ -38,6 +38,17 @@ if node.metadata.get('nginx', {}).get('enabled', False):
             'needs': ['pkg_apt:nginx'],
             'triggers': ['svc_systemd:nginx:restart'],
         }
+    # auth_basic htpasswd files (user:hash), content sourced from TeamVault via
+    # node metadata. 0640 root:www-data — readable by nginx workers, not world.
+    for path, content in node.metadata.get('nginx', {}).get('htpasswd_files', {}).items():
+        files[path] = {
+            'content': content,
+            'owner': 'root',
+            'group': 'www-data',
+            'mode': '0640',
+            'needs': ['pkg_apt:nginx'],
+            'triggers': ['svc_systemd:nginx:restart'],
+        }
     for name, data in node.metadata.get('nginx', {}).get('vhosts', {}).items():
         files['/etc/nginx/sites-enabled/{}.conf'.format(name)] = {
             'source': 'vhost.conf',

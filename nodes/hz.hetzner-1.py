@@ -293,6 +293,37 @@ nodes['hz.hetzner-1'] = {
                     },
                     'indexes': [],
                 },
+                'webdav': {
+                    'ip': '159.69.203.89',
+                    'server_names': [
+                        'webdav.benjamin-borbe.de',
+                    ],
+                    'root': '/home/webdav',
+                    'ssl': {
+                        'force': True,
+                        'cert': '/etc/letsencrypt/live/webdav.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/webdav.benjamin-borbe.de/privkey.pem',
+                    },
+                    'locations': {
+                        # WebDAV over /home/webdav. dav_ext_methods needs the
+                        # libnginx-mod-http-dav-ext package (installed by the nginx
+                        # bundle). auth_basic htpasswd is rendered from TeamVault
+                        # (see htpasswd_files below).
+                        '/': {
+                            'client_max_body_size': '100M',
+                            'autoindex': 'on',
+                            'dav_methods': 'PUT DELETE MKCOL COPY MOVE',
+                            'dav_ext_methods': 'PROPFIND OPTIONS',
+                            'auth_basic': '"Restricted area"',
+                            'auth_basic_user_file': '/etc/nginx/webdav.htpasswd',
+                        },
+                    },
+                    'indexes': [],
+                },
+            },
+            'htpasswd_files': {
+                # webdav auth_basic user file (user:hash) from TeamVault.
+                '/etc/nginx/webdav.htpasswd': teamvault.password('NqAE5q', site='benjamin-borbe'),
             },
             'upstreams': {
                 # nuke cluster backend (over the OpenVPN tunnel) behind the quant vhosts.
@@ -325,6 +356,7 @@ nodes['hz.hetzner-1'] = {
                 'ip.benjamin-borbe.de.conf',          # → bw 'ip' (shipped #25)
                 'screen.benjamin-borbe.de.conf',      # → bw 'screego' (shipped #26/#27)
                 'backend-server.conf',                # → bw nginx upstreams.conf
+                'webdav.benjamin-borbe.de.conf',      # → bw 'webdav'
             ],
         },
         'golang': {
