@@ -35,6 +35,14 @@ if node.metadata.get('nginx', {}).get('enabled', False):
             'needs': ['pkg_apt:nginx'],
             'triggers': ['svc_systemd:nginx:restart'],
         }
+    # Remove legacy vhost files (e.g. world's `<domain>.conf`) so a bw-managed
+    # vhost replaces them instead of duplicating the server_name. Bridge until
+    # sites-enabled can be flipped back to purge:True (all vhosts bw-managed).
+    for legacy in node.metadata.get('nginx', {}).get('delete_vhosts', []):
+        files['/etc/nginx/sites-enabled/{}'.format(legacy)] = {
+            'delete': True,
+            'triggers': ['svc_systemd:nginx:restart'],
+        }
 else:
     files['/etc/nginx/sites-enabled'] = {
         'delete': True,

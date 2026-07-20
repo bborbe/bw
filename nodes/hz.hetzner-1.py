@@ -147,7 +147,39 @@ nodes['hz.hetzner-1'] = {
                     },
                     'indexes': [],
                 },
+                'teamvault': {
+                    'ip': '159.69.203.89',
+                    'server_names': [
+                        'teamvault.benjamin-borbe.de',
+                    ],
+                    'ssl': {
+                        'force': True,
+                        'cert': '/etc/letsencrypt/live/teamvault.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/teamvault.benjamin-borbe.de/privkey.pem',
+                    },
+                    'locations': {
+                        # Proxies to the TeamVault backend on nuke-k3s-prod-worker-0
+                        # (192.168.178.44), reachable from this cloud host over the
+                        # OpenVPN tunnel. client_max_body_size (100M) is set at
+                        # location scope (valid nginx) to allow TeamVault file uploads.
+                        '/': {
+                            'client_max_body_size': '100M',
+                            'proxy_pass': 'http://192.168.178.44/',
+                            'proxy_set_header Host': '$host',
+                            'proxy_set_header X-Forwarded-Host': '$host:$server_port',
+                            'proxy_set_header X-Forwarded-Server': '$host',
+                            'proxy_set_header X-Forwarded-For': '$proxy_add_x_forwarded_for',
+                            'proxy_set_header X-Forwarded-Proto': 'https',
+                        },
+                    },
+                    'indexes': [],
+                },
             },
+            'delete_vhosts': [
+                # world's legacy vhost for the same server_name — remove so the
+                # bw-managed 'teamvault' vhost above doesn't duplicate it.
+                'teamvault.benjamin-borbe.de.conf',
+            ],
         },
         'golang': {
             'enabled': True,
