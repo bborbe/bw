@@ -13,15 +13,17 @@ Migrated from the legacy `world` tool (`configuration/service/screego.go`).
     'enabled': True,
     'version': '1.12.4',            # bborbe/screego image tag
     'external_ip': '159.69.203.89', # SCREEGO_EXTERNAL_IP (node public IP)
-    'secret': teamvault.password('<key>', site='benjamin-borbe'),   # SCREEGO_SECRET
-    'users_file': teamvault.file('<key>', site='benjamin-borbe'),   # "<name>:<bcrypt>" lines
+    'secret': teamvault.password('<key>', site='benjamin-borbe'),      # SCREEGO_SECRET
+    'users_file': teamvault.password('<key>', site='benjamin-borbe'),  # "<name>:<bcrypt>" lines
 },
 ```
 
 ## Secrets
 
 `SCREEGO_SECRET` and the users file (bcrypt login hashes) come from TeamVault via
-`bwtv` — never inlined. Set them in the node metadata.
+`bwtv` — never inlined. Set them in the node metadata. Both are stored as the
+`password` field of their TeamVault entries (the users-file content is a
+`<name>:<bcrypt>` string), so both use `teamvault.password(...)`.
 
 ## Files rendered
 
