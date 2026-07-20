@@ -174,11 +174,146 @@ nodes['hz.hetzner-1'] = {
                     },
                     'indexes': [],
                 },
+                'mail': {
+                    'ip': '159.69.203.89',
+                    'server_names': [
+                        'mail.benjamin-borbe.de',
+                    ],
+                    'ssl': {
+                        'force': True,
+                        'cert': '/etc/letsencrypt/live/mail.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/mail.benjamin-borbe.de/privkey.pem',
+                    },
+                    'locations': {
+                        # poste.io mail UI (still served by world's poste container on
+                        # localhost:8001 until the poste service itself is migrated).
+                        '/': {
+                            'client_max_body_size': '100M',
+                            'proxy_pass': 'http://localhost:8001/',
+                            'proxy_set_header Host': '$host',
+                            'proxy_set_header X-Forwarded-Host': '$host:$server_port',
+                            'proxy_set_header X-Forwarded-Server': '$host',
+                            'proxy_set_header X-Forwarded-For': '$proxy_add_x_forwarded_for',
+                            'proxy_set_header X-Forwarded-Proto': 'https',
+                        },
+                    },
+                    'indexes': [],
+                },
+                'quant': {
+                    'ip': '159.69.203.89',
+                    'server_names': [
+                        'quant.benjamin-borbe.de',
+                    ],
+                    'ssl': {
+                        'force': True,
+                        'cert': '/etc/letsencrypt/live/quant.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/quant.benjamin-borbe.de/privkey.pem',
+                    },
+                    'locations': {
+                        # Proxies to the backend_servers upstream (nuke cluster, over VPN).
+                        '/': {
+                            'client_max_body_size': '100M',
+                            'proxy_pass': 'http://backend_servers',
+                            'proxy_http_version': '1.1',
+                            'proxy_set_header Host': '$host',
+                            'proxy_set_header X-Forwarded-Host': '$host:$server_port',
+                            'proxy_set_header X-Forwarded-Server': '$host',
+                            'proxy_set_header X-Forwarded-For': '$proxy_add_x_forwarded_for',
+                            'proxy_set_header X-Forwarded-Proto': 'https',
+                            'proxy_set_header Upgrade': '$http_upgrade',
+                            'proxy_set_header Connection': 'upgrade',
+                            'access_log': '/var/log/nginx/quant.benjamin-borbe.de-access.log combined',
+                        },
+                    },
+                    'indexes': [],
+                },
+                'dev.quant': {
+                    'ip': '159.69.203.89',
+                    'server_names': [
+                        'dev.quant.benjamin-borbe.de',
+                    ],
+                    'ssl': {
+                        'force': True,
+                        'cert': '/etc/letsencrypt/live/dev.quant.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/dev.quant.benjamin-borbe.de/privkey.pem',
+                    },
+                    'locations': {
+                        # Proxies to the backend_servers upstream, with websocket +
+                        # streaming timeouts and buffering off.
+                        '/': {
+                            'client_max_body_size': '100M',
+                            'proxy_pass': 'http://backend_servers',
+                            'proxy_http_version': '1.1',
+                            'proxy_set_header Host': '$host',
+                            'proxy_set_header X-Forwarded-Host': '$host:$server_port',
+                            'proxy_set_header X-Forwarded-Server': '$host',
+                            'proxy_set_header X-Forwarded-For': '$proxy_add_x_forwarded_for',
+                            'proxy_set_header X-Forwarded-Proto': 'https',
+                            'proxy_set_header Upgrade': '$http_upgrade',
+                            'proxy_set_header Connection': 'upgrade',
+                            'proxy_read_timeout': '300s',
+                            'proxy_connect_timeout': '60s',
+                            'proxy_send_timeout': '300s',
+                            'proxy_buffering': 'off',
+                            'proxy_cache': 'off',
+                        },
+                    },
+                    'indexes': [],
+                },
+                'prod.quant': {
+                    'ip': '159.69.203.89',
+                    'server_names': [
+                        'prod.quant.benjamin-borbe.de',
+                    ],
+                    'ssl': {
+                        'force': True,
+                        'cert': '/etc/letsencrypt/live/prod.quant.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/prod.quant.benjamin-borbe.de/privkey.pem',
+                    },
+                    'locations': {
+                        # Production trading UI — proxies to the backend_servers upstream,
+                        # websocket + streaming timeouts and buffering off.
+                        '/': {
+                            'client_max_body_size': '100M',
+                            'proxy_pass': 'http://backend_servers',
+                            'proxy_http_version': '1.1',
+                            'proxy_set_header Host': '$host',
+                            'proxy_set_header X-Forwarded-Host': '$host:$server_port',
+                            'proxy_set_header X-Forwarded-Server': '$host',
+                            'proxy_set_header X-Forwarded-For': '$proxy_add_x_forwarded_for',
+                            'proxy_set_header X-Forwarded-Proto': 'https',
+                            'proxy_set_header Upgrade': '$http_upgrade',
+                            'proxy_set_header Connection': 'upgrade',
+                            'proxy_read_timeout': '300s',
+                            'proxy_connect_timeout': '60s',
+                            'proxy_send_timeout': '300s',
+                            'proxy_buffering': 'off',
+                            'proxy_cache': 'off',
+                        },
+                    },
+                    'indexes': [],
+                },
+            },
+            'upstreams': {
+                # nuke cluster backend (over the OpenVPN tunnel) behind the quant vhosts.
+                'backend_servers': [
+                    '172.16.90.6',
+                    '172.16.90.7',
+                    '172.16.90.9',
+                ],
             },
             'delete_vhosts': [
-                # world's legacy vhost for the same server_name — remove so the
-                # bw-managed 'teamvault' vhost above doesn't duplicate it.
-                'teamvault.benjamin-borbe.de.conf',
+                # Legacy world/hand-authored vhosts now superseded by bw-managed
+                # vhosts above (same server_name). Removed so they don't duplicate.
+                # Bridge until purge:True (blocked on the webdav vhost, not yet in bw).
+                'teamvault.benjamin-borbe.de.conf',   # → bw 'teamvault'
+                'mail.benjamin-borbe.de.conf',        # → bw 'mail'
+                'quant.benjamin-borbe.de.conf',       # → bw 'quant'
+                'dev.quant.benjamin-borbe.de',        # → bw 'dev.quant'
+                'prod.quant.benjamin-borbe.de',       # → bw 'prod.quant'
+                'ip.benjamin-borbe.de.conf',          # → bw 'ip' (shipped #25)
+                'screen.benjamin-borbe.de.conf',      # → bw 'screego' (shipped #26/#27)
+                'backend-server.conf',                # → bw nginx upstreams.conf
             ],
         },
         'golang': {

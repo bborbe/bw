@@ -17,6 +17,20 @@ if node.metadata.get('nginx', {}).get('enabled', False):
         'enabled': True,
         'needs': ['pkg_apt:nginx'],
     }
+    # upstream {} blocks (e.g. load-balanced backends referenced by proxy_pass).
+    # Rendered into a single sites-enabled file so nginx loads it inside http{}.
+    upstreams = node.metadata.get('nginx', {}).get('upstreams', {})
+    if upstreams:
+        files['/etc/nginx/sites-enabled/upstreams.conf'] = {
+            'source': 'upstreams.conf',
+            'owner': 'root',
+            'group': 'root',
+            'mode': '0644',
+            'context': {'upstreams': upstreams},
+            'content_type': 'mako',
+            'needs': ['pkg_apt:nginx'],
+            'triggers': ['svc_systemd:nginx:restart'],
+        }
     for name, data in node.metadata.get('nginx', {}).get('vhosts', {}).items():
         files['/etc/nginx/sites-enabled/{}.conf'.format(name)] = {
             'source': 'vhost.conf',
