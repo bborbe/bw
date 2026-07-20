@@ -210,10 +210,14 @@ nodes['hz.hetzner-1'] = {
                         'key': '/etc/letsencrypt/live/quant.benjamin-borbe.de/privkey.pem',
                     },
                     'locations': {
-                        # Proxies to the backend_servers upstream (nuke cluster, over VPN).
+                        # Website gateway on nuke-k3s-prod-worker-0 (192.168.178.44) over the
+                        # VPN — same as the teamvault vhost. The .37/.44 cluster's traefik
+                        # LoadBalancer advertises only the LAN IP, reached via the iroute
+                        # 192.168.178.44/32 in the worker's openvpn ccd. Migrated off the old
+                        # backend_servers upstream (still used by dev.quant/prod.quant trading UIs).
                         '/': {
                             'client_max_body_size': '100M',
-                            'proxy_pass': 'http://backend_servers',
+                            'proxy_pass': 'http://192.168.178.44',
                             'proxy_http_version': '1.1',
                             'proxy_set_header Host': '$host',
                             'proxy_set_header X-Forwarded-Host': '$host:$server_port',
