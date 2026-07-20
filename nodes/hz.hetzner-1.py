@@ -185,6 +185,13 @@ nodes['hz.hetzner-1'] = {
             'bborbe': {
                 'enabled': True,
             },
+            # Service account matching the screego container's non-root UID (1001),
+            # so bw can own the secret files by name and read back a resolvable owner.
+            'screego': {
+                'enabled': True,
+                'uid': 1001,
+                'shell': '/usr/sbin/nologin',
+            },
         },
     },
 }
