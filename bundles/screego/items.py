@@ -10,28 +10,30 @@ if screego.get('enabled', False):
         'group': 'root',
         'mode': '0755',
     }
-    # Secret files owned by uid 1001 (the screego container user, USER 1001 in
-    # bborbe/screego), mode 0600. The container runs non-root and bind-mounts
-    # /data/screego, so the files must be readable by uid 1001 — root:root 0600
-    # crashes it ("open /data/screego/users: permission denied"). Owning by the
-    # service uid keeps them 0600 (not world-readable) AND readable by screego.
-    # No host user maps to 1001, so owner/group are numeric.
+    # Secret files owned by the 'screego' service user (uid 1001 — matches the
+    # container's USER in bborbe/screego), mode 0600. The container runs non-root
+    # and bind-mounts /data/screego, so files must be readable by uid 1001 —
+    # root:root 0600 crashes it ("open /data/screego/users: permission denied").
+    # Owning by the service user keeps them 0600 (not world-readable) AND readable
+    # by screego. group root is fine (group bit is 0 at 0600). The 'screego' user
+    # is created by the user bundle (see nodes/hz.hetzner-1.py 'users' metadata),
+    # so a bare uid resolves to a name and bw converges.
     files['/data/screego/users'] = {
         'content': screego.get('users_file', ''),
-        'owner': '1001',
-        'group': '1001',
+        'owner': 'screego',
+        'group': 'root',
         'mode': '0600',
-        'needs': ['directory:/data/screego'],
+        'needs': ['directory:/data/screego', 'user:screego'],
         'triggers': ['svc_systemd:screego:restart'],
     }
     files['/data/screego/environment'] = {
         'source': 'environment',
         'content_type': 'mako',
         'context': screego,
-        'owner': '1001',
-        'group': '1001',
+        'owner': 'screego',
+        'group': 'root',
         'mode': '0600',
-        'needs': ['directory:/data/screego'],
+        'needs': ['directory:/data/screego', 'user:screego'],
         'triggers': ['svc_systemd:screego:restart'],
     }
     # Remove the legacy world-managed unit at /etc/systemd/system/, which shadows
