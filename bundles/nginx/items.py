@@ -10,7 +10,7 @@ if node.metadata.get('nginx', {}).get('enabled', False):
         'mode': '0755',
         'owner': 'root',
         'group': 'root',
-        'purge': False,  # set true again if all vhosts are managed by bw
+        'purge': True,  # all vhosts are bw-managed; purge removes any stray file
     }
     svc_systemd['nginx'] = {
         'running': True,
