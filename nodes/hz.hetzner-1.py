@@ -38,6 +38,11 @@ nodes['hz.hetzner-1'] = {
         'screego': {
             'enabled': True,
         },
+        'ip': {
+            'enabled': True,
+            'version': '1.1.0',
+            'port': 8000,
+        },
         'nginx': {
             'enabled': True,
             'vhosts': {
@@ -92,6 +97,25 @@ nodes['hz.hetzner-1'] = {
                     'locations': {
                         '/': {
                             'proxy_pass': 'http://127.0.0.1:8091',
+                            'proxy_set_header Host': '$host',
+                            'proxy_set_header X-Real-IP': '$remote_addr',
+                        },
+                    },
+                    'indexes': [],
+                },
+                'ip': {
+                    'ip': '159.69.203.89',
+                    'server_names': [
+                        'ip.benjamin-borbe.de',
+                    ],
+                    'ssl': {
+                        'force': True,
+                        'cert': '/etc/letsencrypt/live/ip.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/ip.benjamin-borbe.de/privkey.pem',
+                    },
+                    'locations': {
+                        '/': {
+                            'proxy_pass': 'http://127.0.0.1:8000',
                             'proxy_set_header Host': '$host',
                             'proxy_set_header X-Real-IP': '$remote_addr',
                         },
