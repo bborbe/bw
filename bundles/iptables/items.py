@@ -36,10 +36,12 @@ actions = {
     # "iptables: No chain/target/match by that name"). Restarting dockerd rebuilds
     # all of its chains + per-container DNAT from its own state; the containers
     # themselves self-heal via their systemd units (Restart=always), ~5-10s blip.
-    # `systemctl try-restart` is self-gating: no-op when docker isn't running,
-    # and `|| true` covers hosts without docker installed (unit not found).
+    # `systemctl try-restart` is self-gating: no-op when docker isn't running.
+    # Hosts without docker installed exit 5 ("unit not found") — only that code
+    # is tolerated; any other failure (permissions, broken daemon config) fails
+    # the action visibly so a still-broken docker never goes unnoticed.
     'docker-iptables-reconcile': {
-        'command': 'systemctl try-restart docker.service || true',
+        'command': 'systemctl try-restart docker.service || [ $? -eq 5 ]',
         'triggered': True,
         'cascade_skip': False,
     },
