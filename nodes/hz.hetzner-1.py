@@ -338,26 +338,6 @@ nodes['hz.hetzner-1'] = {
                     '172.16.90.9',
                 ],
             },
-            'delete_vhosts': [
-                # Legacy world/hand-authored vhosts now superseded by bw-managed
-                # vhosts above (same server_name). Removed so they don't duplicate.
-                # Bridge until purge:True (blocked on the webdav vhost, not yet in bw) —
-                # tracked by goal [[Migrate World Infra To BundleWrap]], phase 3.
-                # NOTE: each entry is the EXACT on-disk filename verified via
-                # `ls /etc/nginx/sites-enabled/` 2026-07-20 — dev/prod.quant genuinely
-                # have no .conf suffix; the rest do. A delete:True on a path that does
-                # not exist is a harmless bw no-op, and every live legacy file is listed
-                # here, so no duplicate server_name can survive the reload.
-                'teamvault.benjamin-borbe.de.conf',   # → bw 'teamvault'
-                'mail.benjamin-borbe.de.conf',        # → bw 'mail'
-                'quant.benjamin-borbe.de.conf',       # → bw 'quant'
-                'dev.quant.benjamin-borbe.de',        # → bw 'dev.quant'
-                'prod.quant.benjamin-borbe.de',       # → bw 'prod.quant'
-                'ip.benjamin-borbe.de.conf',          # → bw 'ip' (shipped #25)
-                'screen.benjamin-borbe.de.conf',      # → bw 'screego' (shipped #26/#27)
-                'backend-server.conf',                # → bw nginx upstreams.conf
-                'webdav.benjamin-borbe.de.conf',      # → bw 'webdav'
-            ],
         },
         'golang': {
             'enabled': True,
