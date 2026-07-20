@@ -1,0 +1,29 @@
+[Unit]
+Description=Poste.io mail server (bborbe/poste.io)
+Requires=docker.service
+After=docker.service
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Restart=always
+RestartSec=20s
+TimeoutStartSec=20s
+TimeoutStopSec=20s
+ExecStartPre=-/usr/bin/docker kill poste
+ExecStartPre=-/usr/bin/docker rm poste
+ExecStart=/usr/bin/docker run \
+	--name=poste \
+	--memory=1000m \
+	-p 0.0.0.0:25:25 \
+	-p 0.0.0.0:465:465 \
+	-p 0.0.0.0:587:587 \
+	-p 0.0.0.0:993:993 \
+	-p 0.0.0.0:${admin_port}:80 \
+	--env-file=/home/poste.environment \
+	-v /data/poste:/data \
+	bborbe/poste.io:${version}
+ExecStop=/usr/bin/docker stop poste
+
+[Install]
+WantedBy=multi-user.target
