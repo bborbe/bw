@@ -37,6 +37,10 @@ nodes['hz.hetzner-1'] = {
         },
         'screego': {
             'enabled': True,
+            'version': '1.12.4',
+            'external_ip': '159.69.203.89',
+            'secret': teamvault.password('xwXMpO', site='benjamin-borbe'),
+            'users_file': teamvault.password('Rwgzeq', site='benjamin-borbe'),
         },
         'ip': {
             'enabled': True,
@@ -118,6 +122,27 @@ nodes['hz.hetzner-1'] = {
                             'proxy_pass': 'http://127.0.0.1:8000',
                             'proxy_set_header Host': '$host',
                             'proxy_set_header X-Real-IP': '$remote_addr',
+                        },
+                    },
+                    'indexes': [],
+                },
+                'screego': {
+                    'ip': '159.69.203.89',
+                    'server_names': [
+                        'screen.benjamin-borbe.de',
+                    ],
+                    'ssl': {
+                        'force': True,
+                        'cert': '/etc/letsencrypt/live/screen.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/screen.benjamin-borbe.de/privkey.pem',
+                    },
+                    'locations': {
+                        '/': {
+                            'proxy_pass': 'http://127.0.0.1:5050',
+                            'proxy_set_header Host': '$host',
+                            'proxy_set_header X-Real-IP': '$remote_addr',
+                            'proxy_set_header Upgrade': '$http_upgrade',
+                            'proxy_set_header Connection': 'upgrade',
                         },
                     },
                     'indexes': [],
