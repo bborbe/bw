@@ -296,6 +296,11 @@ nodes['hz.hetzner-1'] = {
             },
             'upstreams': {
                 # nuke cluster backend (over the OpenVPN tunnel) behind the quant vhosts.
+                # No explicit health-check directives — faithful to world's original
+                # backend-server.conf. nginx applies its default passive checks
+                # (max_fails=1, fail_timeout=10s) and default proxy_next_upstream, so a
+                # dead backend is marked down and retried. Explicit active health-checks
+                # would be a deliberate behavior change, out of scope for this migration.
                 'backend_servers': [
                     '172.16.90.6',
                     '172.16.90.7',
@@ -305,7 +310,13 @@ nodes['hz.hetzner-1'] = {
             'delete_vhosts': [
                 # Legacy world/hand-authored vhosts now superseded by bw-managed
                 # vhosts above (same server_name). Removed so they don't duplicate.
-                # Bridge until purge:True (blocked on the webdav vhost, not yet in bw).
+                # Bridge until purge:True (blocked on the webdav vhost, not yet in bw) —
+                # tracked by goal [[Migrate World Infra To BundleWrap]], phase 3.
+                # NOTE: each entry is the EXACT on-disk filename verified via
+                # `ls /etc/nginx/sites-enabled/` 2026-07-20 — dev/prod.quant genuinely
+                # have no .conf suffix; the rest do. A delete:True on a path that does
+                # not exist is a harmless bw no-op, and every live legacy file is listed
+                # here, so no duplicate server_name can survive the reload.
                 'teamvault.benjamin-borbe.de.conf',   # → bw 'teamvault'
                 'mail.benjamin-borbe.de.conf',        # → bw 'mail'
                 'quant.benjamin-borbe.de.conf',       # → bw 'quant'
