@@ -11,21 +11,23 @@ if screego.get('enabled', False):
         'mode': '0755',
     }
     # Users file: "<name>:<bcrypt-hash>" lines. Sourced from TeamVault (node metadata).
+    # 0600 — bcrypt hashes must not be world-readable (root reads them).
     files['/data/screego/users'] = {
         'content': screego.get('users_file', ''),
         'owner': 'root',
         'group': 'root',
-        'mode': '0644',
+        'mode': '0600',
         'needs': ['directory:/data/screego'],
         'triggers': ['svc_systemd:screego:restart'],
     }
+    # 0600 — holds SCREEGO_SECRET (HMAC key); root-only.
     files['/data/screego/environment'] = {
         'source': 'environment',
         'content_type': 'mako',
         'context': screego,
         'owner': 'root',
         'group': 'root',
-        'mode': '0644',
+        'mode': '0600',
         'needs': ['directory:/data/screego'],
         'triggers': ['svc_systemd:screego:restart'],
     }
