@@ -33,6 +33,7 @@ groups['meta-bundles'] = {
         'hostname',
         'influxdb',
         'intellij',
+        'ip',
         'iptables',
         'k3s',
         'kafka',

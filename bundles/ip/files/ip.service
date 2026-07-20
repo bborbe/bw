@@ -1,0 +1,22 @@
+[Unit]
+Description=IP echo service (bborbe/ip)
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+RestartSec=20s
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill ip
+ExecStartPre=-/usr/bin/docker rm ip
+ExecStart=/usr/bin/docker run \
+	--name=ip \
+	-p 127.0.0.1:${port}:8080 \
+	bborbe/ip:${version} \
+	-logtostderr \
+	-v=2 \
+	--port=8080
+ExecStop=/usr/bin/docker stop ip
+
+[Install]
+WantedBy=multi-user.target
