@@ -2,6 +2,8 @@
 Description=IP echo service (bborbe/ip)
 Requires=docker.service
 After=docker.service
+StartLimitIntervalSec=60
+StartLimitBurst=5
 
 [Service]
 Restart=always
