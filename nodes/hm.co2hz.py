@@ -6,6 +6,10 @@ nodes['hm.co2hz'] = {
         'raspbian-bookworm',
     },
     'metadata': {
+        'openvpn-client': {
+            'enabled': True,
+            'name': 'co2hz',
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {
