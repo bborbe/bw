@@ -57,6 +57,16 @@ if openvpn_cfg.get('enabled', False):
         'needs': ['pkg_apt:openvpn'],
     }
 
+    # copytruncate so the daemon keeps its open file handle — no signal/restart
+    # needed on rotation. World never rotated this log at all.
+    files['/etc/logrotate.d/openvpn'] = {
+        'source': 'logrotate',
+        'content_type': 'text',
+        'owner': 'root',
+        'group': 'root',
+        'mode': '0644',
+    }
+
     # Note: /etc/openvpn/ip_pool is deliberately NOT managed. It is
     # ifconfig-pool-persist runtime state that the openvpn daemon itself
     # rewrites; managing it would show permanent drift.
