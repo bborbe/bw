@@ -26,6 +26,11 @@ nodes['hz.hetzner-1'] = {
         'backup_client': {
             'enabled': True,
         },
+        'sysctl': {
+            'options': {
+                'net.ipv4.ip_forward': '1',
+            },
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {
@@ -55,6 +60,33 @@ nodes['hz.hetzner-1'] = {
         'bind': {
             'enabled': True,
             'version': '1.4.1-202607',
+        },
+        'openvpn': {
+            'enabled': True,
+            'clients': {
+                'co2hz': {'vpn_ip': '172.16.90.28', 'lan_ip': '192.168.177.6'},
+                'co2wz': {'vpn_ip': '172.16.90.24', 'lan_ip': '192.168.177.7'},
+                'fire': {'vpn_ip': '172.16.90.8', 'lan_ip': '192.168.10.2'},
+                'hell': {'vpn_ip': '172.16.90.33', 'lan_ip': '192.168.40.2'},
+                'nuke': {'vpn_ip': '172.16.90.4', 'lan_ip': '192.168.178.5'},
+                'nuke-workspace': {'vpn_ip': '172.16.90.27', 'lan_ip': '192.168.178.29'},
+                'sun': {'vpn_ip': '172.16.90.12', 'lan_ip': '192.168.30.2'},
+                'rasp3': {'vpn_ip': '172.16.90.20', 'lan_ip': '192.168.50.2'},
+                'opnsense': {'vpn_ip': '172.16.90.10', 'lan_ip': '192.168.177.3'},
+                'nuke-k3s-agent-0': {'vpn_ip': '172.16.90.18', 'lan_ip': '192.168.178.35'},
+                'nuke-k3s-master-0': {'vpn_ip': '172.16.90.6', 'lan_ip': '192.168.178.38'},
+                'nuke-k3s-master-1': {'vpn_ip': '172.16.90.7', 'lan_ip': '192.168.178.39'},
+                'nuke-k3s-master-2': {'vpn_ip': '172.16.90.9', 'lan_ip': '192.168.178.40'},
+                'nuke-k3s-kafka-0': {'vpn_ip': '172.16.90.13', 'lan_ip': '192.168.178.41'},
+                'nuke-k3s-kafka-1': {'vpn_ip': '172.16.90.14', 'lan_ip': '192.168.178.42'},
+                'nuke-k3s-kafka-2': {'vpn_ip': '172.16.90.15', 'lan_ip': '192.168.178.43'},
+                'nuke-k3s-dev': {'vpn_ip': '172.16.90.26', 'lan_ip': '192.168.178.34'},
+                'nuke-k3s-dev-0': {'vpn_ip': '172.16.90.11', 'lan_ip': '192.168.178.27'},
+                'nuke-k3s-dev-master-0': {'vpn_ip': '172.16.90.5', 'lan_ip': '192.168.178.30'},
+                'nuke-k3s-prod-0': {'vpn_ip': '172.16.90.21', 'lan_ip': '192.168.178.28'},
+                'nuke-k3s-prod-master-0': {'vpn_ip': '172.16.90.23', 'lan_ip': '192.168.178.37'},
+                'nuke-k3s-prod-worker-0': {'vpn_ip': '172.16.90.22', 'lan_ip': '192.168.178.44'},
+            },
         },
         'nginx': {
             'enabled': True,
