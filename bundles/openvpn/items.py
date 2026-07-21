@@ -27,16 +27,24 @@ if openvpn_cfg.get('enabled', False):
 
     for path in (
         '/etc/openvpn/keys',
-        '/etc/openvpn/ccd',
         '/var/log/openvpn',
     ):
         directories[path] = {
             'owner': 'root',
             'group': 'root',
             'mode': '0700',
-            # ccd intentionally has no purge: legacy/unmanaged client files
-            # (e.g. nova) stay on disk until decommissioned explicitly.
         }
+
+    # Intentionally NO purge: ccd still holds files for legacy/unmanaged
+    # clients (e.g. nova — unidentified but actively connected) and for
+    # decommissioned ones whose certs remain valid. Purging would silently
+    # break nova's static IP; cleanup happens explicitly when each legacy
+    # client is identified/decommissioned.
+    directories['/etc/openvpn/ccd'] = {
+        'owner': 'root',
+        'group': 'root',
+        'mode': '0700',
+    }
 
     files['/etc/openvpn/server.conf'] = {
         'source': 'server.conf',
@@ -84,14 +92,13 @@ if openvpn_cfg.get('enabled', False):
             # ccd files are read per client connect — no server restart needed.
         }
 
-    if exists(PKI_DIR):
-        for filename, mode in (
-            ('ca.crt', '0600'),
-            ('server.crt', '0600'),
-            ('server.key', '0600'),
-            ('dh.pem', '0600'),
-            ('ta.key', '0600'),
-        ):
+    PKI_FILES = ('ca.crt', 'server.crt', 'server.key', 'dh.pem', 'ta.key')
+    # All-or-nothing: only declare key items when the complete PKI set is
+    # readable. A partial PKI (missing/unreadable file) must not abort the
+    # items load nor deploy an incomplete key set — those items are simply
+    # skipped, same as when PKI_DIR is absent entirely.
+    if all(exists(join(PKI_DIR, f)) for f in PKI_FILES):
+        for filename, mode in ((f, '0600') for f in PKI_FILES):
             files['/etc/openvpn/keys/' + filename] = {
                 'content': local_pki(filename),
                 'owner': 'root',
@@ -101,6 +108,9 @@ if openvpn_cfg.get('enabled', False):
                 'triggers': ['svc_systemd:openvpn@server:restart'],
             }
 
+    # openvpn.service is the distro's oneshot sysv-compat aggregate (verified
+    # live: `active (exited)`, single daemon process from openvpn@server) —
+    # both units enabled matches the live/world state; no duplicate daemons.
     svc_systemd['openvpn'] = {
         'running': True,
         'enabled': True,
