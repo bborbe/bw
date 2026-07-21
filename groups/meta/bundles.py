@@ -50,6 +50,7 @@ groups['meta-bundles'] = {
         'netplan',
         'nginx',
         'poste',
+        'openvpn',
         'openclaw',
         'rancher-server',
         'samba',
