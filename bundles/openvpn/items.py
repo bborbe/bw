@@ -16,8 +16,15 @@ PKI_DIR = expanduser('~/.openvpn/hetzner')
 
 
 def local_pki(filename):
-    with open(join(PKI_DIR, filename), 'r') as fh:
-        return fh.read()
+    path = join(PKI_DIR, filename)
+    try:
+        with open(path, 'r') as fh:
+            return fh.read()
+    except OSError as exc:
+        raise Exception(
+            'openvpn: cannot read PKI file {} ({}) — fix the local PKI '
+            'before applying'.format(path, exc)
+        )
 
 
 if openvpn_cfg.get('enabled', False):
@@ -93,11 +100,18 @@ if openvpn_cfg.get('enabled', False):
         }
 
     PKI_FILES = ('ca.crt', 'server.crt', 'server.key', 'dh.pem', 'ta.key')
-    # All-or-nothing: only declare key items when the complete PKI set is
-    # readable. A partial PKI (missing/unreadable file) must not abort the
-    # items load nor deploy an incomplete key set — those items are simply
-    # skipped, same as when PKI_DIR is absent entirely.
-    if all(exists(join(PKI_DIR, f)) for f in PKI_FILES):
+    # PKI_DIR absent entirely = not the operator laptop (CI, other machines):
+    # key items are skipped silently and nothing can clobber node key material.
+    # PKI_DIR present but INCOMPLETE = broken local PKI: fail loudly instead of
+    # silently deploying a partial key set.
+    if exists(PKI_DIR):
+        missing = [f for f in PKI_FILES if not exists(join(PKI_DIR, f))]
+        if missing:
+            raise Exception(
+                'openvpn: incomplete PKI in {} — missing: {}'.format(
+                    PKI_DIR, ', '.join(missing)
+                )
+            )
         for filename, mode in ((f, '0600') for f in PKI_FILES):
             files['/etc/openvpn/keys/' + filename] = {
                 'content': local_pki(filename),
