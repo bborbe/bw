@@ -63,6 +63,10 @@ if client_cfg.get('enabled', False):
         'needs': ['pkg_apt:openvpn'],
     }
 
+    # Acknowledged limitation (review #37): 'name' is not validated against
+    # the certificate CommonName in client.crt — a mismatch would deploy a
+    # config that cannot authenticate. Mitigated operationally: every rollout
+    # batch compares laptop PKI md5s against the node's live files first.
     pki_dir = expanduser(join('~/.openvpn', client_name))
     # PKI dir absent entirely = not the operator laptop (CI, other machines):
     # key items are skipped silently. Present but INCOMPLETE = broken local
