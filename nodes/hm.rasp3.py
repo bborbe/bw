@@ -6,6 +6,10 @@ nodes['hm.rasp3'] = {
         'raspbian-bookworm',
     },
     'metadata': {
+        'openvpn-client': {
+            'enabled': True,
+            'name': 'rasp3',
+        },
         'backup_client': {
             'enabled': True,
         },

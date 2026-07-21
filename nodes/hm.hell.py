@@ -4,6 +4,10 @@ nodes['hm.hell'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'openvpn-client': {
+            'enabled': True,
+            'name': 'hell',
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {

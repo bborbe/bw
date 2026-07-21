@@ -4,6 +4,10 @@ nodes['hm.sun'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'openvpn-client': {
+            'enabled': True,
+            'name': 'sun',
+        },
         'workspace': {
             'enabled': True,
         },
