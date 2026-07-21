@@ -4,6 +4,10 @@ nodes['hm.nuke-k3s-master-2'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'openvpn-client': {
+            'enabled': True,
+            'name': 'nuke-k3s-master-2',
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {

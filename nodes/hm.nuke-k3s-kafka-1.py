@@ -4,6 +4,10 @@ nodes['hm.nuke-k3s-kafka-1'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'openvpn-client': {
+            'enabled': True,
+            'name': 'nuke-k3s-kafka-1',
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {
