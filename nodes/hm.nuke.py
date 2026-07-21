@@ -4,6 +4,10 @@ nodes['hm.nuke'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'openvpn-client': {
+            'enabled': True,
+            'name': 'nuke',
+        },
         'kubectl': {
             'enabled': True,
             'version': 'v1.35',

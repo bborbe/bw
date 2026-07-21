@@ -4,6 +4,10 @@ nodes['hm.nuke-workspace'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'openvpn-client': {
+            'enabled': True,
+            'name': 'nuke-workspace',
+        },
         'ssh': {
             'allow_agent_forwarding': True,
         },

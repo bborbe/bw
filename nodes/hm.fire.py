@@ -4,6 +4,10 @@ nodes['hm.fire'] = {
         'ubuntu-noble',
     },
     'metadata': {
+        'openvpn-client': {
+            'enabled': True,
+            'name': 'fire',
+        },
         'workspace': {
             'enabled': True,
         },

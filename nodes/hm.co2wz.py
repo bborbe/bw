@@ -6,6 +6,10 @@ nodes['hm.co2wz'] = {
         'raspbian-bookworm',
     },
     'metadata': {
+        'openvpn-client': {
+            'enabled': True,
+            'name': 'co2wz',
+        },
         'netplan': {
             'enabled': True,
             'ethernets': {
