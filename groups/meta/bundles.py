@@ -51,6 +51,7 @@ groups['meta-bundles'] = {
         'nginx',
         'poste',
         'openvpn',
+        'openvpn-client',
         'openclaw',
         'rancher-server',
         'samba',
