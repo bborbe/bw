@@ -26,7 +26,6 @@ def kvm_quest_sysctl(metadata):
             'sysctl': {
                 'options': {
                     'fs.inotify.max_user_watches': '1048576',
-
                 }
             }
         }
