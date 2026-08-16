@@ -45,7 +45,11 @@ nodes['hm.co2wz'] = {
             'enabled': True,
         },
         'co2mon': {
-            'enabled': True,
+            # Disabled 2026-08-16: the MQTT broker rasp4 was decommissioned and its
+            # successor (homeassistant.hm.benjamin-borbe.de) has no MQTT listener,
+            # so this published nowhere. To re-enable: flip to True and repoint
+            # mqtt-host to the live broker.
+            'enabled': False,
             'mqtt-host': 'rasp4.hm.benjamin-borbe.de',
             'mqtt-username': teamvault.username('9qNx3O', site='benjamin-borbe'),
             'mqtt-password': teamvault.password('9qNx3O', site='benjamin-borbe'),
