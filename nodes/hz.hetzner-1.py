@@ -54,7 +54,7 @@ nodes['hz.hetzner-1'] = {
         },
         'poste': {
             'enabled': True,
-            'version': '2.5.13-2.0.1',
+            'version': '2.5.14-2.0.1',
             'admin_port': 8001,
         },
         'bind': {
