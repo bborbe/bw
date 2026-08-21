@@ -43,6 +43,16 @@ nodes['hm.nuke-k3s-dev-master-0'] = {
             'enabled': True,
             'network': '192.168.178.0/24',
             'config': {
+                # max-pods=512 alone is not enough: k3s defaults each node to a /24
+                # podCIDR (254 usable IPs), so kubelet advertises 512 while flannel
+                # can only hand out 254. Hit on 2026-08-19 -- 41 pods stuck in
+                # ContainerCreating with "no IP addresses available in range set:
+                # 10.42.1.1-10.42.1.254" on nuke-k3s-dev-worker-0 at 299 pods.
+                # quant's masters have carried this since its own big nodes were
+                # re-joined; it was missed when the nuke node files were written.
+                'kube-controller-manager-arg': [
+                    'node-cidr-mask-size=22'
+                ],
                 'kubelet-arg': [
                     'image-gc-high-threshold=80',
                     'image-gc-low-threshold=70',
