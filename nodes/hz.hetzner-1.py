@@ -394,6 +394,16 @@ nodes['hz.hetzner-1'] = {
                 # (max_fails=1, fail_timeout=10s) and default proxy_next_upstream, so a
                 # dead backend is marked down and retried. Explicit active health-checks
                 # would be a deliberate behavior change, out of scope for this migration.
+                # Retained deliberately 2026-08-22: no vhost references it any more, but
+                # bundles/nginx/items.py only MANAGES upstreams.conf when at least one
+                # upstream exists -- dropping the last one unmanages the file rather than
+                # deleting it, leaving a stale copy on the server. Remove in a follow-up
+                # that also removes the file explicitly.
+                'backend_servers': [
+                    '172.16.90.6',
+                    '172.16.90.7',
+                    '172.16.90.9',
+                ],
             },
         },
         'golang': {
