@@ -258,7 +258,8 @@ nodes['hz.hetzner-1'] = {
                         # VPN — same as the teamvault vhost. The .37/.44 cluster's traefik
                         # LoadBalancer advertises only the LAN IP, reached via the iroute
                         # 192.168.178.44/32 in the worker's openvpn ccd. Migrated off the old
-                        # backend_servers upstream (still used by dev.quant/prod.quant trading UIs).
+                        # backend_servers upstream, which dev.quant/prod.quant also left on
+                        # 2026-08-22 -- all three quant vhosts now target nuke workers directly.
                         '/': {
                             'client_max_body_size': '100M',
                             'proxy_pass': 'http://192.168.178.44',
@@ -286,11 +287,19 @@ nodes['hz.hetzner-1'] = {
                         'key': '/etc/letsencrypt/live/dev.quant.benjamin-borbe.de/privkey.pem',
                     },
                     'locations': {
-                        # Proxies to the backend_servers upstream, with websocket +
-                        # streaming timeouts and buffering off.
+                        # Dev trading UI on nuke-k3s-dev-worker-0 (192.168.178.34) over the
+                        # VPN -- same pattern as the root quant vhost. traefik's LoadBalancer
+                        # advertises only that LAN IP; it is reachable via the iroute from the
+                        # 'nuke-k3s-dev' openvpn client (vpn 172.16.90.26 -> lan 192.168.178.34).
+                        # Do NOT point at nuke-k3s-dev-master-0: the svclb DaemonSet does not
+                        # tolerate node_type=master:NoSchedule, so nothing listens there.
+                        # Migrated off backend_servers 2026-08-22 -- that upstream is the OLD
+                        # quant masters (172.16.90.6/.7/.9 = 192.168.178.38/.39/.40), all
+                        # decommissioned, so nginx had no healthy peer and served
+                        # "no available server" (503).
                         '/': {
                             'client_max_body_size': '100M',
-                            'proxy_pass': 'http://backend_servers',
+                            'proxy_pass': 'http://192.168.178.34',
                             'proxy_http_version': '1.1',
                             'proxy_set_header Host': '$host',
                             'proxy_set_header X-Forwarded-Host': '$host:$server_port',
@@ -319,11 +328,16 @@ nodes['hz.hetzner-1'] = {
                         'key': '/etc/letsencrypt/live/prod.quant.benjamin-borbe.de/privkey.pem',
                     },
                     'locations': {
-                        # Production trading UI — proxies to the backend_servers upstream,
-                        # websocket + streaming timeouts and buffering off.
+                        # Production trading UI on nuke-k3s-prod-worker-0 (192.168.178.44) over
+                        # the VPN -- same target the root quant vhost already uses successfully.
+                        # traefik advertises 192.168.178.44 (and vpn 172.16.90.22); reachable via
+                        # the iroute from the 'nuke-k3s-prod-worker-0' openvpn client.
+                        # Do NOT point at nuke-k3s-prod-master-0: the svclb DaemonSet does not
+                        # tolerate node_type=master:NoSchedule, so nothing listens there.
+                        # Migrated off backend_servers 2026-08-22 -- see the dev.quant note.
                         '/': {
                             'client_max_body_size': '100M',
-                            'proxy_pass': 'http://backend_servers',
+                            'proxy_pass': 'http://192.168.178.44',
                             'proxy_http_version': '1.1',
                             'proxy_set_header Host': '$host',
                             'proxy_set_header X-Forwarded-Host': '$host:$server_port',
@@ -380,6 +394,11 @@ nodes['hz.hetzner-1'] = {
                 # (max_fails=1, fail_timeout=10s) and default proxy_next_upstream, so a
                 # dead backend is marked down and retried. Explicit active health-checks
                 # would be a deliberate behavior change, out of scope for this migration.
+                # Retained deliberately 2026-08-22: no vhost references it any more, but
+                # bundles/nginx/items.py only MANAGES upstreams.conf when at least one
+                # upstream exists -- dropping the last one unmanages the file rather than
+                # deleting it, leaving a stale copy on the server. Remove in a follow-up
+                # that also removes the file explicitly.
                 'backend_servers': [
                     '172.16.90.6',
                     '172.16.90.7',
