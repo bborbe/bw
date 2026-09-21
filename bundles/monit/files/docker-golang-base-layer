@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# Monit check: is a golang base layer image present on this build host?
+#
+# `make buca` builds FROM a pinned golang image. If something prunes it, every
+# rebuild silently re-pulls its base layers and the only symptom is a slow
+# build -- which is why a prune on sun went unnoticed for a day. This turns
+# that into an alert.
+#
+# Deliberately VERSION-AGNOSTIC, matching the runbook's
+# `docker images | grep -c golang`. The pin moves (1.26.4 -> 1.27.1 and on);
+# a version-pinned probe goes quietly blind the moment it does, and a detector
+# that has never fired is unexercised, not passing.
+#
+# Exit 0 = at least one golang image present. Exit 1 = none (alert).
+#
+# See: 65 Runbooks/Sun Disk Cleanup.md
+
+set -u
+
+count=$(docker images --format '{{.Repository}}' 2>/dev/null | grep -c 'golang')
+
+if [ "$count" -lt 1 ]; then
+	echo "no golang base layer image present - the next make buca will re-pull its base layers"
+	exit 1
+fi
+
+echo "golang base layer images present: ${count}"
+exit 0

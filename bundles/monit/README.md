@@ -59,6 +59,25 @@ Add custom monitoring checks:
 
 Place template at `bundles/monit/files/my-check.conf`.
 
+#### `check program` checks
+
+A check that runs a command needs an executable on the node. Set `script` and the bundle deploys it to `/usr/local/sbin/<check name>` (mode `0755`, root) — the path the template's `check program … with path` should point at:
+
+```python
+'monit': {
+    'checks': {
+        'docker-golang-base-layer': {
+            'template': 'docker-golang-base-layer.conf',
+            'script': 'docker-golang-base-layer',
+        },
+    },
+}
+```
+
+Place the executable at `bundles/monit/files/docker-golang-base-layer`. It must exit non-zero to raise the alert. Disabling the check — or dropping the `script` key — deletes the deployed file again.
+
+**Force the branch before trusting the check.** A detector that has never fired is *unexercised*, not passing; make the condition true once and confirm the alert actually arrives. The live example is `docker-golang-base-layer` on `hm.sun` ([[Sun Disk Cleanup]]).
+
 ### Test Alert Flag
 
 Enable temporary test alert to verify email delivery:

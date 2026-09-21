@@ -47,6 +47,7 @@ else:
 
 for name, data in node.metadata.get('monit', {}).get('checks', {}).items():
     path = '/etc/monit/conf.d/{name}.conf'.format(name=name)
+    script_path = '/usr/local/sbin/{name}'.format(name=name)
     if node.metadata.get('monit', {}).get('enabled', False) and data.get('enabled', True):
         files[path] = {
             'source': data.get('template', '{name}.conf'.format(name=name)),
@@ -58,8 +59,22 @@ for name, data in node.metadata.get('monit', {}).get('checks', {}).items():
             'triggers': ['svc_systemd:monit:restart'],
             'context': data.get('context', {}),
         }
+        # Optional companion executable for `check program` checks. Deployed to
+        # /usr/local/sbin/<check name>, which is the path the check template
+        # should point at. A check without a `script` key deploys nothing.
+        if data.get('script'):
+            files[script_path] = {
+                'source': data['script'],
+                'mode': '0755',
+                'owner': 'root',
+                'group': 'root',
+            }
     else:
         files[path] = {
             'delete': True,
             'triggers': ['svc_systemd:monit:restart'],
         }
+        if data.get('script'):
+            files[script_path] = {
+                'delete': True,
+            }
