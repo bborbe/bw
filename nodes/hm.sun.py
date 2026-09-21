@@ -23,6 +23,20 @@ nodes['hm.sun'] = {
         'docker': {
             'enabled': True,
         },
+        # sun is the `make buca` build host: it builds FROM a pinned golang
+        # image. Alert if that base layer disappears, so a prune surfaces as an
+        # event rather than as a slow rebuild. The probe is version-agnostic on
+        # purpose -- the pin moves (1.26.4 -> 1.27.1) and a pinned probe would
+        # go blind on the next bump.
+        # See: 65 Runbooks/Sun Disk Cleanup.md
+        'monit': {
+            'checks': {
+                'docker-golang-base-layer': {
+                    'template': 'docker-golang-base-layer.conf',
+                    'script': 'docker-golang-base-layer',
+                },
+            },
+        },
         'trivy': {
             'enabled': True,
         },
