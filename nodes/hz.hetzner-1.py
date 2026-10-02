@@ -91,6 +91,37 @@ nodes['hz.hetzner-1'] = {
         'nginx': {
             'enabled': True,
             'vhosts': {
+                # Brought under bw management 2026-10-02: this vhost existed only
+                # as a hand-made /etc/nginx/sites-enabled/redirect.conf (created
+                # 2026-09-19), and the bundle's `purge: True` on sites-enabled
+                # would have deleted it on the next full apply.
+                'redirect': {
+                    'ip': '159.69.203.89',
+                    'server_names': [
+                        'redirect.benjamin-borbe.de',
+                    ],
+                    'ssl': {
+                        'force': True,
+                        'cert': '/etc/letsencrypt/live/redirect.benjamin-borbe.de/fullchain.pem',
+                        'key': '/etc/letsencrypt/live/redirect.benjamin-borbe.de/privkey.pem',
+                    },
+                    'locations': {
+                        '/': {
+                            'client_max_body_size': '100M',
+                            'proxy_pass': 'http://192.168.178.44',
+                            'proxy_http_version': '1.1',
+                            'proxy_set_header Host': '$host',
+                            'proxy_set_header X-Forwarded-Host': '$host:$server_port',
+                            'proxy_set_header X-Forwarded-Server': '$host',
+                            'proxy_set_header X-Forwarded-For': '$proxy_add_x_forwarded_for',
+                            'proxy_set_header X-Forwarded-Proto': 'https',
+                            'proxy_read_timeout': '300s',
+                            'proxy_connect_timeout': '60s',
+                            'proxy_send_timeout': '300s',
+                        },
+                    },
+                    'indexes': [],
+                },
                 'kickstart': {
                     'ip': '159.69.203.89',
                     'root': '/var/lib/kickstart',
