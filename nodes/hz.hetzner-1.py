@@ -42,7 +42,7 @@ nodes['hz.hetzner-1'] = {
         },
         'screego': {
             'enabled': True,
-            'version': '1.12.5',
+            'version': '1.12.6',
             'external_ip': '159.69.203.89',
             'secret': teamvault.password('xwXMpO', site='benjamin-borbe'),
             'users_file': teamvault.password('Rwgzeq', site='benjamin-borbe'),
