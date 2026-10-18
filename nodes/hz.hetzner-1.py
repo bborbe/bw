@@ -122,40 +122,6 @@ nodes['hz.hetzner-1'] = {
                     },
                     'indexes': [],
                 },
-                # driftline online leaderboard (bborbe/driftline server/k8s): the
-                # StatefulSet on nuke-k3s-prod-worker-0 (192.168.178.44) behind the
-                # cluster traefik `web` entrypoint, routed by Host. Only /api/ is
-                # proxied — the server answers /metrics, /setloglevel, /gc, /healthz
-                # and /readiness on the same port, and those must stay internal; the
-                # cluster Ingress routes only /api/ as well. CORS is the server's job
-                # (ALLOWED_ORIGIN), so nginx passes Origin through untouched.
-                'driftline': {
-                    'ip': '159.69.203.89',
-                    'server_names': [
-                        'driftline.benjamin-borbe.de',
-                    ],
-                    'ssl': {
-                        'force': True,
-                        'cert': '/etc/letsencrypt/live/driftline.benjamin-borbe.de/fullchain.pem',
-                        'key': '/etc/letsencrypt/live/driftline.benjamin-borbe.de/privkey.pem',
-                    },
-                    'locations': {
-                        '/': {
-                            'return': '404',
-                        },
-                        '/api/': {
-                            'proxy_pass': 'http://192.168.178.44',
-                            'proxy_http_version': '1.1',
-                            'proxy_set_header Host': '$host',
-                            'proxy_set_header X-Forwarded-Host': '$host:$server_port',
-                            'proxy_set_header X-Forwarded-Server': '$host',
-                            'proxy_set_header X-Forwarded-For': '$remote_addr',
-                            'proxy_set_header X-Real-IP': '$remote_addr',
-                            'proxy_set_header X-Forwarded-Proto': 'https',
-                        },
-                    },
-                    'indexes': [],
-                },
                 'kickstart': {
                     'ip': '159.69.203.89',
                     'root': '/var/lib/kickstart',
@@ -448,6 +414,15 @@ nodes['hz.hetzner-1'] = {
                     'indexes': [],
                 },
             },
+            # driftline leaderboard torn down 2026-10-18 (phase on hold). Its vhost
+            # left the dict above; only the sites-enabled purge of a full apply would
+            # remove the file, and a full apply is off-limits here (netplan drift).
+            # This item deletes it (with an nginx restart) on a scoped
+            # `bw apply hz.hetzner-1 -o file:/etc/nginx/sites-enabled/driftline.conf`.
+            # Drop the entry once the file is gone.
+            'delete_vhosts': [
+                'driftline.conf',
+            ],
             'htpasswd_files': {
                 # webdav auth_basic user file (user:hash) from TeamVault.
                 '/etc/nginx/webdav.htpasswd': teamvault.password('NqAE5q', site='benjamin-borbe'),
