@@ -50,6 +50,10 @@ if node.metadata.get('kvm-host', {}).get('enabled', False):
     # new options take effect on the next boot or the next manual module reload —
     # never as a side effect of an apply.
     for module, options in node.metadata.get('kvm-host', {}).get('kernel_module_options', {}).items():
+        # A bare string is one option, not a sequence of characters — iterating it
+        # would silently write one `options` line per character.
+        if isinstance(options, str):
+            options = [options]
         files[f'/etc/modprobe.d/{module}.conf'] = {
             'content': ''.join(f'options {module} {option}\n' for option in options),
             'content_type': 'text',
