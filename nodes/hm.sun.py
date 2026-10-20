@@ -124,7 +124,7 @@ nodes['hm.sun'] = {
                 'filter': set({
                     '-A INPUT -m state --state NEW -p tcp --dport 8188 -j ACCEPT',
                     # '-A INPUT -j ACCEPT',
-                    # '-A FORWARD -j ACCEPT',
+                    '-A FORWARD -j ACCEPT',
                 }),
             },
         },
