@@ -45,6 +45,19 @@ if node.metadata.get('kvm-host', {}).get('enabled', False):
         'target': '/etc/libvirt/qemu/networks/br0.xml',
     }
 
+    # Kernel module options, written to /etc/modprobe.d/<module>.conf. Deliberately
+    # no trigger: reloading kvm_amd requires every VM to be shut down first, so the
+    # new options take effect on the next boot or the next manual module reload —
+    # never as a side effect of an apply.
+    for module, options in node.metadata.get('kvm-host', {}).get('kernel_module_options', {}).items():
+        files[f'/etc/modprobe.d/{module}.conf'] = {
+            'content': ''.join(f'options {module} {option}\n' for option in options),
+            'content_type': 'text',
+            'owner': 'root',
+            'group': 'root',
+            'mode': '0644',
+        }
+
     # nwfilter support for VM network restrictions
     directories['/etc/bundlewrap/nwfilter'] = {
         'owner': 'root',

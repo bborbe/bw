@@ -60,6 +60,14 @@ nodes['hm.nuke'] = {
         },
         'kvm-host': {
             'enabled': True,
+            'kernel_module_options': {
+                # AVIC removes the msr + interrupt exit cost currently charged to
+                # qemu (~3.99 host cores across prod+dev, perf kvm stat 2026-10-19).
+                # AVIC cannot coexist with nested virt, hence nested=0 host-wide;
+                # the pre-check confirmed no guest runs a VM. Takes effect on the
+                # next boot — see "Enable AMD AVIC on the Nuke Host".
+                'kvm_amd': ['avic=1', 'nested=0'],
+            },
             'nwfilters': {
                 'nuke-boss': {
                     'rules': [
