@@ -45,8 +45,13 @@ nodes['hm.nuke-k3s-prod-worker-0'] = {
             'network': '192.168.178.0/24',
             'config': {
                 'kubelet-arg': [
-                    'image-gc-high-threshold=80',
-                    'image-gc-low-threshold=70',
+                    # GC starts at 70% used = 30% free, not 80% used = 20% free.
+                    # DiskRootOutOfSpace fires below 20% free, so at high=80 the node was
+                    # designed to sit exactly on the alert line and undershot it at every
+                    # trough. Measured 2026-10-23: 144 space-triggered image GCs and 2,568
+                    # image pulls in 24h, free space oscillating 10.5%-42.2%.
+                    'image-gc-high-threshold=70',
+                    'image-gc-low-threshold=60',
                     'eviction-hard=imagefs.available<10%',
                     'max-pods=512',
                 ]
