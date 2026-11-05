@@ -122,25 +122,6 @@ nodes['hz.hetzner-1'] = {
                     },
                     'indexes': [],
                 },
-                'kickstart': {
-                    'ip': '159.69.203.89',
-                    'root': '/var/lib/kickstart',
-                    'locations': {
-                        '/': {
-                            'autoindex': 'on',
-                        },
-                    },
-                    'server_names': [
-                        'kickstart.benjamin-borbe.de',
-                        'ks.benjamin-borbe.de',
-                    ],
-                    'ssl': {
-                        'force': False,
-                        'cert': '/etc/letsencrypt/live/kickstart.benjamin-borbe.de/fullchain.pem',
-                        'key': '/etc/letsencrypt/live/kickstart.benjamin-borbe.de/privkey.pem',
-                    },
-                    'indexes': [],
-                },
                 'matrix': {
                     'ip': '159.69.203.89',
                     'server_names': [
