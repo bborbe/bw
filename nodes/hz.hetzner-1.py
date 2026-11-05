@@ -13,7 +13,7 @@ nodes['hz.hetzner-1'] = {
             'well_known_ip': '159.69.203.89',
         },
         'lockbox': {
-            'enabled': True,
+            'enabled': False,
             'version': 'v0.8.0',
             'port': 8091,
             'encryption_key': teamvault.password('VO05mL', site='benjamin-borbe'),
@@ -154,25 +154,6 @@ nodes['hz.hetzner-1'] = {
                     'locations': {
                         '/': {
                             'proxy_pass': 'http://127.0.0.1:8448',
-                            'proxy_set_header Host': '$host',
-                            'proxy_set_header X-Real-IP': '$remote_addr',
-                        },
-                    },
-                    'indexes': [],
-                },
-                'lockbox': {
-                    'ip': '159.69.203.89',
-                    'server_names': [
-                        'lockbox.benjamin-borbe.de',
-                    ],
-                    'ssl': {
-                        'force': True,
-                        'cert': '/etc/letsencrypt/live/lockbox.benjamin-borbe.de/fullchain.pem',
-                        'key': '/etc/letsencrypt/live/lockbox.benjamin-borbe.de/privkey.pem',
-                    },
-                    'locations': {
-                        '/': {
-                            'proxy_pass': 'http://127.0.0.1:8091',
                             'proxy_set_header Host': '$host',
                             'proxy_set_header X-Real-IP': '$remote_addr',
                         },
@@ -422,6 +403,7 @@ nodes['hz.hetzner-1'] = {
             # Drop the entry once the file is gone.
             'delete_vhosts': [
                 'driftline.conf',
+                'lockbox.conf',
             ],
             'htpasswd_files': {
                 # webdav auth_basic user file (user:hash) from TeamVault.
