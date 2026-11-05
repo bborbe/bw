@@ -13,7 +13,7 @@ nodes['hz.hetzner-1'] = {
             'well_known_ip': '159.69.203.89',
         },
         'lockbox': {
-            'enabled': True,
+            'enabled': False,
             'version': 'v0.8.0',
             'port': 8091,
             'encryption_key': teamvault.password('VO05mL', site='benjamin-borbe'),
@@ -135,25 +135,6 @@ nodes['hz.hetzner-1'] = {
                     'locations': {
                         '/': {
                             'proxy_pass': 'http://127.0.0.1:8448',
-                            'proxy_set_header Host': '$host',
-                            'proxy_set_header X-Real-IP': '$remote_addr',
-                        },
-                    },
-                    'indexes': [],
-                },
-                'lockbox': {
-                    'ip': '159.69.203.89',
-                    'server_names': [
-                        'lockbox.benjamin-borbe.de',
-                    ],
-                    'ssl': {
-                        'force': True,
-                        'cert': '/etc/letsencrypt/live/lockbox.benjamin-borbe.de/fullchain.pem',
-                        'key': '/etc/letsencrypt/live/lockbox.benjamin-borbe.de/privkey.pem',
-                    },
-                    'locations': {
-                        '/': {
-                            'proxy_pass': 'http://127.0.0.1:8091',
                             'proxy_set_header Host': '$host',
                             'proxy_set_header X-Real-IP': '$remote_addr',
                         },
@@ -395,21 +376,20 @@ nodes['hz.hetzner-1'] = {
                     'indexes': [],
                 },
             },
-            # driftline leaderboard torn down 2026-10-18 (phase on hold). Its vhost
-            # left the dict above; only the sites-enabled purge of a full apply would
-            # remove the file, and a full apply is off-limits here (netplan drift).
-            # This item deletes it (with an nginx restart) on a scoped
-            # `bw apply hz.hetzner-1 -o file:/etc/nginx/sites-enabled/driftline.conf`.
-            # Drop the entry once the file is gone.
-            # kickstart torn down 2026-11-05 (unused; its docroot served credential
-            # material publicly). Same shape as driftline below: the vhost left the
-            # dict above, so the file is unmanaged rather than deleted, and a full
-            # apply is off-limits here. This entry deletes it (with an nginx restart)
-            # on a scoped `bw apply hz.hetzner-1 -o file:/etc/nginx/sites-enabled/kickstart.conf`.
-            # Drop the entry once the file is gone.
+            # Vhosts removed from the dict above but still on disk. The
+            # sites-enabled directory item is purge: True, so a full apply would
+            # remove them — but a full apply also converges every unrelated drift
+            # on the node, so each is deleted by its own scoped item instead:
+            # `bw apply hz.hetzner-1 -o file:/etc/nginx/sites-enabled/<name>.conf`.
+            # Drop an entry once its file is gone.
+            #   driftline.conf — leaderboard torn down 2026-10-18 (phase on hold)
+            #   kickstart.conf — torn down 2026-11-05 (unused; its docroot served
+            #                    credential material publicly)
+            #   lockbox.conf   — lockbox test install retired 2026-11-05
             'delete_vhosts': [
                 'driftline.conf',
                 'kickstart.conf',
+                'lockbox.conf',
             ],
             'htpasswd_files': {
                 # webdav auth_basic user file (user:hash) from TeamVault.
