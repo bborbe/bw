@@ -395,12 +395,14 @@ nodes['hz.hetzner-1'] = {
                     'indexes': [],
                 },
             },
-            # driftline leaderboard torn down 2026-10-18 (phase on hold). Its vhost
-            # left the dict above; only the sites-enabled purge of a full apply would
-            # remove the file, and a full apply is off-limits here (netplan drift).
-            # This item deletes it (with an nginx restart) on a scoped
-            # `bw apply hz.hetzner-1 -o file:/etc/nginx/sites-enabled/driftline.conf`.
-            # Drop the entry once the file is gone.
+            # Vhosts removed from the dict above but still on disk. The
+            # sites-enabled directory item is purge: True, so a full apply would
+            # remove them — but a full apply also converges every unrelated drift
+            # on the node, so each is deleted by its own scoped item instead:
+            # `bw apply hz.hetzner-1 -o file:/etc/nginx/sites-enabled/<name>.conf`.
+            # Drop an entry once its file is gone.
+            #   driftline.conf — leaderboard torn down 2026-10-18 (phase on hold)
+            #   lockbox.conf   — lockbox test install retired 2026-11-05
             'delete_vhosts': [
                 'driftline.conf',
                 'lockbox.conf',
