@@ -122,25 +122,6 @@ nodes['hz.hetzner-1'] = {
                     },
                     'indexes': [],
                 },
-                'kickstart': {
-                    'ip': '159.69.203.89',
-                    'root': '/var/lib/kickstart',
-                    'locations': {
-                        '/': {
-                            'autoindex': 'on',
-                        },
-                    },
-                    'server_names': [
-                        'kickstart.benjamin-borbe.de',
-                        'ks.benjamin-borbe.de',
-                    ],
-                    'ssl': {
-                        'force': False,
-                        'cert': '/etc/letsencrypt/live/kickstart.benjamin-borbe.de/fullchain.pem',
-                        'key': '/etc/letsencrypt/live/kickstart.benjamin-borbe.de/privkey.pem',
-                    },
-                    'indexes': [],
-                },
                 'matrix': {
                     'ip': '159.69.203.89',
                     'server_names': [
@@ -420,8 +401,15 @@ nodes['hz.hetzner-1'] = {
             # This item deletes it (with an nginx restart) on a scoped
             # `bw apply hz.hetzner-1 -o file:/etc/nginx/sites-enabled/driftline.conf`.
             # Drop the entry once the file is gone.
+            # kickstart torn down 2026-11-05 (unused; its docroot served credential
+            # material publicly). Same shape as driftline below: the vhost left the
+            # dict above, so the file is unmanaged rather than deleted, and a full
+            # apply is off-limits here. This entry deletes it (with an nginx restart)
+            # on a scoped `bw apply hz.hetzner-1 -o file:/etc/nginx/sites-enabled/kickstart.conf`.
+            # Drop the entry once the file is gone.
             'delete_vhosts': [
                 'driftline.conf',
+                'kickstart.conf',
             ],
             'htpasswd_files': {
                 # webdav auth_basic user file (user:hash) from TeamVault.
