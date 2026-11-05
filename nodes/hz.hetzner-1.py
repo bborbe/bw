@@ -122,25 +122,6 @@ nodes['hz.hetzner-1'] = {
                     },
                     'indexes': [],
                 },
-                'kickstart': {
-                    'ip': '159.69.203.89',
-                    'root': '/var/lib/kickstart',
-                    'locations': {
-                        '/': {
-                            'autoindex': 'on',
-                        },
-                    },
-                    'server_names': [
-                        'kickstart.benjamin-borbe.de',
-                        'ks.benjamin-borbe.de',
-                    ],
-                    'ssl': {
-                        'force': False,
-                        'cert': '/etc/letsencrypt/live/kickstart.benjamin-borbe.de/fullchain.pem',
-                        'key': '/etc/letsencrypt/live/kickstart.benjamin-borbe.de/privkey.pem',
-                    },
-                    'indexes': [],
-                },
                 'matrix': {
                     'ip': '159.69.203.89',
                     'server_names': [
@@ -402,9 +383,12 @@ nodes['hz.hetzner-1'] = {
             # `bw apply hz.hetzner-1 -o file:/etc/nginx/sites-enabled/<name>.conf`.
             # Drop an entry once its file is gone.
             #   driftline.conf — leaderboard torn down 2026-10-18 (phase on hold)
+            #   kickstart.conf — torn down 2026-11-05 (unused; its docroot served
+            #                    credential material publicly)
             #   lockbox.conf   — lockbox test install retired 2026-11-05
             'delete_vhosts': [
                 'driftline.conf',
+                'kickstart.conf',
                 'lockbox.conf',
             ],
             'htpasswd_files': {
