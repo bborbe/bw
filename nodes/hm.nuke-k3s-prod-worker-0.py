@@ -54,6 +54,13 @@ nodes['hm.nuke-k3s-prod-worker-0'] = {
                     'image-gc-low-threshold=60',
                     'eviction-hard=imagefs.available<10%',
                     'max-pods=512',
+                    # Container-log retention. kubelet's 10Mi default fills in minutes
+                    # on a verbose pod, and `kubectl logs` reads only the current file,
+                    # so the readable window IS the fill time. 50Mi gives ~5x the window;
+                    # dropping 5 files to 2 pays for it on disk (the rotated siblings are
+                    # read by nothing in-cluster).
+                    'container-log-max-size=50Mi',
+                    'container-log-max-files=2',
                 ]
             },
         },
