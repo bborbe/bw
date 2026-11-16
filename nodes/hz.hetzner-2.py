@@ -19,7 +19,7 @@ nodes['hz.hetzner-2'] = {
             'enabled': True,
         },
         'openclaw': {
-            'enabled': True,
+            'enabled': False,
             'matrix': {
                 'enabled': True,
                 'homeserver': 'https://matrix.benjamin-borbe.de',
@@ -28,7 +28,7 @@ nodes['hz.hetzner-2'] = {
             },
         },
         'hermes': {
-            'enabled': True,
+            'enabled': False,
             'matrix': {
                 'enabled': True,
                 'homeserver': 'https://matrix.benjamin-borbe.de',
