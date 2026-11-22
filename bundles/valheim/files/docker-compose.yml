@@ -13,6 +13,8 @@ services:
     stop_grace_period: 2m
     ports:
       - "2456-2457:2456-2457/udp"
+      # crossplay backend port, only used when CROSSPLAY=true
+      - "2458:2458/udp"
     volumes:
       - /home/valheim/valheim/data:/config
     restart: unless-stopped
