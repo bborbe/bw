@@ -1,0 +1,30 @@
+# valheim
+
+Runs a Valheim dedicated server as an unprivileged service user.
+
+## What it manages
+
+| Path | Owner | Purpose |
+|---|---|---|
+| `/home/valheim/valheim` | `valheim:valheim` | working directory |
+| `/home/valheim/valheim/docker-compose.yml` | `valheim:valheim` | the stack (lloesche/valheim-server) |
+| `/home/valheim/valheim/valheim.env` | `valheim:valheim` 0600 | world name + generated password |
+| `/home/valheim/valheim/data` | `valheim:valheim` | world save (`/config` in the container) |
+| `/lib/systemd/system/valheim.service` | `root:root` | `docker compose up -d` as `valheim` |
+| `/etc/sudoers.d/valheim-systemctl` | `root:root` 0440 | narrow systemctl grant |
+
+## Notes
+
+- **The world password is generated, not stored in git.** `items.py` derives it with
+  `repo.vault.password_for('valheim server password <node>')`, so it is deterministic
+  and encrypted at rest in the repo's bw vault. Read it on the host with
+  `sudo cat /home/valheim/valheim/valheim.env`.
+- **`/usr/bin/systemctl`, never `/bin/systemctl`,** in the sudoers drop-in: sudo does
+  not follow noble's `/bin -> /usr/bin` symlink, so a `/bin/` path silently never matches.
+- **No iptables rule is needed for the game ports.** With `-p 2456-2457:2456-2457/udp`
+  the packets traverse `nat PREROUTING` DNAT → `FORWARD` → the `DOCKER` chain, never
+  `INPUT`. The host's `INPUT DROP` policy does not gate published container ports; the
+  iptables bundle's `docker-iptables-reconcile` action restores Docker's chains after
+  each apply.
+- `enabled: False` deletes the unit, the sudoers drop-in, the compose file and the env
+  file — but **not** `/home/valheim/valheim/data`, so a disable never destroys a world.

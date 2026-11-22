@@ -1,0 +1,12 @@
+# Managed by bundlewrap (bundles/valheim). A hand edit here is reverted by the
+# next `bw apply` — change bundles/valheim/files/docker-compose.yml instead.
+services:
+  valheim:
+    image: lloesche/valheim-server:latest
+    container_name: valheim-server
+    env_file: valheim.env
+    ports:
+      - "2456-2457:2456-2457/udp"
+    volumes:
+      - /home/valheim/valheim/data:/config
+    restart: unless-stopped
