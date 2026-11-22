@@ -5,14 +5,6 @@ svc_systemd = {}
 valheim = node.metadata.get('valheim', {})
 
 if valheim.get('enabled', False):
-    world_name = valheim.get('world_name', 'Valheim')
-    # Deterministic, encrypted at rest in the repo's bw vault — the same pattern
-    # bundles/monit and bundles/user use. No plaintext secret reaches git.
-    server_password = repo.vault.password_for(
-        'valheim server password {}'.format(node.name),
-        length=20,
-    )
-
     directories['/home/valheim/valheim'] = {
         'owner': 'valheim',
         'group': 'valheim',
@@ -29,13 +21,13 @@ if valheim.get('enabled', False):
     # 0600 owned by valheim: `docker compose` reads env_file client-side as the
     # invoking user (the unit runs as valheim), so a root-owned 0600 file would
     # be unreadable and `docker compose up` would fail.
+    # The world password comes from TeamVault via node metadata — never from
+    # repo.vault.password_for, which resolves eagerly and breaks `bw test` in CI
+    # (the `generate` key is not in CI's vault).
     files['/home/valheim/valheim/valheim.env'] = {
-        'content': (
-            'SERVER_NAME={name}\n'
-            'WORLD_NAME={name}\n'
-            'SERVER_PASS={password}\n'
-            'SERVER_PORT=2456\n'
-        ).format(name=world_name, password=server_password),
+        'source': 'valheim.env',
+        'content_type': 'mako',
+        'context': valheim,
         'owner': 'valheim',
         'group': 'valheim',
         'mode': '0600',

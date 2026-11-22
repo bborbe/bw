@@ -15,9 +15,12 @@ Runs a Valheim dedicated server as an unprivileged service user.
 
 ## Notes
 
-- **The world password is generated, not stored in git.** `items.py` derives it with
-  `repo.vault.password_for('valheim server password <node>')`, so it is deterministic
-  and encrypted at rest in the repo's bw vault. Read it on the host with
+- **The world password lives in TeamVault,** not in git and not in the repo vault.
+  `nodes/hz.hetzner-2.py` resolves `teamvault.password('eOBZ4O', site='benjamin-borbe')`
+  and `files/valheim.env` renders it as a mako template. `repo.vault.password_for` is
+  deliberately not used: it resolves eagerly and breaks `bw test` in CI, where the
+  vault's `generate` key is absent. Read the password with
+  `teamvault-cli password eOBZ4O` or on the host with
   `sudo cat /home/valheim/valheim/valheim.env`.
 - **`/usr/bin/systemctl`, never `/bin/systemctl`,** in the sudoers drop-in: sudo does
   not follow noble's `/bin -> /usr/bin` symlink, so a `/bin/` path silently never matches.
