@@ -24,6 +24,7 @@ nodes['hz.hetzner-2'] = {
         'valheim': {
             'enabled': True,
             'world_name': 'Valheim',
+            'server_name': 'Friends',
             'server_password': teamvault.password('eOBZ4O', site='benjamin-borbe'),
         },
         'openclaw': {

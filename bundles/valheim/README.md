@@ -21,6 +21,10 @@ Runs a Valheim dedicated server as an unprivileged service user.
   the next start re-download everything from Steam. `stop` keeps the container, so a
   service restart is instant; a `docker compose down`, an image bump, or a container
   recreate still triggers one full download.
+- **`server_name` and `world_name` are separate.** `server_name` is the label in the
+  server browser (`SERVER_NAME`); `world_name` is the save directory under
+  `data/worlds_local/` (`WORLD_NAME`). Renaming the server is safe at any time;
+  changing `world_name` starts a new world and orphans the old save.
 - **The world password lives in TeamVault,** not in git and not in the repo vault.
   `nodes/hz.hetzner-2.py` resolves `teamvault.password('eOBZ4O', site='benjamin-borbe')`
   and `files/valheim.env` renders it as a mako template. `repo.vault.password_for` is
