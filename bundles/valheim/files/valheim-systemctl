@@ -1,0 +1,4 @@
+# Narrow grant: the valheim user may manage exactly one unit, nothing else.
+# /usr/bin/systemctl, not /bin/systemctl — sudo does not follow the /bin -> /usr/bin
+# symlink on noble, so a /bin/ path silently never matches.
+valheim ALL=(root) NOPASSWD: /usr/bin/systemctl start valheim.service, /usr/bin/systemctl stop valheim.service, /usr/bin/systemctl restart valheim.service, /usr/bin/systemctl status valheim.service

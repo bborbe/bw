@@ -18,6 +18,14 @@ nodes['hz.hetzner-2'] = {
         'workspace': {
             'enabled': True,
         },
+        'docker': {
+            'enabled': True,
+        },
+        'valheim': {
+            'enabled': True,
+            'world_name': 'Valheim',
+            'server_password': teamvault.password('eOBZ4O', site='benjamin-borbe'),
+        },
         'openclaw': {
             'enabled': False,
             'matrix': {
@@ -59,6 +67,15 @@ nodes['hz.hetzner-2'] = {
         'users': {
             'bborbe': {
                 'enabled': True,
+            },
+            # Runs the Valheim server. docker-group membership is root-equivalent on
+            # this host — accepted because hetzner-2 is a game/assistant box, not
+            # infrastructure. No 'sudo': True: that key grants ALL=(ALL) NOPASSWD: ALL
+            # via bundles/sudo/files/users, which would defeat the narrow drop-in.
+            'valheim': {
+                'enabled': True,
+                'uid': 11022,
+                'groups': ['docker'],
             },
         },
         'kubectl': {

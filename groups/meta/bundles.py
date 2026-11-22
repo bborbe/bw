@@ -67,6 +67,7 @@ groups['meta-bundles'] = {
         'trivy',
         'ubuntu-desktop',
         'user',
+        'valheim',
         'zfs',
     ),
 }
