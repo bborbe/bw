@@ -96,3 +96,13 @@ nodes['hz.hetzner-2'] = {
         },
     },
 }
+
+# The container runs as the valheim service account (PUID/PGID), so everything the
+# server writes into the /config bind mount is owned by valheim instead of root —
+# the image defaults to uid/gid 0 and would otherwise recreate root-owned saves and
+# backups on every run. Derived from the user item so the uid lives in one place.
+_valheim_uid = nodes['hz.hetzner-2']['metadata']['users']['valheim']['uid']
+nodes['hz.hetzner-2']['metadata']['valheim'].update({
+    'uid': _valheim_uid,
+    'gid': _valheim_uid,
+})

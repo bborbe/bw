@@ -7,6 +7,10 @@ services:
     image: lloesche/valheim-server:sha-0ab6cdcc16dd
     container_name: valheim-server
     env_file: valheim.env
+    # Docker's default grace period is 10s, after which it SIGKILLs the server.
+    # A kill mid-save is the one way to corrupt the world, so give the container's
+    # own shutdown (save + supervisor stop) room to finish.
+    stop_grace_period: 2m
     ports:
       - "2456-2457:2456-2457/udp"
     volumes:
