@@ -15,6 +15,12 @@ Runs a Valheim dedicated server as an unprivileged service user.
 
 ## Notes
 
+- **The image is pinned, and `ExecStop` is `docker compose stop`, not `down`.** The
+  Valheim server install lives at `/opt/valheim` *inside the container* (~4 GB), not on
+  the bind mount — only `/config` is persisted. Removing the container therefore makes
+  the next start re-download everything from Steam. `stop` keeps the container, so a
+  service restart is instant; a `docker compose down`, an image bump, or a container
+  recreate still triggers one full download.
 - **The world password lives in TeamVault,** not in git and not in the repo vault.
   `nodes/hz.hetzner-2.py` resolves `teamvault.password('eOBZ4O', site='benjamin-borbe')`
   and `files/valheim.env` renders it as a mako template. `repo.vault.password_for` is
