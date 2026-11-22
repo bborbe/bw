@@ -11,7 +11,10 @@ RemainAfterExit=yes
 User=valheim
 WorkingDirectory=/home/valheim/valheim
 ExecStart=/usr/bin/docker compose up -d
-ExecStop=/usr/bin/docker compose down
+# `stop`, not `down`: the Valheim server install lives at /opt/valheim INSIDE the
+# container (4.1 GB), so removing the container makes the next start re-download it
+# from Steam. `stop` keeps the container, so a restart is instant and offline-safe.
+ExecStop=/usr/bin/docker compose stop
 TimeoutStartSec=300
 TimeoutStopSec=120
 

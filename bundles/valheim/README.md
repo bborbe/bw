@@ -15,6 +15,12 @@ Runs a Valheim dedicated server as an unprivileged service user.
 
 ## Notes
 
+- **The image is pinned, and `ExecStop` is `docker compose stop`, not `down`.** The
+  Valheim server install lives at `/opt/valheim` *inside the container* (~4 GB), not on
+  the bind mount — only `/config` is persisted. Removing the container therefore makes
+  the next start re-download everything from Steam. `stop` keeps the container, so a
+  service restart is instant; a `docker compose down`, an image bump, or a container
+  recreate still triggers one full download.
 - **`server_name` and `world_name` are separate.** `server_name` is the label in the
   server browser (`SERVER_NAME`); `world_name` is the save directory under
   `data/worlds_local/` (`WORLD_NAME`). Renaming the server is safe at any time;
