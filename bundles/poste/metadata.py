@@ -7,6 +7,11 @@ defaults = {
         # https://hub.docker.com/r/bborbe/poste.io/tags
         'version': '2.5.13-2.0.1',
         'admin_port': 8001,  # host port -> container :80 (HTTP admin UI; nginx 'mail' vhost proxies this)
+        # Container memory cap (docker --memory). The poste.io stack (redis + Haraka +
+        # rspamd + dovecot + php-fpm) has a measured working set above 1 GiB; a 1000m
+        # cap OOM-killed redis in a restart loop, which stalled Haraka's SMTP banner and
+        # made monit re-deliver the same alert. Size per node from a measured peak.
+        'memory': '1000m',
     },
 }
 
