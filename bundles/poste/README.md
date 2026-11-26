@@ -22,6 +22,7 @@ off. **Not** the public `analogic/poste.io` image. Published via the repo's own
     'enabled': True,
     'version': '2.5.13-2.0.1',  # bborbe/poste.io image tag
     'admin_port': 8001,         # host port -> container :80 (nginx 'mail' vhost proxies this)
+    'memory': '2000m',          # docker --memory cap; default 1000m, raised after redis OOM
 },
 ```
 

@@ -56,6 +56,9 @@ nodes['hz.hetzner-1'] = {
             'enabled': True,
             'version': '2.5.21-2.0.1',
             'admin_port': 8001,
+            # Measured working set ~1.44 GiB (redis dataset + Haraka + rspamd); the
+            # bundle default of 1000m OOM-killed redis and stalled SMTP.
+            'memory': '2000m',
         },
         'bind': {
             'enabled': True,
